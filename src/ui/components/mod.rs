@@ -1,4 +1,4 @@
-//! Helpers for rendering specific items.
+//! Predefined UI components & render helpers.
 
 #[cfg(feature = "log")]
 pub mod log;

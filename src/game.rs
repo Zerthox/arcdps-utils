@@ -1,6 +1,6 @@
-//! General GW2 related enums.
+//! General GW2 related data.
 //!
-//! These are also used in the ArcDPS API, but may be useful outside.
+//! This is also used in the ArcDPS API, but may be useful outside.
 
 use num_enum::{FromPrimitive, IntoPrimitive, TryFromPrimitive};
 use strum_macros::{Display, IntoStaticStr};

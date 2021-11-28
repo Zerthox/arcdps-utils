@@ -1,3 +1,5 @@
+//! UI related utilities.
+
 pub mod align;
 pub mod components;
 mod window;

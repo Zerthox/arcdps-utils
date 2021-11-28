@@ -1,3 +1,5 @@
+//! Log component.
+
 use crate::ui::{
     align::RightAlign,
     window::{WindowProps, Windowed},
@@ -6,12 +8,12 @@ use crate::ui::{
 use arcdps::imgui::{im_str, ChildWindow, ImString, Ui};
 use chrono::Local;
 
-/// Time format used for debug messages.
+/// Time format used for log messages.
 const FORMAT: &str = "%b %d %H:%M:%S.%3f";
 
-/// Debug log component.
+/// Component for logging messages.
 #[derive(Debug, Clone)]
-pub struct DebugLog {
+pub struct Log {
     /// Current contents of the log.
     contents: ImString,
 
@@ -27,8 +29,8 @@ pub struct DebugLog {
     copy_button_width: f32,
 }
 
-impl DebugLog {
-    /// Creates a new debug log.
+impl Log {
+    /// Creates a new log.
     pub fn new() -> Self {
         Self {
             contents: ImString::default(),
@@ -55,19 +57,19 @@ impl DebugLog {
         }
     }
 
-    /// Clears the debug log.
+    /// Clears the log.
     pub fn clear(&mut self) {
         self.contents.clear();
     }
 }
 
-impl Default for DebugLog {
+impl Default for Log {
     fn default() -> Self {
         Self::new()
     }
 }
 
-impl Component for DebugLog {
+impl Component for Log {
     fn render(&mut self, ui: &Ui) {
         // time
         ui.align_text_to_frame_padding();
@@ -120,9 +122,9 @@ impl Component for DebugLog {
     }
 }
 
-impl Windowed for DebugLog {
+impl Windowed for Log {
     fn window_props() -> WindowProps {
-        WindowProps::new("Debug Log")
+        WindowProps::new("Log")
             .visible(true)
             .width(600.0)
             .height(300.0)
