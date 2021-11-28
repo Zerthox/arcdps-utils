@@ -1,8 +1,10 @@
 pub mod align;
 pub mod components;
-pub mod window;
+mod window;
 
 use arcdps::imgui::Ui;
+
+pub use window::{Window, WindowProps, Windowed};
 
 /// Interface for UI components.
 pub trait Component {
