@@ -7,6 +7,8 @@ Utilities for [Rust](https://www.rust-lang.org/learn/get-started)-based [ArcDPS]
 arc_util = { git = "https://github.com/zerthox/gw2-arcdps-utils", branch = "master" }
 ```
 
+Documentation can be found here: [zerthox.github.io/gw2-arcdps-utils/arc_util](https://zerthox.github.io/gw2-arcdps-utils/arc_util/)
+
 ## Optional Features
 | | |
 | --- | --- |
