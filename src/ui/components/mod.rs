@@ -1,10 +1,9 @@
 //! Helpers for rendering specific items.
 
-mod log;
+#[cfg(feature = "log")]
+pub mod log;
 
 use arcdps::imgui::{sys, ImStr};
-
-pub use log::DebugLog;
 
 /// Renders a right-click context menu for the last item.
 pub fn item_context_menu<F>(str_id: &ImStr, contents: F)

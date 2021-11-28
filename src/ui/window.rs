@@ -10,14 +10,17 @@ where
     /// Returns the default [`WindowProps`] for the [`Component`]'s [`Window`].
     fn window_props() -> WindowProps;
 
-    /// Creates a [`Window`] containing the [`Default`] value of the [`Component`].
-    fn create_window() -> Window<Self> {
-        Window::with_default(Self::window_props())
-    }
-
     /// Embeds the [`Component`] into a [`Window`].
     fn windowed(self) -> Window<Self> {
         Window::with_inner(Self::window_props(), self)
+    }
+
+    /// Embeds the [`Component`] into a [`Window`] with a custom name.
+    fn windowed_with_name<S>(self, name: S) -> Window<Self>
+    where
+        S: Into<String>,
+    {
+        Window::with_inner(Self::window_props().name(name), self)
     }
 }
 
@@ -59,10 +62,10 @@ where
 
 impl<T> Default for Window<T>
 where
-    T: Windowed,
+    T: Default + Windowed,
 {
     fn default() -> Self {
-        T::create_window()
+        T::default().windowed()
     }
 }
 
@@ -140,6 +143,15 @@ impl WindowProps {
             auto_resize: false,
             scroll: true,
         }
+    }
+
+    /// Sets the window name.
+    pub fn name<S>(mut self, name: S) -> Self
+    where
+        S: Into<String>,
+    {
+        self.name = ImString::new(name.into());
+        self
     }
 
     /// Sets the default window width.
