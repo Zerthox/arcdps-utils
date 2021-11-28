@@ -10,7 +10,7 @@ arc_util = { git = "https://github.com/zerthox/gw2-arcdps-utils", branch = "mast
 Documentation can be found here: [zerthox.github.io/gw2-arcdps-utils/arc_util](https://zerthox.github.io/gw2-arcdps-utils/arc_util/)
 
 ## Optional Features
-| | |
+| Flag | Description |
 | --- | --- |
 | serde | Adds [serde](https://serde.rs/) Serialize & Deserialize to `game` structs.
 | log | Includes a Log component in `components`.
