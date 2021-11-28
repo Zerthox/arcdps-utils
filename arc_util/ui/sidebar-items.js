@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["align","Helpers for UI alignment."],["components","Predefined UI components & render helpers."]],"struct":[["Window","Window component."],["WindowProps","Window props."]],"trait":[["Component","Interface for UI components."],["Hideable","Interface for hideable UI components."],["Windowed","A component which may render in a window."]]});

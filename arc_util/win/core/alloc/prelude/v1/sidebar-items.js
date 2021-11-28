@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Box","A pointer type for heap allocation."],["String","A UTF-8–encoded, growable string."],["Vec","A contiguous growable array type, written as `Vec<T>` and pronounced ‘vector’."]],"trait":[["ToOwned","A generalization of `Clone` to borrowed data."],["ToString","A trait for converting a value to a `String`."]]});

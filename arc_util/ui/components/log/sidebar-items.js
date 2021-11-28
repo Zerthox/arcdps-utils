@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Log","Component for logging messages."]]});
