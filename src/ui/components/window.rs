@@ -228,6 +228,7 @@ mod settings {
         T: HasSettings,
     {
         shown: Option<bool>,
+        hotkey: Option<usize>,
         settings: Option<T::Settings>,
     }
 
@@ -236,19 +237,24 @@ mod settings {
         T: Component + Windowed + HasSettings,
     {
         type Settings = WindowSettings<T>;
+
         fn settings_id() -> &'static str {
             T::settings_id()
         }
+
         fn get_settings(&self) -> Self::Settings {
             WindowSettings {
                 shown: Some(self.is_visible()),
+                hotkey: self.hotkey(),
                 settings: Some(self.inner.get_settings()),
             }
         }
+
         fn load_settings(&mut self, loaded: Self::Settings) {
             if let Some(shown) = loaded.shown {
                 self.set_visibility(shown);
             }
+            self.set_hotkey(loaded.hotkey);
             if let Some(settings) = loaded.settings {
                 self.inner.load_settings(settings);
             }
