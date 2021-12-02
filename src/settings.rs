@@ -27,7 +27,7 @@ impl Settings {
     }
 
     /// Creates new settings from a file.
-    pub fn from<P>(file: P) -> Self
+    pub fn from_file<P>(file: P) -> Self
     where
         P: AsRef<Path>,
     {
