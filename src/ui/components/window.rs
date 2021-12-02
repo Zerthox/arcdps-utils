@@ -1,28 +1,8 @@
-use super::{Component, Hideable};
+//! Window component.
+
+use crate::ui::{Component, Hideable, Windowed};
 use arcdps::imgui::{self, Condition, ImString, Ui};
 use std::ops::{Deref, DerefMut};
-
-/// A component which may render in a window.
-pub trait Windowed
-where
-    Self: Component + Default + Sized,
-{
-    /// Returns the default [`WindowProps`] for the [`Component`]'s [`Window`].
-    fn window_props() -> WindowProps;
-
-    /// Embeds the [`Component`] into a [`Window`].
-    fn windowed(self) -> Window<Self> {
-        Window::with_inner(Self::window_props(), self)
-    }
-
-    /// Embeds the [`Component`] into a [`Window`] with a custom name.
-    fn windowed_with_name<S>(self, name: S) -> Window<Self>
-    where
-        S: Into<String>,
-    {
-        Window::with_inner(Self::window_props().name(name), self)
-    }
-}
 
 /// Window component.
 #[derive(Debug)]
@@ -47,6 +27,26 @@ where
             inner,
             shown,
         }
+    }
+
+    /// Returns a reference to the inner [`Component`].
+    pub fn inner(&self) -> &T {
+        &self.inner
+    }
+
+    /// Returns a mutable reference to the inner [`Component`].
+    pub fn inner_mut(&mut self) -> &mut T {
+        &mut self.inner
+    }
+
+    /// Returns the window hotkey.
+    pub fn hotkey(&self) -> Option<usize> {
+        self.props.hotkey
+    }
+
+    /// Sets the window hotkey.
+    pub fn set_hotkey(&mut self, key: Option<usize>) {
+        self.props.hotkey = key
     }
 }
 
@@ -76,7 +76,7 @@ where
     type Target = T;
 
     fn deref(&self) -> &Self::Target {
-        &self.inner
+        self.inner()
     }
 }
 
@@ -85,7 +85,7 @@ where
     T: Component,
 {
     fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.inner
+        self.inner_mut()
     }
 }
 
@@ -126,6 +126,7 @@ pub struct WindowProps {
     resize: bool,
     auto_resize: bool,
     scroll: bool,
+    hotkey: Option<usize>,
 }
 
 impl WindowProps {
@@ -142,6 +143,7 @@ impl WindowProps {
             visible: true,
             auto_resize: false,
             scroll: true,
+            hotkey: None,
         }
     }
 
@@ -190,6 +192,12 @@ impl WindowProps {
         self
     }
 
+    /// Sets the window hotkey
+    pub const fn hotkey(mut self, value: usize) -> Self {
+        self.hotkey = Some(value);
+        self
+    }
+
     /// Creates the [`imgui::Window`] corresponding to the props.
     fn new_window(&self) -> imgui::Window {
         imgui::Window::new(&self.name)
@@ -204,3 +212,49 @@ impl WindowProps {
             .focus_on_appearing(false)
     }
 }
+
+#[cfg(feature = "settings")]
+mod settings {
+    use crate::{
+        settings::HasSettings,
+        ui::{Component, Hideable, Window, Windowed},
+    };
+    use serde_crate::{Deserialize, Serialize};
+
+    #[derive(Debug, Serialize, Deserialize)]
+    #[serde(crate = "serde_crate")]
+    pub struct WindowSettings<T>
+    where
+        T: HasSettings,
+    {
+        shown: Option<bool>,
+        settings: Option<T::Settings>,
+    }
+
+    impl<T> HasSettings for Window<T>
+    where
+        T: Component + Windowed + HasSettings,
+    {
+        type Settings = WindowSettings<T>;
+        fn settings_id() -> &'static str {
+            T::settings_id()
+        }
+        fn get_settings(&self) -> Self::Settings {
+            WindowSettings {
+                shown: Some(self.is_visible()),
+                settings: Some(self.inner.get_settings()),
+            }
+        }
+        fn load_settings(&mut self, loaded: Self::Settings) {
+            if let Some(shown) = loaded.shown {
+                self.set_visibility(shown);
+            }
+            if let Some(settings) = loaded.settings {
+                self.inner.load_settings(settings);
+            }
+        }
+    }
+}
+
+#[cfg(feature = "settings")]
+pub use settings::*;

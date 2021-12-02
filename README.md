@@ -13,4 +13,5 @@ Documentation can be found here: [zerthox.github.io/gw2-arcdps-utils/arc_util](h
 | Flag | Description |
 | --- | --- |
 | serde | Adds [serde](https://serde.rs/) Serialize & Deserialize to `game` structs.
+| settings | Includes settings utilitites in `settings`.
 | log | Includes a Log component in `components`.

@@ -1,5 +1,7 @@
 //! Predefined UI components & render helpers.
 
+pub mod window;
+
 #[cfg(feature = "log")]
 pub mod log;
 

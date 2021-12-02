@@ -1,10 +1,6 @@
 //! Log component.
 
-use crate::ui::{
-    align::RightAlign,
-    window::{WindowProps, Windowed},
-    Component,
-};
+use crate::ui::{align::RightAlign, Component, WindowProps, Windowed};
 use arcdps::imgui::{im_str, ChildWindow, ImString, Ui};
 use chrono::Local;
 
@@ -102,7 +98,7 @@ impl Component for Log {
         ui.separator();
 
         // log contents
-        ChildWindow::new(im_str!("##food-reminder-log-scroller"))
+        ChildWindow::new(im_str!("##log-scroller"))
             .scrollable(true)
             .horizontal_scrollbar(true)
             .build(ui, || {
