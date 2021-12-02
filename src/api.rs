@@ -1,9 +1,9 @@
 //! ArcDPS API utilities.
 
-use crate::win::Win32::Media::timeGetTime;
 use arcdps::CombatEvent;
 use num_enum::{FromPrimitive, TryFromPrimitive};
 use std::{mem, time::Duration};
+use windows::Win32::Media::timeGetTime;
 
 /// Calculates the time difference (deltatime) between an event happening and now.
 pub fn calc_delta(event: &CombatEvent) -> Duration {
