@@ -126,17 +126,9 @@
 <span id="126">126</span>
 <span id="127">127</span>
 <span id="128">128</span>
-<span id="129">129</span>
-<span id="130">130</span>
-<span id="131">131</span>
-<span id="132">132</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Log component.</span>
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ui</span>::{
-    <span class="ident">align::RightAlign</span>,
-    <span class="ident">window</span>::{<span class="ident">WindowProps</span>, <span class="ident">Windowed</span>},
-    <span class="ident">Component</span>,
-};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ui</span>::{<span class="ident">align::RightAlign</span>, <span class="ident">Component</span>, <span class="ident">WindowProps</span>, <span class="ident">Windowed</span>};
 <span class="kw">use</span> <span class="ident">arcdps::imgui</span>::{<span class="ident">im_str</span>, <span class="ident">ChildWindow</span>, <span class="ident">ImString</span>, <span class="ident">Ui</span>};
 <span class="kw">use</span> <span class="ident">chrono::Local</span>;
 
@@ -234,7 +226,7 @@
         <span class="ident">ui</span>.<span class="ident">separator</span>();
 
         <span class="comment">// log contents</span>
-        <span class="ident">ChildWindow::new</span>(<span class="macro">im_str!</span>(<span class="string">&quot;##food-reminder-log-scroller&quot;</span>))
+        <span class="ident">ChildWindow::new</span>(<span class="macro">im_str!</span>(<span class="string">&quot;##log-scroller&quot;</span>))
             .<span class="ident">scrollable</span>(<span class="bool-val">true</span>)
             .<span class="ident">horizontal_scrollbar</span>(<span class="bool-val">true</span>)
             .<span class="ident">build</span>(<span class="ident">ui</span>, <span class="op">|</span><span class="op">|</span> {

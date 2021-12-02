@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Settings","Settings state."]],"trait":[["HasSettings","Interface for components with settings."]]});

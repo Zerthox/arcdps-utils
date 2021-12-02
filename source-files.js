@@ -1,5 +1,5 @@
 var N = null;var sourcesIndex = {};
-sourcesIndex["arc_util"] = {"name":"","dirs":[{"name":"ui","dirs":[{"name":"components","files":["log.rs","mod.rs"]}],"files":["align.rs","mod.rs","window.rs"]}],"files":["api.rs","exports.rs","game.rs","lib.rs"]};
+sourcesIndex["arc_util"] = {"name":"","dirs":[{"name":"ui","dirs":[{"name":"components","files":["log.rs","mod.rs","window.rs"]}],"files":["align.rs","mod.rs"]}],"files":["api.rs","exports.rs","game.rs","lib.rs","settings.rs"]};
 sourcesIndex["arcdps"] = {"name":"","dirs":[{"name":"unofficial_extras","files":["mod.rs","raw_structs.rs"]}],"files":["exported_functions.rs","helpers.rs","lib.rs","logging.rs","raw_structs.rs"]};
 sourcesIndex["arcdps_codegen"] = {"name":"","files":["lib.rs","parse.rs"]};
 sourcesIndex["bitflags"] = {"name":"","files":["lib.rs"]};
@@ -11,6 +11,7 @@ sourcesIndex["heck"] = {"name":"","files":["camel.rs","kebab.rs","lib.rs","mixed
 sourcesIndex["imgui"] = {"name":"","dirs":[{"name":"fonts","files":["atlas.rs","font.rs","glyph.rs","glyph_ranges.rs","mod.rs"]},{"name":"input","files":["keyboard.rs","mod.rs","mouse.rs"]},{"name":"render","files":["draw_data.rs","mod.rs","renderer.rs"]},{"name":"widget","files":["color_editors.rs","combo_box.rs","drag.rs","image.rs","list_box.rs","menu.rs","misc.rs","mod.rs","progress_bar.rs","selectable.rs","slider.rs","tab.rs","text.rs","tree.rs"]},{"name":"window","files":["child_window.rs","content_region.rs","mod.rs","scroll.rs"]}],"files":["clipboard.rs","color.rs","columns.rs","context.rs","drag_drop.rs","draw_list.rs","input_widget.rs","internal.rs","io.rs","layout.rs","legacy.rs","lib.rs","list_clipper.rs","plothistogram.rs","plotlines.rs","popup_modal.rs","stacks.rs","string.rs","style.rs","tables.rs","utils.rs"]};
 sourcesIndex["imgui_sys"] = {"name":"","files":["bindings.rs","lib.rs"]};
 sourcesIndex["instant"] = {"name":"","files":["lib.rs","native.rs"]};
+sourcesIndex["itoa"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["libc"] = {"name":"","dirs":[{"name":"windows","dirs":[{"name":"msvc","files":["mod.rs"]}],"files":["mod.rs"]}],"files":["fixed_width_ints.rs","lib.rs","macros.rs"]};
 sourcesIndex["lock_api"] = {"name":"","files":["lib.rs","mutex.rs","remutex.rs","rwlock.rs"]};
 sourcesIndex["log"] = {"name":"","files":["lib.rs","macros.rs"]};
@@ -26,9 +27,11 @@ sourcesIndex["proc_macro2"] = {"name":"","files":["detection.rs","fallback.rs","
 sourcesIndex["proc_macro_crate"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["quote"] = {"name":"","files":["ext.rs","format.rs","ident_fragment.rs","lib.rs","runtime.rs","spanned.rs","to_tokens.rs"]};
 sourcesIndex["rustversion"] = {"name":"","files":["attr.rs","bound.rs","constfn.rs","date.rs","error.rs","expr.rs","iter.rs","lib.rs","release.rs","time.rs","token.rs","version.rs"]};
+sourcesIndex["ryu"] = {"name":"","dirs":[{"name":"buffer","files":["mod.rs"]},{"name":"pretty","files":["exponent.rs","mantissa.rs","mod.rs"]}],"files":["common.rs","d2s.rs","d2s_full_table.rs","d2s_intrinsics.rs","digit_table.rs","f2s.rs","f2s_intrinsics.rs","lib.rs"]};
 sourcesIndex["scopeguard"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["serde"] = {"name":"","dirs":[{"name":"de","files":["ignored_any.rs","impls.rs","mod.rs","seed.rs","utf8.rs","value.rs"]},{"name":"private","files":["de.rs","doc.rs","mod.rs","ser.rs","size_hint.rs"]},{"name":"ser","files":["fmt.rs","impls.rs","impossible.rs","mod.rs"]}],"files":["integer128.rs","lib.rs","macros.rs"]};
 sourcesIndex["serde_derive"] = {"name":"","dirs":[{"name":"internals","files":["ast.rs","attr.rs","case.rs","check.rs","ctxt.rs","mod.rs","receiver.rs","respan.rs","symbol.rs"]}],"files":["bound.rs","de.rs","dummy.rs","fragment.rs","lib.rs","pretend.rs","ser.rs","try.rs"]};
+sourcesIndex["serde_json"] = {"name":"","dirs":[{"name":"features_check","files":["mod.rs"]},{"name":"io","files":["mod.rs"]},{"name":"value","files":["de.rs","from.rs","index.rs","mod.rs","partial_eq.rs","ser.rs"]}],"files":["de.rs","error.rs","iter.rs","lib.rs","macros.rs","map.rs","number.rs","read.rs","ser.rs"]};
 sourcesIndex["smallvec"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["strum"] = {"name":"","files":["additional_attributes.rs","lib.rs"]};
 sourcesIndex["strum_macros"] = {"name":"","dirs":[{"name":"helpers","files":["case_style.rs","metadata.rs","mod.rs","type_props.rs","variant_props.rs"]},{"name":"macros","dirs":[{"name":"strings","files":["as_ref_str.rs","display.rs","from_string.rs","mod.rs","to_string.rs"]}],"files":["enum_count.rs","enum_discriminants.rs","enum_iter.rs","enum_messages.rs","enum_properties.rs","enum_variant_names.rs","from_repr.rs","mod.rs"]}],"files":["lib.rs"]};
