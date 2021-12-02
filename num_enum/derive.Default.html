@@ -5,7 +5,7 @@
     #[default]
 }
 </code></pre><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Implements <code>core::default::Default</code> for a <code>#[repr(Primitive)] enum</code>.</p>
-<h2 id="whichever-variant-has-the-default-or-num_enumdefault-attribute-will-be-returned" class="section-header"><a href="#whichever-variant-has-the-default-or-num_enumdefault-attribute-will-be-returned">Whichever variant has the <code>#[default]</code> or <code>#[num_enum(default)]</code> attribute will be returned.</a></h2>
+<h3 id="whichever-variant-has-the-default-or-num_enumdefault-attribute-will-be-returned" class="section-header"><a href="#whichever-variant-has-the-default-or-num_enumdefault-attribute-will-be-returned">Whichever variant has the <code>#[default]</code> or <code>#[num_enum(default)]</code> attribute will be returned.</a></h3>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">num_enum::Default</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u8</span>)]</span>
 <span class="kw">enum</span> <span class="ident">Number</span> {

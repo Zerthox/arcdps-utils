@@ -228,21 +228,21 @@
     <span class="doccomment">/// May be useful to handle the same mouse event on a group of items, for example.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns a `GroupToken` that must be ended by calling `.end()`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin_group</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GroupToken</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin_group</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">GroupToken</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igBeginGroup</span>() };
         <span class="ident">GroupToken</span> { <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span> }
     }
     <span class="doccomment">/// Creates a layout group and runs a closure to construct the contents.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// May be useful to handle the same mouse event on a group of items, for example.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">group</span><span class="op">&lt;</span><span class="ident">R</span>, <span class="ident">F</span>: <span class="ident">FnOnce</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">group</span><span class="op">&lt;</span><span class="ident">R</span>, <span class="ident">F</span>: <span class="ident">FnOnce</span>() -&gt; <span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">R</span> {
         <span class="kw">let</span> <span class="ident">group</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">begin_group</span>();
         <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">f</span>();
         <span class="ident">group</span>.<span class="ident">end</span>(<span class="self">self</span>);
         <span class="ident">result</span>
     }
     <span class="doccomment">/// Returns the cursor position (in window coordinates)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">2</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [<span class="ident">f32</span>; <span class="number">2</span>] {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">sys::ImVec2::zero</span>();
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetCursorPos</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">out</span>) };
         <span class="ident">out</span>.<span class="ident">into</span>()
@@ -254,7 +254,7 @@
         <span class="kw">unsafe</span> { <span class="ident">sys::igSetCursorPos</span>(<span class="ident">pos</span>.<span class="ident">into</span>()) };
     }
     <span class="doccomment">/// Returns the initial cursor position (in window coordinates)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor_start_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">2</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor_start_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [<span class="ident">f32</span>; <span class="number">2</span>] {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">sys::ImVec2::zero</span>();
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetCursorStartPos</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">out</span>) };
         <span class="ident">out</span>.<span class="ident">into</span>()
@@ -262,7 +262,7 @@
     <span class="doccomment">/// Returns the cursor position (in absolute screen coordinates).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is especially useful for drawing, as the drawing API uses screen coordinates.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor_screen_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">2</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor_screen_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [<span class="ident">f32</span>; <span class="number">2</span>] {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">sys::ImVec2::zero</span>();
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetCursorScreenPos</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">out</span>) };
         <span class="ident">out</span>.<span class="ident">into</span>()
@@ -277,16 +277,16 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">align_text_to_frame_padding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> { <span class="ident">sys::igAlignTextToFramePadding</span>() };
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_line_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_line_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetTextLineHeight</span>() }
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_line_height_with_spacing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_line_height_with_spacing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetTextLineHeightWithSpacing</span>() }
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetFrameHeight</span>() }
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame_height_with_spacing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame_height_with_spacing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetFrameHeightWithSpacing</span>() }
     }
 }

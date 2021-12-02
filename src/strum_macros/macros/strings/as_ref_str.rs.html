@@ -122,12 +122,12 @@
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::helpers</span>::{<span class="ident">non_enum_error</span>, <span class="ident">HasStrumVariantProperties</span>, <span class="ident">HasTypeProperties</span>};
 
-<span class="kw">fn</span> <span class="ident">get_arms</span>(<span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">DeriveInput</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TokenStream</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">get_arms</span>(<span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">DeriveInput</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TokenStream</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">ident</span>;
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">arms</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
     <span class="kw">let</span> <span class="ident">variants</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">data</span> {
-        <span class="ident">Data::Enum</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">v</span>.<span class="ident">variants</span>,
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">non_enum_error</span>()),
+        <span class="ident">Data::Enum</span>(<span class="ident">v</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">v</span>.<span class="ident">variants</span>,
+        <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">non_enum_error</span>()),
     };
 
     <span class="kw">let</span> <span class="ident">type_properties</span> <span class="op">=</span> <span class="ident">ast</span>.<span class="ident">get_type_properties</span>()<span class="question-mark">?</span>;
@@ -146,17 +146,17 @@
         <span class="comment">// (i.e. always `enum.as_ref().to_string() == enum.to_string()`).</span>
         <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">variant_properties</span>.<span class="ident">get_preferred_name</span>(<span class="ident">type_properties</span>.<span class="ident">case_style</span>);
         <span class="kw">let</span> <span class="ident">params</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">variant</span>.<span class="ident">fields</span> {
-            <span class="ident">Unit</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">quote!</span> {},
-            <span class="ident">Unnamed</span>(..) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">quote!</span> { (..) },
-            <span class="ident">Named</span>(..) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">quote!</span> { {..} },
+            <span class="ident">Unit</span> =&gt; <span class="macro">quote!</span> {},
+            <span class="ident">Unnamed</span>(..) =&gt; <span class="macro">quote!</span> { (..) },
+            <span class="ident">Named</span>(..) =&gt; <span class="macro">quote!</span> { {..} },
         };
 
-        <span class="ident">arms</span>.<span class="ident">push</span>(<span class="macro">quote!</span> { #<span class="ident">name</span>::#<span class="ident">ident</span> #<span class="ident">params</span> <span class="op">=</span><span class="op">&gt;</span> #<span class="ident">output</span> });
+        <span class="ident">arms</span>.<span class="ident">push</span>(<span class="macro">quote!</span> { #<span class="ident">name</span>::#<span class="ident">ident</span> #<span class="ident">params</span> =&gt; #<span class="ident">output</span> });
     }
 
     <span class="kw">if</span> <span class="ident">arms</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="ident">variants</span>.<span class="ident">len</span>() {
         <span class="ident">arms</span>.<span class="ident">push</span>(<span class="macro">quote!</span> {
-            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(
+            <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(
                 <span class="string">&quot;AsRef::&lt;str&gt;::as_ref() or AsStaticRef::&lt;str&gt;::as_static() \
                  called on disabled variant.&quot;</span>,
             )
@@ -166,13 +166,13 @@
     <span class="prelude-val">Ok</span>(<span class="ident">arms</span>)
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_ref_str_inner</span>(<span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">DeriveInput</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">TokenStream</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_ref_str_inner</span>(<span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">DeriveInput</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">TokenStream</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">ident</span>;
     <span class="kw">let</span> (<span class="ident">impl_generics</span>, <span class="ident">ty_generics</span>, <span class="ident">where_clause</span>) <span class="op">=</span> <span class="ident">ast</span>.<span class="ident">generics</span>.<span class="ident">split_for_impl</span>();
     <span class="kw">let</span> <span class="ident">arms</span> <span class="op">=</span> <span class="ident">get_arms</span>(<span class="ident">ast</span>)<span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(<span class="macro">quote!</span> {
         <span class="kw">impl</span> #<span class="ident">impl_generics</span> <span class="ident">::core::convert::AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="kw">for</span> #<span class="ident">name</span> #<span class="ident">ty_generics</span> #<span class="ident">where_clause</span> {
-            <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+            <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
                 <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
                     #(#<span class="ident">arms</span>),<span class="op">*</span>
                 }
@@ -189,7 +189,7 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_static_str_inner</span>(
     <span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">DeriveInput</span>,
     <span class="ident">trait_variant</span>: <span class="ident">GenerateTraitVariant</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">TokenStream</span><span class="op">&gt;</span> {
+) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">TokenStream</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">ident</span>;
     <span class="kw">let</span> (<span class="ident">impl_generics</span>, <span class="ident">ty_generics</span>, <span class="ident">where_clause</span>) <span class="op">=</span> <span class="ident">ast</span>.<span class="ident">generics</span>.<span class="ident">split_for_impl</span>();
     <span class="kw">let</span> <span class="ident">arms</span> <span class="op">=</span> <span class="ident">get_arms</span>(<span class="ident">ast</span>)<span class="question-mark">?</span>;
@@ -207,25 +207,25 @@
     <span class="kw">let</span> <span class="ident">arms3</span> <span class="op">=</span> <span class="ident">arms</span>.<span class="ident">clone</span>();
 
     <span class="prelude-val">Ok</span>(<span class="kw">match</span> <span class="ident">trait_variant</span> {
-        <span class="ident">GenerateTraitVariant::AsStaticStr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">quote!</span> {
+        <span class="ident">GenerateTraitVariant::AsStaticStr</span> =&gt; <span class="macro">quote!</span> {
             <span class="kw">impl</span> #<span class="ident">impl_generics</span> #<span class="ident">strum_module_path::AsStaticRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="kw">for</span> #<span class="ident">name</span> #<span class="ident">ty_generics</span> #<span class="ident">where_clause</span> {
-                <span class="kw">fn</span> <span class="ident">as_static</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
+                <span class="kw">fn</span> <span class="ident">as_static</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
                     <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
                         #(#<span class="ident">arms</span>),<span class="op">*</span>
                     }
                 }
             }
         },
-        <span class="ident">GenerateTraitVariant::From</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">quote!</span> {
+        <span class="ident">GenerateTraitVariant::From</span> =&gt; <span class="macro">quote!</span> {
             <span class="kw">impl</span> #<span class="ident">impl_generics</span> <span class="ident">::core::convert::From</span><span class="op">&lt;</span>#<span class="ident">name</span> #<span class="ident">ty_generics</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> #<span class="ident">where_clause</span> {
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">x</span>: #<span class="ident">name</span> #<span class="ident">ty_generics</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
+                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">x</span>: #<span class="ident">name</span> #<span class="ident">ty_generics</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
                     <span class="kw">match</span> <span class="ident">x</span> {
                         #(#<span class="ident">arms2</span>),<span class="op">*</span>
                     }
                 }
             }
             <span class="kw">impl</span> #<span class="ident">impl_generics2</span> <span class="ident">::core::convert::From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;_derivative_strum</span> #<span class="ident">name</span> #<span class="ident">ty_generics</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> #<span class="ident">where_clause</span> {
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;_derivative_strum</span> #<span class="ident">name</span> #<span class="ident">ty_generics</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
+                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;_derivative_strum</span> #<span class="ident">name</span> #<span class="ident">ty_generics</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
                     <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">x</span> {
                         #(#<span class="ident">arms3</span>),<span class="op">*</span>
                     }

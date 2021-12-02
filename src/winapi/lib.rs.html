@@ -133,12 +133,12 @@
 <span class="comment">// This trait should be implemented for all COM interfaces</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Interface</span> {
     <span class="comment">// Returns the IID of the Interface</span>
-    <span class="kw">fn</span> <span class="ident">uuidof</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">shared::guiddef::GUID</span>;
+    <span class="kw">fn</span> <span class="ident">uuidof</span>() -&gt; <span class="ident">shared::guiddef::GUID</span>;
 }
 <span class="comment">// This trait should be implemented for all COM classes</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Class</span> {
     <span class="comment">// Returns the CLSID of the Class</span>
-    <span class="kw">fn</span> <span class="ident">uuidof</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">shared::guiddef::GUID</span>;
+    <span class="kw">fn</span> <span class="ident">uuidof</span>() -&gt; <span class="ident">shared::guiddef::GUID</span>;
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="winapi" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>

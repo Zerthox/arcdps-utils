@@ -176,50 +176,50 @@
 
 <span class="kw">impl</span> <span class="ident">ImVec2</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f32</span>, <span class="ident">y</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ImVec2</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f32</span>, <span class="ident">y</span>: <span class="ident">f32</span>) -&gt; <span class="ident">ImVec2</span> {
         <span class="ident">ImVec2</span> { <span class="ident">x</span>, <span class="ident">y</span> }
     }
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">zero</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ImVec2</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">zero</span>() -&gt; <span class="ident">ImVec2</span> {
         <span class="ident">ImVec2</span> { <span class="ident">x</span>: <span class="number">0.0</span>, <span class="ident">y</span>: <span class="number">0.0</span> }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span>[<span class="ident">f32</span>; <span class="number">2</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ImVec2</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">array</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ImVec2</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">array</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) -&gt; <span class="ident">ImVec2</span> {
         <span class="ident">ImVec2::new</span>(<span class="ident">array</span>[<span class="number">0</span>], <span class="ident">array</span>[<span class="number">1</span>])
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span>(<span class="ident">f32</span>, <span class="ident">f32</span>)<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ImVec2</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>((<span class="ident">x</span>, <span class="ident">y</span>): (<span class="ident">f32</span>, <span class="ident">f32</span>)) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ImVec2</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>((<span class="ident">x</span>, <span class="ident">y</span>): (<span class="ident">f32</span>, <span class="ident">f32</span>)) -&gt; <span class="ident">ImVec2</span> {
         <span class="ident">ImVec2::new</span>(<span class="ident">x</span>, <span class="ident">y</span>)
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ImVec2</span><span class="op">&gt;</span> <span class="kw">for</span> [<span class="ident">f32</span>; <span class="number">2</span>] {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">v</span>: <span class="ident">ImVec2</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">2</span>] {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">v</span>: <span class="ident">ImVec2</span>) -&gt; [<span class="ident">f32</span>; <span class="number">2</span>] {
         [<span class="ident">v</span>.<span class="ident">x</span>, <span class="ident">v</span>.<span class="ident">y</span>]
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ImVec2</span><span class="op">&gt;</span> <span class="kw">for</span> (<span class="ident">f32</span>, <span class="ident">f32</span>) {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">v</span>: <span class="ident">ImVec2</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">f32</span>, <span class="ident">f32</span>) {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">v</span>: <span class="ident">ImVec2</span>) -&gt; (<span class="ident">f32</span>, <span class="ident">f32</span>) {
         (<span class="ident">v</span>.<span class="ident">x</span>, <span class="ident">v</span>.<span class="ident">y</span>)
     }
 }
 
 <span class="kw">impl</span> <span class="ident">ImVec4</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f32</span>, <span class="ident">y</span>: <span class="ident">f32</span>, <span class="ident">z</span>: <span class="ident">f32</span>, <span class="ident">w</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ImVec4</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f32</span>, <span class="ident">y</span>: <span class="ident">f32</span>, <span class="ident">z</span>: <span class="ident">f32</span>, <span class="ident">w</span>: <span class="ident">f32</span>) -&gt; <span class="ident">ImVec4</span> {
         <span class="ident">ImVec4</span> { <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">z</span>, <span class="ident">w</span> }
     }
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">zero</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ImVec4</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">zero</span>() -&gt; <span class="ident">ImVec4</span> {
         <span class="ident">ImVec4</span> {
             <span class="ident">x</span>: <span class="number">0.0</span>,
             <span class="ident">y</span>: <span class="number">0.0</span>,
@@ -231,28 +231,28 @@
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span>[<span class="ident">f32</span>; <span class="number">4</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ImVec4</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">array</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ImVec4</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">array</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) -&gt; <span class="ident">ImVec4</span> {
         <span class="ident">ImVec4::new</span>(<span class="ident">array</span>[<span class="number">0</span>], <span class="ident">array</span>[<span class="number">1</span>], <span class="ident">array</span>[<span class="number">2</span>], <span class="ident">array</span>[<span class="number">3</span>])
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span>(<span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>)<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ImVec4</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>((<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">z</span>, <span class="ident">w</span>): (<span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>)) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ImVec4</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>((<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">z</span>, <span class="ident">w</span>): (<span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>)) -&gt; <span class="ident">ImVec4</span> {
         <span class="ident">ImVec4::new</span>(<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">z</span>, <span class="ident">w</span>)
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> <span class="kw">for</span> [<span class="ident">f32</span>; <span class="number">4</span>] {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">v</span>: <span class="ident">ImVec4</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">4</span>] {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">v</span>: <span class="ident">ImVec4</span>) -&gt; [<span class="ident">f32</span>; <span class="number">4</span>] {
         [<span class="ident">v</span>.<span class="ident">x</span>, <span class="ident">v</span>.<span class="ident">y</span>, <span class="ident">v</span>.<span class="ident">z</span>, <span class="ident">v</span>.<span class="ident">w</span>]
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> <span class="kw">for</span> (<span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>) {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">v</span>: <span class="ident">ImVec4</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>) {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">v</span>: <span class="ident">ImVec4</span>) -&gt; (<span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>) {
         (<span class="ident">v</span>.<span class="ident">x</span>, <span class="ident">v</span>.<span class="ident">y</span>, <span class="ident">v</span>.<span class="ident">z</span>, <span class="ident">v</span>.<span class="ident">w</span>)
     }
 }

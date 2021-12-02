@@ -116,7 +116,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::occurrence_error</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">HasTypeProperties</span> {
-    <span class="kw">fn</span> <span class="ident">get_type_properties</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">StrumTypeProperties</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_type_properties</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">StrumTypeProperties</span><span class="op">&gt;</span>;
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
@@ -131,7 +131,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">HasTypeProperties</span> <span class="kw">for</span> <span class="ident">DeriveInput</span> {
-    <span class="kw">fn</span> <span class="ident">get_type_properties</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">StrumTypeProperties</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_type_properties</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">StrumTypeProperties</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">StrumTypeProperties::default</span>();
 
         <span class="kw">let</span> <span class="ident">strum_meta</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_metadata</span>()<span class="question-mark">?</span>;
@@ -142,7 +142,7 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">crate_module_path_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
         <span class="kw">for</span> <span class="ident">meta</span> <span class="kw">in</span> <span class="ident">strum_meta</span> {
             <span class="kw">match</span> <span class="ident">meta</span> {
-                <span class="ident">EnumMeta::SerializeAll</span> { <span class="ident">case_style</span>, <span class="ident">kw</span> } <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">EnumMeta::SerializeAll</span> { <span class="ident">case_style</span>, <span class="ident">kw</span> } =&gt; {
                     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">serialize_all_kw</span> {
                         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;serialize_all&quot;</span>));
                     }
@@ -150,7 +150,7 @@
                     <span class="ident">serialize_all_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
                     <span class="ident">output</span>.<span class="ident">case_style</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">case_style</span>);
                 }
-                <span class="ident">EnumMeta::AsciiCaseInsensitive</span>(<span class="ident">kw</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">EnumMeta::AsciiCaseInsensitive</span>(<span class="ident">kw</span>) =&gt; {
                     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">ascii_case_insensitive_kw</span> {
                         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;ascii_case_insensitive&quot;</span>));
                     }
@@ -161,7 +161,7 @@
                 <span class="ident">EnumMeta::Crate</span> {
                     <span class="ident">crate_module_path</span>,
                     <span class="ident">kw</span>,
-                } <span class="op">=</span><span class="op">&gt;</span> {
+                } =&gt; {
                     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">crate_module_path_kw</span> {
                         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;Crate&quot;</span>));
                     }
@@ -176,10 +176,10 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">vis_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
         <span class="kw">for</span> <span class="ident">meta</span> <span class="kw">in</span> <span class="ident">discriminants_meta</span> {
             <span class="kw">match</span> <span class="ident">meta</span> {
-                <span class="ident">EnumDiscriminantsMeta::Derive</span> { <span class="ident">paths</span>, .. } <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">EnumDiscriminantsMeta::Derive</span> { <span class="ident">paths</span>, .. } =&gt; {
                     <span class="ident">output</span>.<span class="ident">discriminant_derives</span>.<span class="ident">extend</span>(<span class="ident">paths</span>);
                 }
-                <span class="ident">EnumDiscriminantsMeta::Name</span> { <span class="ident">name</span>, <span class="ident">kw</span> } <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">EnumDiscriminantsMeta::Name</span> { <span class="ident">name</span>, <span class="ident">kw</span> } =&gt; {
                     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">name_kw</span> {
                         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;name&quot;</span>));
                     }
@@ -187,7 +187,7 @@
                     <span class="ident">name_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
                     <span class="ident">output</span>.<span class="ident">discriminant_name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">name</span>);
                 }
-                <span class="ident">EnumDiscriminantsMeta::Vis</span> { <span class="ident">vis</span>, <span class="ident">kw</span> } <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">EnumDiscriminantsMeta::Vis</span> { <span class="ident">vis</span>, <span class="ident">kw</span> } =&gt; {
                     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">vis_kw</span> {
                         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;vis&quot;</span>));
                     }
@@ -195,7 +195,7 @@
                     <span class="ident">vis_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
                     <span class="ident">output</span>.<span class="ident">discriminant_vis</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">vis</span>);
                 }
-                <span class="ident">EnumDiscriminantsMeta::Other</span> { <span class="ident">path</span>, <span class="ident">nested</span> } <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">EnumDiscriminantsMeta::Other</span> { <span class="ident">path</span>, <span class="ident">nested</span> } =&gt; {
                     <span class="ident">output</span>.<span class="ident">discriminant_others</span>.<span class="ident">push</span>(<span class="macro">quote!</span> { #<span class="ident">path</span>(#<span class="ident">nested</span>) });
                 }
             }
@@ -206,7 +206,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">StrumTypeProperties</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">crate_module_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Path</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">crate_module_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Path</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">path</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">crate_module_path</span> {
             <span class="macro">parse_quote!</span>(#<span class="ident">path</span>)
         } <span class="kw">else</span> {

@@ -8852,7 +8852,7 @@
     <span class="ident">EstablisherFrame</span>: <span class="ident">PVOID</span>,
     <span class="ident">ContextRecord</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CONTEXT</span>,
     <span class="ident">DispatcherContext</span>: <span class="ident">PVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EXCEPTION_DISPOSITION</span>}
+) -&gt; <span class="ident">EXCEPTION_DISPOSITION</span>}
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VER_SERVER_NT</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x80000000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VER_WORKSTATION_NT</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x40000000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VER_SUITE_SMALLBUSINESS</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00000001</span>;
@@ -9419,41 +9419,41 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SORT_HUNGARIAN_TECHNICAL</span>: <span class="ident">WORD</span> <span class="op">=</span> <span class="number">0x1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SORT_GEORGIAN_TRADITIONAL</span>: <span class="ident">WORD</span> <span class="op">=</span> <span class="number">0x0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SORT_GEORGIAN_MODERN</span>: <span class="ident">WORD</span> <span class="op">=</span> <span class="number">0x1</span>;
-<span class="macro">macro_rules!</span> <span class="ident">MAKELANGID</span> { (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">s</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> ((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">s</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>) <span class="op">|</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span>) }
+<span class="macro">macro_rules!</span> <span class="ident">MAKELANGID</span> { (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">s</span>:<span class="ident">expr</span>) =&gt; ((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">s</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>) <span class="op">|</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span>) }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKELANGID</span>(<span class="ident">p</span>: <span class="ident">WORD</span>, <span class="ident">s</span>: <span class="ident">WORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LANGID</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKELANGID</span>(<span class="ident">p</span>: <span class="ident">WORD</span>, <span class="ident">s</span>: <span class="ident">WORD</span>) -&gt; <span class="ident">LANGID</span> {
     (<span class="ident">s</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>) <span class="op">|</span> <span class="ident">p</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">PRIMARYLANGID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WORD</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">PRIMARYLANGID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>) -&gt; <span class="ident">WORD</span> {
     <span class="ident">lgid</span> <span class="op">&amp;</span> <span class="number">0x3ff</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SUBLANGID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WORD</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SUBLANGID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>) -&gt; <span class="ident">WORD</span> {
     <span class="ident">lgid</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">10</span>
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NLS_VALID_LOCALE_MASK</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x000fffff</span>;
 <span class="macro">macro_rules!</span> <span class="ident">MAKELCID</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lgid</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">srtid</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> (((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">srtid</span> <span class="kw">as</span> <span class="ident">DWORD</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>) <span class="op">|</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lgid</span> <span class="kw">as</span> <span class="ident">DWORD</span>))
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lgid</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">srtid</span>:<span class="ident">expr</span>) =&gt; (((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">srtid</span> <span class="kw">as</span> <span class="ident">DWORD</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>) <span class="op">|</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lgid</span> <span class="kw">as</span> <span class="ident">DWORD</span>))
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKELCID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>, <span class="ident">srtid</span>: <span class="ident">WORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LCID</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKELCID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>, <span class="ident">srtid</span>: <span class="ident">WORD</span>) -&gt; <span class="ident">LCID</span> {
     ((<span class="ident">srtid</span> <span class="kw">as</span> <span class="ident">DWORD</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>) <span class="op">|</span> (<span class="ident">lgid</span> <span class="kw">as</span> <span class="ident">DWORD</span>)
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKESORTLCID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>, <span class="ident">srtid</span>: <span class="ident">WORD</span>, <span class="ident">ver</span>: <span class="ident">WORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LCID</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKESORTLCID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>, <span class="ident">srtid</span>: <span class="ident">WORD</span>, <span class="ident">ver</span>: <span class="ident">WORD</span>) -&gt; <span class="ident">LCID</span> {
     <span class="ident">MAKELCID</span>(<span class="ident">lgid</span>, <span class="ident">srtid</span>) <span class="op">|</span> ((<span class="ident">ver</span> <span class="kw">as</span> <span class="ident">DWORD</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">20</span>)
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LANGIDFROMLCID</span>(<span class="ident">lcid</span>: <span class="ident">LCID</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LANGID</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LANGIDFROMLCID</span>(<span class="ident">lcid</span>: <span class="ident">LCID</span>) -&gt; <span class="ident">LANGID</span> {
     <span class="ident">lcid</span> <span class="kw">as</span> <span class="ident">LANGID</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SORTIDFROMLCID</span>(<span class="ident">lcid</span>: <span class="ident">LCID</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WORD</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SORTIDFROMLCID</span>(<span class="ident">lcid</span>: <span class="ident">LCID</span>) -&gt; <span class="ident">WORD</span> {
     ((<span class="ident">lcid</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">16</span>) <span class="op">&amp;</span> <span class="number">0xf</span>) <span class="kw">as</span> <span class="ident">WORD</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SORTVERSIONFROMLCID</span>(<span class="ident">lcid</span>: <span class="ident">LCID</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WORD</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SORTVERSIONFROMLCID</span>(<span class="ident">lcid</span>: <span class="ident">LCID</span>) -&gt; <span class="ident">WORD</span> {
     ((<span class="ident">lcid</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">16</span>) <span class="op">&amp;</span> <span class="number">0xf</span>) <span class="kw">as</span> <span class="ident">WORD</span>
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOCALE_NAME_MAX_LENGTH</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">85</span>;
@@ -9680,7 +9680,7 @@
     <span class="ident">Xmm14</span>: <span class="ident">M128A</span>,
     <span class="ident">Xmm15</span>: <span class="ident">M128A</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">CONTEXT_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">CONTEXT_u</span> {
     [<span class="ident">u64</span>; <span class="number">64</span>],
     <span class="ident">FltSave</span> <span class="ident">FltSave_mut</span>: <span class="ident">XMM_SAVE_AREA32</span>,
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">CONTEXT_u_s</span>,
@@ -9764,13 +9764,13 @@
 <span class="macro">FN!</span>{<span class="ident">cdecl</span> <span class="ident">PGET_RUNTIME_FUNCTION_CALLBACK</span>(
     <span class="ident">ControlPc</span>: <span class="ident">DWORD64</span>,
     <span class="ident">Context</span>: <span class="ident">PVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PRUNTIME_FUNCTION</span>}
+) -&gt; <span class="ident">PRUNTIME_FUNCTION</span>}
 <span class="macro">FN!</span>{<span class="ident">cdecl</span> <span class="ident">POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK</span>(
     <span class="ident">Process</span>: <span class="ident">HANDLE</span>,
     <span class="ident">TableAddress</span>: <span class="ident">PVOID</span>,
     <span class="ident">Entries</span>: <span class="ident">PDWORD</span>,
     <span class="ident">Functions</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PRUNTIME_FUNCTION</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>}
+) -&gt; <span class="ident">DWORD</span>}
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">OUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK_EXPORT_NAME</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>
     <span class="op">=</span> <span class="string">&quot;OutOfProcessFunctionTableCallback&quot;</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">DISPATCHER_CONTEXT</span> {
@@ -9790,11 +9790,11 @@
 <span class="macro">FN!</span>{<span class="ident">cdecl</span> <span class="ident">PEXCEPTION_FILTER</span>(
     <span class="ident">ExceptionPointers</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">EXCEPTION_POINTERS</span>,
     <span class="ident">EstablisherFrame</span>: <span class="ident">PVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LONG</span>}
+) -&gt; <span class="ident">LONG</span>}
 <span class="macro">FN!</span>{<span class="ident">cdecl</span> <span class="ident">PTERMINATION_HANDLER</span>(
     <span class="ident">AbnormalTermination</span>: <span class="ident">BOOLEAN</span>,
     <span class="ident">EstablisherFrame</span>: <span class="ident">PVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">KNONVOLATILE_CONTEXT_POINTERS_u1_s</span> {
     <span class="ident">Xmm0</span>: <span class="ident">PM128A</span>,
     <span class="ident">Xmm1</span>: <span class="ident">PM128A</span>,
@@ -9813,7 +9813,7 @@
     <span class="ident">Xmm14</span>: <span class="ident">PM128A</span>,
     <span class="ident">Xmm15</span>: <span class="ident">PM128A</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">KNONVOLATILE_CONTEXT_POINTERS_u1</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">KNONVOLATILE_CONTEXT_POINTERS_u1</span> {
     [<span class="ident">u64</span>; <span class="number">16</span>],
     <span class="ident">FloatingContext</span> <span class="ident">FloatingContext_mut</span>: [<span class="ident">PM128A</span>; <span class="number">16</span>],
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">KNONVOLATILE_CONTEXT_POINTERS_u1_s</span>,
@@ -9836,7 +9836,7 @@
     <span class="ident">R14</span>: <span class="ident">PDWORD64</span>,
     <span class="ident">R15</span>: <span class="ident">PDWORD64</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">KNONVOLATILE_CONTEXT_POINTERS_u2</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">KNONVOLATILE_CONTEXT_POINTERS_u2</span> {
     [<span class="ident">u64</span>; <span class="number">16</span>],
     <span class="ident">IntegerContext</span> <span class="ident">IntegerContext_mut</span>: [<span class="ident">PDWORD64</span>; <span class="number">16</span>],
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">KNONVOLATILE_CONTEXT_POINTERS_u2_s</span>,
@@ -9932,7 +9932,7 @@
     <span class="ident">Granularity</span> <span class="ident">set_Granularity</span>[<span class="number">23</span>..<span class="number">24</span>],
     <span class="ident">BaseHi</span> <span class="ident">set_BaseHi</span>[<span class="number">24</span>..<span class="number">32</span>],
 ]}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">LDT_ENTRY_HighWord</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">LDT_ENTRY_HighWord</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">Bytes</span> <span class="ident">Bytes_mut</span>: <span class="ident">LDT_ENTRY_Bytes</span>,
     <span class="ident">Bits</span> <span class="ident">Bits_mut</span>: <span class="ident">LDT_ENTRY_Bits</span>,
@@ -9996,7 +9996,7 @@
     <span class="ident">Fp</span>: <span class="ident">DWORD64</span>,
     <span class="ident">Lr</span>: <span class="ident">DWORD64</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">CONTEXT_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">CONTEXT_u</span> {
     [<span class="ident">u64</span>; <span class="number">31</span>],
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">CONTEXT_u_s</span>,
 }}
@@ -10004,7 +10004,7 @@
     <span class="ident">Low</span>: <span class="ident">ULONGLONG</span>,
     <span class="ident">High</span>: <span class="ident">LONGLONG</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">ARM64_NT_NEON128</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">ARM64_NT_NEON128</span> {
     [<span class="ident">u64</span>; <span class="number">2</span>],
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">ARM64_NT_NEON128_s</span>,
     <span class="ident">D</span> <span class="ident">D_mut</span>: [<span class="ident">f64</span>; <span class="number">2</span>],
@@ -10055,13 +10055,13 @@
 <span class="macro">FN!</span>{<span class="ident">cdecl</span> <span class="ident">PGET_RUNTIME_FUNCTION_CALLBACK</span>(
     <span class="ident">ControlPc</span>: <span class="ident">DWORD64</span>,
     <span class="ident">Context</span>: <span class="ident">PVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PRUNTIME_FUNCTION</span>}
+) -&gt; <span class="ident">PRUNTIME_FUNCTION</span>}
 <span class="macro">FN!</span>{<span class="ident">cdecl</span> <span class="ident">POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK</span>(
     <span class="ident">Process</span>: <span class="ident">HANDLE</span>,
     <span class="ident">TableAddress</span>: <span class="ident">PVOID</span>,
     <span class="ident">Entries</span>: <span class="ident">PDWORD</span>,
     <span class="ident">Functions</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PRUNTIME_FUNCTION</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>}
+) -&gt; <span class="ident">DWORD</span>}
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">OUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK_EXPORT_NAME</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>
     <span class="op">=</span> <span class="string">&quot;OutOfProcessFunctionTableCallback&quot;</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">DISPATCHER_CONTEXT</span> {
@@ -10082,11 +10082,11 @@
 <span class="macro">FN!</span>{<span class="ident">cdecl</span> <span class="ident">PEXCEPTION_FILTER</span>(
     <span class="ident">ExceptionPointers</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">EXCEPTION_POINTERS</span>,
     <span class="ident">EstablisherFrame</span>: <span class="ident">DWORD64</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LONG</span>}
+) -&gt; <span class="ident">LONG</span>}
 <span class="macro">FN!</span>{<span class="ident">cdecl</span> <span class="ident">PTERMINATION_HANDLER</span>(
     <span class="ident">AbnormalTermination</span>: <span class="ident">BOOLEAN</span>,
     <span class="ident">EstablisherFrame</span>: <span class="ident">DWORD64</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">KNONVOLATILE_CONTEXT_POINTERS</span> {
     <span class="ident">X19</span>: <span class="ident">PDWORD64</span>,
     <span class="ident">X20</span>: <span class="ident">PDWORD64</span>,
@@ -10120,7 +10120,7 @@
     <span class="ident">High</span>: <span class="ident">LONGLONG</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PNEON128</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">NEON128</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">CONTEXT_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">CONTEXT_u</span> {
     [<span class="ident">u64</span>; <span class="number">32</span>],
     <span class="ident">Q</span> <span class="ident">Q_mut</span>: [<span class="ident">NEON128</span>; <span class="number">16</span>],
     <span class="ident">D</span> <span class="ident">D_mut</span>: [<span class="ident">ULONGLONG</span>; <span class="number">32</span>],
@@ -10237,7 +10237,7 @@
     <span class="ident">Granularity</span> <span class="ident">set_Granularity</span>[<span class="number">23</span>..<span class="number">24</span>],
     <span class="ident">BaseHi</span> <span class="ident">set_BaseHi</span>[<span class="number">24</span>..<span class="number">32</span>],
 ]}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">WOW64_LDT_ENTRY_HighWord</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">WOW64_LDT_ENTRY_HighWord</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">Bytes</span> <span class="ident">Bytes_mut</span>: <span class="ident">WOW64_LDT_ENTRY_Bytes</span>,
     <span class="ident">Bits</span> <span class="ident">Bits_mut</span>: <span class="ident">WOW64_LDT_ENTRY_Bits</span>,
@@ -10263,15 +10263,15 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EXCEPTION_UNWIND</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="ident">EXCEPTION_UNWINDING</span> <span class="op">|</span> <span class="ident">EXCEPTION_EXIT_UNWIND</span>
     <span class="op">|</span> <span class="ident">EXCEPTION_TARGET_UNWIND</span> <span class="op">|</span> <span class="ident">EXCEPTION_COLLIDED_UNWIND</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IS_UNWINDING</span>(<span class="ident">Flag</span>: <span class="ident">DWORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IS_UNWINDING</span>(<span class="ident">Flag</span>: <span class="ident">DWORD</span>) -&gt; <span class="ident">bool</span> {
     (<span class="ident">Flag</span> <span class="op">&amp;</span> <span class="ident">EXCEPTION_UNWIND</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IS_DISPATCHING</span>(<span class="ident">Flag</span>: <span class="ident">DWORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-    (<span class="ident">Flag</span> <span class="op">&amp;</span> <span class="ident">EXCEPTION_UNWIND</span>) <span class="op">=</span><span class="op">=</span> <span class="number">0</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IS_DISPATCHING</span>(<span class="ident">Flag</span>: <span class="ident">DWORD</span>) -&gt; <span class="ident">bool</span> {
+    (<span class="ident">Flag</span> <span class="op">&amp;</span> <span class="ident">EXCEPTION_UNWIND</span>) <span class="op">==</span> <span class="number">0</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IS_TARGET_UNWIND</span>(<span class="ident">Flag</span>: <span class="ident">DWORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IS_TARGET_UNWIND</span>(<span class="ident">Flag</span>: <span class="ident">DWORD</span>) -&gt; <span class="ident">bool</span> {
     (<span class="ident">Flag</span> <span class="op">&amp;</span> <span class="ident">EXCEPTION_TARGET_UNWIND</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EXCEPTION_MAXIMUM_PARAMETERS</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">15</span>;
@@ -10362,7 +10362,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SECURITY_MAX_SID_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">12</span> <span class="op">-</span> <span class="number">4</span> <span class="op">+</span> (<span class="ident">SID_MAX_SUB_AUTHORITIES</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">*</span> <span class="number">4</span>);
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SECURITY_MAX_SID_STRING_CHARACTERS</span>: <span class="ident">BYTE</span> <span class="op">=</span> <span class="number">2</span> <span class="op">+</span> <span class="number">4</span> <span class="op">+</span> <span class="number">15</span> <span class="op">+</span> (<span class="number">11</span> <span class="op">*</span> <span class="ident">SID_MAX_SUB_AUTHORITIES</span>)
     <span class="op">+</span> <span class="number">1</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">SE_SID</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">SE_SID</span> {
     [<span class="ident">u32</span>; <span class="number">17</span>],
     <span class="ident">Sid</span> <span class="ident">Sid_mut</span>: <span class="ident">SID</span>,
     <span class="ident">Buffer</span> <span class="ident">Buffer_mut</span>: [<span class="ident">BYTE</span>; <span class="ident">SECURITY_MAX_SID_SIZE</span>],
@@ -10577,7 +10577,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SECURITY_MANDATORY_SYSTEM_RID</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00004000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SECURITY_MANDATORY_MAXIMUM_USER_RID</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="ident">SECURITY_MANDATORY_SYSTEM_RID</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MANDATORY_LEVEL_TO_MANDATORY_RID</span>(<span class="ident">IL</span>: <span class="ident">DWORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MANDATORY_LEVEL_TO_MANDATORY_RID</span>(<span class="ident">IL</span>: <span class="ident">DWORD</span>) -&gt; <span class="ident">DWORD</span> {
     <span class="ident">IL</span> <span class="op">*</span> <span class="number">0x1000</span>
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SECURITY_SCOPED_POLICY_ID_AUTHORITY</span>: [<span class="ident">BYTE</span>; <span class="number">6</span>] <span class="op">=</span> [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">17</span>];
@@ -11166,7 +11166,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SECURITY_MIN_IMPERSONATION_LEVEL</span>: <span class="ident">SECURITY_IMPERSONATION_LEVEL</span> <span class="op">=</span> <span class="ident">SecurityAnonymous</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DEFAULT_IMPERSONATION_LEVEL</span>: <span class="ident">SECURITY_IMPERSONATION_LEVEL</span> <span class="op">=</span> <span class="ident">SecurityImpersonation</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">VALID_IMPERSONATION_LEVEL</span>(<span class="ident">L</span>: <span class="ident">SECURITY_IMPERSONATION_LEVEL</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">VALID_IMPERSONATION_LEVEL</span>(<span class="ident">L</span>: <span class="ident">SECURITY_IMPERSONATION_LEVEL</span>) -&gt; <span class="ident">bool</span> {
     (<span class="ident">L</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">SECURITY_MIN_IMPERSONATION_LEVEL</span>) <span class="op">&amp;&amp;</span> (<span class="ident">L</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">SECURITY_MAX_IMPERSONATION_LEVEL</span>)
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TOKEN_ASSIGN_PRIMARY</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x0001</span>;
@@ -11253,12 +11253,12 @@
     <span class="ident">User</span>: <span class="ident">SID_AND_ATTRIBUTES</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PTOKEN_USER</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TOKEN_USER</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">SE_TOKEN_USER_u1</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">SE_TOKEN_USER_u1</span> {
     [<span class="ident">usize</span>; <span class="number">2</span>],
     <span class="ident">TokenUser</span> <span class="ident">TokenUser_mut</span>: <span class="ident">TOKEN_USER</span>,
     <span class="ident">User</span> <span class="ident">User_mut</span>: <span class="ident">SID_AND_ATTRIBUTES</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">SE_TOKEN_USER_u2</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">SE_TOKEN_USER_u2</span> {
     [<span class="ident">u32</span>; <span class="number">17</span>],
     <span class="ident">Sid</span> <span class="ident">Sid_mut</span>: <span class="ident">SID</span>,
     <span class="ident">Buffer</span> <span class="ident">Buffer_mut</span>: [<span class="ident">BYTE</span>; <span class="ident">SECURITY_MAX_SID_SIZE</span>],
@@ -11437,7 +11437,7 @@
     <span class="op">|</span> <span class="ident">CLAIM_SECURITY_ATTRIBUTE_DISABLED_BY_DEFAULT</span> <span class="op">|</span> <span class="ident">CLAIM_SECURITY_ATTRIBUTE_DISABLED</span>
     <span class="op">|</span> <span class="ident">CLAIM_SECURITY_ATTRIBUTE_MANDATORY</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLAIM_SECURITY_ATTRIBUTE_CUSTOM_FLAGS</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0xFFFF0000</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">CLAIM_SECURITY_ATTRIBUTE_V1_Values</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">CLAIM_SECURITY_ATTRIBUTE_V1_Values</span> {
     [<span class="ident">usize</span>; <span class="number">1</span>],
     <span class="ident">pInt64</span> <span class="ident">pInt64_mut</span>: <span class="ident">PLONG64</span>,
     <span class="ident">pUint64</span> <span class="ident">pUint64_mut</span>: <span class="ident">PDWORD64</span>,
@@ -11454,7 +11454,7 @@
     <span class="ident">Values</span>: <span class="ident">CLAIM_SECURITY_ATTRIBUTE_V1_Values</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCLAIM_SECURITY_ATTRIBUTE_V1</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CLAIM_SECURITY_ATTRIBUTE_V1</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1_Values</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1_Values</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">pInt64</span> <span class="ident">pInt64_mut</span>: [<span class="ident">DWORD</span>; <span class="ident">ANYSIZE_ARRAY</span>],
     <span class="ident">pUint64</span> <span class="ident">pUint64_mut</span>: [<span class="ident">DWORD</span>; <span class="ident">ANYSIZE_ARRAY</span>],
@@ -11474,7 +11474,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLAIM_SECURITY_ATTRIBUTES_INFORMATION_VERSION_V1</span>: <span class="ident">WORD</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLAIM_SECURITY_ATTRIBUTES_INFORMATION_VERSION</span>: <span class="ident">WORD</span> <span class="op">=</span>
     <span class="ident">CLAIM_SECURITY_ATTRIBUTES_INFORMATION_VERSION_V1</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">CLAIM_SECURITY_ATTRIBUTES_INFORMATION_Attribute</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">CLAIM_SECURITY_ATTRIBUTES_INFORMATION_Attribute</span> {
     [<span class="ident">usize</span>; <span class="number">1</span>],
     <span class="ident">pAttributeV1</span> <span class="ident">pAttributeV1_mut</span>: <span class="ident">PCLAIM_SECURITY_ATTRIBUTE_V1</span>,
 }}
@@ -11613,7 +11613,7 @@
     <span class="ident">Handler</span>: <span class="ident">PEXCEPTION_ROUTINE</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PEXCEPTION_REGISTRATION_RECORD</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">EXCEPTION_REGISTRATION_RECORD</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">NT_TIB_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">NT_TIB_u</span> {
     [<span class="ident">usize</span>; <span class="number">1</span>],
     <span class="ident">FiberData</span> <span class="ident">FiberData_mut</span>: <span class="ident">PVOID</span>,
     <span class="ident">Version</span> <span class="ident">Version_mut</span>: <span class="ident">DWORD</span>,
@@ -11628,7 +11628,7 @@
     <span class="ident">_Self</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">NT_TIB</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PNT_TIB</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">NT_TIB</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">NT_TIB32_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">NT_TIB32_u</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">FiberData</span> <span class="ident">FiberData_mut</span>: <span class="ident">DWORD</span>,
     <span class="ident">Version</span> <span class="ident">Version_mut</span>: <span class="ident">DWORD</span>,
@@ -11643,7 +11643,7 @@
     <span class="ident">Self_</span>: <span class="ident">DWORD</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PNT_TIB32</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">NT_TIB32</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">NT_TIB64_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">NT_TIB64_u</span> {
     [<span class="ident">u64</span>; <span class="number">1</span>],
     <span class="ident">FiberData</span> <span class="ident">FiberData_mut</span>: <span class="ident">DWORD64</span>,
     <span class="ident">Version</span> <span class="ident">Version_mut</span>: <span class="ident">DWORD</span>,
@@ -11986,17 +11986,17 @@
     <span class="ident">LimitFlags</span>: <span class="ident">DWORD</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PJOBOBJECT_NOTIFICATION_LIMIT_INFORMATION</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2_u1</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2_u1</span> {
     [<span class="ident">u64</span>; <span class="number">1</span>],
     <span class="ident">JobHighMemoryLimit</span> <span class="ident">JobHighMemoryLimit_mut</span>: <span class="ident">DWORD64</span>,
     <span class="ident">JobMemoryLimit</span> <span class="ident">JobMemoryLimit_mut</span>: <span class="ident">DWORD64</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2_u2</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2_u2</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">RateControlTolerance</span> <span class="ident">RateControlTolerance_mut</span>: <span class="ident">JOBOBJECT_RATE_CONTROL_TOLERANCE</span>,
     <span class="ident">CpuRateControlTolerance</span> <span class="ident">CpuRateControlTolerance_mut</span>: <span class="ident">JOBOBJECT_RATE_CONTROL_TOLERANCE</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2_u3</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2_u3</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">RateControlToleranceInterval</span> <span class="ident">RateControlToleranceInterval_mut</span>:
         <span class="ident">JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL</span>,
@@ -12032,17 +12032,17 @@
     <span class="ident">RateControlToleranceLimit</span>: <span class="ident">JOBOBJECT_RATE_CONTROL_TOLERANCE</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PJOBOBJECT_LIMIT_VIOLATION_INFORMATION</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">JOBOBJECT_LIMIT_VIOLATION_INFORMATION</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2_u1</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2_u1</span> {
     [<span class="ident">u64</span>; <span class="number">1</span>],
     <span class="ident">JobHighMemoryLimit</span> <span class="ident">JobHighMemoryLimit_mut</span>: <span class="ident">DWORD64</span>,
     <span class="ident">JobMemoryLimit</span> <span class="ident">JobMemoryLimit_mut</span>: <span class="ident">DWORD64</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2_u2</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2_u2</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">RateControlTolerance</span> <span class="ident">RateControlTolerance_mut</span>: <span class="ident">JOBOBJECT_RATE_CONTROL_TOLERANCE</span>,
     <span class="ident">CpuRateControlTolerance</span> <span class="ident">CpuRateControlTolerance_mut</span>: <span class="ident">JOBOBJECT_RATE_CONTROL_TOLERANCE</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2_u3</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2_u3</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">RateControlToleranceLimit</span> <span class="ident">RateControlToleranceLimit_mut</span>: <span class="ident">JOBOBJECT_RATE_CONTROL_TOLERANCE</span>,
     <span class="ident">CpuRateControlToleranceLimit</span> <span class="ident">CpuRateControlToleranceLimit_mut</span>:
@@ -12071,7 +12071,7 @@
     <span class="ident">MinRate</span>: <span class="ident">WORD</span>,
     <span class="ident">MaxRate</span>: <span class="ident">WORD</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">JOBOBJECT_CPU_RATE_CONTROL_INFORMATION_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">JOBOBJECT_CPU_RATE_CONTROL_INFORMATION_u</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">CpuRate</span> <span class="ident">CpuRate_mut</span>: <span class="ident">DWORD</span>,
     <span class="ident">Weight</span> <span class="ident">Weight_mut</span>: <span class="ident">DWORD</span>,
@@ -12358,7 +12358,7 @@
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">SYSTEM_LOGICAL_PROCESSOR_INFORMATION_NumaNode</span> {
     <span class="ident">NodeNumber</span>: <span class="ident">DWORD</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u</span> {
     [<span class="ident">u64</span>; <span class="number">2</span>],
     <span class="ident">ProcessorCore</span> <span class="ident">ProcessorCore_mut</span>: <span class="ident">SYSTEM_LOGICAL_PROCESSOR_INFORMATION_ProcessorCore</span>,
     <span class="ident">NumaNode</span> <span class="ident">NumaNode_mut</span>: <span class="ident">SYSTEM_LOGICAL_PROCESSOR_INFORMATION_NumaNode</span>,
@@ -12409,7 +12409,7 @@
     <span class="ident">GroupInfo</span>: [<span class="ident">PROCESSOR_GROUP_INFO</span>; <span class="ident">ANYSIZE_ARRAY</span>],
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PGROUP_RELATIONSHIP</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GROUP_RELATIONSHIP</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_u</span> {
     [<span class="ident">u32</span>; <span class="number">17</span>] [<span class="ident">u64</span>; <span class="number">9</span>],
     <span class="ident">Processor</span> <span class="ident">Processor_mut</span>: <span class="ident">PROCESSOR_RELATIONSHIP</span>,
     <span class="ident">NumaNode</span> <span class="ident">NumaNode_mut</span>: <span class="ident">NUMA_NODE_RELATIONSHIP</span>,
@@ -12799,7 +12799,7 @@
     <span class="ident">FileNameLength</span>: <span class="ident">DWORD</span>,
     <span class="ident">FileName</span>: [<span class="ident">WCHAR</span>; <span class="number">1</span>],
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">FILE_SEGMENT_ELEMENT</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">FILE_SEGMENT_ELEMENT</span> {
     [<span class="ident">u64</span>; <span class="number">1</span>],
     <span class="ident">Buffer</span> <span class="ident">Buffer_mut</span>: <span class="ident">PVOID64</span>,
     <span class="ident">Alignment</span> <span class="ident">Alignment_mut</span>: <span class="ident">ULONGLONG</span>,
@@ -12825,15 +12825,15 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IO_REPARSE_TAG_RESERVED_TWO</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IO_REPARSE_TAG_RESERVED_RANGE</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="ident">IO_REPARSE_TAG_RESERVED_TWO</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsReparseTagMicrosoft</span>(<span class="ident">_tag</span>: <span class="ident">DWORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsReparseTagMicrosoft</span>(<span class="ident">_tag</span>: <span class="ident">DWORD</span>) -&gt; <span class="ident">bool</span> {
     (<span class="ident">_tag</span> <span class="op">&amp;</span> <span class="number">0x80000000</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsReparseTagNameSurrogate</span>(<span class="ident">_tag</span>: <span class="ident">DWORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsReparseTagNameSurrogate</span>(<span class="ident">_tag</span>: <span class="ident">DWORD</span>) -&gt; <span class="ident">bool</span> {
     (<span class="ident">_tag</span> <span class="op">&amp;</span> <span class="number">0x20000000</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsReparseTagDirectory</span>(<span class="ident">_tag</span>: <span class="ident">DWORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsReparseTagDirectory</span>(<span class="ident">_tag</span>: <span class="ident">DWORD</span>) -&gt; <span class="ident">bool</span> {
     (<span class="ident">_tag</span> <span class="op">&amp;</span> <span class="number">0x10000000</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IO_REPARSE_TAG_MOUNT_POINT</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0xA0000003</span>;
@@ -12921,7 +12921,7 @@
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSHARED_VIRTUAL_DISK_SUPPORT</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">SHARED_VIRTUAL_DISK_SUPPORT</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsVirtualDiskFileShared</span>(<span class="ident">HandleState</span>: <span class="ident">SharedVirtualDiskHandleState</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsVirtualDiskFileShared</span>(<span class="ident">HandleState</span>: <span class="ident">SharedVirtualDiskHandleState</span>) -&gt; <span class="ident">bool</span> {
     (<span class="ident">HandleState</span> <span class="op">&amp;</span> <span class="ident">SharedVirtualDiskHandleStateFileShared</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IO_COMPLETION_MODIFY_STATE</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x0002</span>;
@@ -14035,7 +14035,7 @@
     <span class="ident">DecreasePolicy</span> <span class="ident">set_DecreasePolicy</span>[<span class="number">3</span>..<span class="number">5</span>],
     <span class="ident">Reserved</span> <span class="ident">set_Reserved</span>[<span class="number">5</span>..<span class="number">8</span>],
 ]}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">PROCESSOR_PERFSTATE_POLICY_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">PROCESSOR_PERFSTATE_POLICY_u</span> {
     [<span class="ident">u8</span>; <span class="number">1</span>],
     <span class="ident">Spare</span> <span class="ident">Spare_mut</span>: <span class="ident">BYTE</span>,
     <span class="ident">Flags</span> <span class="ident">Flags_mut</span>: <span class="ident">PROCESSOR_PERFSTATE_POLICY_u_Flags</span>,
@@ -14513,7 +14513,7 @@
     <span class="ident">NumberOfSymbols</span>: <span class="ident">DWORD</span>,
 }}
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SIZEOF_SHORT_NAME</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">8</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_SECTION_HEADER_Misc</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_SECTION_HEADER_Misc</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">PhysicalAddress</span> <span class="ident">PhysicalAddress_mut</span>: <span class="ident">DWORD</span>,
     <span class="ident">VirtualSize</span> <span class="ident">VirtualSize_mut</span>: <span class="ident">DWORD</span>,
@@ -14575,7 +14575,7 @@
     <span class="ident">Short</span>: <span class="ident">DWORD</span>,
     <span class="ident">Long</span>: <span class="ident">DWORD</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_SYMBOL_N</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_SYMBOL_N</span> {
     [<span class="ident">u32</span>; <span class="number">2</span>],
     <span class="ident">ShortName</span> <span class="ident">ShortName_mut</span>: [<span class="ident">BYTE</span>; <span class="number">8</span>],
     <span class="ident">Name</span> <span class="ident">Name_mut</span>: <span class="ident">IMAGE_SYMBOL_N_Name</span>,
@@ -14595,7 +14595,7 @@
     <span class="ident">Short</span>: <span class="ident">DWORD</span>,
     <span class="ident">Long</span>: <span class="ident">DWORD</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_SYMBOL_EX_N</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_SYMBOL_EX_N</span> {
     [<span class="ident">u32</span>; <span class="number">2</span>],
     <span class="ident">ShortName</span> <span class="ident">ShortName_mut</span>: [<span class="ident">BYTE</span>; <span class="number">8</span>],
     <span class="ident">Name</span> <span class="ident">Name_mut</span>: <span class="ident">IMAGE_SYMBOL_EX_N_Name</span>,
@@ -14671,32 +14671,32 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_BTSHFT</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_TSHIFT</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">BTYPE</span>(<span class="ident">x</span>: <span class="ident">WORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">BTYPE</span>(<span class="ident">x</span>: <span class="ident">WORD</span>) -&gt; <span class="ident">bool</span> {
     (<span class="ident">x</span> <span class="op">&amp;</span> <span class="ident">N_BTMASK</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ISPTR</span>(<span class="ident">x</span>: <span class="ident">WORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-    (<span class="ident">x</span> <span class="op">&amp;</span> <span class="ident">N_TMASK</span>) <span class="op">=</span><span class="op">=</span> (<span class="ident">IMAGE_SYM_DTYPE_POINTER</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">N_BTSHFT</span>)
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ISPTR</span>(<span class="ident">x</span>: <span class="ident">WORD</span>) -&gt; <span class="ident">bool</span> {
+    (<span class="ident">x</span> <span class="op">&amp;</span> <span class="ident">N_TMASK</span>) <span class="op">==</span> (<span class="ident">IMAGE_SYM_DTYPE_POINTER</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">N_BTSHFT</span>)
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ISFCN</span>(<span class="ident">x</span>: <span class="ident">WORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-    (<span class="ident">x</span> <span class="op">&amp;</span> <span class="ident">N_TMASK</span>) <span class="op">=</span><span class="op">=</span> (<span class="ident">IMAGE_SYM_DTYPE_FUNCTION</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">N_BTSHFT</span>)
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ISFCN</span>(<span class="ident">x</span>: <span class="ident">WORD</span>) -&gt; <span class="ident">bool</span> {
+    (<span class="ident">x</span> <span class="op">&amp;</span> <span class="ident">N_TMASK</span>) <span class="op">==</span> (<span class="ident">IMAGE_SYM_DTYPE_FUNCTION</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">N_BTSHFT</span>)
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ISARY</span>(<span class="ident">x</span>: <span class="ident">WORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-    (<span class="ident">x</span> <span class="op">&amp;</span> <span class="ident">N_TMASK</span>) <span class="op">=</span><span class="op">=</span> (<span class="ident">IMAGE_SYM_DTYPE_ARRAY</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">N_BTSHFT</span>)
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ISARY</span>(<span class="ident">x</span>: <span class="ident">WORD</span>) -&gt; <span class="ident">bool</span> {
+    (<span class="ident">x</span> <span class="op">&amp;</span> <span class="ident">N_TMASK</span>) <span class="op">==</span> (<span class="ident">IMAGE_SYM_DTYPE_ARRAY</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">N_BTSHFT</span>)
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ISTAG</span>(<span class="ident">x</span>: <span class="ident">BYTE</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-    (<span class="ident">x</span> <span class="op">=</span><span class="op">=</span> <span class="ident">IMAGE_SYM_CLASS_STRUCT_TAG</span>) <span class="op">|</span><span class="op">|</span> (<span class="ident">x</span> <span class="op">=</span><span class="op">=</span> <span class="ident">IMAGE_SYM_CLASS_UNION_TAG</span>)
-    <span class="op">|</span><span class="op">|</span> (<span class="ident">x</span> <span class="op">=</span><span class="op">=</span> <span class="ident">IMAGE_SYM_CLASS_ENUM_TAG</span>)
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ISTAG</span>(<span class="ident">x</span>: <span class="ident">BYTE</span>) -&gt; <span class="ident">bool</span> {
+    (<span class="ident">x</span> <span class="op">==</span> <span class="ident">IMAGE_SYM_CLASS_STRUCT_TAG</span>) <span class="op">|</span><span class="op">|</span> (<span class="ident">x</span> <span class="op">==</span> <span class="ident">IMAGE_SYM_CLASS_UNION_TAG</span>)
+    <span class="op">|</span><span class="op">|</span> (<span class="ident">x</span> <span class="op">==</span> <span class="ident">IMAGE_SYM_CLASS_ENUM_TAG</span>)
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">INCREF</span>(<span class="ident">x</span>: <span class="ident">WORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WORD</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">INCREF</span>(<span class="ident">x</span>: <span class="ident">WORD</span>) -&gt; <span class="ident">WORD</span> {
     ((<span class="ident">x</span> <span class="op">&amp;</span> <span class="op">!</span><span class="ident">N_BTMASK</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">N_TSHIFT</span>) <span class="op">|</span> (<span class="ident">IMAGE_SYM_DTYPE_POINTER</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">N_BTSHFT</span>) <span class="op">|</span> (<span class="ident">x</span> <span class="op">&amp;</span> <span class="ident">N_BTMASK</span>)
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DECREF</span>(<span class="ident">x</span>: <span class="ident">WORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WORD</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DECREF</span>(<span class="ident">x</span>: <span class="ident">WORD</span>) -&gt; <span class="ident">WORD</span> {
     ((<span class="ident">x</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">N_TSHIFT</span>) <span class="op">&amp;</span> <span class="op">!</span><span class="ident">N_BTMASK</span>) <span class="op">|</span> (<span class="ident">x</span> <span class="op">&amp;</span> <span class="ident">N_BTMASK</span>)
 }
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">IMAGE_AUX_SYMBOL_TOKEN_DEF</span> {
@@ -14710,7 +14710,7 @@
     <span class="ident">Linenumber</span>: <span class="ident">WORD</span>,
     <span class="ident">Size</span>: <span class="ident">WORD</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_AUX_SYMBOL_Sym_Misc</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_AUX_SYMBOL_Sym_Misc</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">LnSz</span> <span class="ident">LnSz_mut</span>: <span class="ident">IMAGE_AUX_SYMBOL_Sym_Misc_LnSz</span>,
     <span class="ident">TotalSize</span> <span class="ident">TotalSize_mut</span>: <span class="ident">DWORD</span>,
@@ -14722,7 +14722,7 @@
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">IMAGE_AUX_SYMBOL_Sym_FcnAry_Array</span> {
     <span class="ident">Dimension</span>: [<span class="ident">WORD</span>; <span class="number">4</span>],
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_AUX_SYMBOL_Sym_FcnAry</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_AUX_SYMBOL_Sym_FcnAry</span> {
     [<span class="ident">u32</span>; <span class="number">2</span>],
     <span class="ident">Function</span> <span class="ident">Function_mut</span>: <span class="ident">IMAGE_AUX_SYMBOL_Sym_FcnAry_Function</span>,
     <span class="ident">Array</span> <span class="ident">Array_mut</span>: <span class="ident">IMAGE_AUX_SYMBOL_Sym_FcnAry_Array</span>,
@@ -14806,7 +14806,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY</span>: <span class="ident">BYTE</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_WEAK_EXTERN_SEARCH_LIBRARY</span>: <span class="ident">BYTE</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_WEAK_EXTERN_SEARCH_ALIAS</span>: <span class="ident">BYTE</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_RELOCATION_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_RELOCATION_u</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">VirtualAddress</span> <span class="ident">VirtualAddress_mut</span>: <span class="ident">DWORD</span>,
     <span class="ident">RelocCount</span> <span class="ident">RelocCount_mut</span>: <span class="ident">DWORD</span>,
@@ -15050,7 +15050,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_EBC_REL32</span>: <span class="ident">WORD</span> <span class="op">=</span> <span class="number">0x0002</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_EBC_SECTION</span>: <span class="ident">WORD</span> <span class="op">=</span> <span class="number">0x0003</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_EBC_SECREL</span>: <span class="ident">WORD</span> <span class="op">=</span> <span class="number">0x0004</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_LINENUMBER_Type</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_LINENUMBER_Type</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">SymbolTableIndex</span> <span class="ident">SymbolTableIndex_mut</span>: <span class="ident">DWORD</span>,
     <span class="ident">VirtualAddress</span> <span class="ident">VirtualAddress_mut</span>: <span class="ident">DWORD</span>,
@@ -15118,7 +15118,7 @@
     <span class="ident">Name</span>: [<span class="ident">CHAR</span>; <span class="number">1</span>],
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIMAGE_IMPORT_BY_NAME</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">IMAGE_IMPORT_BY_NAME</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_THUNK_DATA64_u1</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_THUNK_DATA64_u1</span> {
     [<span class="ident">u64</span>; <span class="number">1</span>],
     <span class="ident">ForwarderString</span> <span class="ident">ForwarderString_mut</span>: <span class="ident">ULONGLONG</span>,
     <span class="ident">Function</span> <span class="ident">Function_mut</span>: <span class="ident">ULONGLONG</span>,
@@ -15129,7 +15129,7 @@
     <span class="ident">u1</span>: <span class="ident">IMAGE_THUNK_DATA64_u1</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIMAGE_THUNK_DATA64</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">IMAGE_THUNK_DATA64</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_THUNK_DATA32_u1</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_THUNK_DATA32_u1</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">ForwarderString</span> <span class="ident">ForwarderString_mut</span>: <span class="ident">DWORD</span>,
     <span class="ident">Function</span> <span class="ident">Function_mut</span>: <span class="ident">DWORD</span>,
@@ -15143,26 +15143,26 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_ORDINAL_FLAG64</span>: <span class="ident">ULONGLONG</span> <span class="op">=</span> <span class="number">0x8000000000000000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_ORDINAL_FLAG32</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x80000000</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_ORDINAL64</span>(<span class="ident">Ordinal</span>: <span class="ident">ULONGLONG</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ULONGLONG</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_ORDINAL64</span>(<span class="ident">Ordinal</span>: <span class="ident">ULONGLONG</span>) -&gt; <span class="ident">ULONGLONG</span> {
     <span class="ident">Ordinal</span> <span class="op">&amp;</span> <span class="number">0xffff</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_ORDINAL32</span>(<span class="ident">Ordinal</span>: <span class="ident">DWORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_ORDINAL32</span>(<span class="ident">Ordinal</span>: <span class="ident">DWORD</span>) -&gt; <span class="ident">DWORD</span> {
     <span class="ident">Ordinal</span> <span class="op">&amp;</span> <span class="number">0xffff</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_SNAP_BY_ORDINAL64</span>(<span class="ident">Ordinal</span>: <span class="ident">ULONGLONG</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_SNAP_BY_ORDINAL64</span>(<span class="ident">Ordinal</span>: <span class="ident">ULONGLONG</span>) -&gt; <span class="ident">bool</span> {
     (<span class="ident">Ordinal</span> <span class="op">&amp;</span> <span class="ident">IMAGE_ORDINAL_FLAG64</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_SNAP_BY_ORDINAL32</span>(<span class="ident">Ordinal</span>: <span class="ident">DWORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_SNAP_BY_ORDINAL32</span>(<span class="ident">Ordinal</span>: <span class="ident">DWORD</span>) -&gt; <span class="ident">bool</span> {
     (<span class="ident">Ordinal</span> <span class="op">&amp;</span> <span class="ident">IMAGE_ORDINAL_FLAG32</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
 }
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">PIMAGE_TLS_CALLBACK</span>(
     <span class="ident">DllHandle</span>: <span class="ident">PVOID</span>,
     <span class="ident">Reason</span>: <span class="ident">DWORD</span>,
     <span class="ident">Reserved</span>: <span class="ident">PVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">IMAGE_TLS_DIRECTORY64</span> {
     <span class="ident">StartAddressOfRawData</span>: <span class="ident">ULONGLONG</span>,
     <span class="ident">EndAddressOfRawData</span>: <span class="ident">ULONGLONG</span>,
@@ -15195,13 +15195,13 @@
 <span class="macro">IFDEF!</span>{
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_ORDINAL_FLAG</span>: <span class="ident">ULONGLONG</span> <span class="op">=</span> <span class="ident">IMAGE_ORDINAL_FLAG64</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_ORDINAL</span>(<span class="ident">Ordinal</span>: <span class="ident">ULONGLONG</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ULONGLONG</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_ORDINAL</span>(<span class="ident">Ordinal</span>: <span class="ident">ULONGLONG</span>) -&gt; <span class="ident">ULONGLONG</span> {
     <span class="ident">IMAGE_ORDINAL64</span>(<span class="ident">Ordinal</span>)
 }
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">IMAGE_THUNK_DATA</span> <span class="op">=</span> <span class="ident">IMAGE_THUNK_DATA64</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIMAGE_THUNK_DATA</span> <span class="op">=</span> <span class="ident">PIMAGE_THUNK_DATA64</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_SNAP_BY_ORDINAL</span>(<span class="ident">Ordinal</span>: <span class="ident">ULONGLONG</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_SNAP_BY_ORDINAL</span>(<span class="ident">Ordinal</span>: <span class="ident">ULONGLONG</span>) -&gt; <span class="ident">bool</span> {
     <span class="ident">IMAGE_SNAP_BY_ORDINAL64</span>(<span class="ident">Ordinal</span>)
 }
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">IMAGE_TLS_DIRECTORY</span> <span class="op">=</span> <span class="ident">IMAGE_TLS_DIRECTORY64</span>;
@@ -15211,19 +15211,19 @@
 <span class="macro">IFDEF!</span>{
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_ORDINAL_FLAG</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="ident">IMAGE_ORDINAL_FLAG32</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_ORDINAL</span>(<span class="ident">Ordinal</span>: <span class="ident">DWORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_ORDINAL</span>(<span class="ident">Ordinal</span>: <span class="ident">DWORD</span>) -&gt; <span class="ident">DWORD</span> {
     <span class="ident">IMAGE_ORDINAL32</span>(<span class="ident">Ordinal</span>)
 }
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">IMAGE_THUNK_DATA</span> <span class="op">=</span> <span class="ident">IMAGE_THUNK_DATA32</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIMAGE_THUNK_DATA</span> <span class="op">=</span> <span class="ident">PIMAGE_THUNK_DATA32</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_SNAP_BY_ORDINAL</span>(<span class="ident">Ordinal</span>: <span class="ident">DWORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IMAGE_SNAP_BY_ORDINAL</span>(<span class="ident">Ordinal</span>: <span class="ident">DWORD</span>) -&gt; <span class="ident">bool</span> {
     <span class="ident">IMAGE_SNAP_BY_ORDINAL32</span>(<span class="ident">Ordinal</span>)
 }
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">IMAGE_TLS_DIRECTORY</span> <span class="op">=</span> <span class="ident">IMAGE_TLS_DIRECTORY32</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIMAGE_TLS_DIRECTORY</span> <span class="op">=</span> <span class="ident">PIMAGE_TLS_DIRECTORY32</span>;
 }
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_IMPORT_DESCRIPTOR_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_IMPORT_DESCRIPTOR_u</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">Characteristics</span> <span class="ident">Characteristics_mut</span>: <span class="ident">DWORD</span>,
     <span class="ident">OriginalFirstThunk</span> <span class="ident">OriginalFirstThunk_mut</span>: <span class="ident">DWORD</span>,
@@ -15285,7 +15285,7 @@
     <span class="ident">NameOffset</span> <span class="ident">set_NameOffset</span>[<span class="number">0</span>..<span class="number">31</span>],
     <span class="ident">NameIsString</span> <span class="ident">set_NameIsString</span>[<span class="number">31</span>..<span class="number">32</span>],
 ]}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_RESOURCE_DIRECTORY_ENTRY_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_RESOURCE_DIRECTORY_ENTRY_u</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">IMAGE_RESOURCE_DIRECTORY_ENTRY_u_s</span>,
     <span class="ident">Name</span> <span class="ident">Name_mut</span>: <span class="ident">DWORD</span>,
@@ -15594,7 +15594,7 @@
     <span class="ident">PrologEndAddress</span>: <span class="ident">DWORD</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_RUNTIME_FUNCTION_ENTRY_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_RUNTIME_FUNCTION_ENTRY_u</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">UnwindInfoAddress</span> <span class="ident">UnwindInfoAddress_mut</span>: <span class="ident">DWORD</span>,
     <span class="ident">UnwindData</span> <span class="ident">UnwindData_mut</span>: <span class="ident">DWORD</span>,
@@ -15692,7 +15692,7 @@
     <span class="ident">EndOfPrologue</span>: <span class="ident">DWORD</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIMAGE_FUNCTION_ENTRY</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">IMAGE_FUNCTION_ENTRY</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_FUNCTION_ENTRY64_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_FUNCTION_ENTRY64_u</span> {
     [<span class="ident">u64</span>; <span class="number">1</span>],
     <span class="ident">EndOfPrologue</span> <span class="ident">EndOfPrologue_mut</span>: <span class="ident">ULONGLONG</span>,
     <span class="ident">UnwindInfoAddress</span> <span class="ident">UnwindInfoAddress_mut</span>: <span class="ident">ULONGLONG</span>,
@@ -15752,7 +15752,7 @@
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIMAGE_ARCHITECTURE_ENTRY</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">IMAGE_ARCHITECTURE_ENTRY</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMPORT_OBJECT_HDR_SIG2</span>: <span class="ident">WORD</span> <span class="op">=</span> <span class="number">0xffff</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMPORT_OBJECT_HEADER_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMPORT_OBJECT_HEADER_u</span> {
     [<span class="ident">u16</span>; <span class="number">1</span>],
     <span class="ident">Ordinal</span> <span class="ident">Ordinal_mut</span>: <span class="ident">WORD</span>,
     <span class="ident">Hint</span> <span class="ident">Hint_mut</span>: <span class="ident">WORD</span>,
@@ -15811,7 +15811,7 @@
     <span class="ident">MAX_CLASS_NAME</span> <span class="op">=</span> <span class="number">1024</span>,
     <span class="ident">MAX_PACKAGE_NAME</span> <span class="op">=</span> <span class="number">1024</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">IMAGE_COR20_HEADER_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">IMAGE_COR20_HEADER_u</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">EntryPointToken</span> <span class="ident">EntryPointToken_mut</span>: <span class="ident">DWORD</span>,
     <span class="ident">EntryPointRVA</span> <span class="ident">EntryPointRVA_mut</span>: <span class="ident">DWORD</span>,
@@ -15837,7 +15837,7 @@
         <span class="ident">FramesToCapture</span>: <span class="ident">DWORD</span>,
         <span class="ident">BackTrace</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PVOID</span>,
         <span class="ident">BackTraceHash</span>: <span class="ident">PDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WORD</span>;
+    ) -&gt; <span class="ident">WORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlCaptureContext</span>(
         <span class="ident">ContextRecord</span>: <span class="ident">PCONTEXT</span>,
     );
@@ -15854,10 +15854,10 @@
         <span class="ident">FunctionTable</span>: <span class="ident">PRUNTIME_FUNCTION</span>,
         <span class="ident">EntryCount</span>: <span class="ident">DWORD</span>,
         <span class="ident">BaseAddress</span>: <span class="ident">DWORD64</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOLEAN</span>;
+    ) -&gt; <span class="ident">BOOLEAN</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlDeleteFunctionTable</span>(
         <span class="ident">FunctionTable</span>: <span class="ident">PRUNTIME_FUNCTION</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOLEAN</span>;
+    ) -&gt; <span class="ident">BOOLEAN</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlInstallFunctionTableCallback</span>(
         <span class="ident">TableIdentifier</span>: <span class="ident">DWORD64</span>,
         <span class="ident">BaseAddress</span>: <span class="ident">DWORD64</span>,
@@ -15865,7 +15865,7 @@
         <span class="ident">Callback</span>: <span class="ident">PGET_RUNTIME_FUNCTION_CALLBACK</span>,
         <span class="ident">Context</span>: <span class="ident">PVOID</span>,
         <span class="ident">OutOfProcessCallbackDll</span>: <span class="ident">PCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOLEAN</span>;
+    ) -&gt; <span class="ident">BOOLEAN</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlAddGrowableFunctionTable</span>(
         <span class="ident">DynamicTable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PVOID</span>,
         <span class="ident">FunctionTable</span>: <span class="ident">PRUNTIME_FUNCTION</span>,
@@ -15873,7 +15873,7 @@
         <span class="ident">MaximumEntryCount</span>: <span class="ident">DWORD</span>,
         <span class="ident">RangeBase</span>: <span class="ident">ULONG_PTR</span>,
         <span class="ident">RangeEnd</span>: <span class="ident">ULONG_PTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlGrowFunctionTable</span>(
         <span class="ident">DynamicTable</span>: <span class="ident">PVOID</span>,
         <span class="ident">NewEntryCount</span>: <span class="ident">DWORD</span>,
@@ -15885,7 +15885,7 @@
         <span class="ident">ControlPc</span>: <span class="ident">DWORD64</span>,
         <span class="ident">ImageBase</span>: <span class="ident">PDWORD64</span>,
         <span class="ident">HistoryTable</span>: <span class="ident">PUNWIND_HISTORY_TABLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PRUNTIME_FUNCTION</span>;
+    ) -&gt; <span class="ident">PRUNTIME_FUNCTION</span>;
 }
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>)]</span>
 <span class="macro">IFDEF!</span>{
@@ -15913,19 +15913,19 @@
         <span class="ident">HandlerData</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PVOID</span>,
         <span class="ident">EstablisherFrame</span>: <span class="ident">PDWORD64</span>,
         <span class="ident">ContextPointers</span>: <span class="ident">PKNONVOLATILE_CONTEXT_POINTERS</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PEXCEPTION_ROUTINE</span>;
+    ) -&gt; <span class="ident">PEXCEPTION_ROUTINE</span>;
 }
 }
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlPcToFileHeader</span>(
         <span class="ident">PcValue</span>: <span class="ident">PVOID</span>,
         <span class="ident">BaseOfImage</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PVOID</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PVOID</span>;
+    ) -&gt; <span class="ident">PVOID</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlCompareMemory</span>(
         <span class="ident">Source1</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">VOID</span>,
         <span class="ident">Source2</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">VOID</span>,
         <span class="ident">Length</span>: <span class="ident">SIZE_T</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SIZE_T</span>;
+    ) -&gt; <span class="ident">SIZE_T</span>;
 }
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">SLIST_ENTRY</span> {
     <span class="ident">Next</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">SLIST_ENTRY</span>,
@@ -15949,7 +15949,7 @@
     <span class="ident">Reserved</span> <span class="ident">set_Reserved</span>[<span class="number">0</span>..<span class="number">4</span>],
     <span class="ident">NextEntry</span> <span class="ident">set_NextEntry</span>[<span class="number">4</span>..<span class="number">64</span>],
 ]}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">SLIST_HEADER</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">SLIST_HEADER</span> {
     [<span class="ident">u64</span>; <span class="number">2</span>],
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">SLIST_HEADER_s</span>,
     <span class="ident">HeaderX64</span> <span class="ident">HeaderX64_mut</span>: <span class="ident">SLIST_HEADER_HeaderX64</span>,
@@ -15963,7 +15963,7 @@
     <span class="ident">Depth</span>: <span class="ident">WORD</span>,
     <span class="ident">Reserved</span>: <span class="ident">WORD</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">SLIST_HEADER</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">SLIST_HEADER</span> {
     [<span class="ident">u64</span>; <span class="number">1</span>],
     <span class="ident">Alignment</span> <span class="ident">Alignment_mut</span>: <span class="ident">ULONGLONG</span>,
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">SLIST_HEADER_s</span>,
@@ -15976,26 +15976,26 @@
     );
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlFirstEntrySList</span>(
         <span class="ident">ListHead</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">SLIST_HEADER</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PSLIST_ENTRY</span>;
+    ) -&gt; <span class="ident">PSLIST_ENTRY</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlInterlockedPopEntrySList</span>(
         <span class="ident">ListHead</span>: <span class="ident">PSLIST_HEADER</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PSLIST_ENTRY</span>;
+    ) -&gt; <span class="ident">PSLIST_ENTRY</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlInterlockedPushEntrySList</span>(
         <span class="ident">ListHead</span>: <span class="ident">PSLIST_HEADER</span>,
         <span class="ident">ListEntry</span>: <span class="ident">PSLIST_ENTRY</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PSLIST_ENTRY</span>;
+    ) -&gt; <span class="ident">PSLIST_ENTRY</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlInterlockedPushListSListEx</span>(
         <span class="ident">ListHead</span>: <span class="ident">PSLIST_HEADER</span>,
         <span class="ident">ListEntry</span>: <span class="ident">PSLIST_ENTRY</span>,
         <span class="ident">ListEnd</span>: <span class="ident">PSLIST_ENTRY</span>,
         <span class="ident">Count</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PSLIST_ENTRY</span>;
+    ) -&gt; <span class="ident">PSLIST_ENTRY</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlInterlockedFlushSList</span>(
         <span class="ident">ListHead</span>: <span class="ident">PSLIST_HEADER</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PSLIST_ENTRY</span>;
+    ) -&gt; <span class="ident">PSLIST_ENTRY</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlQueryDepthSList</span>(
         <span class="ident">ListHead</span>: <span class="ident">PSLIST_HEADER</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WORD</span>;
+    ) -&gt; <span class="ident">WORD</span>;
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RTL_RUN_ONCE_INIT</span>: <span class="ident">RTL_RUN_ONCE</span> <span class="op">=</span> <span class="ident">RTL_RUN_ONCE</span> { <span class="ident">Ptr</span>: <span class="number">0</span> <span class="kw">as</span> <span class="ident">PVOID</span> };
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RTL_RUN_ONCE_CHECK_ONLY</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000001</span>;
@@ -16077,7 +16077,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HEAP_CREATE_SEGMENT_HEAP</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00000100</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HEAP_CREATE_HARDENED</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00000200</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">HEAP_MAKE_TAG_FLAGS</span>(<span class="ident">TagBase</span>: <span class="ident">DWORD</span>, <span class="ident">Tag</span>: <span class="ident">DWORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">HEAP_MAKE_TAG_FLAGS</span>(<span class="ident">TagBase</span>: <span class="ident">DWORD</span>, <span class="ident">Tag</span>: <span class="ident">DWORD</span>) -&gt; <span class="ident">DWORD</span> {
     <span class="ident">TagBase</span> <span class="op">+</span> (<span class="ident">Tag</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">HEAP_TAG_SHIFT</span>)
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IS_TEXT_UNICODE_ASCII16</span>: <span class="ident">INT</span> <span class="op">=</span> <span class="number">0x0001</span>;
@@ -16239,14 +16239,14 @@
         <span class="ident">ConditionMask</span>: <span class="ident">ULONGLONG</span>,
         <span class="ident">TypeMask</span>: <span class="ident">DWORD</span>,
         <span class="ident">Condition</span>: <span class="ident">BYTE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ULONGLONG</span>;
+    ) -&gt; <span class="ident">ULONGLONG</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlGetProductInfo</span>(
         <span class="ident">OSMajorVersion</span>: <span class="ident">DWORD</span>,
         <span class="ident">OSMinorVersion</span>: <span class="ident">DWORD</span>,
         <span class="ident">SpMajorVersion</span>: <span class="ident">DWORD</span>,
         <span class="ident">SpMinorVersion</span>: <span class="ident">DWORD</span>,
         <span class="ident">ReturnedProductType</span>: <span class="ident">PDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOLEAN</span>;
+    ) -&gt; <span class="ident">BOOLEAN</span>;
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RTL_UMS_VERSION</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x100</span>;
 <span class="macro">ENUM!</span>{<span class="kw">enum</span> <span class="ident">RTL_UMS_THREAD_INFO_CLASS</span> {
@@ -16268,9 +16268,9 @@
     <span class="ident">Reason</span>: <span class="ident">RTL_UMS_SCHEDULER_REASON</span>,
     <span class="ident">ActivationPayload</span>: <span class="ident">ULONG_PTR</span>,
     <span class="ident">SchedulerParam</span>: <span class="ident">PVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IS_VALIDATION_ENABLED</span>(<span class="ident">C</span>: <span class="ident">DWORD</span>, <span class="ident">L</span>: <span class="ident">DWORD</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IS_VALIDATION_ENABLED</span>(<span class="ident">C</span>: <span class="ident">DWORD</span>, <span class="ident">L</span>: <span class="ident">DWORD</span>) -&gt; <span class="ident">bool</span> {
     (<span class="ident">L</span> <span class="op">&amp;</span> <span class="ident">C</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VRL_PREDEFINED_CLASS_BEGIN</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>;
@@ -16285,12 +16285,12 @@
         <span class="ident">Buffer</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_void</span>,
         <span class="ident">Size</span>: <span class="ident">size_t</span>,
         <span class="ident">InitialCrc</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlCrc64</span>(
         <span class="ident">Buffer</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_void</span>,
         <span class="ident">Size</span>: <span class="ident">size_t</span>,
         <span class="ident">InitialCrc</span>: <span class="ident">ULONGLONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ULONGLONG</span>;
+    ) -&gt; <span class="ident">ULONGLONG</span>;
 }
 <span class="macro">ENUM!</span>{<span class="kw">enum</span> <span class="ident">OS_DEPLOYEMENT_STATE_VALUES</span> {
     <span class="ident">OS_DEPLOYMENT_STANDARD</span> <span class="op">=</span> <span class="number">1</span>,
@@ -16299,7 +16299,7 @@
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlOsDeploymentState</span>(
         <span class="ident">Flags</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">OS_DEPLOYEMENT_STATE_VALUES</span>;
+    ) -&gt; <span class="ident">OS_DEPLOYEMENT_STATE_VALUES</span>;
 }
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>)]</span>
 <span class="macro">IFDEF!</span>{
@@ -16360,10 +16360,10 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RTL_CONDITION_VARIABLE_LOCKMODE_SHARED</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x1</span>;
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">PAPCFUNC</span>(
     <span class="ident">Parameter</span>: <span class="ident">ULONG_PTR</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">PVECTORED_EXCEPTION_HANDLER</span>(
     <span class="ident">ExceptionInfo</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">EXCEPTION_POINTERS</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LONG</span>}
+) -&gt; <span class="ident">LONG</span>}
 <span class="macro">ENUM!</span>{<span class="kw">enum</span> <span class="ident">HEAP_INFORMATION_CLASS</span> {
     <span class="ident">HeapCompatibilityInformation</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">HeapEnableTerminationOnCorruption</span> <span class="op">=</span> <span class="number">1</span>,
@@ -16386,29 +16386,29 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WT_EXECUTEINPERSISTENTTHREAD</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000080</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WT_TRANSFER_IMPERSONATION</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000100</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WT_SET_MAX_THREADPOOL_THREADS</span>(<span class="ident">Flags</span>: <span class="ident">ULONG</span>, <span class="ident">Limit</span>: <span class="ident">ULONG</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ULONG</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WT_SET_MAX_THREADPOOL_THREADS</span>(<span class="ident">Flags</span>: <span class="ident">ULONG</span>, <span class="ident">Limit</span>: <span class="ident">ULONG</span>) -&gt; <span class="ident">ULONG</span> {
     <span class="ident">Flags</span> <span class="op">|</span> (<span class="ident">Limit</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>)
 }
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">WAITORTIMERCALLBACKFUNC</span>(
     <span class="ident">PVOID</span>,
     <span class="ident">BOOLEAN</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">WORKERCALLBACKFUNC</span>(
     <span class="ident">PVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">APC_CALLBACK_FUNCTION</span>(
     <span class="ident">DWORD</span>,
     <span class="ident">PVOID</span>,
     <span class="ident">PVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">WAITORTIMERCALLBACK</span> <span class="op">=</span> <span class="ident">WAITORTIMERCALLBACKFUNC</span>;
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">PFLS_CALLBACK_FUNCTION</span>(
     <span class="ident">lpFlsData</span>: <span class="ident">PVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">PSECURE_MEMORY_CACHE_CALLBACK</span>(
     <span class="ident">Addr</span>: <span class="ident">PVOID</span>,
     <span class="ident">Range</span>: <span class="ident">SIZE_T</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOLEAN</span>}
+) -&gt; <span class="ident">BOOLEAN</span>}
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WT_EXECUTEINLONGTHREAD</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000010</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WT_EXECUTEDELETEWAIT</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000008</span>;
 <span class="macro">ENUM!</span>{<span class="kw">enum</span> <span class="ident">ACTIVATION_CONTEXT_INFO_CLASS</span> {
@@ -16613,12 +16613,12 @@
         <span class="ident">pulDeviceFormBufferSize</span>: <span class="ident">PDWORD</span>,
         <span class="ident">DeviceFamily</span>: <span class="ident">PWSTR</span>,
         <span class="ident">DeviceForm</span>: <span class="ident">PWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RtlSwitchedVVI</span>(
         <span class="ident">VersionInfo</span>: <span class="ident">PRTL_OSVERSIONINFOEXW</span>,
         <span class="ident">TypeMask</span>: <span class="ident">DWORD</span>,
         <span class="ident">ConditionMask</span>: <span class="ident">ULONGLONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DLL_PROCESS_ATTACH</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DLL_THREAD_ATTACH</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">2</span>;
@@ -17195,7 +17195,7 @@
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">PTP_SIMPLE_CALLBACK</span>(
     <span class="ident">Instance</span>: <span class="ident">PTP_CALLBACK_INSTANCE</span>,
     <span class="ident">Context</span>: <span class="ident">PVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">TP_POOL</span> {
     <span class="ident">dummy</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
 }}
@@ -17219,7 +17219,7 @@
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">PTP_CLEANUP_GROUP_CANCEL_CALLBACK</span>(
     <span class="ident">ObjectContext</span>: <span class="ident">PVOID</span>,
     <span class="ident">CleanupContext</span>: <span class="ident">PVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">TP_CALLBACK_ENVIRON_V3_u_s</span> {
     <span class="ident">BitFields</span>: <span class="ident">DWORD</span>,
 }}
@@ -17228,7 +17228,7 @@
     <span class="ident">Persistent</span> <span class="ident">set_Persistent</span>[<span class="number">1</span>..<span class="number">2</span>],
     <span class="ident">Private</span> <span class="ident">set_Private</span>[<span class="number">2</span>..<span class="number">32</span>],
 ]}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">TP_CALLBACK_ENVIRON_V3_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">TP_CALLBACK_ENVIRON_V3_u</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">Flags</span> <span class="ident">Flags_mut</span>: <span class="ident">DWORD</span>,
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">TP_CALLBACK_ENVIRON_V3_u_s</span>,
@@ -17255,7 +17255,7 @@
     <span class="ident">Instance</span>: <span class="ident">PTP_CALLBACK_INSTANCE</span>,
     <span class="ident">Context</span>: <span class="ident">PVOID</span>,
     <span class="ident">Work</span>: <span class="ident">PTP_WORK</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">TP_TIMER</span> {
     <span class="ident">dummy</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
 }}
@@ -17264,7 +17264,7 @@
     <span class="ident">Instance</span>: <span class="ident">PTP_CALLBACK_INSTANCE</span>,
     <span class="ident">Context</span>: <span class="ident">PVOID</span>,
     <span class="ident">Timer</span>: <span class="ident">PTP_TIMER</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TP_WAIT_RESULT</span> <span class="op">=</span> <span class="ident">DWORD</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">TP_WAIT</span> {
     <span class="ident">dummy</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
@@ -17275,7 +17275,7 @@
     <span class="ident">Context</span>: <span class="ident">PVOID</span>,
     <span class="ident">Wait</span>: <span class="ident">PTP_WAIT</span>,
     <span class="ident">WaitResult</span>: <span class="ident">TP_WAIT_RESULT</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">TP_IO</span> {
     <span class="ident">dummy</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
 }}

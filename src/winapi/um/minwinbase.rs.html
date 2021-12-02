@@ -373,7 +373,7 @@
     <span class="ident">Offset</span>: <span class="ident">DWORD</span>,
     <span class="ident">OffsetHigh</span>: <span class="ident">DWORD</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">OVERLAPPED_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">OVERLAPPED_u</span> {
     [<span class="ident">u32</span>; <span class="number">2</span>] [<span class="ident">u64</span>; <span class="number">1</span>],
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">OVERLAPPED_u_s</span>,
     <span class="ident">Pointer</span> <span class="ident">Pointer_mut</span>: <span class="ident">PVOID</span>,
@@ -486,7 +486,7 @@
     <span class="ident">dwErrorCode</span>: <span class="ident">DWORD</span>,
     <span class="ident">dwNumberOfBytesTransfered</span>: <span class="ident">DWORD</span>,
     <span class="ident">lpOverlapped</span>: <span class="ident">LPOVERLAPPED</span>,
-) <span class="op">-</span><span class="op">&gt;</span> ()}
+) -&gt; ()}
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOCKFILE_FAIL_IMMEDIATELY</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00000001</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOCKFILE_EXCLUSIVE_LOCK</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00000002</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">PROCESS_HEAP_ENTRY_Block</span> {
@@ -499,7 +499,7 @@
     <span class="ident">lpFirstBlock</span>: <span class="ident">LPVOID</span>,
     <span class="ident">lpLastBlock</span>: <span class="ident">LPVOID</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">PROCESS_HEAP_ENTRY_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">PROCESS_HEAP_ENTRY_u</span> {
     [<span class="ident">u32</span>; <span class="number">4</span>] [<span class="ident">u64</span>; <span class="number">3</span>],
     <span class="ident">Block</span> <span class="ident">Block_mut</span>: <span class="ident">PROCESS_HEAP_ENTRY_Block</span>,
     <span class="ident">Region</span> <span class="ident">Region_mut</span>: <span class="ident">PROCESS_HEAP_ENTRY_Region</span>,
@@ -526,7 +526,7 @@
     <span class="ident">ReasonStringCount</span>: <span class="ident">ULONG</span>,
     <span class="ident">ReasonStrings</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LPWSTR</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">REASON_CONTEXT_Reason</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">REASON_CONTEXT_Reason</span> {
     [<span class="ident">u32</span>; <span class="number">4</span>] [<span class="ident">u64</span>; <span class="number">3</span>],
     <span class="ident">Detailed</span> <span class="ident">Detailed_mut</span>: <span class="ident">REASON_CONTEXT_Detailed</span>,
     <span class="ident">SimpleReasonString</span> <span class="ident">SimpleReasonString_mut</span>: <span class="ident">LPWSTR</span>,
@@ -548,11 +548,11 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RIP_EVENT</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">9</span>;
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">PTHREAD_START_ROUTINE</span>(
     <span class="ident">lpThreadParameter</span>: <span class="ident">LPVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>}
+) -&gt; <span class="ident">DWORD</span>}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPTHREAD_START_ROUTINE</span> <span class="op">=</span> <span class="ident">PTHREAD_START_ROUTINE</span>;
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">PENCLAVE_ROUTINE</span>(
     <span class="ident">lpThreadParameter</span>: <span class="ident">LPVOID</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>}
+) -&gt; <span class="ident">DWORD</span>}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPENCLAVE_ROUTINE</span> <span class="op">=</span> <span class="ident">PENCLAVE_ROUTINE</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">EXCEPTION_DEBUG_INFO</span> {
     <span class="ident">ExceptionRecord</span>: <span class="ident">EXCEPTION_RECORD</span>,
@@ -610,7 +610,7 @@
     <span class="ident">dwType</span>: <span class="ident">DWORD</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPRIP_INFO</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">RIP_INFO</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">DEBUG_EVENT_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">DEBUG_EVENT_u</span> {
     [<span class="ident">u32</span>; <span class="number">21</span>] [<span class="ident">u64</span>; <span class="number">20</span>],
     <span class="ident">Exception</span> <span class="ident">Exception_mut</span>: <span class="ident">EXCEPTION_DEBUG_INFO</span>,
     <span class="ident">CreateThread</span> <span class="ident">CreateThread_mut</span>: <span class="ident">CREATE_THREAD_DEBUG_INFO</span>,

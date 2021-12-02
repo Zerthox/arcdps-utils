@@ -71,15 +71,15 @@
         <span class="kw">unsafe</span> { <span class="ident">sys::igNextColumn</span>() }
     }
     <span class="doccomment">/// Returns the index of the current column</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_column_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_column_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetColumnIndex</span>() }
     }
     <span class="doccomment">/// Returns the width of the current column (in pixels)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_column_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_column_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetColumnWidth</span>(<span class="op">-</span><span class="number">1</span>) }
     }
     <span class="doccomment">/// Returns the width of the given column (in pixels)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">column_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">column_index</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">column_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">column_index</span>: <span class="ident">i32</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetColumnWidth</span>(<span class="ident">column_index</span>) }
     }
     <span class="doccomment">/// Sets the width of the current column (in pixels)</span>
@@ -92,11 +92,11 @@
     }
     <span class="doccomment">/// Returns the offset of the current column (in pixels from the left side of the content</span>
     <span class="doccomment">/// region)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_column_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_column_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetColumnOffset</span>(<span class="op">-</span><span class="number">1</span>) }
     }
     <span class="doccomment">/// Returns the offset of the given column (in pixels from the left side of the content region)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">column_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">column_index</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">column_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">column_index</span>: <span class="ident">i32</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetColumnOffset</span>(<span class="ident">column_index</span>) }
     }
     <span class="doccomment">/// Sets the offset of the current column (in pixels from the left side of the content region)</span>
@@ -108,7 +108,7 @@
         <span class="kw">unsafe</span> { <span class="ident">sys::igSetColumnOffset</span>(<span class="ident">column_index</span>, <span class="ident">offset_x</span>) };
     }
     <span class="doccomment">/// Returns the current amount of columns</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">column_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">column_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetColumnsCount</span>() }
     }
 }

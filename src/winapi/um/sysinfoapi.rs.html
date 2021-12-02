@@ -235,7 +235,7 @@
     <span class="ident">wProcessorArchitecture</span>: <span class="ident">WORD</span>,
     <span class="ident">wReserved</span>: <span class="ident">WORD</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">SYSTEM_INFO_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">SYSTEM_INFO_u</span> {
     [<span class="ident">u32</span>; <span class="number">1</span>],
     <span class="ident">dwOemId</span> <span class="ident">dwOemId_mut</span>: <span class="ident">DWORD</span>,
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">SYSTEM_INFO_u_s</span>,
@@ -268,7 +268,7 @@
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GlobalMemoryStatusEx</span>(
         <span class="ident">lpBuffer</span>: <span class="ident">LPMEMORYSTATUSEX</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetSystemInfo</span>(
         <span class="ident">lpSystemInfo</span>: <span class="ident">LPSYSTEM_INFO</span>,
     );
@@ -281,41 +281,41 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetLocalTime</span>(
         <span class="ident">lpSystemTime</span>: <span class="ident">LPSYSTEMTIME</span>,
     );
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetVersion</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetVersion</span>() -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetLocalTime</span>(
         <span class="ident">lpSystemTime</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">SYSTEMTIME</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetTickCount</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetTickCount64</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ULONGLONG</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetTickCount</span>() -&gt; <span class="ident">DWORD</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetTickCount64</span>() -&gt; <span class="ident">ULONGLONG</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetSystemTimeAdjustment</span>(
         <span class="ident">lpTimeAdjustment</span>: <span class="ident">PDWORD</span>,
         <span class="ident">lpTimeIncrement</span>: <span class="ident">PDWORD</span>,
         <span class="ident">lpTimeAdjustmentDisabled</span>: <span class="ident">PBOOL</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetSystemDirectoryA</span>(
         <span class="ident">lpBuffer</span>: <span class="ident">LPSTR</span>,
         <span class="ident">uSize</span>: <span class="ident">UINT</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    ) -&gt; <span class="ident">UINT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetSystemDirectoryW</span>(
         <span class="ident">lpBuffer</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">uSize</span>: <span class="ident">UINT</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    ) -&gt; <span class="ident">UINT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetWindowsDirectoryA</span>(
         <span class="ident">lpBuffer</span>: <span class="ident">LPSTR</span>,
         <span class="ident">uSize</span>: <span class="ident">UINT</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    ) -&gt; <span class="ident">UINT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetWindowsDirectoryW</span>(
         <span class="ident">lpBuffer</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">uSize</span>: <span class="ident">UINT</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    ) -&gt; <span class="ident">UINT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetSystemWindowsDirectoryA</span>(
         <span class="ident">lpBuffer</span>: <span class="ident">LPSTR</span>,
         <span class="ident">uSize</span>: <span class="ident">UINT</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    ) -&gt; <span class="ident">UINT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetSystemWindowsDirectoryW</span>(
         <span class="ident">lpBuffer</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">uSize</span>: <span class="ident">UINT</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    ) -&gt; <span class="ident">UINT</span>;
 }
 <span class="macro">ENUM!</span>{<span class="kw">enum</span> <span class="ident">COMPUTER_NAME_FORMAT</span> {
     <span class="ident">ComputerNameNetBIOS</span>,
@@ -333,34 +333,34 @@
         <span class="ident">NameType</span>: <span class="ident">COMPUTER_NAME_FORMAT</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPSTR</span>,
         <span class="ident">nSize</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetComputerNameExW</span>(
         <span class="ident">NameType</span>: <span class="ident">COMPUTER_NAME_FORMAT</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">nSize</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetComputerNameExW</span>(
         <span class="ident">NameType</span>: <span class="ident">COMPUTER_NAME_FORMAT</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetSystemTime</span>(
         <span class="ident">lpSystemTime</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">SYSTEMTIME</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetVersionExA</span>(
         <span class="ident">lpVersionInformation</span>: <span class="ident">LPOSVERSIONINFOA</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetVersionExW</span>(
         <span class="ident">lpVersionInformation</span>: <span class="ident">LPOSVERSIONINFOW</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetLogicalProcessorInformation</span>(
         <span class="ident">Buffer</span>: <span class="ident">PSYSTEM_LOGICAL_PROCESSOR_INFORMATION</span>,
         <span class="ident">ReturnedLength</span>: <span class="ident">PDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetLogicalProcessorInformationEx</span>(
         <span class="ident">RelationshipType</span>: <span class="ident">LOGICAL_PROCESSOR_RELATIONSHIP</span>,
         <span class="ident">Buffer</span>: <span class="ident">PSYSTEM_LOGICAL_PROCESSOR_INFORMATION</span>,
         <span class="ident">ReturnedLength</span>: <span class="ident">PDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetNativeSystemInfo</span>(
         <span class="ident">lpSystemInfo</span>: <span class="ident">LPSYSTEM_INFO</span>,
     );
@@ -373,32 +373,32 @@
         <span class="ident">dwSpMajorVersion</span>: <span class="ident">DWORD</span>,
         <span class="ident">dwSpMinorVersion</span>: <span class="ident">DWORD</span>,
         <span class="ident">pdwReturnedProductType</span>: <span class="ident">PDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">VerSetConditionMask</span>(
         <span class="ident">ConditionMask</span>: <span class="ident">ULONGLONG</span>,
         <span class="ident">TypeMask</span>: <span class="ident">DWORD</span>,
         <span class="ident">Condition</span>: <span class="ident">BYTE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ULONGLONG</span>;
+    ) -&gt; <span class="ident">ULONGLONG</span>;
     <span class="comment">// pub fn GetOsSafeBootMode();</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">EnumSystemFirmwareTables</span>(
         <span class="ident">FirmwareTableProviderSignature</span>: <span class="ident">DWORD</span>,
         <span class="ident">pFirmwareTableEnumBuffer</span>: <span class="ident">PVOID</span>,
         <span class="ident">BufferSize</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    ) -&gt; <span class="ident">UINT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetSystemFirmwareTable</span>(
         <span class="ident">FirmwareTableProviderSignature</span>: <span class="ident">DWORD</span>,
         <span class="ident">FirmwareTableID</span>: <span class="ident">DWORD</span>,
         <span class="ident">pFirmwareTableBuffer</span>: <span class="ident">PVOID</span>,
         <span class="ident">BufferSize</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    ) -&gt; <span class="ident">UINT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DnsHostnameToComputerNameExW</span>(
         <span class="ident">Hostname</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">ComputerName</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">nSize</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetPhysicallyInstalledSystemMemory</span>(
         <span class="ident">TotalMemoryInKilobytes</span>: <span class="ident">PULONGLONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SCEX2_ALT_NETBIOS_NAME</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00000001</span>;
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
@@ -406,31 +406,31 @@
         <span class="ident">NameType</span>: <span class="ident">COMPUTER_NAME_FORMAT</span>,
         <span class="ident">Flags</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetSystemTimeAdjustment</span>(
         <span class="ident">dwTimeAdjustment</span>: <span class="ident">DWORD</span>,
         <span class="ident">bTimeAdjustmentDisabled</span>: <span class="ident">BOOL</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">InstallELAMCertificateInfo</span>(
         <span class="ident">ELAMFile</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetProcessorSystemCycleTime</span>(
         <span class="ident">Group</span>: <span class="ident">USHORT</span>,
         <span class="ident">Buffer</span>: <span class="ident">PSYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION</span>,
         <span class="ident">ReturnedLength</span>: <span class="ident">PDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="comment">// pub fn GetOsManufacturingMode();</span>
     <span class="comment">// pub fn GetIntegratedDisplaySize();</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetComputerNameA</span>(
         <span class="ident">lpComputerName</span>: <span class="ident">LPCSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetComputerNameW</span>(
         <span class="ident">lpComputerName</span>: <span class="ident">LPCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetComputerNameExA</span>(
         <span class="ident">NameType</span>: <span class="ident">COMPUTER_NAME_FORMAT</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPCSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="winapi" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>

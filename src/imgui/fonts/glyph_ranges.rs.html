@@ -170,35 +170,35 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FontGlyphRanges</span>(<span class="ident">FontGlyphRangeData</span>);
 <span class="kw">impl</span> <span class="ident">FontGlyphRanges</span> {
     <span class="doccomment">/// The default set of glyph ranges used by imgui.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontGlyphRanges</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="ident">FontGlyphRanges</span> {
         <span class="ident">FontGlyphRanges</span>(<span class="ident">FontGlyphRangeData::Default</span>)
     }
     <span class="doccomment">/// A set of glyph ranges appropriate for use with simplified common Chinese text.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">chinese_simplified_common</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontGlyphRanges</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">chinese_simplified_common</span>() -&gt; <span class="ident">FontGlyphRanges</span> {
         <span class="ident">FontGlyphRanges</span>(<span class="ident">FontGlyphRangeData::ChineseSimplifiedCommon</span>)
     }
     <span class="doccomment">/// A set of glyph ranges appropriate for use with Chinese text.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">chinese_full</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontGlyphRanges</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">chinese_full</span>() -&gt; <span class="ident">FontGlyphRanges</span> {
         <span class="ident">FontGlyphRanges</span>(<span class="ident">FontGlyphRangeData::ChineseFull</span>)
     }
     <span class="doccomment">/// A set of glyph ranges appropriate for use with Cyrillic text.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cyrillic</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontGlyphRanges</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cyrillic</span>() -&gt; <span class="ident">FontGlyphRanges</span> {
         <span class="ident">FontGlyphRanges</span>(<span class="ident">FontGlyphRangeData::Cyrillic</span>)
     }
     <span class="doccomment">/// A set of glyph ranges appropriate for use with Japanese text.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">japanese</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontGlyphRanges</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">japanese</span>() -&gt; <span class="ident">FontGlyphRanges</span> {
         <span class="ident">FontGlyphRanges</span>(<span class="ident">FontGlyphRangeData::Japanese</span>)
     }
     <span class="doccomment">/// A set of glyph ranges appropriate for use with Korean text.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">korean</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontGlyphRanges</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">korean</span>() -&gt; <span class="ident">FontGlyphRanges</span> {
         <span class="ident">FontGlyphRanges</span>(<span class="ident">FontGlyphRangeData::Korean</span>)
     }
     <span class="doccomment">/// A set of glyph ranges appropriate for use with Thai text.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">thai</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontGlyphRanges</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">thai</span>() -&gt; <span class="ident">FontGlyphRanges</span> {
         <span class="ident">FontGlyphRanges</span>(<span class="ident">FontGlyphRangeData::Thai</span>)
     }
     <span class="doccomment">/// A set of glyph ranges appropriate for use with Vietnamese text.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vietnamese</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontGlyphRanges</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vietnamese</span>() -&gt; <span class="ident">FontGlyphRanges</span> {
         <span class="ident">FontGlyphRanges</span>(<span class="ident">FontGlyphRangeData::Vietnamese</span>)
     }
 
@@ -213,7 +213,7 @@
     <span class="doccomment">/// ======</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function will panic if the given slice is not a valid font range.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_slice</span>(<span class="ident">slice</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">u16</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontGlyphRanges</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_slice</span>(<span class="ident">slice</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">u16</span>]) -&gt; <span class="ident">FontGlyphRanges</span> {
         <span class="macro">assert_eq!</span>(
             <span class="ident">slice</span>.<span class="ident">len</span>() <span class="op">%</span> <span class="number">2</span>,
             <span class="number">1</span>,
@@ -270,7 +270,7 @@
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is up to the caller to guarantee the slice contents are valid.</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_slice_unchecked</span>(<span class="ident">slice</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">u16</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontGlyphRanges</span> {
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_slice_unchecked</span>(<span class="ident">slice</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">u16</span>]) -&gt; <span class="ident">FontGlyphRanges</span> {
         <span class="ident">FontGlyphRanges::from_ptr</span>(<span class="ident">slice</span>.<span class="ident">as_ptr</span>())
     }
 
@@ -282,23 +282,23 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is up to the caller to guarantee the pointer is not null, remains valid forever, and</span>
     <span class="doccomment">/// points to valid data.</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontGlyphRanges</span> {
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u16</span>) -&gt; <span class="ident">FontGlyphRanges</span> {
         <span class="ident">FontGlyphRanges</span>(<span class="ident">FontGlyphRangeData::Custom</span>(<span class="ident">ptr</span>))
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">to_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">atlas</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sys::ImFontAtlas</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sys::ImWchar</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">to_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">atlas</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sys::ImFontAtlas</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sys::ImWchar</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="number">0</span> {
-            <span class="ident">FontGlyphRangeData::ChineseFull</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">sys::ImFontAtlas_GetGlyphRangesChineseFull</span>(<span class="ident">atlas</span>),
-            <span class="ident">FontGlyphRangeData::ChineseSimplifiedCommon</span> <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">FontGlyphRangeData::ChineseFull</span> =&gt; <span class="ident">sys::ImFontAtlas_GetGlyphRangesChineseFull</span>(<span class="ident">atlas</span>),
+            <span class="ident">FontGlyphRangeData::ChineseSimplifiedCommon</span> =&gt; {
                 <span class="ident">sys::ImFontAtlas_GetGlyphRangesChineseSimplifiedCommon</span>(<span class="ident">atlas</span>)
             }
-            <span class="ident">FontGlyphRangeData::Cyrillic</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">sys::ImFontAtlas_GetGlyphRangesCyrillic</span>(<span class="ident">atlas</span>),
-            <span class="ident">FontGlyphRangeData::Default</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">sys::ImFontAtlas_GetGlyphRangesDefault</span>(<span class="ident">atlas</span>),
-            <span class="ident">FontGlyphRangeData::Japanese</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">sys::ImFontAtlas_GetGlyphRangesJapanese</span>(<span class="ident">atlas</span>),
-            <span class="ident">FontGlyphRangeData::Korean</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">sys::ImFontAtlas_GetGlyphRangesKorean</span>(<span class="ident">atlas</span>),
-            <span class="ident">FontGlyphRangeData::Thai</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">sys::ImFontAtlas_GetGlyphRangesThai</span>(<span class="ident">atlas</span>),
-            <span class="ident">FontGlyphRangeData::Vietnamese</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">sys::ImFontAtlas_GetGlyphRangesVietnamese</span>(<span class="ident">atlas</span>),
-            <span class="ident">FontGlyphRangeData::Custom</span>(<span class="ident">ptr</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ptr</span>,
+            <span class="ident">FontGlyphRangeData::Cyrillic</span> =&gt; <span class="ident">sys::ImFontAtlas_GetGlyphRangesCyrillic</span>(<span class="ident">atlas</span>),
+            <span class="ident">FontGlyphRangeData::Default</span> =&gt; <span class="ident">sys::ImFontAtlas_GetGlyphRangesDefault</span>(<span class="ident">atlas</span>),
+            <span class="ident">FontGlyphRangeData::Japanese</span> =&gt; <span class="ident">sys::ImFontAtlas_GetGlyphRangesJapanese</span>(<span class="ident">atlas</span>),
+            <span class="ident">FontGlyphRangeData::Korean</span> =&gt; <span class="ident">sys::ImFontAtlas_GetGlyphRangesKorean</span>(<span class="ident">atlas</span>),
+            <span class="ident">FontGlyphRangeData::Thai</span> =&gt; <span class="ident">sys::ImFontAtlas_GetGlyphRangesThai</span>(<span class="ident">atlas</span>),
+            <span class="ident">FontGlyphRangeData::Vietnamese</span> =&gt; <span class="ident">sys::ImFontAtlas_GetGlyphRangesVietnamese</span>(<span class="ident">atlas</span>),
+            <span class="ident">FontGlyphRangeData::Custom</span>(<span class="ident">ptr</span>) =&gt; <span class="ident">ptr</span>,
         }
     }
 }

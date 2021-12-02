@@ -55,7 +55,7 @@ create <a href="https://doc.rust-lang.org/nightly/nomicon/unbounded-lifetimes.ht
     <span class="ident">Three</span> <span class="op">=</span> <span class="number">3</span>,
 }
 
-<span class="kw">const</span> <span class="kw">fn</span> <span class="ident">number_from_repr</span>(<span class="ident">d</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Number</span><span class="op">&gt;</span> {
+<span class="kw">const</span> <span class="kw">fn</span> <span class="ident">number_from_repr</span>(<span class="ident">d</span>: <span class="ident">u8</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Number</span><span class="op">&gt;</span> {
     <span class="ident">Number::from_repr</span>(<span class="ident">d</span>)
 }
 

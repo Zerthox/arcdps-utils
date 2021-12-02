@@ -511,28 +511,28 @@
         <span class="ident">pfnAPC</span>: <span class="ident">PAPCFUNC</span>,
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">dwData</span>: <span class="ident">ULONG_PTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetProcessTimes</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpCreationTime</span>: <span class="ident">LPFILETIME</span>,
         <span class="ident">lpExitTime</span>: <span class="ident">LPFILETIME</span>,
         <span class="ident">lpKernelTime</span>: <span class="ident">LPFILETIME</span>,
         <span class="ident">lpUserTime</span>: <span class="ident">LPFILETIME</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentProcess</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentProcessId</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentProcess</span>() -&gt; <span class="ident">HANDLE</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentProcessId</span>() -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ExitProcess</span>(
         <span class="ident">uExitCode</span>: <span class="ident">UINT</span>,
     );
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TerminateProcess</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">uExitCode</span>: <span class="ident">UINT</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetExitCodeProcess</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpExitCode</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SwitchToThread</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SwitchToThread</span>() -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateThread</span>(
         <span class="ident">lpThreadAttributes</span>: <span class="ident">LPSECURITY_ATTRIBUTES</span>,
         <span class="ident">dwStackSize</span>: <span class="ident">SIZE_T</span>,
@@ -540,7 +540,7 @@
         <span class="ident">lpParameter</span>: <span class="ident">LPVOID</span>,
         <span class="ident">dwCreationFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpThreadId</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateRemoteThread</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpThreadAttributes</span>: <span class="ident">LPSECURITY_ATTRIBUTES</span>,
@@ -549,60 +549,60 @@
         <span class="ident">lpParameter</span>: <span class="ident">LPVOID</span>,
         <span class="ident">dwCreationFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpThreadId</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentThread</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentThreadId</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentThread</span>() -&gt; <span class="ident">HANDLE</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentThreadId</span>() -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">OpenThread</span>(
         <span class="ident">dwDesiredAccess</span>: <span class="ident">DWORD</span>,
         <span class="ident">bInheritHandle</span>: <span class="ident">BOOL</span>,
         <span class="ident">dwThreadId</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetThreadPriority</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">nPriority</span>: <span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetThreadPriorityBoost</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">bDisablePriorityBoost</span>: <span class="ident">BOOL</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetThreadPriorityBoost</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">pDisablePriorityBoost</span>: <span class="ident">PBOOL</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetThreadPriority</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
+    ) -&gt; <span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ExitThread</span>(
         <span class="ident">dwExitCode</span>: <span class="ident">DWORD</span>,
     );
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TerminateThread</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">dwExitCode</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetExitCodeThread</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpExitCode</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SuspendThread</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ResumeThread</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TLS_OUT_OF_INDEXES</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0xFFFFFFFF</span>;
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TlsAlloc</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TlsAlloc</span>() -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TlsGetValue</span>(
         <span class="ident">dwTlsIndex</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LPVOID</span>;
+    ) -&gt; <span class="ident">LPVOID</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TlsSetValue</span>(
         <span class="ident">dwTlsIndex</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpTlsValue</span>: <span class="ident">LPVOID</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TlsFree</span>(
         <span class="ident">dwTlsIndex</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateProcessA</span>(
         <span class="ident">lpApplicationName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">lpCommandLine</span>: <span class="ident">LPSTR</span>,
@@ -614,7 +614,7 @@
         <span class="ident">lpCurrentDirectory</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">lpStartupInfo</span>: <span class="ident">LPSTARTUPINFOA</span>,
         <span class="ident">lpProcessInformation</span>: <span class="ident">LPPROCESS_INFORMATION</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateProcessW</span>(
         <span class="ident">lpApplicationName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpCommandLine</span>: <span class="ident">LPWSTR</span>,
@@ -626,14 +626,14 @@
         <span class="ident">lpCurrentDirectory</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpStartupInfo</span>: <span class="ident">LPSTARTUPINFOW</span>,
         <span class="ident">lpProcessInformation</span>: <span class="ident">LPPROCESS_INFORMATION</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetProcessShutdownParameters</span>(
         <span class="ident">dwLevel</span>: <span class="ident">DWORD</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetProcessVersion</span>(
         <span class="ident">ProcessId</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetStartupInfoW</span>(
         <span class="ident">lpStartupInfo</span>: <span class="ident">LPSTARTUPINFOW</span>,
     );
@@ -649,42 +649,42 @@
         <span class="ident">lpCurrentDirectory</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpStartupInfo</span>: <span class="ident">LPSTARTUPINFOW</span>,
         <span class="ident">lpProcessInformation</span>: <span class="ident">LPPROCESS_INFORMATION</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="comment">// pub fn GetCurrentProcessToken();</span>
     <span class="comment">// pub fn GetCurrentThreadToken();</span>
     <span class="comment">// pub fn GetCurrentThreadEffectiveToken();</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetThreadToken</span>(
         <span class="ident">Thread</span>: <span class="ident">PHANDLE</span>,
         <span class="ident">Token</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">OpenProcessToken</span>(
         <span class="ident">ProcessHandle</span>: <span class="ident">HANDLE</span>,
         <span class="ident">DesiredAccess</span>: <span class="ident">DWORD</span>,
         <span class="ident">TokenHandle</span>: <span class="ident">PHANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">OpenThreadToken</span>(
         <span class="ident">ThreadHandle</span>: <span class="ident">HANDLE</span>,
         <span class="ident">DesiredAccess</span>: <span class="ident">DWORD</span>,
         <span class="ident">OpenAsSelf</span>: <span class="ident">BOOL</span>,
         <span class="ident">TokenHandle</span>: <span class="ident">PHANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetPriorityClass</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">dwPriorityClass</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetThreadStackGuarantee</span>(
         <span class="ident">StackSizeInBytes</span>: <span class="ident">PULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetPriorityClass</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ProcessIdToSessionId</span>(
         <span class="ident">dwProcessId</span>: <span class="ident">DWORD</span>,
         <span class="ident">pSessionId</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetProcessId</span>(
         <span class="ident">Process</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
 }
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">PROC_THREAD_ATTRIBUTE_LIST</span> {
     <span class="ident">dummy</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
@@ -694,28 +694,28 @@
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetThreadId</span>(
         <span class="ident">Thread</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FlushProcessWriteBuffers</span>();
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetProcessIdOfThread</span>(
         <span class="ident">Thread</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">InitializeProcThreadAttributeList</span>(
         <span class="ident">lpAttributeList</span>: <span class="ident">LPPROC_THREAD_ATTRIBUTE_LIST</span>,
         <span class="ident">dwAttributeCount</span>: <span class="ident">DWORD</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpSize</span>: <span class="ident">PSIZE_T</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DeleteProcThreadAttributeList</span>(
         <span class="ident">lpAttributeList</span>: <span class="ident">LPPROC_THREAD_ATTRIBUTE_LIST</span>,
     );
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetProcessAffinityUpdateMode</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">QueryProcessAffinityUpdateMode</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpdwFlags</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">UpdateProcThreadAttribute</span>(
         <span class="ident">lpAttributeList</span>: <span class="ident">LPPROC_THREAD_ATTRIBUTE_LIST</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
@@ -724,7 +724,7 @@
         <span class="ident">cbSize</span>: <span class="ident">SIZE_T</span>,
         <span class="ident">lpPreviousValue</span>: <span class="ident">PVOID</span>,
         <span class="ident">lpReturnSize</span>: <span class="ident">PSIZE_T</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateRemoteThreadEx</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpThreadAttributes</span>: <span class="ident">LPSECURITY_ATTRIBUTES</span>,
@@ -734,7 +734,7 @@
         <span class="ident">dwCreationFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpAttributeList</span>: <span class="ident">LPPROC_THREAD_ATTRIBUTE_LIST</span>,
         <span class="ident">lpThreadId</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentThreadStackLimits</span>(
         <span class="ident">LowLimit</span>: <span class="ident">PULONG_PTR</span>,
         <span class="ident">HighLimit</span>: <span class="ident">PULONG_PTR</span>,
@@ -742,76 +742,76 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetThreadContext</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpContext</span>: <span class="ident">LPCONTEXT</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetThreadContext</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpContext</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">CONTEXT</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetProcessMitigationPolicy</span>(
         <span class="ident">MitigationPolicy</span>: <span class="ident">PROCESS_MITIGATION_POLICY</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">PVOID</span>,
         <span class="ident">dwLength</span>: <span class="ident">SIZE_T</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetProcessMitigationPolicy</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">MitigationPolicy</span>: <span class="ident">PROCESS_MITIGATION_POLICY</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">PVOID</span>,
         <span class="ident">dwLength</span>: <span class="ident">SIZE_T</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FlushInstructionCache</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpBaseAddress</span>: <span class="ident">LPCVOID</span>,
         <span class="ident">dwSize</span>: <span class="ident">SIZE_T</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetThreadTimes</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpCreationTime</span>: <span class="ident">LPFILETIME</span>,
         <span class="ident">lpExitTime</span>: <span class="ident">LPFILETIME</span>,
         <span class="ident">lpKernelTime</span>: <span class="ident">LPFILETIME</span>,
         <span class="ident">lpUserTime</span>: <span class="ident">LPFILETIME</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">OpenProcess</span>(
         <span class="ident">dwDesiredAccess</span>: <span class="ident">DWORD</span>,
         <span class="ident">bInheritHandle</span>: <span class="ident">BOOL</span>,
         <span class="ident">dwProcessId</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsProcessorFeaturePresent</span>(
         <span class="ident">ProcessorFeature</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetProcessHandleCount</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">pdwHandleCount</span>: <span class="ident">PDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentProcessorNumber</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentProcessorNumber</span>() -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetThreadIdealProcessorEx</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpIdealProcessor</span>: <span class="ident">PPROCESSOR_NUMBER</span>,
         <span class="ident">lpPreviousIdealProcessor</span>: <span class="ident">PPROCESSOR_NUMBER</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetThreadIdealProcessorEx</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpIdealProcessor</span>: <span class="ident">PPROCESSOR_NUMBER</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentProcessorNumberEx</span>(
         <span class="ident">ProcNumber</span>: <span class="ident">PPROCESSOR_NUMBER</span>,
     );
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetProcessPriorityBoost</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">pDisablePriorityBoost</span>: <span class="ident">PBOOL</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetProcessPriorityBoost</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">bDisablePriorityBoost</span>: <span class="ident">BOOL</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetThreadIOPendingFlag</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpIOIsPending</span>: <span class="ident">PBOOL</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetSystemTimes</span>(
         <span class="ident">lpIdleTime</span>: <span class="ident">LPFILETIME</span>,
         <span class="ident">lpKernelTime</span>: <span class="ident">LPFILETIME</span>,
         <span class="ident">lpUserTime</span>: <span class="ident">LPFILETIME</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
 }
 <span class="macro">ENUM!</span>{<span class="kw">enum</span> <span class="ident">THREAD_INFORMATION_CLASS</span> {
     <span class="ident">ThreadMemoryPriority</span>,
@@ -825,30 +825,30 @@
         <span class="ident">ThreadInformationClass</span>: <span class="ident">THREAD_INFORMATION_CLASS</span>,
         <span class="ident">ThreadInformation</span>: <span class="ident">LPVOID</span>,
         <span class="ident">ThreadInformationSize</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetThreadInformation</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">ThreadInformationClass</span>: <span class="ident">THREAD_INFORMATION_CLASS</span>,
         <span class="ident">ThreadInformation</span>: <span class="ident">LPVOID</span>,
         <span class="ident">ThreadInformationSize</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsProcessCritical</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">Critical</span>: <span class="ident">PBOOL</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetProtectedPolicy</span>(
         <span class="ident">PolicyGuid</span>: <span class="ident">LPCGUID</span>,
         <span class="ident">PolicyValue</span>: <span class="ident">ULONG_PTR</span>,
         <span class="ident">OldPolicyValue</span>: <span class="ident">PULONG_PTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">QueryProtectedPolicy</span>(
         <span class="ident">PolicyGuid</span>: <span class="ident">LPCGUID</span>,
         <span class="ident">PolicyValue</span>: <span class="ident">PULONG_PTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetThreadIdealProcessor</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
         <span class="ident">dwIdealProcessor</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
 }
 <span class="macro">ENUM!</span>{<span class="kw">enum</span> <span class="ident">PROCESS_INFORMATION_CLASS</span> {
     <span class="ident">ProcessMemoryPriority</span>,
@@ -860,13 +860,13 @@
         <span class="ident">ProcessInformationClass</span>: <span class="ident">PROCESS_INFORMATION_CLASS</span>,
         <span class="ident">ProcessInformation</span>: <span class="ident">LPVOID</span>,
         <span class="ident">ProcessInformationSize</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetProcessInformation</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
         <span class="ident">ProcessInformationClass</span>: <span class="ident">PROCESS_INFORMATION_CLASS</span>,
         <span class="ident">ProcessInformation</span>: <span class="ident">LPVOID</span>,
         <span class="ident">ProcessInformationSize</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="comment">// pub fn GetSystemCpuSetInformation();</span>
     <span class="comment">// pub fn GetProcessDefaultCpuSets();</span>
     <span class="comment">// pub fn SetProcessDefaultCpuSets();</span>
@@ -876,7 +876,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetProcessShutdownParameters</span>(
         <span class="ident">lpdwLevel</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpdwFlags</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="comment">// pub fn SetThreadDescription();</span>
     <span class="comment">// pub fn GetThreadDescription();</span>
 }

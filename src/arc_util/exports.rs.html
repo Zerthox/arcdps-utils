@@ -180,7 +180,7 @@
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">ffi::OsString</span>, <span class="ident">mem::MaybeUninit</span>, <span class="ident">os::windows::prelude</span>::<span class="kw-2">*</span>, <span class="ident">path::PathBuf</span>, <span class="ident">slice</span>};
 
 <span class="doccomment">/// Retrieves the config path from ArcDPS.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">config_path</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">config_path</span>() -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">e0_config_path</span>() };
     <span class="kw">if</span> <span class="op">!</span><span class="ident">ptr</span>.<span class="ident">is_null</span>() {
         <span class="comment">// calculate length</span>
@@ -218,7 +218,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is unsafe since indexing the raw color array is only valid with specific indices.</span>
     <span class="doccomment">/// Incorrect indices may cause undefined behavior.</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">read_color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">first_index</span>: <span class="ident">usize</span>, <span class="ident">second_index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">read_color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">first_index</span>: <span class="ident">usize</span>, <span class="ident">second_index</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw</span>[<span class="ident">first_index</span>];
         <span class="kw">if</span> <span class="op">!</span><span class="ident">ptr</span>.<span class="ident">is_null</span>() {
             <span class="comment">// we do not need the full length slice</span>
@@ -232,21 +232,21 @@
     <span class="doccomment">/// Returns the base color for a specific [`CoreColor`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will return [`None`] if ArcDPS did not yield the requested color when the [`Colors`] struct was retrieved.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">core</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color</span>: <span class="ident">CoreColor</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">core</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color</span>: <span class="ident">CoreColor</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">read_color</span>(<span class="number">0</span>, <span class="ident">color</span> <span class="kw">as</span> <span class="ident">usize</span>) }
     }
 
     <span class="doccomment">/// Returns the base color for a specific [`Profession`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will return [`None`] if ArcDPS did not yield the requested color when the [`Colors`] struct was retrieved.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prof_base</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">prof</span>: <span class="ident">Profession</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prof_base</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">prof</span>: <span class="ident">Profession</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">read_color</span>(<span class="number">1</span>, <span class="ident">prof</span> <span class="kw">as</span> <span class="ident">usize</span>) }
     }
 
     <span class="doccomment">/// Returns the highlight color for a specific [`Profession`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will return [`None`] if ArcDPS did not yield the requested color when the [`Colors`] struct was retrieved.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prof_highlight</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">prof</span>: <span class="ident">Profession</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prof_highlight</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">prof</span>: <span class="ident">Profession</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">read_color</span>(<span class="number">2</span>, <span class="ident">prof</span> <span class="kw">as</span> <span class="ident">usize</span>) }
     }
 
@@ -254,7 +254,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will return [`None`] if ArcDPS did not yield the requested color when the [`Colors`] struct was retrieved.</span>
     <span class="doccomment">/// Also returns [`None`] if the subgroup is out of the game subgroup range.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sub_base</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sub</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sub_base</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sub</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> {
         <span class="comment">// range check</span>
         <span class="kw">if</span> <span class="ident">sub</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> <span class="ident">sub</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">15</span> {
             <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">read_color</span>(<span class="number">3</span>, <span class="ident">sub</span>) }
@@ -267,7 +267,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will return [`None`] if ArcDPS did not yield the requested color when the [`Colors`] struct was retrieved.</span>
     <span class="doccomment">/// Also returns [`None`] if the subgroup is out of the game subgroup range.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sub_highlight</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sub</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sub_highlight</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sub</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ImVec4</span><span class="op">&gt;</span> {
         <span class="comment">// range check</span>
         <span class="kw">if</span> <span class="ident">sub</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> <span class="ident">sub</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">15</span> {
             <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">read_color</span>(<span class="number">4</span>, <span class="ident">sub</span>) }
@@ -278,7 +278,7 @@
 }
 
 <span class="doccomment">/// Retrieves the color settings from ArcDPS.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">colors</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Colors</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">colors</span>() -&gt; <span class="ident">Colors</span> {
     <span class="comment">// zeroing this is important for our null pointer checks later</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">colors</span> <span class="op">=</span> <span class="ident">MaybeUninit::zeroed</span>();
     <span class="kw">unsafe</span> { <span class="ident">e5_colors</span>(<span class="ident">colors</span>.<span class="ident">as_mut_ptr</span>()) };
@@ -309,14 +309,14 @@
 }
 
 <span class="doccomment">/// Retrieves the UI settings from ArcDPS.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ui_settings</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UISettings</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ui_settings</span>() -&gt; <span class="ident">UISettings</span> {
     <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">e6_ui_settings</span>() };
     <span class="ident">UISettings</span> {
-        <span class="ident">hidden</span>: <span class="ident">raw</span> <span class="op">&amp;</span> <span class="number">1</span> <span class="op">=</span><span class="op">=</span> <span class="number">1</span>,
-        <span class="ident">draw_always</span>: (<span class="ident">raw</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">1</span>) <span class="op">&amp;</span> <span class="number">1</span> <span class="op">=</span><span class="op">=</span> <span class="number">1</span>,
-        <span class="ident">modifiers_move_lock</span>: (<span class="ident">raw</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">2</span>) <span class="op">&amp;</span> <span class="number">1</span> <span class="op">=</span><span class="op">=</span> <span class="number">1</span>,
-        <span class="ident">modifiers_click_lock</span>: (<span class="ident">raw</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">3</span>) <span class="op">&amp;</span> <span class="number">1</span> <span class="op">=</span><span class="op">=</span> <span class="number">1</span>,
-        <span class="ident">close_with_esc</span>: (<span class="ident">raw</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">4</span>) <span class="op">&amp;</span> <span class="number">1</span> <span class="op">=</span><span class="op">=</span> <span class="number">1</span>,
+        <span class="ident">hidden</span>: <span class="ident">raw</span> <span class="op">&amp;</span> <span class="number">1</span> <span class="op">==</span> <span class="number">1</span>,
+        <span class="ident">draw_always</span>: (<span class="ident">raw</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">1</span>) <span class="op">&amp;</span> <span class="number">1</span> <span class="op">==</span> <span class="number">1</span>,
+        <span class="ident">modifiers_move_lock</span>: (<span class="ident">raw</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">2</span>) <span class="op">&amp;</span> <span class="number">1</span> <span class="op">==</span> <span class="number">1</span>,
+        <span class="ident">modifiers_click_lock</span>: (<span class="ident">raw</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">3</span>) <span class="op">&amp;</span> <span class="number">1</span> <span class="op">==</span> <span class="number">1</span>,
+        <span class="ident">close_with_esc</span>: (<span class="ident">raw</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">4</span>) <span class="op">&amp;</span> <span class="number">1</span> <span class="op">==</span> <span class="number">1</span>,
     }
 }
 
@@ -334,7 +334,7 @@
 }
 
 <span class="doccomment">/// Retrieves the modifier keybinds from ArcDPS.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">modifiers</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Modifiers</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">modifiers</span>() -&gt; <span class="ident">Modifiers</span> {
     <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">e7_modifiers</span>() };
     <span class="ident">Modifiers</span> {
         <span class="ident">modifier1</span>: <span class="ident">raw</span> <span class="kw">as</span> <span class="ident">u16</span>,

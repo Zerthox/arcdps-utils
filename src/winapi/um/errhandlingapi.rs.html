@@ -87,7 +87,7 @@
 };
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">PTOP_LEVEL_EXCEPTION_FILTER</span>(
     <span class="ident">ExceptionInfo</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">EXCEPTION_POINTERS</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LONG</span>}
+) -&gt; <span class="ident">LONG</span>}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPTOP_LEVEL_EXCEPTION_FILTER</span> <span class="op">=</span> <span class="ident">PTOP_LEVEL_EXCEPTION_FILTER</span>;
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RaiseException</span>(
@@ -98,32 +98,32 @@
     );
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">UnhandledExceptionFilter</span>(
         <span class="ident">ExceptionInfo</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">EXCEPTION_POINTERS</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LONG</span>;
+    ) -&gt; <span class="ident">LONG</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetUnhandledExceptionFilter</span>(
         <span class="ident">lpTopLevelExceptionFilter</span>: <span class="ident">LPTOP_LEVEL_EXCEPTION_FILTER</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LPTOP_LEVEL_EXCEPTION_FILTER</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetLastError</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">LPTOP_LEVEL_EXCEPTION_FILTER</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetLastError</span>() -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetLastError</span>(
         <span class="ident">dwErrCode</span>: <span class="ident">DWORD</span>,
     );
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetErrorMode</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetErrorMode</span>() -&gt; <span class="ident">UINT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetErrorMode</span>(
         <span class="ident">uMode</span>: <span class="ident">UINT</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    ) -&gt; <span class="ident">UINT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">AddVectoredExceptionHandler</span>(
         <span class="ident">First</span>: <span class="ident">ULONG</span>,
         <span class="ident">Handler</span>: <span class="ident">PVECTORED_EXCEPTION_HANDLER</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PVOID</span>;
+    ) -&gt; <span class="ident">PVOID</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RemoveVectoredExceptionHandler</span>(
         <span class="ident">Handle</span>: <span class="ident">PVOID</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ULONG</span>;
+    ) -&gt; <span class="ident">ULONG</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">AddVectoredContinueHandler</span>(
         <span class="ident">First</span>: <span class="ident">ULONG</span>,
         <span class="ident">Handler</span>: <span class="ident">PVECTORED_EXCEPTION_HANDLER</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PVOID</span>;
+    ) -&gt; <span class="ident">PVOID</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RemoveVectoredContinueHandler</span>(
         <span class="ident">Handle</span>: <span class="ident">PVOID</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ULONG</span>;
+    ) -&gt; <span class="ident">ULONG</span>;
 }
 <span class="comment">// RestoreLastError</span>
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
@@ -140,11 +140,11 @@
         <span class="ident">uAction</span>: <span class="ident">UINT</span>,
         <span class="ident">lpMessageText</span>: <span class="ident">LPCWSTR</span>,
     );
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetThreadErrorMode</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetThreadErrorMode</span>() -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetThreadErrorMode</span>(
         <span class="ident">dwNewMode</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpOldMode</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
 }
 <span class="comment">// What library provides this function?</span>
 <span class="comment">// TerminateProcessOnMemoryExhaustion</span>

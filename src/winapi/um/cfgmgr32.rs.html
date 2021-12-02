@@ -2725,7 +2725,7 @@
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">CM_NOTIFY_FILTER_DeviceInstance</span> {
     <span class="ident">InstanceId</span>: [<span class="ident">WCHAR</span>; <span class="ident">MAX_DEVICE_ID_LEN</span>],
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">CM_NOTIFY_FILTER_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">CM_NOTIFY_FILTER_u</span> {
     [<span class="ident">u32</span>; <span class="number">100</span>] [<span class="ident">u64</span>; <span class="number">50</span>],
     <span class="ident">DeviceInterface</span> <span class="ident">DeviceInterface_mut</span>: <span class="ident">CM_NOTIFY_FILTER_DeviceInterface</span>,
     <span class="ident">DeviceHandle</span> <span class="ident">DeviceHandle_mut</span>: <span class="ident">CM_NOTIFY_FILTER_DeviceHandle</span>,
@@ -2766,7 +2766,7 @@
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">CM_NOTIFY_EVENT_DATA_DeviceInstance</span> {
     <span class="ident">InstanceId</span>: [<span class="ident">WCHAR</span>; <span class="ident">ANYSIZE_ARRAY</span>],
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">CM_NOTIFY_EVENT_DATA_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">CM_NOTIFY_EVENT_DATA_u</span> {
     [<span class="ident">u32</span>; <span class="number">7</span>],
     <span class="ident">DeviceInterface</span> <span class="ident">DeviceInterface_mut</span>: <span class="ident">CM_NOTIFY_EVENT_DATA_DeviceInterface</span>,
     <span class="ident">DeviceHandle</span> <span class="ident">DeviceHandle_mut</span>: <span class="ident">CM_NOTIFY_EVENT_DATA_DeviceHandle</span>,
@@ -2784,49 +2784,49 @@
     <span class="ident">Action</span>: <span class="ident">CM_NOTIFY_ACTION</span>,
     <span class="ident">EventData</span>: <span class="ident">PCM_NOTIFY_EVENT_DATA</span>,
     <span class="ident">EventDataSize</span>: <span class="ident">DWORD</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>}
+) -&gt; <span class="ident">DWORD</span>}
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Add_Empty_Log_Conf</span>(
         <span class="ident">plcLogConf</span>: <span class="ident">PLOG_CONF</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">Priority</span>: <span class="ident">PRIORITY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Add_Empty_Log_Conf_Ex</span>(
         <span class="ident">plcLogConf</span>: <span class="ident">PLOG_CONF</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">Priority</span>: <span class="ident">PRIORITY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Add_IDA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pszID</span>: <span class="ident">PSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Add_IDW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pszID</span>: <span class="ident">PWSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Add_ID_ExA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pszID</span>: <span class="ident">PSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Add_ID_ExW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pszID</span>: <span class="ident">PWSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Add_Range</span>(
         <span class="ident">ullStartValue</span>: <span class="ident">DWORDLONG</span>,
         <span class="ident">ullEndValue</span>: <span class="ident">DWORDLONG</span>,
         <span class="ident">rlh</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Add_Res_Des</span>(
         <span class="ident">prdResDes</span>: <span class="ident">PRES_DES</span>,
         <span class="ident">lcLogConf</span>: <span class="ident">LOG_CONF</span>,
@@ -2834,7 +2834,7 @@
         <span class="ident">ResourceData</span>: <span class="ident">PCVOID</span>,
         <span class="ident">ResourceLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Add_Res_Des_Ex</span>(
         <span class="ident">prdResDes</span>: <span class="ident">PRES_DES</span>,
         <span class="ident">lcLogConf</span>: <span class="ident">LOG_CONF</span>,
@@ -2843,71 +2843,71 @@
         <span class="ident">ResourceLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Connect_MachineA</span>(
         <span class="ident">UNCServerName</span>: <span class="ident">PCSTR</span>,
         <span class="ident">phMachine</span>: <span class="ident">PHMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Connect_MachineW</span>(
         <span class="ident">UNCServerName</span>: <span class="ident">PCWSTR</span>,
         <span class="ident">phMachine</span>: <span class="ident">PHMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Create_DevNodeA</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_A</span>,
         <span class="ident">dnParent</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Create_DevNodeW</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_W</span>,
         <span class="ident">dnParent</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Create_DevNode_ExA</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_A</span>,
         <span class="ident">dnParent</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Create_DevNode_ExW</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_W</span>,
         <span class="ident">dnParent</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Create_Range_List</span>(
         <span class="ident">prlh</span>: <span class="ident">PRANGE_LIST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Delete_Class_Key</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Delete_Class_Key_Ex</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Delete_DevNode_Key</span>(
         <span class="ident">dnDevNode</span>: <span class="ident">DEVNODE</span>,
         <span class="ident">ulHardwareProfile</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Delete_DevNode_Key_Ex</span>(
         <span class="ident">dnDevNode</span>: <span class="ident">DEVNODE</span>,
         <span class="ident">ulHardwareProfile</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Delete_Range</span>(
         <span class="ident">ullStartValue</span>: <span class="ident">DWORDLONG</span>,
         <span class="ident">ullEndValue</span>: <span class="ident">DWORDLONG</span>,
         <span class="ident">rlh</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Detect_Resource_Conflict</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ResourceID</span>: <span class="ident">RESOURCEID</span>,
@@ -2915,7 +2915,7 @@
         <span class="ident">ResourceLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">pbConflictDetected</span>: <span class="ident">PBOOL</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Detect_Resource_Conflict_Ex</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ResourceID</span>: <span class="ident">RESOURCEID</span>,
@@ -2924,70 +2924,70 @@
         <span class="ident">pbConflictDetected</span>: <span class="ident">PBOOL</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Disable_DevNode</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Disable_DevNode_Ex</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Disconnect_Machine</span>(
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Dup_Range_List</span>(
         <span class="ident">rlhOld</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">rlhNew</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Enable_DevNode</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Enable_DevNode_Ex</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Enumerate_Classes</span>(
         <span class="ident">ulClassIndex</span>: <span class="ident">ULONG</span>,
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Enumerate_Classes_Ex</span>(
         <span class="ident">ulClassIndex</span>: <span class="ident">ULONG</span>,
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Enumerate_EnumeratorsA</span>(
         <span class="ident">ulEnumIndex</span>: <span class="ident">ULONG</span>,
         <span class="ident">Buffer</span>: <span class="ident">PSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Enumerate_EnumeratorsW</span>(
         <span class="ident">ulEnumIndex</span>: <span class="ident">ULONG</span>,
         <span class="ident">Buffer</span>: <span class="ident">PWSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Enumerate_Enumerators_ExA</span>(
         <span class="ident">ulEnumIndex</span>: <span class="ident">ULONG</span>,
         <span class="ident">Buffer</span>: <span class="ident">PSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Enumerate_Enumerators_ExW</span>(
         <span class="ident">ulEnumIndex</span>: <span class="ident">ULONG</span>,
         <span class="ident">Buffer</span>: <span class="ident">PWSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Find_Range</span>(
         <span class="ident">pullStart</span>: <span class="ident">PDWORDLONG</span>,
         <span class="ident">ullStart</span>: <span class="ident">DWORDLONG</span>,
@@ -2996,203 +2996,203 @@
         <span class="ident">ullEnd</span>: <span class="ident">DWORDLONG</span>,
         <span class="ident">rlh</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_First_Range</span>(
         <span class="ident">rlh</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">pullStart</span>: <span class="ident">PDWORDLONG</span>,
         <span class="ident">pullEnd</span>: <span class="ident">PDWORDLONG</span>,
         <span class="ident">preElement</span>: <span class="ident">PRANGE_LIST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Free_Log_Conf</span>(
         <span class="ident">lcLogConfToBeFreed</span>: <span class="ident">LOG_CONF</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Free_Log_Conf_Ex</span>(
         <span class="ident">lcLogConfToBeFreed</span>: <span class="ident">LOG_CONF</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Free_Log_Conf_Handle</span>(
         <span class="ident">lcLogConf</span>: <span class="ident">LOG_CONF</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Free_Range_List</span>(
         <span class="ident">rlh</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Free_Res_Des</span>(
         <span class="ident">prdResDes</span>: <span class="ident">PRES_DES</span>,
         <span class="ident">rdResDes</span>: <span class="ident">RES_DES</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Free_Res_Des_Ex</span>(
         <span class="ident">prdResDes</span>: <span class="ident">PRES_DES</span>,
         <span class="ident">rdResDes</span>: <span class="ident">RES_DES</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Free_Res_Des_Handle</span>(
         <span class="ident">rdResDes</span>: <span class="ident">RES_DES</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Child</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Child_Ex</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Class_Key_NameA</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pszKeyName</span>: <span class="ident">LPSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Class_Key_NameW</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pszKeyName</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Class_Key_Name_ExA</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pszKeyName</span>: <span class="ident">LPSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Class_Key_Name_ExW</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pszKeyName</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Class_NameA</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">Buffer</span>: <span class="ident">PSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Class_NameW</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">Buffer</span>: <span class="ident">PWSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Class_Name_ExA</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">Buffer</span>: <span class="ident">PSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Class_Name_ExW</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">Buffer</span>: <span class="ident">PWSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Depth</span>(
         <span class="ident">pulDepth</span>: <span class="ident">PULONG</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Depth_Ex</span>(
         <span class="ident">pulDepth</span>: <span class="ident">PULONG</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_IDA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">Buffer</span>: <span class="ident">PSTR</span>,
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_IDW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">Buffer</span>: <span class="ident">PWSTR</span>,
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_ID_ExA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">Buffer</span>: <span class="ident">PSTR</span>,
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_ID_ExW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">Buffer</span>: <span class="ident">PWSTR</span>,
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_ID_ListA</span>(
         <span class="ident">pszFilter</span>: <span class="ident">PCSTR</span>,
         <span class="ident">Buffer</span>: <span class="ident">PCHAR</span>,
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_ID_ListW</span>(
         <span class="ident">pszFilter</span>: <span class="ident">PCWSTR</span>,
         <span class="ident">Buffer</span>: <span class="ident">PWCHAR</span>,
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_ID_List_ExA</span>(
         <span class="ident">pszFilter</span>: <span class="ident">PCSTR</span>,
         <span class="ident">Buffer</span>: <span class="ident">PCHAR</span>,
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_ID_List_ExW</span>(
         <span class="ident">pszFilter</span>: <span class="ident">PCWSTR</span>,
         <span class="ident">Buffer</span>: <span class="ident">PWCHAR</span>,
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_ID_List_SizeA</span>(
         <span class="ident">pulLen</span>: <span class="ident">PULONG</span>,
         <span class="ident">pszFilter</span>: <span class="ident">PCSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_ID_List_SizeW</span>(
         <span class="ident">pulLen</span>: <span class="ident">PULONG</span>,
         <span class="ident">pszFilter</span>: <span class="ident">PCWSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_ID_List_Size_ExA</span>(
         <span class="ident">pulLen</span>: <span class="ident">PULONG</span>,
         <span class="ident">pszFilter</span>: <span class="ident">PCSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_ID_List_Size_ExW</span>(
         <span class="ident">pulLen</span>: <span class="ident">PULONG</span>,
         <span class="ident">pszFilter</span>: <span class="ident">PCWSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_ID_Size</span>(
         <span class="ident">pulLen</span>: <span class="ident">PULONG</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_ID_Size_Ex</span>(
         <span class="ident">pulLen</span>: <span class="ident">PULONG</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_PropertyW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">PropertyKey</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">DEVPROPKEY</span>,
@@ -3200,7 +3200,7 @@
         <span class="ident">PropertyBuffer</span>: <span class="ident">PBYTE</span>,
         <span class="ident">PropertyBufferSize</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_PropertyExW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">PropertyKey</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">DEVPROPKEY</span>,
@@ -3209,7 +3209,7 @@
         <span class="ident">PropertyBufferSize</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_Registry_PropertyA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulProperty</span>: <span class="ident">ULONG</span>,
@@ -3217,7 +3217,7 @@
         <span class="ident">Buffer</span>: <span class="ident">PVOID</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_Registry_PropertyW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulProperty</span>: <span class="ident">ULONG</span>,
@@ -3225,7 +3225,7 @@
         <span class="ident">Buffer</span>: <span class="ident">PVOID</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_Registry_Property_ExA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulProperty</span>: <span class="ident">ULONG</span>,
@@ -3234,7 +3234,7 @@
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_Registry_Property_ExW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulProperty</span>: <span class="ident">ULONG</span>,
@@ -3243,7 +3243,7 @@
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_Custom_PropertyA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pszCustomPropertyName</span>: <span class="ident">PCSTR</span>,
@@ -3251,7 +3251,7 @@
         <span class="ident">Buffer</span>: <span class="ident">PVOID</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_Custom_PropertyW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pszCustomPropertyName</span>: <span class="ident">PCWSTR</span>,
@@ -3259,7 +3259,7 @@
         <span class="ident">Buffer</span>: <span class="ident">PVOID</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_Custom_Property_ExA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pszCustomPropertyName</span>: <span class="ident">PCSTR</span>,
@@ -3268,7 +3268,7 @@
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_Custom_Property_ExW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pszCustomPropertyName</span>: <span class="ident">PCWSTR</span>,
@@ -3277,102 +3277,102 @@
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_Status</span>(
         <span class="ident">pulStatus</span>: <span class="ident">PULONG</span>,
         <span class="ident">pulProblemNumber</span>: <span class="ident">PULONG</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_Status_Ex</span>(
         <span class="ident">pulStatus</span>: <span class="ident">PULONG</span>,
         <span class="ident">pulProblemNumber</span>: <span class="ident">PULONG</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_First_Log_Conf</span>(
         <span class="ident">plcLogConf</span>: <span class="ident">PLOG_CONF</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_First_Log_Conf_Ex</span>(
         <span class="ident">plcLogConf</span>: <span class="ident">PLOG_CONF</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Global_State</span>(
         <span class="ident">pulState</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Global_State_Ex</span>(
         <span class="ident">pulState</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Hardware_Profile_InfoA</span>(
         <span class="ident">ulIndex</span>: <span class="ident">ULONG</span>,
         <span class="ident">pHWProfileInfo</span>: <span class="ident">PHWPROFILEINFO_A</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Hardware_Profile_Info_ExA</span>(
         <span class="ident">ulIndex</span>: <span class="ident">ULONG</span>,
         <span class="ident">pHWProfileInfo</span>: <span class="ident">PHWPROFILEINFO_A</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Hardware_Profile_InfoW</span>(
         <span class="ident">ulIndex</span>: <span class="ident">ULONG</span>,
         <span class="ident">pHWProfileInfo</span>: <span class="ident">PHWPROFILEINFO_W</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Hardware_Profile_Info_ExW</span>(
         <span class="ident">ulIndex</span>: <span class="ident">ULONG</span>,
         <span class="ident">pHWProfileInfo</span>: <span class="ident">PHWPROFILEINFO_W</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_HW_Prof_FlagsA</span>(
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_A</span>,
         <span class="ident">ulHardwareProfile</span>: <span class="ident">ULONG</span>,
         <span class="ident">pulValue</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_HW_Prof_FlagsW</span>(
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_W</span>,
         <span class="ident">ulHardwareProfile</span>: <span class="ident">ULONG</span>,
         <span class="ident">pulValue</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_HW_Prof_Flags_ExA</span>(
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_A</span>,
         <span class="ident">ulHardwareProfile</span>: <span class="ident">ULONG</span>,
         <span class="ident">pulValue</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_HW_Prof_Flags_ExW</span>(
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_W</span>,
         <span class="ident">ulHardwareProfile</span>: <span class="ident">ULONG</span>,
         <span class="ident">pulValue</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_AliasA</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">AliasInterfaceGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pszAliasDeviceInterface</span>: <span class="ident">LPSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_AliasW</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">AliasInterfaceGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pszAliasDeviceInterface</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_Alias_ExA</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">AliasInterfaceGuid</span>: <span class="ident">LPGUID</span>,
@@ -3380,7 +3380,7 @@
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_Alias_ExW</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">AliasInterfaceGuid</span>: <span class="ident">LPGUID</span>,
@@ -3388,21 +3388,21 @@
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_ListA</span>(
         <span class="ident">InterfaceClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_A</span>,
         <span class="ident">Buffer</span>: <span class="ident">PCHAR</span>,
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_ListW</span>(
         <span class="ident">InterfaceClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_W</span>,
         <span class="ident">Buffer</span>: <span class="ident">PWCHAR</span>,
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_List_ExA</span>(
         <span class="ident">InterfaceClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_A</span>,
@@ -3410,7 +3410,7 @@
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_List_ExW</span>(
         <span class="ident">InterfaceClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_W</span>,
@@ -3418,33 +3418,33 @@
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_List_SizeA</span>(
         <span class="ident">pulLen</span>: <span class="ident">PULONG</span>,
         <span class="ident">InterfaceClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_A</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_List_SizeW</span>(
         <span class="ident">pulLen</span>: <span class="ident">PULONG</span>,
         <span class="ident">InterfaceClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_W</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_List_Size_ExA</span>(
         <span class="ident">pulLen</span>: <span class="ident">PULONG</span>,
         <span class="ident">InterfaceClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_A</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_List_Size_ExW</span>(
         <span class="ident">pulLen</span>: <span class="ident">PULONG</span>,
         <span class="ident">InterfaceClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_W</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_PropertyW</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">PropertyKey</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">DEVPROPKEY</span>,
@@ -3452,7 +3452,7 @@
         <span class="ident">PropertyBuffer</span>: <span class="ident">PBYTE</span>,
         <span class="ident">PropertyBufferSize</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_PropertyExW</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">PropertyKey</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">DEVPROPKEY</span>,
@@ -3461,126 +3461,126 @@
         <span class="ident">PropertyBufferSize</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Log_Conf_Priority</span>(
         <span class="ident">lcLogConf</span>: <span class="ident">LOG_CONF</span>,
         <span class="ident">pPriority</span>: <span class="ident">PRIORITY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Log_Conf_Priority_Ex</span>(
         <span class="ident">lcLogConf</span>: <span class="ident">LOG_CONF</span>,
         <span class="ident">pPriority</span>: <span class="ident">PRIORITY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Next_Log_Conf</span>(
         <span class="ident">plcLogConf</span>: <span class="ident">PLOG_CONF</span>,
         <span class="ident">lcLogConf</span>: <span class="ident">LOG_CONF</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Next_Log_Conf_Ex</span>(
         <span class="ident">plcLogConf</span>: <span class="ident">PLOG_CONF</span>,
         <span class="ident">lcLogConf</span>: <span class="ident">LOG_CONF</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Parent</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Parent_Ex</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Res_Des_Data</span>(
         <span class="ident">rdResDes</span>: <span class="ident">RES_DES</span>,
         <span class="ident">Buffer</span>: <span class="ident">PVOID</span>,
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Res_Des_Data_Ex</span>(
         <span class="ident">rdResDes</span>: <span class="ident">RES_DES</span>,
         <span class="ident">Buffer</span>: <span class="ident">PVOID</span>,
         <span class="ident">BufferLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Res_Des_Data_Size</span>(
         <span class="ident">pulSize</span>: <span class="ident">PULONG</span>,
         <span class="ident">rdResDes</span>: <span class="ident">RES_DES</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Res_Des_Data_Size_Ex</span>(
         <span class="ident">pulSize</span>: <span class="ident">PULONG</span>,
         <span class="ident">rdResDes</span>: <span class="ident">RES_DES</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Sibling</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Sibling_Ex</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Version</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WORD</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Version</span>() -&gt; <span class="ident">WORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Version_Ex</span>(
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WORD</span>;
+    ) -&gt; <span class="ident">WORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Is_Version_Available</span>(
         <span class="ident">wVersion</span>: <span class="ident">WORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Is_Version_Available_Ex</span>(
         <span class="ident">wVersion</span>: <span class="ident">WORD</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Intersect_Range_List</span>(
         <span class="ident">rlhOld1</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">rlhOld2</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">rlhNew</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Invert_Range_List</span>(
         <span class="ident">rlhOld</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">rlhNew</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">ullMaxValue</span>: <span class="ident">DWORDLONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Locate_DevNodeA</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_A</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Locate_DevNodeW</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_W</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Locate_DevNode_ExA</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_A</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Locate_DevNode_ExW</span>(
         <span class="ident">pdnDevInst</span>: <span class="ident">PDEVINST</span>,
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_W</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Merge_Range_List</span>(
         <span class="ident">rlhOld1</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">rlhOld2</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">rlhNew</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Modify_Res_Des</span>(
         <span class="ident">prdResDes</span>: <span class="ident">PRES_DES</span>,
         <span class="ident">rdResDes</span>: <span class="ident">RES_DES</span>,
@@ -3588,7 +3588,7 @@
         <span class="ident">ResourceData</span>: <span class="ident">PCVOID</span>,
         <span class="ident">ResourceLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Modify_Res_Des_Ex</span>(
         <span class="ident">prdResDes</span>: <span class="ident">PRES_DES</span>,
         <span class="ident">rdResDes</span>: <span class="ident">RES_DES</span>,
@@ -3597,31 +3597,31 @@
         <span class="ident">ResourceLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Move_DevNode</span>(
         <span class="ident">dnFromDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">dnToDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Move_DevNode_Ex</span>(
         <span class="ident">dnFromDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">dnToDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Next_Range</span>(
         <span class="ident">preElement</span>: <span class="ident">PRANGE_LIST</span>,
         <span class="ident">pullStart</span>: <span class="ident">PDWORDLONG</span>,
         <span class="ident">pullEnd</span>: <span class="ident">PDWORDLONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Next_Res_Des</span>(
         <span class="ident">prdResDes</span>: <span class="ident">PRES_DES</span>,
         <span class="ident">rdResDes</span>: <span class="ident">RES_DES</span>,
         <span class="ident">ForResource</span>: <span class="ident">RESOURCEID</span>,
         <span class="ident">pResourceID</span>: <span class="ident">PRESOURCEID</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Next_Res_Des_Ex</span>(
         <span class="ident">prdResDes</span>: <span class="ident">PRES_DES</span>,
         <span class="ident">rdResDes</span>: <span class="ident">RES_DES</span>,
@@ -3629,7 +3629,7 @@
         <span class="ident">pResourceID</span>: <span class="ident">PRESOURCEID</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Open_Class_KeyA</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pszClassName</span>: <span class="ident">LPCSTR</span>,
@@ -3637,7 +3637,7 @@
         <span class="ident">Disposition</span>: <span class="ident">REGDISPOSITION</span>,
         <span class="ident">phkClass</span>: <span class="ident">PHKEY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Open_Class_KeyW</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pszClassName</span>: <span class="ident">LPCWSTR</span>,
@@ -3645,7 +3645,7 @@
         <span class="ident">Disposition</span>: <span class="ident">REGDISPOSITION</span>,
         <span class="ident">phkClass</span>: <span class="ident">PHKEY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Open_Class_Key_ExA</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pszClassName</span>: <span class="ident">LPCSTR</span>,
@@ -3654,7 +3654,7 @@
         <span class="ident">phkClass</span>: <span class="ident">PHKEY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Open_Class_Key_ExW</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">pszClassName</span>: <span class="ident">LPCWSTR</span>,
@@ -3663,7 +3663,7 @@
         <span class="ident">phkClass</span>: <span class="ident">PHKEY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Open_DevNode_Key</span>(
         <span class="ident">dnDevNode</span>: <span class="ident">DEVINST</span>,
         <span class="ident">samDesired</span>: <span class="ident">REGSAM</span>,
@@ -3671,7 +3671,7 @@
         <span class="ident">Disposition</span>: <span class="ident">REGDISPOSITION</span>,
         <span class="ident">phkDevice</span>: <span class="ident">PHKEY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Open_DevNode_Key_Ex</span>(
         <span class="ident">dnDevNode</span>: <span class="ident">DEVINST</span>,
         <span class="ident">samDesired</span>: <span class="ident">REGSAM</span>,
@@ -3680,21 +3680,21 @@
         <span class="ident">phkDevice</span>: <span class="ident">PHKEY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Open_Device_Interface_KeyA</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">samDesired</span>: <span class="ident">REGSAM</span>,
         <span class="ident">Disposition</span>: <span class="ident">REGDISPOSITION</span>,
         <span class="ident">phkDeviceInterface</span>: <span class="ident">PHKEY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Open_Device_Interface_KeyW</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">samDesired</span>: <span class="ident">REGSAM</span>,
         <span class="ident">Disposition</span>: <span class="ident">REGDISPOSITION</span>,
         <span class="ident">phkDeviceInterface</span>: <span class="ident">PHKEY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Open_Device_Interface_Key_ExA</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">samDesired</span>: <span class="ident">REGSAM</span>,
@@ -3702,7 +3702,7 @@
         <span class="ident">phkDeviceInterface</span>: <span class="ident">PHKEY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Open_Device_Interface_Key_ExW</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">samDesired</span>: <span class="ident">REGSAM</span>,
@@ -3710,32 +3710,32 @@
         <span class="ident">phkDeviceInterface</span>: <span class="ident">PHKEY</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Delete_Device_Interface_KeyA</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Delete_Device_Interface_KeyW</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Delete_Device_Interface_Key_ExA</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Delete_Device_Interface_Key_ExW</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Query_Arbitrator_Free_Data</span>(
         <span class="ident">pData</span>: <span class="ident">PVOID</span>,
         <span class="ident">DataLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ResourceID</span>: <span class="ident">RESOURCEID</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Query_Arbitrator_Free_Data_Ex</span>(
         <span class="ident">pData</span>: <span class="ident">PVOID</span>,
         <span class="ident">DataLen</span>: <span class="ident">ULONG</span>,
@@ -3743,36 +3743,36 @@
         <span class="ident">ResourceID</span>: <span class="ident">RESOURCEID</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Query_Arbitrator_Free_Size</span>(
         <span class="ident">pulSize</span>: <span class="ident">PULONG</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ResourceID</span>: <span class="ident">RESOURCEID</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Query_Arbitrator_Free_Size_Ex</span>(
         <span class="ident">pulSize</span>: <span class="ident">PULONG</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ResourceID</span>: <span class="ident">RESOURCEID</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Query_Remove_SubTree</span>(
         <span class="ident">dnAncestor</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Query_Remove_SubTree_Ex</span>(
         <span class="ident">dnAncestor</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Query_And_Remove_SubTreeA</span>(
         <span class="ident">dnAncestor</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pVetoType</span>: <span class="ident">PPNP_VETO_TYPE</span>,
         <span class="ident">pszVetoName</span>: <span class="ident">LPSTR</span>,
         <span class="ident">ulNameLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Query_And_Remove_SubTree_ExA</span>(
         <span class="ident">dnAncestor</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pVetoType</span>: <span class="ident">PPNP_VETO_TYPE</span>,
@@ -3780,14 +3780,14 @@
         <span class="ident">ulNameLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Query_And_Remove_SubTreeW</span>(
         <span class="ident">dnAncestor</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pVetoType</span>: <span class="ident">PPNP_VETO_TYPE</span>,
         <span class="ident">pszVetoName</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">ulNameLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Query_And_Remove_SubTree_ExW</span>(
         <span class="ident">dnAncestor</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pVetoType</span>: <span class="ident">PPNP_VETO_TYPE</span>,
@@ -3795,14 +3795,14 @@
         <span class="ident">ulNameLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Request_Device_EjectA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pVetoType</span>: <span class="ident">PPNP_VETO_TYPE</span>,
         <span class="ident">pszVetoName</span>: <span class="ident">LPSTR</span>,
         <span class="ident">ulNameLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Request_Device_Eject_ExA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pVetoType</span>: <span class="ident">PPNP_VETO_TYPE</span>,
@@ -3810,14 +3810,14 @@
         <span class="ident">ulNameLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Request_Device_EjectW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pVetoType</span>: <span class="ident">PPNP_VETO_TYPE</span>,
         <span class="ident">pszVetoName</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">ulNameLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Request_Device_Eject_ExW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">pVetoType</span>: <span class="ident">PPNP_VETO_TYPE</span>,
@@ -3825,16 +3825,16 @@
         <span class="ident">ulNameLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Reenumerate_DevNode</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Reenumerate_DevNode_Ex</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Register_Device_InterfaceA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">InterfaceClassGuid</span>: <span class="ident">LPGUID</span>,
@@ -3842,7 +3842,7 @@
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Register_Device_InterfaceW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">InterfaceClassGuid</span>: <span class="ident">LPGUID</span>,
@@ -3850,7 +3850,7 @@
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Register_Device_Interface_ExA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">InterfaceClassGuid</span>: <span class="ident">LPGUID</span>,
@@ -3859,7 +3859,7 @@
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Register_Device_Interface_ExW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">InterfaceClassGuid</span>: <span class="ident">LPGUID</span>,
@@ -3868,68 +3868,68 @@
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_DevNode_Problem_Ex</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulProblem</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_DevNode_Problem</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulProblem</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Unregister_Device_InterfaceA</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Unregister_Device_InterfaceW</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Unregister_Device_Interface_ExA</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Unregister_Device_Interface_ExW</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Register_Device_Driver</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Register_Device_Driver_Ex</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Remove_SubTree</span>(
         <span class="ident">dnAncestor</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Remove_SubTree_Ex</span>(
         <span class="ident">dnAncestor</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_DevNode_Registry_PropertyA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulProperty</span>: <span class="ident">ULONG</span>,
         <span class="ident">Buffer</span>: <span class="ident">PCVOID</span>,
         <span class="ident">ulLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_DevNode_Registry_PropertyW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulProperty</span>: <span class="ident">ULONG</span>,
         <span class="ident">Buffer</span>: <span class="ident">PCVOID</span>,
         <span class="ident">ulLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_DevNode_Registry_Property_ExA</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulProperty</span>: <span class="ident">ULONG</span>,
@@ -3937,7 +3937,7 @@
         <span class="ident">ulLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_DevNode_Registry_Property_ExW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulProperty</span>: <span class="ident">ULONG</span>,
@@ -3945,84 +3945,84 @@
         <span class="ident">ulLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Is_Dock_Station_Present</span>(
         <span class="ident">pbPresent</span>: <span class="ident">PBOOL</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Is_Dock_Station_Present_Ex</span>(
         <span class="ident">pbPresent</span>: <span class="ident">PBOOL</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Request_Eject_PC</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Request_Eject_PC</span>() -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Request_Eject_PC_Ex</span>(
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_HW_Prof_FlagsA</span>(
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_A</span>,
         <span class="ident">ulConfig</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulValue</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_HW_Prof_FlagsW</span>(
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_W</span>,
         <span class="ident">ulConfig</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulValue</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_HW_Prof_Flags_ExA</span>(
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_A</span>,
         <span class="ident">ulConfig</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulValue</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_HW_Prof_Flags_ExW</span>(
         <span class="ident">pDeviceID</span>: <span class="ident">DEVINSTID_A</span>,
         <span class="ident">ulConfig</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulValue</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Setup_DevNode</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Setup_DevNode_Ex</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Test_Range_Available</span>(
         <span class="ident">ullStartValue</span>: <span class="ident">DWORDLONG</span>,
         <span class="ident">ullEndValue</span>: <span class="ident">DWORDLONG</span>,
         <span class="ident">rlh</span>: <span class="ident">RANGE_LIST</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Uninstall_DevNode</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVNODE</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Uninstall_DevNode_Ex</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVNODE</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Run_Detection</span>(
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Run_Detection_Ex</span>(
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_HW_Prof</span>(
         <span class="ident">ulHardwareProfile</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_HW_Prof_Ex</span>(
         <span class="ident">ulHardwareProfile</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Query_Resource_Conflict_List</span>(
         <span class="ident">pclConflictList</span>: <span class="ident">PCONFLICT_LIST</span>,
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
@@ -4031,24 +4031,24 @@
         <span class="ident">ResourceLen</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Free_Resource_Conflict_Handle</span>(
         <span class="ident">clConflictList</span>: <span class="ident">CONFLICT_LIST</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Resource_Conflict_Count</span>(
         <span class="ident">clConflictList</span>: <span class="ident">CONFLICT_LIST</span>,
         <span class="ident">pulCount</span>: <span class="ident">PULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Resource_Conflict_DetailsA</span>(
         <span class="ident">clConflictList</span>: <span class="ident">CONFLICT_LIST</span>,
         <span class="ident">ulIndex</span>: <span class="ident">ULONG</span>,
         <span class="ident">pConflictDetails</span>: <span class="ident">PCONFLICT_DETAILS_A</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Resource_Conflict_DetailsW</span>(
         <span class="ident">clConflictList</span>: <span class="ident">CONFLICT_LIST</span>,
         <span class="ident">ulIndex</span>: <span class="ident">ULONG</span>,
         <span class="ident">pConflictDetails</span>: <span class="ident">PCONFLICT_DETAILS_W</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Class_Registry_PropertyW</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">ulProperty</span>: <span class="ident">ULONG</span>,
@@ -4057,7 +4057,7 @@
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_Class_Registry_PropertyW</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">ulProperty</span>: <span class="ident">ULONG</span>,
@@ -4065,7 +4065,7 @@
         <span class="ident">ulLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Class_Registry_PropertyA</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">ulProperty</span>: <span class="ident">ULONG</span>,
@@ -4074,7 +4074,7 @@
         <span class="ident">pulLength</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Set_Class_Registry_PropertyA</span>(
         <span class="ident">ClassGuid</span>: <span class="ident">LPGUID</span>,
         <span class="ident">ulProperty</span>: <span class="ident">ULONG</span>,
@@ -4082,10 +4082,10 @@
         <span class="ident">ulLength</span>: <span class="ident">ULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
         <span class="ident">hMachine</span>: <span class="ident">HMACHINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CONFIGRET</span>;
+    ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CMP_WaitNoPendingInstallEvents</span>(
         <span class="ident">dwTimeout</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CR_SUCCESS</span>: <span class="ident">CONFIGRET</span> <span class="op">=</span> <span class="number">0x00000000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CR_DEFAULT</span>: <span class="ident">CONFIGRET</span> <span class="op">=</span> <span class="number">0x00000001</span>;

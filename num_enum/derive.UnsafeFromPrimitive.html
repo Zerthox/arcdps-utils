@@ -5,7 +5,7 @@
 }
 </code></pre><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Generates a <code>unsafe fn from_unchecked (number: Primitive) -&gt; Self</code>
 associated function.</p>
-<h2 id="allows-unsafely-turning-a-primitive-into-an-enum-with-from_unchecked" class="section-header"><a href="#allows-unsafely-turning-a-primitive-into-an-enum-with-from_unchecked">Allows unsafely turning a primitive into an enum with from_unchecked.</a></h2>
+<h3 id="allows-unsafely-turning-a-primitive-into-an-enum-with-from_unchecked" class="section-header"><a href="#allows-unsafely-turning-a-primitive-into-an-enum-with-from_unchecked">Allows unsafely turning a primitive into an enum with from_unchecked.</a></h3>
 <p>If you’re really certain a conversion will succeed, and want to avoid a small amount of overhead, you can use unsafe
 code to do this conversion. Unless you have data showing that the match statement generated in the <code>try_from</code> above is a
 bottleneck for you, you should avoid doing this, as the unsafe code has potential to cause serious memory issues in

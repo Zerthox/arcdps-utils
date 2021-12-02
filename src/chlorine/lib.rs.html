@@ -206,7 +206,7 @@
       $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">if_tokens</span>:<span class="ident">tt</span>)<span class="op">*</span>
     })<span class="kw">else</span><span class="op">+</span> <span class="kw">else</span> {
       $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">else_tokens</span>:<span class="ident">tt</span>)<span class="op">*</span>
-    }) <span class="op">=</span><span class="op">&gt;</span> {
+    }) =&gt; {
     <span class="macro-nonterminal">$</span><span class="macro">crate::pick!</span>{
       @<span class="macro-nonterminal">__forests</span> [ ] ;
       $( [ {$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">test</span>),<span class="kw-2">*</span>} {$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">if_tokens</span>)<span class="kw-2">*</span>} ], )<span class="op">*</span>
@@ -219,7 +219,7 @@
       $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">if_tokens</span>:<span class="ident">tt</span>)<span class="op">*</span>
     } $(<span class="kw">else</span> <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">else_meta</span>:<span class="ident">meta</span>),<span class="kw-2">*</span>)]</span> {
       $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">else_tokens</span>:<span class="ident">tt</span>)<span class="op">*</span>
-    })<span class="kw-2">*</span>) <span class="op">=</span><span class="op">&gt;</span> {
+    })<span class="kw-2">*</span>) =&gt; {
     <span class="macro-nonterminal">$</span><span class="macro">crate::pick!</span>{
       @<span class="macro-nonterminal">__forests</span> [ ] ;
       [ {$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">if_meta</span>),<span class="kw-2">*</span>} {$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">if_tokens</span>)<span class="kw-2">*</span>} ],
@@ -228,12 +228,12 @@
   };
 
   <span class="comment">// private</span>
-  (@<span class="ident">__forests</span> [$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">not</span>:<span class="ident">meta</span>,)<span class="kw-2">*</span>];) <span class="op">=</span><span class="op">&gt;</span> {
+  (@<span class="ident">__forests</span> [$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">not</span>:<span class="ident">meta</span>,)<span class="kw-2">*</span>];) =&gt; {
     <span class="comment">/* halt expansion */</span>
   };
 
   <span class="comment">// private</span>
-  (@<span class="ident">__forests</span> [$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">not</span>:<span class="ident">meta</span>,)<span class="kw-2">*</span>]; [{$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">m</span>:<span class="ident">meta</span>),<span class="kw-2">*</span>} {$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tokens</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>}], $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) <span class="op">=</span><span class="op">&gt;</span> {
+  (@<span class="ident">__forests</span> [$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">not</span>:<span class="ident">meta</span>,)<span class="kw-2">*</span>]; [{$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">m</span>:<span class="ident">meta</span>),<span class="kw-2">*</span>} {$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tokens</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>}], $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) =&gt; {
     <span class="comment">// This &quot;one weird trick&quot; works because you can&#39;t apply a `cfg` to an</span>
     <span class="comment">// expression, only an item or a block, but a macro usage is an item, so</span>
     <span class="comment">// we&#39;re configuring the macro usage, which (if configured in) will then</span>
@@ -245,7 +245,7 @@
   };
 
   <span class="comment">// private</span>
-  (@<span class="ident">__identity</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tokens</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) <span class="op">=</span><span class="op">&gt;</span> {
+  (@<span class="ident">__identity</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tokens</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) =&gt; {
     $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tokens</span>)<span class="op">*</span>
   };
 }

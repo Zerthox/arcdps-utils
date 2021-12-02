@@ -810,15 +810,15 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CompareFileTime</span>(
         <span class="ident">lpFileTime1</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">FILETIME</span>,
         <span class="ident">lpFileTime2</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">FILETIME</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LONG</span>;
+    ) -&gt; <span class="ident">LONG</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateDirectoryA</span>(
         <span class="ident">lpPathName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">lpSecurityAttributes</span>: <span class="ident">LPSECURITY_ATTRIBUTES</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateDirectoryW</span>(
         <span class="ident">lpPathName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpSecurityAttributes</span>: <span class="ident">LPSECURITY_ATTRIBUTES</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateFileA</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">dwDesiredAccess</span>: <span class="ident">DWORD</span>,
@@ -827,7 +827,7 @@
         <span class="ident">dwCreationDisposition</span>: <span class="ident">DWORD</span>,
         <span class="ident">dwFlagsAndAttributes</span>: <span class="ident">DWORD</span>,
         <span class="ident">hTemplateFile</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateFileW</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">dwDesiredAccess</span>: <span class="ident">DWORD</span>,
@@ -836,49 +836,49 @@
         <span class="ident">dwCreationDisposition</span>: <span class="ident">DWORD</span>,
         <span class="ident">dwFlagsAndAttributes</span>: <span class="ident">DWORD</span>,
         <span class="ident">hTemplateFile</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DefineDosDeviceW</span>(
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpDeviceName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpTargetPath</span>: <span class="ident">LPCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DeleteFileA</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DeleteFileW</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DeleteVolumeMountPointW</span>(
         <span class="ident">lpszVolumeMountPoint</span>: <span class="ident">LPCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FileTimeToLocalFileTime</span>(
         <span class="ident">lpFileTime</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">FILETIME</span>,
         <span class="ident">lpLocalFileTime</span>: <span class="ident">LPFILETIME</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindClose</span>(
         <span class="ident">hFindFile</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindCloseChangeNotification</span>(
         <span class="ident">hChangeHandle</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindFirstChangeNotificationA</span>(
         <span class="ident">lpPathName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">bWatchSubtree</span>: <span class="ident">BOOL</span>,
         <span class="ident">dwNotifyFilter</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindFirstChangeNotificationW</span>(
         <span class="ident">lpPathName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">bWatchSubtree</span>: <span class="ident">BOOL</span>,
         <span class="ident">dwNotifyFilter</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindFirstFileA</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">lpFindFileData</span>: <span class="ident">LPWIN32_FIND_DATAA</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindFirstFileW</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpFindFileData</span>: <span class="ident">LPWIN32_FIND_DATAW</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindFirstFileExA</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">fInfoLevelId</span>: <span class="ident">FINDEX_INFO_LEVELS</span>,
@@ -886,7 +886,7 @@
         <span class="ident">fSearchOp</span>: <span class="ident">FINDEX_SEARCH_OPS</span>,
         <span class="ident">lpSearchFilter</span>: <span class="ident">LPVOID</span>,
         <span class="ident">dwAdditionalFlags</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindFirstFileExW</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">fInfoLevelId</span>: <span class="ident">FINDEX_INFO_LEVELS</span>,
@@ -894,152 +894,152 @@
         <span class="ident">fSearchOp</span>: <span class="ident">FINDEX_SEARCH_OPS</span>,
         <span class="ident">lpSearchFilter</span>: <span class="ident">LPVOID</span>,
         <span class="ident">dwAdditionalFlags</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindFirstVolumeW</span>(
         <span class="ident">lpszVolumeName</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">cchBufferLength</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindNextChangeNotification</span>(
         <span class="ident">hChangeHandle</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindNextFileA</span>(
         <span class="ident">hFindFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpFindFileData</span>: <span class="ident">LPWIN32_FIND_DATAA</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindNextFileW</span>(
         <span class="ident">hFindFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpFindFileData</span>: <span class="ident">LPWIN32_FIND_DATAW</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindNextVolumeW</span>(
         <span class="ident">hFindVolume</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpszVolumeName</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">cchBufferLength</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindVolumeClose</span>(
         <span class="ident">hFindVolume</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FlushFileBuffers</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetDiskFreeSpaceA</span>(
         <span class="ident">lpRootPathName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">lpSectorsPerCluster</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpBytesPerSector</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpNumberOfFreeClusters</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpTotalNumberOfClusters</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetDiskFreeSpaceW</span>(
         <span class="ident">lpRootPathName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpSectorsPerCluster</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpBytesPerSector</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpNumberOfFreeClusters</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpTotalNumberOfClusters</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetDiskFreeSpaceExA</span>(
         <span class="ident">lpDirectoryName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">lpFreeBytesAvailableToCaller</span>: <span class="ident">PULARGE_INTEGER</span>,
         <span class="ident">lpTotalNumberOfBytes</span>: <span class="ident">PULARGE_INTEGER</span>,
         <span class="ident">lpTotalNumberOfFreeBytes</span>: <span class="ident">PULARGE_INTEGER</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetDiskFreeSpaceExW</span>(
         <span class="ident">lpDirectoryName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpFreeBytesAvailableToCaller</span>: <span class="ident">PULARGE_INTEGER</span>,
         <span class="ident">lpTotalNumberOfBytes</span>: <span class="ident">PULARGE_INTEGER</span>,
         <span class="ident">lpTotalNumberOfFreeBytes</span>: <span class="ident">PULARGE_INTEGER</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetDriveTypeA</span>(
         <span class="ident">lpRootPathName</span>: <span class="ident">LPCSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    ) -&gt; <span class="ident">UINT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetDriveTypeW</span>(
         <span class="ident">lpRootPathName</span>: <span class="ident">LPCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    ) -&gt; <span class="ident">UINT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFileAttributesA</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFileAttributesW</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFileAttributesExA</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">fInfoLevelId</span>: <span class="ident">GET_FILEEX_INFO_LEVELS</span>,
         <span class="ident">lpFileInformation</span>: <span class="ident">LPVOID</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFileAttributesExW</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">fInfoLevelId</span>: <span class="ident">GET_FILEEX_INFO_LEVELS</span>,
         <span class="ident">lpFileInformation</span>: <span class="ident">LPVOID</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFileInformationByHandle</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpFileInformation</span>: <span class="ident">LPBY_HANDLE_FILE_INFORMATION</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFileSize</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpFileSizeHigh</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFileSizeEx</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpFileSize</span>: <span class="ident">PLARGE_INTEGER</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFileType</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFinalPathNameByHandleA</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpszFilePath</span>: <span class="ident">LPSTR</span>,
         <span class="ident">cchFilePath</span>: <span class="ident">DWORD</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFinalPathNameByHandleW</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpszFilePath</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">cchFilePath</span>: <span class="ident">DWORD</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFileTime</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpCreationTime</span>: <span class="ident">LPFILETIME</span>,
         <span class="ident">lpLastAccessTime</span>: <span class="ident">LPFILETIME</span>,
         <span class="ident">lpLastWriteTime</span>: <span class="ident">LPFILETIME</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFullPathNameW</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">nBufferLength</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">lpFilePart</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LPWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFullPathNameA</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">nBufferLength</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPSTR</span>,
         <span class="ident">lpFilePart</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LPSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetLogicalDrives</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetLogicalDrives</span>() -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetLogicalDriveStringsW</span>(
         <span class="ident">nBufferLength</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetLongPathNameA</span>(
         <span class="ident">lpszShortPath</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">lpszLongPath</span>: <span class="ident">LPSTR</span>,
         <span class="ident">cchBuffer</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetLongPathNameW</span>(
         <span class="ident">lpszShortPath</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpszLongPath</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">cchBuffer</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetShortPathNameW</span>(
         <span class="ident">lpszLongPath</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpszShortPath</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">cchBuffer</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetTempFileNameW</span>(
         <span class="ident">lpPathName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpPrefixString</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">uUnique</span>: <span class="ident">UINT</span>,
         <span class="ident">lpTempFileName</span>: <span class="ident">LPWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    ) -&gt; <span class="ident">UINT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetVolumeInformationByHandleW</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpVolumeNameBuffer</span>: <span class="ident">LPWSTR</span>,
@@ -1049,7 +1049,7 @@
         <span class="ident">lpFileSystemFlags</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpFileSystemNameBuffer</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">nFileSystemNameSize</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetVolumeInformationW</span>(
         <span class="ident">lpRootPathName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpVolumeNameBuffer</span>: <span class="ident">LPWSTR</span>,
@@ -1059,23 +1059,23 @@
         <span class="ident">lpFileSystemFlags</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpFileSystemNameBuffer</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">nFileSystemNameSize</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetVolumePathNameW</span>(
         <span class="ident">lpszFileName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpszVolumePathName</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">cchBufferLength</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LocalFileTimeToFileTime</span>(
         <span class="ident">lpLocalFileTime</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">FILETIME</span>,
         <span class="ident">lpFileTime</span>: <span class="ident">LPFILETIME</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LockFile</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">dwFileOffsetLow</span>: <span class="ident">DWORD</span>,
         <span class="ident">dwFileOffsetHigh</span>: <span class="ident">DWORD</span>,
         <span class="ident">nNumberOfBytesToLockLow</span>: <span class="ident">DWORD</span>,
         <span class="ident">nNumberOfBytesToLockHigh</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LockFileEx</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
@@ -1083,148 +1083,148 @@
         <span class="ident">nNumberOfBytesToLockLow</span>: <span class="ident">DWORD</span>,
         <span class="ident">nNumberOfBytesToLockHigh</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpOverlapped</span>: <span class="ident">LPOVERLAPPED</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">QueryDosDeviceW</span>(
         <span class="ident">lpDeviceName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpTargetPath</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">ucchMax</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ReadFile</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPVOID</span>,
         <span class="ident">nNumberOfBytesToRead</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpNumberOfBytesRead</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpOverlapped</span>: <span class="ident">LPOVERLAPPED</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ReadFileEx</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPVOID</span>,
         <span class="ident">nNumberOfBytesToRead</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpOverlapped</span>: <span class="ident">LPOVERLAPPED</span>,
         <span class="ident">lpCompletionRoutine</span>: <span class="ident">LPOVERLAPPED_COMPLETION_ROUTINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ReadFileScatter</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">aSegmentArray</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">FILE_SEGMENT_ELEMENT</span>,
         <span class="ident">nNumberOfBytesToRead</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpReserved</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpOverlapped</span>: <span class="ident">LPOVERLAPPED</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RemoveDirectoryA</span>(
         <span class="ident">lpPathName</span>: <span class="ident">LPCSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RemoveDirectoryW</span>(
         <span class="ident">lpPathName</span>: <span class="ident">LPCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetEndOfFile</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetFileAttributesA</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">dwFileAttributes</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetFileAttributesW</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">dwFileAttributes</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetFileInformationByHandle</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">FileInformationClass</span>: <span class="ident">FILE_INFO_BY_HANDLE_CLASS</span>,
         <span class="ident">lpFileInformation</span>: <span class="ident">LPVOID</span>,
         <span class="ident">dwBufferSize</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetFilePointer</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lDistanceToMove</span>: <span class="ident">LONG</span>,
         <span class="ident">lpDistanceToMoveHigh</span>: <span class="ident">PLONG</span>,
         <span class="ident">dwMoveMethod</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetFilePointerEx</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">liDistanceToMove</span>: <span class="ident">LARGE_INTEGER</span>,
         <span class="ident">lpNewFilePointer</span>: <span class="ident">PLARGE_INTEGER</span>,
         <span class="ident">dwMoveMethod</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetFileTime</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpCreationTime</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">FILETIME</span>,
         <span class="ident">lpLastAccessTime</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">FILETIME</span>,
         <span class="ident">lpLastWriteTime</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">FILETIME</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetFileValidData</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">ValidDataLength</span>: <span class="ident">LONGLONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">UnlockFile</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">dwFileOffsetLow</span>: <span class="ident">DWORD</span>,
         <span class="ident">dwFileOffsetHigh</span>: <span class="ident">DWORD</span>,
         <span class="ident">nNumberOfBytesToUnlockLow</span>: <span class="ident">DWORD</span>,
         <span class="ident">nNumberOfBytesToUnlockHigh</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">UnlockFileEx</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">dwReserved</span>: <span class="ident">DWORD</span>,
         <span class="ident">nNumberOfBytesToUnlockLow</span>: <span class="ident">DWORD</span>,
         <span class="ident">nNumberOfBytesToUnlockHigh</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpOverlapped</span>: <span class="ident">LPOVERLAPPED</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WriteFile</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPCVOID</span>,
         <span class="ident">nNumberOfBytesToWrite</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpNumberOfBytesWritten</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpOverlapped</span>: <span class="ident">LPOVERLAPPED</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WriteFileEx</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPCVOID</span>,
         <span class="ident">nNumberOfBytesToWrite</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpOverlapped</span>: <span class="ident">LPOVERLAPPED</span>,
         <span class="ident">lpCompletionRoutine</span>: <span class="ident">LPOVERLAPPED_COMPLETION_ROUTINE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WriteFileGather</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">aSegmentArray</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">FILE_SEGMENT_ELEMENT</span>,
         <span class="ident">nNumberOfBytesToWrite</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpReserved</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpOverlapped</span>: <span class="ident">LPOVERLAPPED</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetTempPathW</span>(
         <span class="ident">nBufferLength</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetVolumeNameForVolumeMountPointW</span>(
         <span class="ident">lpszVolumeMountPoint</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpszVolumeName</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">cchBufferLength</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetVolumePathNamesForVolumeNameW</span>(
         <span class="ident">lpszVolumeName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpszVolumePathNames</span>: <span class="ident">LPWCH</span>,
         <span class="ident">cchBufferLength</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpcchReturnLength</span>: <span class="ident">PDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateFile2</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">dwDesiredAccess</span>: <span class="ident">DWORD</span>,
         <span class="ident">dwShareMode</span>: <span class="ident">DWORD</span>,
         <span class="ident">dwCreationDisposition</span>: <span class="ident">DWORD</span>,
         <span class="ident">pCreateExParams</span>: <span class="ident">LPCREATEFILE2_EXTENDED_PARAMETERS</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetFileIoOverlappedRange</span>(
         <span class="ident">FileHandle</span>: <span class="ident">HANDLE</span>,
         <span class="ident">OverlappedRangeStart</span>: <span class="ident">PUCHAR</span>,
         <span class="ident">Length</span>: <span class="ident">ULONG</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCompressedFileSizeA</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">lpFileSizeHigh</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCompressedFileSizeW</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpFileSizeHigh</span>: <span class="ident">LPDWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
 }
 <span class="macro">ENUM!</span>{<span class="kw">enum</span> <span class="ident">STREAM_INFO_LEVELS</span> {
     <span class="ident">FindStreamInfoStandard</span>,
@@ -1236,27 +1236,27 @@
         <span class="ident">InfoLevel</span>: <span class="ident">STREAM_INFO_LEVELS</span>,
         <span class="ident">lpFindStreamData</span>: <span class="ident">LPVOID</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindNextStreamW</span>(
         <span class="ident">hFindStream</span>: <span class="ident">HANDLE</span>,
         <span class="ident">lpFindStreamData</span>: <span class="ident">LPVOID</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">AreFileApisANSI</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">AreFileApisANSI</span>() -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetTempPathA</span>(
         <span class="ident">nBufferLength</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindFirstFileNameW</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">StringLength</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">LinkName</span>: <span class="ident">PWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HANDLE</span>;
+    ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindNextFileNameW</span>(
         <span class="ident">hFindStream</span>: <span class="ident">HANDLE</span>,
         <span class="ident">StringLength</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">LinkName</span>: <span class="ident">PWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetVolumeInformationA</span>(
         <span class="ident">lpRootPathName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">lpVolumeNameBuffer</span>: <span class="ident">LPSTR</span>,
@@ -1266,13 +1266,13 @@
         <span class="ident">lpFileSystemFlags</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpFileSystemNameBuffer</span>: <span class="ident">LPSTR</span>,
         <span class="ident">nFileSystemNameSize</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetTempFileNameA</span>(
         <span class="ident">lpPathName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">lpPrefixString</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">uUnique</span>: <span class="ident">UINT</span>,
         <span class="ident">lpTempFileName</span>: <span class="ident">LPSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UINT</span>;
+    ) -&gt; <span class="ident">UINT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetFileApisToOEM</span>();
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetFileApisToANSI</span>();
 }

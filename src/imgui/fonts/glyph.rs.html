@@ -85,13 +85,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">FontGlyph</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">codepoint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">codepoint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
         <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">raw</span>().<span class="ident">Codepoint</span>() }
     }
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_codepoint</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">codepoint</span>: <span class="ident">u32</span>) {
         <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">raw_mut</span>().<span class="ident">set_Codepoint</span>(<span class="ident">codepoint</span>) };
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">raw</span>().<span class="ident">Visible</span>() <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
     }
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_visible</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">visible</span>: <span class="ident">bool</span>) {
@@ -114,7 +114,7 @@
     );
     <span class="kw">use</span> <span class="ident">sys::ImFontGlyph</span>;
     <span class="macro">macro_rules!</span> <span class="ident">assert_field_offset</span> {
-        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">l</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">r</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">l</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">r</span>:<span class="ident">ident</span>) =&gt; {
             <span class="macro">assert_eq!</span>(
                 <span class="macro">memoffset::offset_of!</span>(<span class="ident">FontGlyph</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">l</span>),
                 <span class="macro">memoffset::offset_of!</span>(<span class="ident">ImFontGlyph</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">r</span>)

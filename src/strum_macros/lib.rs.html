@@ -756,11 +756,11 @@
 <span class="kw">fn</span> <span class="ident">debug_print_generated</span>(<span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">DeriveInput</span>, <span class="ident">toks</span>: <span class="kw-2">&amp;</span><span class="ident">TokenStream</span>) {
     <span class="kw">let</span> <span class="ident">debug</span> <span class="op">=</span> <span class="ident">env::var</span>(<span class="string">&quot;STRUM_DEBUG&quot;</span>);
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">s</span>) <span class="op">=</span> <span class="ident">debug</span> {
-        <span class="kw">if</span> <span class="ident">s</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;1&quot;</span> {
+        <span class="kw">if</span> <span class="ident">s</span> <span class="op">==</span> <span class="string">&quot;1&quot;</span> {
             <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">toks</span>);
         }
 
-        <span class="kw">if</span> <span class="ident">ast</span>.<span class="ident">ident</span> <span class="op">=</span><span class="op">=</span> <span class="ident">s</span> {
+        <span class="kw">if</span> <span class="ident">ast</span>.<span class="ident">ident</span> <span class="op">==</span> <span class="ident">s</span> {
             <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">toks</span>);
         }
     }
@@ -844,7 +844,7 @@
 <span class="doccomment">/// assert_eq!(Color::Black, color_variant);</span>
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumString</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_string</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">proc_macro::TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_string</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
     <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
 
     <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span>
@@ -889,7 +889,7 @@
 <span class="doccomment">/// );</span>
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">AsRefStr</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_ref_str</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">proc_macro::TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_ref_str</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
     <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
 
     <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span>
@@ -920,7 +920,7 @@
 <span class="doccomment">/// assert_eq!([&quot;red&quot;, &quot;blue&quot;, &quot;yellow&quot;, &quot;rebecca-purple&quot;], Color::VARIANTS);</span>
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumVariantNames</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">variant_names</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">proc_macro::TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">variant_names</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
     <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
 
     <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::enum_variant_names::enum_variant_names_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>)
@@ -934,7 +934,7 @@
     <span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.22.0&quot;</span>,
     <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;please use `#[derive(IntoStaticStr)]` instead&quot;</span>
 )]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_static_str</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">proc_macro::TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_static_str</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
     <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
 
     <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::as_ref_str::as_static_str_inner</span>(
@@ -976,7 +976,7 @@
 <span class="doccomment">/// verify_state(&amp;&quot;hello world&quot;.to_string());</span>
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">IntoStaticStr</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_static_str</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">proc_macro::TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_static_str</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
     <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
 
     <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::as_ref_str::as_static_str_inner</span>(
@@ -1018,7 +1018,7 @@
     <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;please use `#[derive(Display)]` instead. See issue https://github.com/Peternator7/strum/issues/132&quot;</span>
 )]</span>
 <span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">ToString</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_string</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">proc_macro::TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_string</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
     <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
 
     <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span>
@@ -1068,7 +1068,7 @@
 <span class="doccomment">/// );</span>
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">Display</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">display</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">proc_macro::TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">display</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
     <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
 
     <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::display::display_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
@@ -1110,7 +1110,7 @@
 <span class="doccomment">/// assert_eq!(None, ci.next());</span>
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumIter</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_iter</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">proc_macro::TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_iter</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
     <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
 
     <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span>
@@ -1195,7 +1195,7 @@
 <span class="doccomment">/// ```</span>
 
 <span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">FromRepr</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_repr</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">proc_macro::TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_repr</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
     <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
 
     <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span>
@@ -1269,7 +1269,7 @@
 <span class="doccomment">/// assert_eq!([&quot;Red&quot;], c.get_serializations());</span>
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumMessage</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_messages</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">proc_macro::TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_messages</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
     <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
 
     <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::enum_messages::enum_message_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>)
@@ -1321,7 +1321,7 @@
 <span class="doccomment">/// ```</span>
 
 <span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumProperty</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_properties</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">proc_macro::TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_properties</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
     <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
 
     <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::enum_properties::enum_properties_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>)
@@ -1433,7 +1433,7 @@
 <span class="doccomment">/// );</span>
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumDiscriminants</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>, <span class="ident">strum_discriminants</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_discriminants</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">proc_macro::TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_discriminants</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
     <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
 
     <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::enum_discriminants::enum_discriminants_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>)
@@ -1467,7 +1467,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumCount</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_count</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">proc_macro::TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_count</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
     <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
     <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span>
         <span class="ident">macros::enum_count::enum_count_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());

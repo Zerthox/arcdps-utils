@@ -163,7 +163,7 @@
 
 <span class="kw">impl</span> <span class="ident">Image</span> {
     <span class="doccomment">/// Creates a new image builder with the given texture and size</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">texture_id</span>: <span class="ident">TextureId</span>, <span class="ident">size</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Image</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">texture_id</span>: <span class="ident">TextureId</span>, <span class="ident">size</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) -&gt; <span class="ident">Image</span> {
         <span class="ident">Image</span> {
             <span class="ident">texture_id</span>,
             <span class="ident">size</span>,
@@ -174,27 +174,27 @@
         }
     }
     <span class="doccomment">/// Sets the image size</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">size</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">size</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">size</span> <span class="op">=</span> <span class="ident">size</span>;
         <span class="self">self</span>
     }
     <span class="doccomment">/// Sets uv0 (default `[0.0, 0.0]`)</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">uv0</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">uv0</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">uv0</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">uv0</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">uv0</span> <span class="op">=</span> <span class="ident">uv0</span>;
         <span class="self">self</span>
     }
     <span class="doccomment">/// Sets uv1 (default `[1.0, 1.0]`)</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">uv1</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">uv1</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">uv1</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">uv1</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">uv1</span> <span class="op">=</span> <span class="ident">uv1</span>;
         <span class="self">self</span>
     }
     <span class="doccomment">/// Sets the tint color (default: no tint color)</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">tint_col</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tint_col</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">tint_col</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tint_col</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tint_col</span> <span class="op">=</span> <span class="ident">tint_col</span>;
         <span class="self">self</span>
     }
     <span class="doccomment">/// Sets the border color (default: no border)</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">border_col</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">border_col</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">border_col</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">border_col</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">border_col</span> <span class="op">=</span> <span class="ident">border_col</span>;
         <span class="self">self</span>
     }
@@ -228,7 +228,7 @@
 
 <span class="kw">impl</span> <span class="ident">ImageButton</span> {
     <span class="doccomment">/// Creates a new image button builder with the given texture and size</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">texture_id</span>: <span class="ident">TextureId</span>, <span class="ident">size</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ImageButton</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">texture_id</span>: <span class="ident">TextureId</span>, <span class="ident">size</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) -&gt; <span class="ident">ImageButton</span> {
         <span class="ident">ImageButton</span> {
             <span class="ident">texture_id</span>,
             <span class="ident">size</span>,
@@ -240,17 +240,17 @@
         }
     }
     <span class="doccomment">/// Sets the image button size</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">size</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">size</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">size</span> <span class="op">=</span> <span class="ident">size</span>;
         <span class="self">self</span>
     }
     <span class="doccomment">/// Sets uv0 (default `[0.0, 0.0]`)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uv0</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">uv0</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uv0</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">uv0</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">uv0</span> <span class="op">=</span> <span class="ident">uv0</span>;
         <span class="self">self</span>
     }
     <span class="doccomment">/// Sets uv1 (default `[1.0, 1.0]`)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uv1</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">uv1</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uv1</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">uv1</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">uv1</span> <span class="op">=</span> <span class="ident">uv1</span>;
         <span class="self">self</span>
     }
@@ -259,22 +259,22 @@
     <span class="doccomment">/// - `&lt; 0`: uses frame padding from style (default)</span>
     <span class="doccomment">/// - `= 0`: no framing</span>
     <span class="doccomment">/// - `&gt; 0`: set framing size</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame_padding</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">frame_padding</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame_padding</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">frame_padding</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">frame_padding</span> <span class="op">=</span> <span class="ident">frame_padding</span>;
         <span class="self">self</span>
     }
     <span class="doccomment">/// Sets the background color (default: no background color)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">background_col</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">bg_col</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">background_col</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">bg_col</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">bg_col</span> <span class="op">=</span> <span class="ident">bg_col</span>;
         <span class="self">self</span>
     }
     <span class="doccomment">/// Sets the tint color (default: no tint color)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tint_col</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tint_col</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tint_col</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tint_col</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tint_col</span> <span class="op">=</span> <span class="ident">tint_col</span>;
         <span class="self">self</span>
     }
     <span class="doccomment">/// Builds the image button</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">sys::igImageButton</span>(
                 <span class="self">self</span>.<span class="ident">texture_id</span>.<span class="ident">id</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,

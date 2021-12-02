@@ -163,7 +163,7 @@
 
 <span class="kw">impl</span> <span class="ident">Log</span> {
     <span class="doccomment">/// Creates a new log.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">contents</span>: <span class="ident">ImString::default</span>(),
             <span class="ident">active</span>: <span class="bool-val">true</span>,
@@ -196,7 +196,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Log</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::new</span>()
     }
 }
@@ -244,7 +244,7 @@
                 <span class="comment">// perform auto scroll</span>
                 <span class="comment">// strict comparison should fine with the values returned by imgui</span>
                 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::float_cmp</span>)]</span>
-                <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">scroll_y</span>() <span class="op">=</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">last_scroll_max</span> {
+                <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">scroll_y</span>() <span class="op">==</span> <span class="self">self</span>.<span class="ident">last_scroll_max</span> {
                     <span class="ident">ui</span>.<span class="ident">set_scroll_here_y_with_ratio</span>(<span class="number">1.0</span>);
                 }
 
@@ -255,7 +255,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Windowed</span> <span class="kw">for</span> <span class="ident">Log</span> {
-    <span class="kw">fn</span> <span class="ident">window_props</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WindowProps</span> {
+    <span class="kw">fn</span> <span class="ident">window_props</span>() -&gt; <span class="ident">WindowProps</span> {
         <span class="ident">WindowProps::new</span>(<span class="string">&quot;Log&quot;</span>)
             .<span class="ident">visible</span>(<span class="bool-val">true</span>)
             .<span class="ident">width</span>(<span class="number">600.0</span>)

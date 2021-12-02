@@ -41,13 +41,13 @@
 <span class="doccomment">/// # Content region</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> <span class="ident">Ui</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Returns the current content boundaries (in *window coordinates*)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_region_max</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">2</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_region_max</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [<span class="ident">f32</span>; <span class="number">2</span>] {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">sys::ImVec2::zero</span>();
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetContentRegionMax</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">out</span>) };
         <span class="ident">out</span>.<span class="ident">into</span>()
     }
     <span class="doccomment">/// Equal to `ui.content_region_max()` - `ui.cursor_pos()`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_region_avail</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">2</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_region_avail</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [<span class="ident">f32</span>; <span class="number">2</span>] {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">sys::ImVec2::zero</span>();
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetContentRegionAvail</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">out</span>) };
         <span class="ident">out</span>.<span class="ident">into</span>()
@@ -55,7 +55,7 @@
     <span class="doccomment">/// Content boundaries min (in *window coordinates*).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Roughly equal to [0.0, 0.0] - scroll.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">window_content_region_min</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">2</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">window_content_region_min</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [<span class="ident">f32</span>; <span class="number">2</span>] {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">sys::ImVec2::zero</span>();
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetWindowContentRegionMin</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">out</span>) };
         <span class="ident">out</span>.<span class="ident">into</span>()
@@ -63,12 +63,12 @@
     <span class="doccomment">/// Content boundaries max (in *window coordinates*).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Roughly equal to [0.0, 0.0] + size - scroll.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">window_content_region_max</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">2</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">window_content_region_max</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [<span class="ident">f32</span>; <span class="number">2</span>] {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">sys::ImVec2::zero</span>();
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetWindowContentRegionMax</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">out</span>) };
         <span class="ident">out</span>.<span class="ident">into</span>()
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">window_content_region_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">window_content_region_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetWindowContentRegionWidth</span>() }
     }
 }

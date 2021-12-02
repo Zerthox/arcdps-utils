@@ -137,14 +137,14 @@
     <span class="doccomment">/// Starts rendering items in left alignment.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Items are passed from **left to right**.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>() -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::with_margin</span>(<span class="number">5.0</span>)
     }
 
     <span class="doccomment">/// Starts rendering items in left alignment with a custom margin.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Items are passed from **left to right**.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_margin</span>(<span class="ident">margin</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_margin</span>(<span class="ident">margin</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">default_margin</span>: <span class="ident">margin</span>,
             <span class="ident">accumulated</span>: <span class="ident">f32::NAN</span>, <span class="comment">// placeholder to identify first render</span>
@@ -197,14 +197,14 @@
     <span class="doccomment">/// Starts rendering items in right alignment.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Items are passed from **right to left**.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>() -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::with_margin</span>(<span class="number">5.0</span>)
     }
 
     <span class="doccomment">/// Starts rendering items in right alignment with a custom margin.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Items are passed from **right to left**.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_margin</span>(<span class="ident">margin</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_margin</span>(<span class="ident">margin</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">margin</span>,
             <span class="ident">accumulated</span>: <span class="number">0.0</span>,

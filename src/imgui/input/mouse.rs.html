@@ -541,45 +541,45 @@
     <span class="doccomment">/// Returns true if the given mouse button is held down.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Equivalent to indexing the Io struct with the button, e.g. `ui.io()[button]`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_down</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_down</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igIsMouseDown</span>(<span class="ident">button</span> <span class="kw">as</span> <span class="ident">i32</span>) }
     }
     <span class="doccomment">/// Returns true if any mouse button is held down</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_any_mouse_down</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_any_mouse_down</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igIsAnyMouseDown</span>() }
     }
     <span class="doccomment">/// Returns true if the given mouse button was clicked (went from !down to down)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_clicked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_clicked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igIsMouseClicked</span>(<span class="ident">button</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="bool-val">false</span>) }
     }
     <span class="doccomment">/// Returns true if the given mouse button was double-clicked</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_double_clicked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_double_clicked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igIsMouseDoubleClicked</span>(<span class="ident">button</span> <span class="kw">as</span> <span class="ident">i32</span>) }
     }
     <span class="doccomment">/// Returns true if the given mouse button was released (went from down to !down)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_released</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_released</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igIsMouseReleased</span>(<span class="ident">button</span> <span class="kw">as</span> <span class="ident">i32</span>) }
     }
     <span class="doccomment">/// Returns true if the mouse is currently dragging with the given mouse button held down</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_dragging</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_dragging</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igIsMouseDragging</span>(<span class="ident">button</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="op">-</span><span class="number">1.0</span>) }
     }
     <span class="doccomment">/// Returns true if the mouse is currently dragging with the given mouse button held down.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the given threshold is invalid or negative, the global distance threshold is used</span>
     <span class="doccomment">/// (`io.mouse_drag_threshold`).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_dragging_with_threshold</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>, <span class="ident">threshold</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_dragging_with_threshold</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>, <span class="ident">threshold</span>: <span class="ident">f32</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igIsMouseDragging</span>(<span class="ident">button</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">threshold</span>) }
     }
     <span class="doccomment">/// Returns true if the mouse is hovering over the given bounding rect.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Clipped by current clipping settings, but disregards other factors like focus, window</span>
     <span class="doccomment">/// ordering, modal popup blocking.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_hovering_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">r_min</span>: [<span class="ident">f32</span>; <span class="number">2</span>], <span class="ident">r_max</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_hovering_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">r_min</span>: [<span class="ident">f32</span>; <span class="number">2</span>], <span class="ident">r_max</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igIsMouseHoveringRect</span>(<span class="ident">r_min</span>.<span class="ident">into</span>(), <span class="ident">r_max</span>.<span class="ident">into</span>(), <span class="bool-val">true</span>) }
     }
     <span class="doccomment">/// Returns the mouse position backed up at the time of opening a popup</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mouse_pos_on_opening_current_popup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">2</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mouse_pos_on_opening_current_popup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [<span class="ident">f32</span>; <span class="number">2</span>] {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">sys::ImVec2::zero</span>();
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetMousePosOnOpeningCurrentPopup</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">out</span>) };
         <span class="ident">out</span>.<span class="ident">into</span>()
@@ -588,7 +588,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is locked and returns [0.0, 0.0] until the mouse has moved past the global distance</span>
     <span class="doccomment">/// threshold (`io.mouse_drag_threshold`).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mouse_drag_delta</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">2</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mouse_drag_delta</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>) -&gt; [<span class="ident">f32</span>; <span class="number">2</span>] {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">sys::ImVec2::zero</span>();
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetMouseDragDelta</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">out</span>, <span class="ident">button</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="op">-</span><span class="number">1.0</span>) };
         <span class="ident">out</span>.<span class="ident">into</span>()
@@ -598,7 +598,7 @@
     <span class="doccomment">/// This is locked and returns [0.0, 0.0] until the mouse has moved past the given threshold.</span>
     <span class="doccomment">/// If the given threshold is invalid or negative, the global distance threshold is used</span>
     <span class="doccomment">/// (`io.mouse_drag_threshold`).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mouse_drag_delta_with_threshold</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>, <span class="ident">threshold</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">2</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mouse_drag_delta_with_threshold</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">MouseButton</span>, <span class="ident">threshold</span>: <span class="ident">f32</span>) -&gt; [<span class="ident">f32</span>; <span class="number">2</span>] {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">sys::ImVec2::zero</span>();
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetMouseDragDelta</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">out</span>, <span class="ident">button</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">threshold</span>) };
         <span class="ident">out</span>.<span class="ident">into</span>()
@@ -612,18 +612,18 @@
     <span class="doccomment">/// Returns the currently desired mouse cursor type.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns `None` if no cursor should be displayed</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mouse_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MouseCursor</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mouse_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MouseCursor</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="kw">unsafe</span> { <span class="ident">sys::igGetMouseCursor</span>() } {
-            <span class="ident">sys::ImGuiMouseCursor_Arrow</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::Arrow</span>),
-            <span class="ident">sys::ImGuiMouseCursor_TextInput</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::TextInput</span>),
-            <span class="ident">sys::ImGuiMouseCursor_ResizeAll</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::ResizeAll</span>),
-            <span class="ident">sys::ImGuiMouseCursor_ResizeNS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::ResizeNS</span>),
-            <span class="ident">sys::ImGuiMouseCursor_ResizeEW</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::ResizeEW</span>),
-            <span class="ident">sys::ImGuiMouseCursor_ResizeNESW</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::ResizeNESW</span>),
-            <span class="ident">sys::ImGuiMouseCursor_ResizeNWSE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::ResizeNWSE</span>),
-            <span class="ident">sys::ImGuiMouseCursor_Hand</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::Hand</span>),
-            <span class="ident">sys::ImGuiMouseCursor_NotAllowed</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::NotAllowed</span>),
-            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
+            <span class="ident">sys::ImGuiMouseCursor_Arrow</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::Arrow</span>),
+            <span class="ident">sys::ImGuiMouseCursor_TextInput</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::TextInput</span>),
+            <span class="ident">sys::ImGuiMouseCursor_ResizeAll</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::ResizeAll</span>),
+            <span class="ident">sys::ImGuiMouseCursor_ResizeNS</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::ResizeNS</span>),
+            <span class="ident">sys::ImGuiMouseCursor_ResizeEW</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::ResizeEW</span>),
+            <span class="ident">sys::ImGuiMouseCursor_ResizeNESW</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::ResizeNESW</span>),
+            <span class="ident">sys::ImGuiMouseCursor_ResizeNWSE</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::ResizeNWSE</span>),
+            <span class="ident">sys::ImGuiMouseCursor_Hand</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::Hand</span>),
+            <span class="ident">sys::ImGuiMouseCursor_NotAllowed</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MouseCursor::NotAllowed</span>),
+            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
         }
     }
     <span class="doccomment">/// Sets the desired mouse cursor type.</span>
@@ -638,10 +638,10 @@
             );
         }
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_current_mouse_pos_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_current_mouse_pos_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igIsMousePosValid</span>(<span class="ident">ptr::null</span>()) }
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_pos_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mouse_pos</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mouse_pos_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mouse_pos</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igIsMousePosValid</span>(<span class="kw-2">&amp;</span><span class="ident">mouse_pos</span>.<span class="ident">into</span>()) }
     }
 }

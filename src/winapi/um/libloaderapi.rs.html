@@ -270,46 +270,46 @@
     <span class="ident">lpName</span>: <span class="ident">LPCSTR</span>,
     <span class="ident">wLanguage</span>: <span class="ident">WORD</span>,
     <span class="ident">lParam</span>: <span class="ident">LONG_PTR</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>}
+) -&gt; <span class="ident">BOOL</span>}
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">ENUMRESLANGPROCW</span>(
     <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
     <span class="ident">lpType</span>: <span class="ident">LPCWSTR</span>,
     <span class="ident">lpName</span>: <span class="ident">LPCWSTR</span>,
     <span class="ident">wLanguage</span>: <span class="ident">WORD</span>,
     <span class="ident">lParam</span>: <span class="ident">LONG_PTR</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>}
+) -&gt; <span class="ident">BOOL</span>}
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">ENUMRESNAMEPROCA</span>(
     <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
     <span class="ident">lpType</span>: <span class="ident">LPCSTR</span>,
     <span class="ident">lpName</span>: <span class="ident">LPSTR</span>,
     <span class="ident">lParam</span>: <span class="ident">LONG_PTR</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>}
+) -&gt; <span class="ident">BOOL</span>}
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">ENUMRESNAMEPROCW</span>(
     <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
     <span class="ident">lpType</span>: <span class="ident">LPCWSTR</span>,
     <span class="ident">lpName</span>: <span class="ident">LPWSTR</span>,
     <span class="ident">lParam</span>: <span class="ident">LONG_PTR</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>}
+) -&gt; <span class="ident">BOOL</span>}
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">ENUMRESTYPEPROCA</span>(
     <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
     <span class="ident">lpType</span>: <span class="ident">LPSTR</span>,
     <span class="ident">lParam</span>: <span class="ident">LONG_PTR</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>}
+) -&gt; <span class="ident">BOOL</span>}
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">ENUMRESTYPEPROCW</span>(
     <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
     <span class="ident">lpType</span>: <span class="ident">LPWSTR</span>,
     <span class="ident">lParam</span>: <span class="ident">LONG_PTR</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>}
+) -&gt; <span class="ident">BOOL</span>}
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DisableThreadLibraryCalls</span>(
         <span class="ident">hLibModule</span>: <span class="ident">HMODULE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindResourceExW</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">lpName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpType</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">wLanguage</span>: <span class="ident">WORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HRSRC</span>;
+    ) -&gt; <span class="ident">HRSRC</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindStringOrdinal</span>(
         <span class="ident">dwFindStringOrdinalFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpStringSource</span>: <span class="ident">LPCWSTR</span>,
@@ -317,93 +317,93 @@
         <span class="ident">lpStringValue</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">cchValue</span>: <span class="ident">c_int</span>,
         <span class="ident">bIgnoreCase</span>: <span class="ident">BOOL</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
+    ) -&gt; <span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FreeLibrary</span>(
         <span class="ident">hLibModule</span>: <span class="ident">HMODULE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FreeLibraryAndExitThread</span>(
         <span class="ident">hLibModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">dwExitCode</span>: <span class="ident">DWORD</span>,
     );
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FreeResource</span>(
         <span class="ident">hResData</span>: <span class="ident">HGLOBAL</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetModuleFileNameA</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">lpFilename</span>: <span class="ident">LPSTR</span>,
         <span class="ident">nSize</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetModuleFileNameW</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">lpFilename</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">nSize</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetModuleHandleA</span>(
         <span class="ident">lpModuleName</span>: <span class="ident">LPCSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HMODULE</span>;
+    ) -&gt; <span class="ident">HMODULE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetModuleHandleW</span>(
         <span class="ident">lpModuleName</span>: <span class="ident">LPCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HMODULE</span>;
+    ) -&gt; <span class="ident">HMODULE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetModuleHandleExA</span>(
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpModuleName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">phModule</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">HMODULE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetModuleHandleExW</span>(
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpModuleName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">phModule</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">HMODULE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetProcAddress</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">lpProcName</span>: <span class="ident">LPCSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FARPROC</span>;
+    ) -&gt; <span class="ident">FARPROC</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LoadLibraryExA</span>(
         <span class="ident">lpLibFileName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HMODULE</span>;
+    ) -&gt; <span class="ident">HMODULE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LoadLibraryExW</span>(
         <span class="ident">lpLibFileName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HMODULE</span>;
+    ) -&gt; <span class="ident">HMODULE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LoadResource</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">hResInfo</span>: <span class="ident">HRSRC</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HGLOBAL</span>;
+    ) -&gt; <span class="ident">HGLOBAL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LoadStringA</span>(
         <span class="ident">hInstance</span>: <span class="ident">HINSTANCE</span>,
         <span class="ident">uID</span>: <span class="ident">UINT</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPSTR</span>,
         <span class="ident">cchBufferMax</span>: <span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
+    ) -&gt; <span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LoadStringW</span>(
         <span class="ident">hInstance</span>: <span class="ident">HINSTANCE</span>,
         <span class="ident">uID</span>: <span class="ident">UINT</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">cchBufferMax</span>: <span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
+    ) -&gt; <span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LockResource</span>(
         <span class="ident">hResData</span>: <span class="ident">HGLOBAL</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LPVOID</span>;
+    ) -&gt; <span class="ident">LPVOID</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SizeofResource</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">hResInfo</span>: <span class="ident">HRSRC</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DWORD</span>;
+    ) -&gt; <span class="ident">DWORD</span>;
 }
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DLL_DIRECTORY_COOKIE</span> <span class="op">=</span> <span class="ident">PVOID</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDLL_DIRECTORY_COOKIE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PVOID</span>;
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">AddDllDirectory</span>(
         <span class="ident">NewDirectory</span>: <span class="ident">PCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DLL_DIRECTORY_COOKIE</span>;
+    ) -&gt; <span class="ident">DLL_DIRECTORY_COOKIE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">RemoveDllDirectory</span>(
         <span class="ident">Cookie</span>: <span class="ident">DLL_DIRECTORY_COOKIE</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetDefaultDllDirectories</span>(
         <span class="ident">DirectoryFlags</span>: <span class="ident">DWORD</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">EnumResourceLanguagesExA</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">lpType</span>: <span class="ident">LPCSTR</span>,
@@ -412,7 +412,7 @@
         <span class="ident">lParam</span>: <span class="ident">LONG_PTR</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">LangId</span>: <span class="ident">LANGID</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">EnumResourceLanguagesExW</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">lpType</span>: <span class="ident">LPCWSTR</span>,
@@ -421,7 +421,7 @@
         <span class="ident">lParam</span>: <span class="ident">LONG_PTR</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">LangId</span>: <span class="ident">LANGID</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">EnumResourceNamesExA</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">lpType</span>: <span class="ident">LPCSTR</span>,
@@ -429,7 +429,7 @@
         <span class="ident">lParam</span>: <span class="ident">LONG_PTR</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">LangId</span>: <span class="ident">LANGID</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">EnumResourceNamesExW</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">lpType</span>: <span class="ident">LPCWSTR</span>,
@@ -437,38 +437,38 @@
         <span class="ident">lParam</span>: <span class="ident">LONG_PTR</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">LangId</span>: <span class="ident">LANGID</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">EnumResourceTypesExA</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">lpEnumFunc</span>: <span class="ident">ENUMRESTYPEPROCA</span>,
         <span class="ident">lParam</span>: <span class="ident">LONG_PTR</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">LangId</span>: <span class="ident">LANGID</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">EnumResourceTypesExW</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">lpEnumFunc</span>: <span class="ident">ENUMRESTYPEPROCW</span>,
         <span class="ident">lParam</span>: <span class="ident">LONG_PTR</span>,
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">LangId</span>: <span class="ident">LANGID</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindResourceW</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">lpName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpType</span>: <span class="ident">LPCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HRSRC</span>;
+    ) -&gt; <span class="ident">HRSRC</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LoadLibraryA</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HMODULE</span>;
+    ) -&gt; <span class="ident">HMODULE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LoadLibraryW</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCWSTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HMODULE</span>;
+    ) -&gt; <span class="ident">HMODULE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">EnumResourceNamesW</span>(
         <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
         <span class="ident">lpType</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">lpEnumFunc</span>: <span class="ident">ENUMRESNAMEPROCW</span>,
         <span class="ident">lParam</span>: <span class="ident">LONG_PTR</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BOOL</span>;
+    ) -&gt; <span class="ident">BOOL</span>;
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="winapi" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>

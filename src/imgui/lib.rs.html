@@ -662,7 +662,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">core</span> <span class="kw">as</span> <span class="ident">__core</span>;
 
 <span class="doccomment">/// Returns the underlying Dear ImGui library version</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dear_imgui_version</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dear_imgui_version</span>() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
     <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">CStr::from_ptr</span>(<span class="ident">sys::igGetVersion</span>()).<span class="ident">to_bytes</span>();
         <span class="ident">str::from_utf8_unchecked</span>(<span class="ident">bytes</span>)
@@ -679,13 +679,13 @@
     <span class="doccomment">/// Returns the global imgui-rs time.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Incremented by Io::delta_time every frame.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">time</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">time</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f64</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetTime</span>() }
     }
     <span class="doccomment">/// Returns the global imgui-rs frame count.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Incremented by 1 every frame.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetFrameCount</span>() }
     }
 }
@@ -698,32 +698,32 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> <span class="ident">Ui</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Creates an Ui object with a given context</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_ctx</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ui</span> <span class="ident">Context</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_ctx</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ui</span> <span class="ident">Context</span>) -&gt; <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">ctx</span>,
             <span class="ident">font_atlas</span>: <span class="prelude-val">None</span>,
         }
     }
     <span class="doccomment">/// Returns an immutable reference to the inputs/outputs object</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">io</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">Io</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">io</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Io</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">sys::igGetIO</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Io</span>) }
     }
     <span class="doccomment">/// Returns an immutable reference to the font atlas</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fonts</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontAtlasRef</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fonts</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">FontAtlasRef</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">font_atlas</span> {
-            <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">font_atlas</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">FontAtlasRef::Shared</span>(<span class="ident">font_atlas</span>),
-            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> {
+            <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">font_atlas</span>) =&gt; <span class="ident">FontAtlasRef::Shared</span>(<span class="ident">font_atlas</span>),
+            <span class="prelude-val">None</span> =&gt; <span class="kw">unsafe</span> {
                 <span class="kw">let</span> <span class="ident">fonts</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="self">self</span>.<span class="ident">io</span>().<span class="ident">fonts</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">FontAtlas</span>);
                 <span class="ident">FontAtlasRef::Owned</span>(<span class="ident">fonts</span>)
             },
         }
     }
     <span class="doccomment">/// Returns a clone of the user interface style</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clone_style</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Style</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clone_style</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Style</span> {
         <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">style</span>()
     }
     <span class="doccomment">/// Renders the frame and returns a reference to the resulting draw data</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;ui</span> <span class="ident">DrawData</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render</span>(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;ui</span> <span class="ident">DrawData</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">sys::igRender</span>();
             <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">sys::igGetDrawData</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DrawData</span>)
@@ -792,16 +792,16 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Id</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">as_imgui_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">sys::ImGuiID</span> {
+    <span class="kw">fn</span> <span class="ident">as_imgui_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">sys::ImGuiID</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">match</span> <span class="self">self</span> {
-                <span class="ident">Id::Ptr</span>(<span class="ident">p</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">sys::igGetIDPtr</span>(<span class="kw-2">*</span><span class="ident">p</span>),
-                <span class="ident">Id::Str</span>(<span class="ident">s</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Id::Ptr</span>(<span class="ident">p</span>) =&gt; <span class="ident">sys::igGetIDPtr</span>(<span class="kw-2">*</span><span class="ident">p</span>),
+                <span class="ident">Id::Str</span>(<span class="ident">s</span>) =&gt; {
                     <span class="kw">let</span> <span class="ident">s1</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">std::os::raw::c_char</span>;
                     <span class="kw">let</span> <span class="ident">s2</span> <span class="op">=</span> <span class="ident">s1</span>.<span class="ident">add</span>(<span class="ident">s</span>.<span class="ident">len</span>());
                     <span class="ident">sys::igGetIDStrStr</span>(<span class="ident">s1</span>, <span class="ident">s2</span>)
                 }
-                <span class="ident">Id::Int</span>(<span class="ident">i</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Id::Int</span>(<span class="ident">i</span>) =&gt; {
                     <span class="kw">let</span> <span class="ident">p</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">i</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">std::os::raw::c_void</span>;
                     <span class="ident">sys::igGetIDPtr</span>(<span class="ident">p</span>)
                 }
@@ -812,35 +812,35 @@
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Id</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">i</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">i</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">Id::Int</span>(<span class="ident">i</span>)
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="question-mark">?</span><span class="ident">Sized</span> <span class="op">+</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Id</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">T</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">Id::Str</span>(<span class="ident">s</span>.<span class="ident">as_ref</span>())
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Id</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">p</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">p</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">Id::Ptr</span>(<span class="ident">p</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_void</span>)
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Id</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">p</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">p</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">Id::Ptr</span>(<span class="ident">p</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_void</span>)
     }
 }
 
 <span class="comment">// Widgets: Input</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> <span class="ident">Ui</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_text</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">buf</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> <span class="ident">ImString</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InputText</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_text</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">buf</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> <span class="ident">ImString</span>) -&gt; <span class="ident">InputText</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
         <span class="ident">InputText::new</span>(<span class="self">self</span>, <span class="ident">label</span>, <span class="ident">buf</span>)
     }
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_text_multiline</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(
@@ -848,43 +848,43 @@
         <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>,
         <span class="ident">buf</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> <span class="ident">ImString</span>,
         <span class="ident">size</span>: [<span class="ident">f32</span>; <span class="number">2</span>],
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InputTextMultiline</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="ident">InputTextMultiline</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
         <span class="ident">InputTextMultiline::new</span>(<span class="self">self</span>, <span class="ident">label</span>, <span class="ident">buf</span>, <span class="ident">size</span>)
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_float</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InputFloat</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_float</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> <span class="ident">f32</span>) -&gt; <span class="ident">InputFloat</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
         <span class="ident">InputFloat::new</span>(<span class="self">self</span>, <span class="ident">label</span>, <span class="ident">value</span>)
     }
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_float2</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>,
         <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> [<span class="ident">f32</span>; <span class="number">2</span>],
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InputFloat2</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="ident">InputFloat2</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
         <span class="ident">InputFloat2::new</span>(<span class="self">self</span>, <span class="ident">label</span>, <span class="ident">value</span>)
     }
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_float3</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>,
         <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> [<span class="ident">f32</span>; <span class="number">3</span>],
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InputFloat3</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="ident">InputFloat3</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
         <span class="ident">InputFloat3::new</span>(<span class="self">self</span>, <span class="ident">label</span>, <span class="ident">value</span>)
     }
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_float4</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>,
         <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> [<span class="ident">f32</span>; <span class="number">4</span>],
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InputFloat4</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="ident">InputFloat4</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
         <span class="ident">InputFloat4::new</span>(<span class="self">self</span>, <span class="ident">label</span>, <span class="ident">value</span>)
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_int</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InputInt</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_int</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> <span class="ident">i32</span>) -&gt; <span class="ident">InputInt</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
         <span class="ident">InputInt::new</span>(<span class="self">self</span>, <span class="ident">label</span>, <span class="ident">value</span>)
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_int2</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> [<span class="ident">i32</span>; <span class="number">2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InputInt2</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_int2</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> [<span class="ident">i32</span>; <span class="number">2</span>]) -&gt; <span class="ident">InputInt2</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
         <span class="ident">InputInt2::new</span>(<span class="self">self</span>, <span class="ident">label</span>, <span class="ident">value</span>)
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_int3</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> [<span class="ident">i32</span>; <span class="number">3</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InputInt3</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_int3</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> [<span class="ident">i32</span>; <span class="number">3</span>]) -&gt; <span class="ident">InputInt3</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
         <span class="ident">InputInt3::new</span>(<span class="self">self</span>, <span class="ident">label</span>, <span class="ident">value</span>)
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_int4</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> [<span class="ident">i32</span>; <span class="number">4</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InputInt4</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input_int4</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="kw-2">mut</span> [<span class="ident">i32</span>; <span class="number">4</span>]) -&gt; <span class="ident">InputInt4</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
         <span class="ident">InputInt4::new</span>(<span class="self">self</span>, <span class="ident">label</span>, <span class="ident">value</span>)
     }
 }
@@ -938,7 +938,7 @@
     <span class="doccomment">/// Construct a tooltip window that can have any kind of content.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns a `TooltipToken` that must be ended by calling `.end()`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin_tooltip</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TooltipToken</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin_tooltip</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">TooltipToken</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igBeginTooltip</span>() };
         <span class="ident">TooltipToken</span> { <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span> }
     }
@@ -995,7 +995,7 @@
     <span class="doccomment">///     }</span>
     <span class="doccomment">/// });</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">popup_modal</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">str_id</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PopupModal</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">popup_modal</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">str_id</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>) -&gt; <span class="ident">PopupModal</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
         <span class="ident">PopupModal::new</span>(<span class="self">self</span>, <span class="ident">str_id</span>)
     }
     <span class="doccomment">/// Close a popup. Should be called within the closure given as argument to</span>
@@ -1013,7 +1013,7 @@
         <span class="ident">current_item</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
         <span class="ident">items</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> [<span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">StringType</span>],
         <span class="ident">height_in_items</span>: <span class="ident">i32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    ) -&gt; <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">items_inner</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span><span class="op">&gt;</span> <span class="op">=</span>
             <span class="ident">items</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">item</span><span class="op">|</span> <span class="ident">item</span>.<span class="ident">as_ref</span>().<span class="ident">as_ptr</span>()).<span class="ident">collect</span>();
         <span class="kw">unsafe</span> {
@@ -1029,7 +1029,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> <span class="ident">Ui</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">plot_lines</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">values</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> [<span class="ident">f32</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PlotLines</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">plot_lines</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">values</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> [<span class="ident">f32</span>]) -&gt; <span class="ident">PlotLines</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
         <span class="ident">PlotLines::new</span>(<span class="self">self</span>, <span class="ident">label</span>, <span class="ident">values</span>)
     }
 }
@@ -1039,7 +1039,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>,
         <span class="ident">values</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> [<span class="ident">f32</span>],
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PlotHistogram</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="ident">PlotHistogram</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span>, <span class="lifetime">&#39;p</span><span class="op">&gt;</span> {
         <span class="ident">PlotHistogram::new</span>(<span class="self">self</span>, <span class="ident">label</span>, <span class="ident">values</span>)
     }
 }
@@ -1056,7 +1056,7 @@
         <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">ImStr</span>,
         <span class="ident">hide_text_after_double_hash</span>: <span class="ident">bool</span>,
         <span class="ident">wrap_width</span>: <span class="ident">f32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">2</span>] {
+    ) -&gt; [<span class="ident">f32</span>; <span class="number">2</span>] {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">sys::ImVec2::zero</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">sys::igCalcTextSize</span>(
@@ -1103,17 +1103,17 @@
     <span class="doccomment">/// }</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_window_draw_list</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;ui</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DrawListMut</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_window_draw_list</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;ui</span> <span class="self">self</span>) -&gt; <span class="ident">DrawListMut</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> {
         <span class="ident">DrawListMut::window</span>(<span class="self">self</span>)
     }
 
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_background_draw_list</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;ui</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DrawListMut</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_background_draw_list</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;ui</span> <span class="self">self</span>) -&gt; <span class="ident">DrawListMut</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> {
         <span class="ident">DrawListMut::background</span>(<span class="self">self</span>)
     }
 
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_foreground_draw_list</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;ui</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DrawListMut</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_foreground_draw_list</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;ui</span> <span class="self">self</span>) -&gt; <span class="ident">DrawListMut</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> {
         <span class="ident">DrawListMut::foreground</span>(<span class="self">self</span>)
     }
 }

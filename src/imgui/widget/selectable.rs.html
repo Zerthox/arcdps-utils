@@ -167,7 +167,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Selectable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Constructs a new selectable builder.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="ident">ImStr</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Selectable</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="ident">ImStr</span>) -&gt; <span class="ident">Selectable</span> {
         <span class="ident">Selectable</span> {
             <span class="ident">label</span>,
             <span class="ident">selected</span>: <span class="bool-val">false</span>,
@@ -177,13 +177,13 @@
     }
     <span class="doccomment">/// Replaces all current settings with the given flags</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">flags</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">flags</span>: <span class="ident">SelectableFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">flags</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">flags</span>: <span class="ident">SelectableFlags</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">flags</span> <span class="op">=</span> <span class="ident">flags</span>;
         <span class="self">self</span>
     }
     <span class="doccomment">/// Sets the selected state of the selectable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">selected</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">selected</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">selected</span> <span class="op">=</span> <span class="ident">selected</span>;
         <span class="self">self</span>
     }
@@ -191,7 +191,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Default: enabled</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">close_popups</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">close_popups</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">flags</span>.<span class="ident">set</span>(<span class="ident">SelectableFlags::DONT_CLOSE_POPUPS</span>, <span class="op">!</span><span class="ident">value</span>);
         <span class="self">self</span>
     }
@@ -199,7 +199,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Default: disabled</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">span_all_columns</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">span_all_columns</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">flags</span>.<span class="ident">set</span>(<span class="ident">SelectableFlags::SPAN_ALL_COLUMNS</span>, <span class="ident">value</span>);
         <span class="self">self</span>
     }
@@ -207,7 +207,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Default: disabled</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">allow_double_click</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">allow_double_click</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">flags</span>.<span class="ident">set</span>(<span class="ident">SelectableFlags::ALLOW_DOUBLE_CLICK</span>, <span class="ident">value</span>);
         <span class="self">self</span>
     }
@@ -217,7 +217,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Default: disabled</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">disabled</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">disabled</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">flags</span>.<span class="ident">set</span>(<span class="ident">SelectableFlags::DISABLED</span>, <span class="ident">value</span>);
         <span class="self">self</span>
     }
@@ -233,14 +233,14 @@
     <span class="doccomment">/// - `&gt; 0.0`: use given height</span>
     <span class="doccomment">/// - `= 0.0`: use label height</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">size</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">size</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">size</span> <span class="op">=</span> <span class="ident">size</span>;
         <span class="self">self</span>
     }
     <span class="doccomment">/// Builds the selectable.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns true if the selectable was clicked.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">sys::igSelectableBool</span>(
                 <span class="self">self</span>.<span class="ident">label</span>.<span class="ident">as_ptr</span>(),
@@ -255,7 +255,7 @@
 <span class="doccomment">/// # Convenience functions</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Selectable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Builds the selectable using a mutable reference to selected state.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build_with_ref</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>, <span class="ident">selected</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build_with_ref</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>, <span class="ident">selected</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">selected</span>(<span class="kw-2">*</span><span class="ident">selected</span>).<span class="ident">build</span>(<span class="ident">ui</span>) {
             <span class="kw-2">*</span><span class="ident">selected</span> <span class="op">=</span> <span class="op">!</span><span class="kw-2">*</span><span class="ident">selected</span>;
             <span class="bool-val">true</span>

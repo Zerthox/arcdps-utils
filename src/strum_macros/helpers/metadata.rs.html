@@ -333,7 +333,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">EnumMeta</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lookahead</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">lookahead1</span>();
         <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::serialize_all</span>) {
             <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">kw::serialize_all</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
@@ -360,11 +360,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Spanned</span> <span class="kw">for</span> <span class="ident">EnumMeta</span> {
-    <span class="kw">fn</span> <span class="ident">span</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Span</span> {
+    <span class="kw">fn</span> <span class="ident">span</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Span</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">EnumMeta::SerializeAll</span> { <span class="ident">kw</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>(),
-            <span class="ident">EnumMeta::AsciiCaseInsensitive</span>(<span class="ident">kw</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>(),
-            <span class="ident">EnumMeta::Crate</span> { <span class="ident">kw</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>(),
+            <span class="ident">EnumMeta::SerializeAll</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>(),
+            <span class="ident">EnumMeta::AsciiCaseInsensitive</span>(<span class="ident">kw</span>) =&gt; <span class="ident">kw</span>.<span class="ident">span</span>(),
+            <span class="ident">EnumMeta::Crate</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>(),
         }
     }
 }
@@ -377,7 +377,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">EnumDiscriminantsMeta</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">kw::derive</span>) {
             <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">content</span>;
@@ -410,30 +410,30 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Spanned</span> <span class="kw">for</span> <span class="ident">EnumDiscriminantsMeta</span> {
-    <span class="kw">fn</span> <span class="ident">span</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Span</span> {
+    <span class="kw">fn</span> <span class="ident">span</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Span</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">EnumDiscriminantsMeta::Derive</span> { <span class="ident">kw</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">EnumDiscriminantsMeta::Name</span> { <span class="ident">kw</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">EnumDiscriminantsMeta::Vis</span> { <span class="ident">kw</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">EnumDiscriminantsMeta::Other</span> { <span class="ident">path</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">path</span>.<span class="ident">span</span>(),
+            <span class="ident">EnumDiscriminantsMeta::Derive</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
+            <span class="ident">EnumDiscriminantsMeta::Name</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
+            <span class="ident">EnumDiscriminantsMeta::Vis</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
+            <span class="ident">EnumDiscriminantsMeta::Other</span> { <span class="ident">path</span>, .. } =&gt; <span class="ident">path</span>.<span class="ident">span</span>(),
         }
     }
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">DeriveInputExt</span> {
     <span class="doccomment">/// Get all the strum metadata associated with an enum.</span>
-    <span class="kw">fn</span> <span class="ident">get_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EnumMeta</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EnumMeta</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Get all the strum_discriminants metadata associated with an enum.</span>
-    <span class="kw">fn</span> <span class="ident">get_discriminants_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EnumDiscriminantsMeta</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_discriminants_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EnumDiscriminantsMeta</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 }
 
 <span class="kw">impl</span> <span class="ident">DeriveInputExt</span> <span class="kw">for</span> <span class="ident">DeriveInput</span> {
-    <span class="kw">fn</span> <span class="ident">get_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EnumMeta</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EnumMeta</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="ident">get_metadata_inner</span>(<span class="string">&quot;strum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">attrs</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">get_discriminants_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EnumDiscriminantsMeta</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_discriminants_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EnumDiscriminantsMeta</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="ident">get_metadata_inner</span>(<span class="string">&quot;strum_discriminants&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">attrs</span>)
     }
 }
@@ -468,7 +468,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">VariantMeta</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lookahead</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">lookahead1</span>();
         <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::message</span>) {
             <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
@@ -524,7 +524,7 @@
 <span class="kw">struct</span> <span class="ident">Prop</span>(<span class="ident">Ident</span>, <span class="ident">LitStr</span>);
 
 <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">Prop</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">use</span> <span class="ident">syn::ext::IdentExt</span>;
 
         <span class="kw">let</span> <span class="ident">k</span> <span class="op">=</span> <span class="ident">Ident::parse_any</span>(<span class="kw-2">&amp;</span><span class="ident">input</span>)<span class="question-mark">?</span>;
@@ -536,27 +536,27 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Spanned</span> <span class="kw">for</span> <span class="ident">VariantMeta</span> {
-    <span class="kw">fn</span> <span class="ident">span</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Span</span> {
+    <span class="kw">fn</span> <span class="ident">span</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Span</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">VariantMeta::Message</span> { <span class="ident">kw</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::DetailedMessage</span> { <span class="ident">kw</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::Serialize</span> { <span class="ident">kw</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::ToString</span> { <span class="ident">kw</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::Disabled</span>(<span class="ident">kw</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::Default</span>(<span class="ident">kw</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::AsciiCaseInsensitive</span> { <span class="ident">kw</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::Props</span> { <span class="ident">kw</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">kw</span>.<span class="ident">span</span>,
+            <span class="ident">VariantMeta::Message</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
+            <span class="ident">VariantMeta::DetailedMessage</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
+            <span class="ident">VariantMeta::Serialize</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
+            <span class="ident">VariantMeta::ToString</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
+            <span class="ident">VariantMeta::Disabled</span>(<span class="ident">kw</span>) =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
+            <span class="ident">VariantMeta::Default</span>(<span class="ident">kw</span>) =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
+            <span class="ident">VariantMeta::AsciiCaseInsensitive</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
+            <span class="ident">VariantMeta::Props</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
         }
     }
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">VariantExt</span> {
     <span class="doccomment">/// Get all the metadata associated with an enum variant.</span>
-    <span class="kw">fn</span> <span class="ident">get_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">VariantMeta</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">VariantMeta</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 }
 
 <span class="kw">impl</span> <span class="ident">VariantExt</span> <span class="kw">for</span> <span class="ident">Variant</span> {
-    <span class="kw">fn</span> <span class="ident">get_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">VariantMeta</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">VariantMeta</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="ident">get_metadata_inner</span>(<span class="string">&quot;strum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">attrs</span>)
     }
 }
@@ -564,7 +564,7 @@
 <span class="kw">fn</span> <span class="ident">get_metadata_inner</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">Parse</span> <span class="op">+</span> <span class="ident">Spanned</span><span class="op">&gt;</span>(
     <span class="ident">ident</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     <span class="ident">it</span>: <span class="kw">impl</span> <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Attribute</span><span class="op">&gt;</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="ident">it</span>.<span class="ident">into_iter</span>()
         .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">attr</span><span class="op">|</span> <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">is_ident</span>(<span class="ident">ident</span>))
         .<span class="ident">try_fold</span>(<span class="ident">Vec::new</span>(), <span class="op">|</span><span class="kw-2">mut</span> <span class="ident">vec</span>, <span class="ident">attr</span><span class="op">|</span> {

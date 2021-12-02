@@ -100,25 +100,25 @@
     <span class="doccomment">/// Returns the horizontal scrolling position.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Value is between 0.0 and self.scroll_max_x().</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scroll_x</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scroll_x</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetScrollX</span>() }
     }
     <span class="doccomment">/// Returns the vertical scrolling position.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Value is between 0.0 and self.scroll_max_y().</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scroll_y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scroll_y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetScrollY</span>() }
     }
     <span class="doccomment">/// Returns the maximum horizontal scrolling position.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Roughly equal to content size X - window size X.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scroll_max_x</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scroll_max_x</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetScrollMaxX</span>() }
     }
     <span class="doccomment">/// Returns the maximum vertical scrolling position.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Roughly equal to content size Y - window size Y.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scroll_max_y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scroll_max_y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetScrollMaxY</span>() }
     }
     <span class="doccomment">/// Sets the horizontal scrolling position</span>

@@ -1244,20 +1244,20 @@
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PNTSTATUS</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">NTSTATUS</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCNTSTATUS</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">NTSTATUS</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">NT_SUCCESS</span>(<span class="ident">Status</span>: <span class="ident">NTSTATUS</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">NT_SUCCESS</span>(<span class="ident">Status</span>: <span class="ident">NTSTATUS</span>) -&gt; <span class="ident">bool</span> {
     <span class="ident">Status</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">NT_INFORMATION</span>(<span class="ident">Status</span>: <span class="ident">NTSTATUS</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-    ((<span class="ident">Status</span> <span class="kw">as</span> <span class="ident">ULONG</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">30</span>) <span class="op">=</span><span class="op">=</span> <span class="number">1</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">NT_INFORMATION</span>(<span class="ident">Status</span>: <span class="ident">NTSTATUS</span>) -&gt; <span class="ident">bool</span> {
+    ((<span class="ident">Status</span> <span class="kw">as</span> <span class="ident">ULONG</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">30</span>) <span class="op">==</span> <span class="number">1</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">NT_WARNING</span>(<span class="ident">Status</span>: <span class="ident">NTSTATUS</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-    ((<span class="ident">Status</span> <span class="kw">as</span> <span class="ident">ULONG</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">30</span>) <span class="op">=</span><span class="op">=</span> <span class="number">2</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">NT_WARNING</span>(<span class="ident">Status</span>: <span class="ident">NTSTATUS</span>) -&gt; <span class="ident">bool</span> {
+    ((<span class="ident">Status</span> <span class="kw">as</span> <span class="ident">ULONG</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">30</span>) <span class="op">==</span> <span class="number">2</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">NT_ERROR</span>(<span class="ident">Status</span>: <span class="ident">NTSTATUS</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-    ((<span class="ident">Status</span> <span class="kw">as</span> <span class="ident">ULONG</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">30</span>) <span class="op">=</span><span class="op">=</span> <span class="number">3</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">NT_ERROR</span>(<span class="ident">Status</span>: <span class="ident">NTSTATUS</span>) -&gt; <span class="ident">bool</span> {
+    ((<span class="ident">Status</span> <span class="kw">as</span> <span class="ident">ULONG</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">30</span>) <span class="op">==</span> <span class="number">3</span>
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">APPLICATION_ERROR_MASK</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x20000000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ERROR_SEVERITY_SUCCESS</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000000</span>;
@@ -1278,7 +1278,7 @@
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLONGLONG</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LONGLONG</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PULONGLONG</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ULONGLONG</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">USN</span> <span class="op">=</span> <span class="ident">LONGLONG</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">LARGE_INTEGER</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">LARGE_INTEGER</span> {
     [<span class="ident">i64</span>; <span class="number">1</span>],
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">LARGE_INTEGER_s</span>,
     <span class="ident">u</span> <span class="ident">u_mut</span>: <span class="ident">LARGE_INTEGER_u</span>,
@@ -1293,7 +1293,7 @@
     <span class="ident">HighPart</span>: <span class="ident">LONG</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLARGE_INTEGER</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LARGE_INTEGER</span>;
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">ULARGE_INTEGER</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">ULARGE_INTEGER</span> {
     [<span class="ident">u64</span>; <span class="number">1</span>],
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">ULARGE_INTEGER_s</span>,
     <span class="ident">u</span> <span class="ident">u_mut</span>: <span class="ident">ULARGE_INTEGER_s</span>,
@@ -1382,7 +1382,7 @@
     <span class="ident">u</span>: <span class="ident">RTL_BALANCED_NODE_u</span>,
     <span class="ident">ParentValue</span>: <span class="ident">ULONG_PTR</span>,
 }}
-<span class="macro">UNION!</span>{<span class="ident">union</span> <span class="ident">RTL_BALANCED_NODE_u</span> {
+<span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">RTL_BALANCED_NODE_u</span> {
     [<span class="ident">usize</span>; <span class="number">2</span>],
     <span class="ident">Children</span> <span class="ident">Children_mut</span>: [<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">RTL_BALANCED_NODE</span>; <span class="number">2</span>],
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">RTL_BALANCED_NODE_s</span>,
@@ -1396,7 +1396,7 @@
 <span class="attribute">#[<span class="ident">inline</span>]</span>
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">RTL_BALANCED_NODE_GET_PARENT_POINTER</span>(
     <span class="ident">Node</span>: <span class="ident">PRTL_BALANCED_NODE</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PRTL_BALANCED_NODE</span> {
+) -&gt; <span class="ident">PRTL_BALANCED_NODE</span> {
     ((<span class="kw-2">*</span><span class="ident">Node</span>).<span class="ident">ParentValue</span> <span class="op">&amp;</span> <span class="op">!</span><span class="ident">RTL_BALANCED_NODE_RESERVED_PARENT_MASK</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">RTL_BALANCED_NODE</span>
 }
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">LIST_ENTRY32</span> {
@@ -2114,36 +2114,36 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SORT_GEORGIAN_TRADITIONAL</span>: <span class="ident">USHORT</span> <span class="op">=</span> <span class="number">0x0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SORT_GEORGIAN_MODERN</span>: <span class="ident">USHORT</span> <span class="op">=</span> <span class="number">0x1</span>;
 <span class="macro">macro_rules!</span> <span class="ident">MAKELANGID</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">s</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">s</span>:<span class="ident">expr</span>) =&gt; {
         ((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">s</span> <span class="kw">as</span> <span class="ident">USHORT</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>) <span class="op">|</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">p</span> <span class="kw">as</span> <span class="ident">USHORT</span>)
     }
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKELANGID</span>(<span class="ident">p</span>: <span class="ident">USHORT</span>, <span class="ident">s</span>: <span class="ident">USHORT</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LANGID</span> { (<span class="ident">s</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>) <span class="op">|</span> <span class="ident">p</span> }
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKELANGID</span>(<span class="ident">p</span>: <span class="ident">USHORT</span>, <span class="ident">s</span>: <span class="ident">USHORT</span>) -&gt; <span class="ident">LANGID</span> { (<span class="ident">s</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>) <span class="op">|</span> <span class="ident">p</span> }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">PRIMARYLANGID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">USHORT</span> { <span class="ident">lgid</span> <span class="op">&amp;</span> <span class="number">0x3ff</span> }
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">PRIMARYLANGID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>) -&gt; <span class="ident">USHORT</span> { <span class="ident">lgid</span> <span class="op">&amp;</span> <span class="number">0x3ff</span> }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SUBLANGID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">USHORT</span> { <span class="ident">lgid</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">10</span> }
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SUBLANGID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>) -&gt; <span class="ident">USHORT</span> { <span class="ident">lgid</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">10</span> }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NLS_VALID_LOCALE_MASK</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x000fffff</span>;
 <span class="macro">macro_rules!</span> <span class="ident">MAKELCID</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lgid</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">srtid</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lgid</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">srtid</span>:<span class="ident">expr</span>) =&gt; {
         ((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">srtid</span> <span class="kw">as</span> <span class="ident">ULONG</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>) <span class="op">|</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lgid</span> <span class="kw">as</span> <span class="ident">ULONG</span>)
     }
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKELCID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>, <span class="ident">srtid</span>: <span class="ident">USHORT</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LCID</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKELCID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>, <span class="ident">srtid</span>: <span class="ident">USHORT</span>) -&gt; <span class="ident">LCID</span> {
     ((<span class="ident">srtid</span> <span class="kw">as</span> <span class="ident">ULONG</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>) <span class="op">|</span> (<span class="ident">lgid</span> <span class="kw">as</span> <span class="ident">ULONG</span>)
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKESORTLCID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>, <span class="ident">srtid</span>: <span class="ident">USHORT</span>, <span class="ident">ver</span>: <span class="ident">USHORT</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LCID</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKESORTLCID</span>(<span class="ident">lgid</span>: <span class="ident">LANGID</span>, <span class="ident">srtid</span>: <span class="ident">USHORT</span>, <span class="ident">ver</span>: <span class="ident">USHORT</span>) -&gt; <span class="ident">LCID</span> {
     <span class="ident">MAKELCID</span>(<span class="ident">lgid</span>, <span class="ident">srtid</span>) <span class="op">|</span> ((<span class="ident">ver</span> <span class="kw">as</span> <span class="ident">ULONG</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">20</span>)
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LANGIDFROMLCID</span>(<span class="ident">lcid</span>: <span class="ident">LCID</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LANGID</span> { <span class="ident">lcid</span> <span class="kw">as</span> <span class="ident">LANGID</span> }
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">LANGIDFROMLCID</span>(<span class="ident">lcid</span>: <span class="ident">LCID</span>) -&gt; <span class="ident">LANGID</span> { <span class="ident">lcid</span> <span class="kw">as</span> <span class="ident">LANGID</span> }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SORTIDFROMLCID</span>(<span class="ident">lcid</span>: <span class="ident">LCID</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">USHORT</span> { ((<span class="ident">lcid</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">16</span>) <span class="op">&amp;</span> <span class="number">0xf</span>) <span class="kw">as</span> <span class="ident">USHORT</span> }
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SORTIDFROMLCID</span>(<span class="ident">lcid</span>: <span class="ident">LCID</span>) -&gt; <span class="ident">USHORT</span> { ((<span class="ident">lcid</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">16</span>) <span class="op">&amp;</span> <span class="number">0xf</span>) <span class="kw">as</span> <span class="ident">USHORT</span> }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SORTVERSIONFROMLCID</span>(<span class="ident">lcid</span>: <span class="ident">LCID</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">USHORT</span> { ((<span class="ident">lcid</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">16</span>) <span class="op">&amp;</span> <span class="number">0xf</span>) <span class="kw">as</span> <span class="ident">USHORT</span> }
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SORTVERSIONFROMLCID</span>(<span class="ident">lcid</span>: <span class="ident">LCID</span>) -&gt; <span class="ident">USHORT</span> { ((<span class="ident">lcid</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">16</span>) <span class="op">&amp;</span> <span class="number">0xf</span>) <span class="kw">as</span> <span class="ident">USHORT</span> }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOCALE_NAME_MAX_LENGTH</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">85</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LANG_SYSTEM_DEFAULT</span>: <span class="ident">LANGID</span> <span class="op">=</span> <span class="macro">MAKELANGID!</span>(<span class="ident">LANG_NEUTRAL</span>, <span class="ident">SUBLANG_SYS_DEFAULT</span>);
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LANG_USER_DEFAULT</span>: <span class="ident">LANGID</span> <span class="op">=</span> <span class="macro">MAKELANGID!</span>(<span class="ident">LANG_NEUTRAL</span>, <span class="ident">SUBLANG_DEFAULT</span>);

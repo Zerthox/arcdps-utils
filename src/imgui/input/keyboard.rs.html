@@ -221,11 +221,11 @@
 
 <span class="kw">impl</span> <span class="ident">FocusedWidget</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">as_offset</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">fn</span> <span class="ident">as_offset</span>(<span class="self">self</span>) -&gt; <span class="ident">i32</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">FocusedWidget::Previous</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">-</span><span class="number">1</span>,
-            <span class="ident">FocusedWidget::Next</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">0</span>,
-            <span class="ident">FocusedWidget::Offset</span>(<span class="ident">offset</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">offset</span> <span class="kw">as</span> <span class="ident">i32</span>,
+            <span class="ident">FocusedWidget::Previous</span> =&gt; <span class="op">-</span><span class="number">1</span>,
+            <span class="ident">FocusedWidget::Next</span> =&gt; <span class="number">0</span>,
+            <span class="ident">FocusedWidget::Offset</span>(<span class="ident">offset</span>) =&gt; <span class="ident">offset</span> <span class="kw">as</span> <span class="ident">i32</span>,
         }
     }
 }
@@ -236,14 +236,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Equivalent to indexing the Io struct `key_map` field: `ui.io().key_map[key]`</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">key_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="ident">Key</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">fn</span> <span class="ident">key_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="ident">Key</span>) -&gt; <span class="ident">i32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetKeyIndex</span>(<span class="ident">key</span> <span class="kw">as</span> <span class="ident">i32</span>) }
     }
     <span class="doccomment">/// Returns true if the key is being held.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Equivalent to indexing the Io struct `keys_down` field: `ui.io().keys_down[key_index]`</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_key_down</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="ident">Key</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_key_down</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="ident">Key</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">key_index</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">key_index</span>(<span class="ident">key</span>);
         <span class="kw">unsafe</span> { <span class="ident">sys::igIsKeyDown</span>(<span class="ident">key_index</span>) }
     }
@@ -251,13 +251,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Affected by key repeat settings (`io.key_repeat_delay`, `io.key_repeat_rate`)</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_key_pressed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="ident">Key</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_key_pressed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="ident">Key</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">key_index</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">key_index</span>(<span class="ident">key</span>);
         <span class="kw">unsafe</span> { <span class="ident">sys::igIsKeyPressed</span>(<span class="ident">key_index</span>, <span class="bool-val">true</span>) }
     }
     <span class="doccomment">/// Returns true if the key was released (went from down to !down)</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_key_released</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="ident">Key</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_key_released</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="ident">Key</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">key_index</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">key_index</span>(<span class="ident">key</span>);
         <span class="kw">unsafe</span> { <span class="ident">sys::igIsKeyReleased</span>(<span class="ident">key_index</span>) }
     }
@@ -266,7 +266,7 @@
     <span class="doccomment">/// Usually returns 0 or 1, but might be &gt;1 if `rate` is small enough that `io.delta_time` &gt;</span>
     <span class="doccomment">/// `rate`.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">key_pressed_amount</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="ident">Key</span>, <span class="ident">repeat_delay</span>: <span class="ident">f32</span>, <span class="ident">rate</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">key_pressed_amount</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="ident">Key</span>, <span class="ident">repeat_delay</span>: <span class="ident">f32</span>, <span class="ident">rate</span>: <span class="ident">f32</span>) -&gt; <span class="ident">u32</span> {
         <span class="kw">let</span> <span class="ident">key_index</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">key_index</span>(<span class="ident">key</span>);
         <span class="kw">unsafe</span> { <span class="ident">sys::igGetKeyPressedAmount</span>(<span class="ident">key_index</span>, <span class="ident">repeat_delay</span>, <span class="ident">rate</span>) <span class="kw">as</span> <span class="ident">u32</span> }
     }

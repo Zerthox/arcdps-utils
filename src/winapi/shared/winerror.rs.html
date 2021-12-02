@@ -9093,52 +9093,52 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SEVERITY_SUCCESS</span>: <span class="ident">HRESULT</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SEVERITY_ERROR</span>: <span class="ident">HRESULT</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SUCCEEDED</span>(<span class="ident">hr</span>: <span class="ident">HRESULT</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SUCCEEDED</span>(<span class="ident">hr</span>: <span class="ident">HRESULT</span>) -&gt; <span class="ident">bool</span> {
     <span class="ident">hr</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FAILED</span>(<span class="ident">hr</span>: <span class="ident">HRESULT</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FAILED</span>(<span class="ident">hr</span>: <span class="ident">HRESULT</span>) -&gt; <span class="ident">bool</span> {
     <span class="ident">hr</span> <span class="op">&lt;</span> <span class="number">0</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IS_ERROR</span>(<span class="ident">hr</span>: <span class="ident">HRESULT</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-    (<span class="ident">hr</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">31</span> <span class="op">=</span><span class="op">=</span> (<span class="ident">SEVERITY_ERROR</span> <span class="kw">as</span> <span class="ident">u32</span>)
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IS_ERROR</span>(<span class="ident">hr</span>: <span class="ident">HRESULT</span>) -&gt; <span class="ident">bool</span> {
+    (<span class="ident">hr</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">31</span> <span class="op">==</span> (<span class="ident">SEVERITY_ERROR</span> <span class="kw">as</span> <span class="ident">u32</span>)
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">HRESULT_CODE</span>(<span class="ident">hr</span>: <span class="ident">HRESULT</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HRESULT</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">HRESULT_CODE</span>(<span class="ident">hr</span>: <span class="ident">HRESULT</span>) -&gt; <span class="ident">HRESULT</span> {
     <span class="ident">hr</span> <span class="op">&amp;</span> <span class="number">0xFFFF</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SCODE_CODE</span>(<span class="ident">sc</span>: <span class="ident">SCODE</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HRESULT</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SCODE_CODE</span>(<span class="ident">sc</span>: <span class="ident">SCODE</span>) -&gt; <span class="ident">HRESULT</span> {
     <span class="ident">sc</span> <span class="op">&amp;</span> <span class="number">0xFFFF</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">HRESULT_FACILITY</span>(<span class="ident">hr</span>: <span class="ident">HRESULT</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HRESULT</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">HRESULT_FACILITY</span>(<span class="ident">hr</span>: <span class="ident">HRESULT</span>) -&gt; <span class="ident">HRESULT</span> {
     (<span class="ident">hr</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">16</span>) <span class="op">&amp;</span> <span class="number">0x1fff</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SCODE_FACILITY</span>(<span class="ident">sc</span>: <span class="ident">SCODE</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HRESULT</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SCODE_FACILITY</span>(<span class="ident">sc</span>: <span class="ident">SCODE</span>) -&gt; <span class="ident">HRESULT</span> {
     (<span class="ident">sc</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">16</span>) <span class="op">&amp;</span> <span class="number">0x1fff</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">HRESULT_SEVERITY</span>(<span class="ident">hr</span>: <span class="ident">HRESULT</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HRESULT</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">HRESULT_SEVERITY</span>(<span class="ident">hr</span>: <span class="ident">HRESULT</span>) -&gt; <span class="ident">HRESULT</span> {
     (<span class="ident">hr</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">31</span>) <span class="op">&amp;</span> <span class="number">0x1</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SCODE_SEVERITY</span>(<span class="ident">sc</span>: <span class="ident">SCODE</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HRESULT</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SCODE_SEVERITY</span>(<span class="ident">sc</span>: <span class="ident">SCODE</span>) -&gt; <span class="ident">HRESULT</span> {
     (<span class="ident">sc</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">31</span>) <span class="op">&amp;</span> <span class="number">0x1</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKE_HRESULT</span>(<span class="ident">sev</span>: <span class="ident">HRESULT</span>, <span class="ident">fac</span>: <span class="ident">HRESULT</span>, <span class="ident">code</span>: <span class="ident">HRESULT</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HRESULT</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKE_HRESULT</span>(<span class="ident">sev</span>: <span class="ident">HRESULT</span>, <span class="ident">fac</span>: <span class="ident">HRESULT</span>, <span class="ident">code</span>: <span class="ident">HRESULT</span>) -&gt; <span class="ident">HRESULT</span> {
     (<span class="ident">sev</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">31</span>) <span class="op">|</span> (<span class="ident">fac</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>) <span class="op">|</span> <span class="ident">code</span>
 }
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKE_SCODE</span>(<span class="ident">sev</span>: <span class="ident">HRESULT</span>, <span class="ident">fac</span>: <span class="ident">HRESULT</span>, <span class="ident">code</span>: <span class="ident">HRESULT</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SCODE</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MAKE_SCODE</span>(<span class="ident">sev</span>: <span class="ident">HRESULT</span>, <span class="ident">fac</span>: <span class="ident">HRESULT</span>, <span class="ident">code</span>: <span class="ident">HRESULT</span>) -&gt; <span class="ident">SCODE</span> {
     (<span class="ident">sev</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">31</span>) <span class="op">|</span> (<span class="ident">fac</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>) <span class="op">|</span> <span class="ident">code</span>
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FACILITY_NT_BIT</span>: <span class="ident">HRESULT</span> <span class="op">=</span> <span class="number">0x10000000</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">HRESULT_FROM_WIN32</span>(<span class="ident">x</span>: <span class="ident">c_ulong</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HRESULT</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">HRESULT_FROM_WIN32</span>(<span class="ident">x</span>: <span class="ident">c_ulong</span>) -&gt; <span class="ident">HRESULT</span> {
     <span class="kw">if</span> <span class="ident">x</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0</span> {
         <span class="ident">x</span> <span class="kw">as</span> <span class="ident">i32</span>
     } <span class="kw">else</span> {
@@ -9147,7 +9147,7 @@
 }
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">HRESULT</span> <span class="op">=</span> <span class="ident">c_long</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">HRESULT_FROM_NT</span>(<span class="ident">x</span>: <span class="ident">c_ulong</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HRESULT</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">HRESULT_FROM_NT</span>(<span class="ident">x</span>: <span class="ident">c_ulong</span>) -&gt; <span class="ident">HRESULT</span> {
     (<span class="ident">x</span> <span class="op">|</span> <span class="ident">FACILITY_NT_BIT</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="kw">as</span> <span class="ident">i32</span>
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NOERROR</span>: <span class="ident">HRESULT</span> <span class="op">=</span> <span class="number">0</span>;

@@ -454,7 +454,7 @@
     <span class="doccomment">/// ui.text(&quot;I use the custom font!&quot;);</span>
     <span class="doccomment">/// font.pop(&amp;ui);</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_font</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">FontId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontStackToken</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_font</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">FontId</span>) -&gt; <span class="ident">FontStackToken</span> {
         <span class="kw">let</span> <span class="ident">fonts</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">fonts</span>();
         <span class="kw">let</span> <span class="ident">font</span> <span class="op">=</span> <span class="ident">fonts</span>
             .<span class="ident">get_font</span>(<span class="ident">id</span>)
@@ -477,7 +477,7 @@
     <span class="doccomment">/// ui.text(&quot;I&#39;m red!&quot;);</span>
     <span class="doccomment">/// color.pop(&amp;ui);</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_style_color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">style_color</span>: <span class="ident">StyleColor</span>, <span class="ident">color</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorStackToken</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_style_color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">style_color</span>: <span class="ident">StyleColor</span>, <span class="ident">color</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) -&gt; <span class="ident">ColorStackToken</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igPushStyleColorVec4</span>(<span class="ident">style_color</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">color</span>.<span class="ident">into</span>()) };
         <span class="ident">ColorStackToken</span> {
             <span class="ident">count</span>: <span class="number">1</span>,
@@ -504,7 +504,7 @@
     <span class="doccomment">/// ui.text_disabled(&quot;I&#39;m green!&quot;);</span>
     <span class="doccomment">/// colors.pop(&amp;ui);</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_style_colors</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">style_colors</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorStackToken</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_style_colors</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">style_colors</span>: <span class="ident">I</span>) -&gt; <span class="ident">ColorStackToken</span>
     <span class="kw">where</span>
         <span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> (<span class="ident">StyleColor</span>, [<span class="ident">f32</span>; <span class="number">4</span>])<span class="op">&gt;</span>,
     {
@@ -532,7 +532,7 @@
     <span class="doccomment">/// ui.text(&quot;I&#39;m transparent!&quot;);</span>
     <span class="doccomment">/// style.pop(&amp;ui);</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_style_var</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">style_var</span>: <span class="ident">StyleVar</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyleStackToken</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_style_var</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">style_var</span>: <span class="ident">StyleVar</span>) -&gt; <span class="ident">StyleStackToken</span> {
         <span class="kw">unsafe</span> { <span class="ident">push_style_var</span>(<span class="ident">style_var</span>) };
         <span class="ident">StyleStackToken</span> {
             <span class="ident">count</span>: <span class="number">1</span>,
@@ -557,7 +557,7 @@
     <span class="doccomment">/// ui.text(&quot;...with large spacing as well&quot;);</span>
     <span class="doccomment">/// styles.pop(&amp;ui);</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_style_vars</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">style_vars</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyleStackToken</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_style_vars</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">style_vars</span>: <span class="ident">I</span>) -&gt; <span class="ident">StyleStackToken</span>
     <span class="kw">where</span>
         <span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">StyleVar</span><span class="op">&gt;</span>,
     {
@@ -646,38 +646,38 @@
     <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::style::StyleVar</span>::<span class="kw-2">*</span>;
     <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sys</span>::{<span class="ident">igPushStyleVarFloat</span>, <span class="ident">igPushStyleVarVec2</span>};
     <span class="kw">match</span> <span class="ident">style_var</span> {
-        <span class="ident">Alpha</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_Alpha</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">WindowPadding</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_WindowPadding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>()),
-        <span class="ident">WindowRounding</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_WindowRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">WindowBorderSize</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_WindowBorderSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">WindowMinSize</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_WindowMinSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>()),
-        <span class="ident">WindowTitleAlign</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">Alpha</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_Alpha</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">WindowPadding</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_WindowPadding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>()),
+        <span class="ident">WindowRounding</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_WindowRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">WindowBorderSize</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_WindowBorderSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">WindowMinSize</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_WindowMinSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>()),
+        <span class="ident">WindowTitleAlign</span>(<span class="ident">v</span>) =&gt; {
             <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_WindowTitleAlign</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>())
         }
-        <span class="ident">ChildRounding</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_ChildRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">ChildBorderSize</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_ChildBorderSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">PopupRounding</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_PopupRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">PopupBorderSize</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_PopupBorderSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">FramePadding</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_FramePadding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>()),
-        <span class="ident">FrameRounding</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_FrameRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">FrameBorderSize</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_FrameBorderSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">ItemSpacing</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_ItemSpacing</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>()),
-        <span class="ident">ItemInnerSpacing</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">ChildRounding</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_ChildRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">ChildBorderSize</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_ChildBorderSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">PopupRounding</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_PopupRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">PopupBorderSize</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_PopupBorderSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">FramePadding</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_FramePadding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>()),
+        <span class="ident">FrameRounding</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_FrameRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">FrameBorderSize</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_FrameBorderSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">ItemSpacing</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_ItemSpacing</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>()),
+        <span class="ident">ItemInnerSpacing</span>(<span class="ident">v</span>) =&gt; {
             <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_ItemInnerSpacing</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>())
         }
-        <span class="ident">IndentSpacing</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_IndentSpacing</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">ScrollbarSize</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_ScrollbarSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">ScrollbarRounding</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_ScrollbarRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">GrabMinSize</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_GrabMinSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">GrabRounding</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_GrabRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">TabRounding</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_TabRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
-        <span class="ident">ButtonTextAlign</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">IndentSpacing</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_IndentSpacing</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">ScrollbarSize</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_ScrollbarSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">ScrollbarRounding</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_ScrollbarRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">GrabMinSize</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_GrabMinSize</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">GrabRounding</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_GrabRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">TabRounding</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarFloat</span>(<span class="ident">sys::ImGuiStyleVar_TabRounding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>),
+        <span class="ident">ButtonTextAlign</span>(<span class="ident">v</span>) =&gt; {
             <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_ButtonTextAlign</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>())
         }
-        <span class="ident">SelectableTextAlign</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">SelectableTextAlign</span>(<span class="ident">v</span>) =&gt; {
             <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_SelectableTextAlign</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>())
         }
-        <span class="ident">CellPadding</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_CellPadding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>())
+        <span class="ident">CellPadding</span>(<span class="ident">v</span>) =&gt; <span class="ident">igPushStyleVarVec2</span>(<span class="ident">sys::ImGuiStyleVar_CellPadding</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">v</span>.<span class="ident">into</span>())
     }
 }
 
@@ -691,7 +691,7 @@
     <span class="doccomment">/// - `= 0.0`: default to ~2/3 of window width</span>
     <span class="doccomment">/// - `&lt; 0.0`: `item_width` pixels relative to the right of window (-1.0 always aligns width to</span>
     <span class="doccomment">/// the right side)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_item_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">item_width</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ItemWidthStackToken</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_item_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">item_width</span>: <span class="ident">f32</span>) -&gt; <span class="ident">ItemWidthStackToken</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igPushItemWidth</span>(<span class="ident">item_width</span>) };
         <span class="ident">ItemWidthStackToken</span> { <span class="ident">_ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span> }
     }
@@ -707,7 +707,7 @@
     <span class="doccomment">/// Returns the width of the item given the pushed settings and the current cursor position.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is NOT necessarily the width of last item.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">calc_item_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">calc_item_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igCalcItemWidth</span>() }
     }
     <span class="doccomment">/// Changes the text wrapping position by pushing a change to the text wrapping position stack.</span>
@@ -717,18 +717,18 @@
     <span class="doccomment">/// - `&gt; 0.0`: wrap at `wrap_pos_x` position in window local space</span>
     <span class="doccomment">/// - `= 0.0`: wrap to end of window (or column)</span>
     <span class="doccomment">/// - `&lt; 0.0`: no wrapping</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_text_wrap_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wrap_pos_x</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextWrapPosStackToken</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_text_wrap_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wrap_pos_x</span>: <span class="ident">f32</span>) -&gt; <span class="ident">TextWrapPosStackToken</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igPushTextWrapPos</span>(<span class="ident">wrap_pos_x</span>) };
         <span class="ident">TextWrapPosStackToken</span> { <span class="ident">_ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span> }
     }
     <span class="doccomment">/// Changes an item flag by pushing a change to the item flag stack.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns a `ItemFlagsStackToken` that may be popped by calling `.pop()`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_item_flag</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">item_flag</span>: <span class="ident">ItemFlag</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ItemFlagsStackToken</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_item_flag</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">item_flag</span>: <span class="ident">ItemFlag</span>) -&gt; <span class="ident">ItemFlagsStackToken</span> {
         <span class="kw">use</span> <span class="ident"><span class="self">self</span>::ItemFlag</span>::<span class="kw-2">*</span>;
         <span class="kw">match</span> <span class="ident">item_flag</span> {
-            <span class="ident">AllowKeyboardFocus</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> { <span class="ident">sys::igPushAllowKeyboardFocus</span>(<span class="ident">v</span>) },
-            <span class="ident">ButtonRepeat</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> { <span class="ident">sys::igPushButtonRepeat</span>(<span class="ident">v</span>) },
+            <span class="ident">AllowKeyboardFocus</span>(<span class="ident">v</span>) =&gt; <span class="kw">unsafe</span> { <span class="ident">sys::igPushAllowKeyboardFocus</span>(<span class="ident">v</span>) },
+            <span class="ident">ButtonRepeat</span>(<span class="ident">v</span>) =&gt; <span class="kw">unsafe</span> { <span class="ident">sys::igPushButtonRepeat</span>(<span class="ident">v</span>) },
         }
         <span class="ident">ItemFlagsStackToken</span> {
             <span class="ident">discriminant</span>: <span class="ident">mem::discriminant</span>(<span class="kw-2">&amp;</span><span class="ident">item_flag</span>),
@@ -783,9 +783,9 @@
         <span class="kw">const</span> <span class="ident">ALLOW_KEYBOARD_FOCUS</span>: <span class="ident">ItemFlag</span> <span class="op">=</span> <span class="ident">ItemFlag::AllowKeyboardFocus</span>(<span class="bool-val">true</span>);
         <span class="kw">const</span> <span class="ident">BUTTON_REPEAT</span>: <span class="ident">ItemFlag</span> <span class="op">=</span> <span class="ident">ItemFlag::ButtonRepeat</span>(<span class="bool-val">true</span>);
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">discriminant</span> <span class="op">=</span><span class="op">=</span> <span class="ident">mem::discriminant</span>(<span class="kw-2">&amp;</span><span class="ident">ALLOW_KEYBOARD_FOCUS</span>) {
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">discriminant</span> <span class="op">==</span> <span class="ident">mem::discriminant</span>(<span class="kw-2">&amp;</span><span class="ident">ALLOW_KEYBOARD_FOCUS</span>) {
             <span class="kw">unsafe</span> { <span class="ident">sys::igPopAllowKeyboardFocus</span>() };
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">discriminant</span> <span class="op">=</span><span class="op">=</span> <span class="ident">mem::discriminant</span>(<span class="kw-2">&amp;</span><span class="ident">BUTTON_REPEAT</span>) {
+        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">discriminant</span> <span class="op">==</span> <span class="ident">mem::discriminant</span>(<span class="kw-2">&amp;</span><span class="ident">BUTTON_REPEAT</span>) {
             <span class="kw">unsafe</span> { <span class="ident">sys::igPopButtonRepeat</span>() };
         } <span class="kw">else</span> {
             <span class="macro">unreachable!</span>();
@@ -799,18 +799,18 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns an `IdStackToken` that must be popped by calling `.pop()`</span>
     <span class="doccomment">///</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_id</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">IdStackToken</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_id</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">I</span>) -&gt; <span class="ident">IdStackToken</span> {
         <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">id</span>.<span class="ident">into</span>();
 
         <span class="kw">unsafe</span> {
             <span class="kw">match</span> <span class="ident">id</span> {
-                <span class="ident">Id::Int</span>(<span class="ident">i</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">sys::igPushIDInt</span>(<span class="ident">i</span>),
-                <span class="ident">Id::Str</span>(<span class="ident">s</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Id::Int</span>(<span class="ident">i</span>) =&gt; <span class="ident">sys::igPushIDInt</span>(<span class="ident">i</span>),
+                <span class="ident">Id::Str</span>(<span class="ident">s</span>) =&gt; {
                     <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>;
                     <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="ident">start</span>.<span class="ident">add</span>(<span class="ident">s</span>.<span class="ident">len</span>());
                     <span class="ident">sys::igPushIDStrStr</span>(<span class="ident">start</span>, <span class="ident">end</span>)
                 }
-                <span class="ident">Id::Ptr</span>(<span class="ident">p</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">sys::igPushIDPtr</span>(<span class="ident">p</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_void</span>),
+                <span class="ident">Id::Ptr</span>(<span class="ident">p</span>) =&gt; <span class="ident">sys::igPushIDPtr</span>(<span class="ident">p</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_void</span>),
             }
         }
         <span class="ident">IdStackToken</span> { <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span> }

@@ -101,7 +101,7 @@
 
 <span class="kw">impl</span> <span class="ident">Font</span> {
     <span class="doccomment">/// Returns the identifier of this font</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">FontId</span> {
         <span class="ident">FontId</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>)
     }
 }
@@ -113,7 +113,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">mem::align_of</span>::<span class="op">&lt;</span><span class="ident">Font</span><span class="op">&gt;</span>(), <span class="ident">mem::align_of</span>::<span class="op">&lt;</span><span class="ident">sys::ImFont</span><span class="op">&gt;</span>());
     <span class="kw">use</span> <span class="ident">sys::ImFont</span>;
     <span class="macro">macro_rules!</span> <span class="ident">assert_field_offset</span> {
-        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">l</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">r</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">l</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">r</span>:<span class="ident">ident</span>) =&gt; {
             <span class="macro">assert_eq!</span>(
                 <span class="macro">memoffset::offset_of!</span>(<span class="ident">Font</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">l</span>),
                 <span class="macro">memoffset::offset_of!</span>(<span class="ident">ImFont</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">r</span>)

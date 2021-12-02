@@ -602,7 +602,7 @@
         <span class="ident">sys::igSetCurrentContext</span>(<span class="ident">ptr::null_mut</span>());
     }
 }
-<span class="kw">fn</span> <span class="ident">no_current_context</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">fn</span> <span class="ident">no_current_context</span>() -&gt; <span class="ident">bool</span> {
     <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::igGetCurrentContext</span>() };
     <span class="ident">ctx</span>.<span class="ident">is_null</span>()
 }
@@ -613,7 +613,7 @@
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Panics if an active context already exists</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create</span>() -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::create_internal</span>(<span class="prelude-val">None</span>)
     }
     <span class="doccomment">/// Creates a new active imgui-rs context with a shared font atlas.</span>
@@ -621,11 +621,11 @@
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Panics if an active context already exists</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_with_shared_font_atlas</span>(<span class="ident">shared_font_atlas</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">SharedFontAtlas</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_with_shared_font_atlas</span>(<span class="ident">shared_font_atlas</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">SharedFontAtlas</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::create_internal</span>(<span class="prelude-val">Some</span>(<span class="ident">shared_font_atlas</span>))
     }
     <span class="doccomment">/// Gets the current context</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current</span>() -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::igGetCurrentContext</span>() };
         <span class="self">Self</span> {
             <span class="ident">raw</span>: <span class="ident">ctx</span>,
@@ -638,7 +638,7 @@
         }
     }
     <span class="doccomment">/// Suspends this context so another context can be the active context.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">suspend</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SuspendedContext</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">suspend</span>(<span class="self">self</span>) -&gt; <span class="ident">SuspendedContext</span> {
         <span class="kw">let</span> <span class="ident">_guard</span> <span class="op">=</span> <span class="ident">CTX_MUTEX</span>.<span class="ident">lock</span>();
         <span class="macro">assert!</span>(
             <span class="self">self</span>.<span class="ident">is_current_context</span>(),
@@ -648,7 +648,7 @@
         <span class="ident">SuspendedContext</span>(<span class="self">self</span>)
     }
     <span class="doccomment">/// Returns the path to the ini file, or None if not set</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ini_filename</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ini_filename</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">io</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">io</span>();
         <span class="kw">if</span> <span class="ident">io</span>.<span class="ident">ini_filename</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">None</span>
@@ -672,7 +672,7 @@
         <span class="self">self</span>.<span class="ident">ini_filename</span> <span class="op">=</span> <span class="ident">ini_filename</span>;
     }
     <span class="doccomment">/// Returns the path to the log file, or None if not set</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">log_filename</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">log_filename</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">io</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">io</span>();
         <span class="kw">if</span> <span class="ident">io</span>.<span class="ident">log_filename</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">None</span>
@@ -694,7 +694,7 @@
         <span class="self">self</span>.<span class="ident">log_filename</span> <span class="op">=</span> <span class="ident">log_filename</span>;
     }
     <span class="doccomment">/// Returns the backend platform name, or None if not set</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">platform_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ImStr</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">platform_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ImStr</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">io</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">io</span>();
         <span class="kw">if</span> <span class="ident">io</span>.<span class="ident">backend_platform_name</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">None</span>
@@ -712,7 +712,7 @@
         <span class="self">self</span>.<span class="ident">platform_name</span> <span class="op">=</span> <span class="ident">platform_name</span>;
     }
     <span class="doccomment">/// Returns the backend renderer name, or None if not set</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">renderer_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ImStr</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">renderer_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ImStr</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">io</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">io</span>();
         <span class="kw">if</span> <span class="ident">io</span>.<span class="ident">backend_renderer_name</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">None</span>
@@ -748,7 +748,7 @@
         <span class="ident">io</span>.<span class="ident">clipboard_user_data</span> <span class="op">=</span> <span class="ident">clipboard_ctx</span>.<span class="ident">borrow_mut</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ClipboardContext</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
         <span class="self">self</span>.<span class="ident">clipboard_ctx</span>.<span class="ident">replace</span>(<span class="ident">clipboard_ctx</span>);
     }
-    <span class="kw">fn</span> <span class="ident">create_internal</span>(<span class="ident">shared_font_atlas</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">SharedFontAtlas</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">create_internal</span>(<span class="ident">shared_font_atlas</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">SharedFontAtlas</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">_guard</span> <span class="op">=</span> <span class="ident">CTX_MUTEX</span>.<span class="ident">lock</span>();
         <span class="macro">assert!</span>(
             <span class="ident">no_current_context</span>(),
@@ -756,11 +756,11 @@
         );
 
         <span class="kw">let</span> <span class="ident">shared_font_atlas_ptr</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">shared_font_atlas</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">shared_font_atlas</span>) <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="prelude-val">Some</span>(<span class="ident">shared_font_atlas</span>) =&gt; {
                 <span class="kw">let</span> <span class="ident">borrowed_font_atlas</span> <span class="op">=</span> <span class="ident">shared_font_atlas</span>.<span class="ident">borrow</span>();
                 <span class="ident">borrowed_font_atlas</span>.<span class="number">0</span>
             }
-            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ptr::null_mut</span>(),
+            <span class="prelude-val">None</span> =&gt; <span class="ident">ptr::null_mut</span>(),
         };
         <span class="comment">// Dear ImGui implicitly sets the current context during igCreateContext if the current</span>
         <span class="comment">// context doesn&#39;t exist</span>
@@ -776,9 +776,9 @@
             <span class="ident">clipboard_ctx</span>: <span class="prelude-val">None</span>,
         }
     }
-    <span class="kw">fn</span> <span class="ident">is_current_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">is_current_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::igGetCurrentContext</span>() };
-        <span class="self">self</span>.<span class="ident">raw</span> <span class="op">=</span><span class="op">=</span> <span class="ident">ctx</span>
+        <span class="self">self</span>.<span class="ident">raw</span> <span class="op">==</span> <span class="ident">ctx</span>
     }
 }
 
@@ -817,11 +817,11 @@
 
 <span class="kw">impl</span> <span class="ident">SuspendedContext</span> {
     <span class="doccomment">/// Creates a new suspended imgui-rs context.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create</span>() -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::create_internal</span>(<span class="prelude-val">None</span>)
     }
     <span class="doccomment">/// Creates a new suspended imgui-rs context with a shared font atlas.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_with_shared_font_atlas</span>(<span class="ident">shared_font_atlas</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">SharedFontAtlas</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_with_shared_font_atlas</span>(<span class="ident">shared_font_atlas</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">SharedFontAtlas</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::create_internal</span>(<span class="prelude-val">Some</span>(<span class="ident">shared_font_atlas</span>))
     }
     <span class="doccomment">/// Attempts to activate this suspended context.</span>
@@ -830,7 +830,7 @@
     <span class="doccomment">/// containing the activated context.</span>
     <span class="doccomment">/// If there is already an active context, nothing happens and `Err` is returned, containing</span>
     <span class="doccomment">/// the original suspended context.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">activate</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Context</span>, <span class="ident">SuspendedContext</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">activate</span>(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Context</span>, <span class="ident">SuspendedContext</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">_guard</span> <span class="op">=</span> <span class="ident">CTX_MUTEX</span>.<span class="ident">lock</span>();
         <span class="kw">if</span> <span class="ident">no_current_context</span>() {
             <span class="kw">unsafe</span> {
@@ -841,7 +841,7 @@
             <span class="prelude-val">Err</span>(<span class="self">self</span>)
         }
     }
-    <span class="kw">fn</span> <span class="ident">create_internal</span>(<span class="ident">shared_font_atlas</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">SharedFontAtlas</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">create_internal</span>(<span class="ident">shared_font_atlas</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">SharedFontAtlas</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">_guard</span> <span class="op">=</span> <span class="ident">CTX_MUTEX</span>.<span class="ident">lock</span>();
         <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::igCreateContext</span>(<span class="ident">ptr::null_mut</span>()) };
         <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="ident">Context</span> {
@@ -998,28 +998,28 @@ Collapsed=0&quot;</span>;
 
 <span class="kw">impl</span> <span class="ident">Context</span> {
     <span class="doccomment">/// Returns an immutable reference to the inputs/outputs object</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">io</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">Io</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">io</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Io</span> {
         <span class="kw">unsafe</span> {
             <span class="comment">// safe because Io is a transparent wrapper around sys::ImGuiIO</span>
             <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">sys::igGetIO</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Io</span>)
         }
     }
     <span class="doccomment">/// Returns a mutable reference to the inputs/outputs object</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">io_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Io</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">io_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Io</span> {
         <span class="kw">unsafe</span> {
             <span class="comment">// safe because Io is a transparent wrapper around sys::ImGuiIO</span>
             <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span>(<span class="ident">sys::igGetIO</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Io</span>)
         }
     }
     <span class="doccomment">/// Returns an immutable reference to the user interface style</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">style</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">Style</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">style</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Style</span> {
         <span class="kw">unsafe</span> {
             <span class="comment">// safe because Style is a transparent wrapper around sys::ImGuiStyle</span>
             <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">sys::igGetStyle</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Style</span>)
         }
     }
     <span class="doccomment">/// Returns a mutable reference to the user interface style</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">style_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Style</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">style_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Style</span> {
         <span class="kw">unsafe</span> {
             <span class="comment">// safe because Style is a transparent wrapper around sys::ImGuiStyle</span>
             <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span>(<span class="ident">sys::igGetStyle</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Style</span>)
@@ -1030,10 +1030,10 @@ Collapsed=0&quot;</span>;
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Panics if the context uses a shared font atlas that is already borrowed</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fonts</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontAtlasRefMut</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fonts</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="ident">FontAtlasRefMut</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">shared_font_atlas</span> {
-            <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">font_atlas</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">FontAtlasRefMut::Shared</span>(<span class="ident">font_atlas</span>.<span class="ident">borrow_mut</span>()),
-            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> {
+            <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">font_atlas</span>) =&gt; <span class="ident">FontAtlasRefMut::Shared</span>(<span class="ident">font_atlas</span>.<span class="ident">borrow_mut</span>()),
+            <span class="prelude-val">None</span> =&gt; <span class="kw">unsafe</span> {
                 <span class="comment">// safe because FontAtlas is a transparent wrapper around sys::ImFontAtlas</span>
                 <span class="kw">let</span> <span class="ident">fonts</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span>(<span class="self">self</span>.<span class="ident">io_mut</span>().<span class="ident">fonts</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">FontAtlas</span>);
                 <span class="ident">FontAtlasRefMut::Owned</span>(<span class="ident">fonts</span>)
@@ -1045,7 +1045,7 @@ Collapsed=0&quot;</span>;
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Panics if the context uses a shared font atlas that is already borrowed</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ui</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="ident">Ui</span> {
         <span class="comment">// Clear default font if it no longer exists. This could be an error in the future</span>
         <span class="kw">let</span> <span class="ident">default_font</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">io</span>().<span class="ident">font_default</span>;
         <span class="kw">if</span> <span class="op">!</span><span class="ident">default_font</span>.<span class="ident">is_null</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">fonts</span>().<span class="ident">get_font</span>(<span class="ident">FontId</span>(<span class="ident">default_font</span>)).<span class="ident">is_none</span>() {

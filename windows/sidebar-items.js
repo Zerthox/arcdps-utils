@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["System",""],["Win32",""],["core",""]]});
+initSidebarItems({"mod":[["Win32",""],["core",""]]});

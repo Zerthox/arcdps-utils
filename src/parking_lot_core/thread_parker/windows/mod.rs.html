@@ -211,7 +211,7 @@
 
 <span class="kw">impl</span> <span class="ident">Backend</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">get</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">Backend</span> {
+    <span class="kw">fn</span> <span class="ident">get</span>() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">Backend</span> {
         <span class="comment">// Fast path: use the existing object</span>
         <span class="kw">let</span> <span class="ident">backend_ptr</span> <span class="op">=</span> <span class="ident">BACKEND</span>.<span class="ident">load</span>(<span class="ident">Ordering::Acquire</span>);
         <span class="kw">if</span> <span class="op">!</span><span class="ident">backend_ptr</span>.<span class="ident">is_null</span>() {
@@ -222,7 +222,7 @@
     }
 
     <span class="attribute">#[<span class="ident">cold</span>]</span>
-    <span class="kw">fn</span> <span class="ident">create</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">Backend</span> {
+    <span class="kw">fn</span> <span class="ident">create</span>() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">Backend</span> {
         <span class="comment">// Try to create a new Backend</span>
         <span class="kw">let</span> <span class="ident">backend</span>;
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">waitaddress</span>) <span class="op">=</span> <span class="ident">waitaddress::WaitAddress::create</span>() {
@@ -244,8 +244,8 @@
             <span class="ident">Ordering::Release</span>,
             <span class="ident">Ordering::Relaxed</span>,
         ) {
-            <span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">backend_ptr</span> },
-            <span class="prelude-val">Err</span>(<span class="ident">global_backend_ptr</span>) <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">backend_ptr</span> },
+            <span class="prelude-val">Err</span>(<span class="ident">global_backend_ptr</span>) =&gt; {
                 <span class="kw">unsafe</span> {
                     <span class="comment">// We lost the race, free our object and return the global one</span>
                     <span class="ident">Box::from_raw</span>(<span class="ident">backend_ptr</span>);
@@ -266,7 +266,7 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IS_CHEAP_TO_CONSTRUCT</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">true</span>;
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ThreadParker</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="ident">ThreadParker</span> {
         <span class="comment">// Initialize the backend here to ensure we don&#39;t get any panics</span>
         <span class="comment">// later on, which could leave synchronization primitives in a broken</span>
         <span class="comment">// state.</span>
@@ -280,18 +280,18 @@
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prepare_park</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">backend</span> {
-            <span class="ident">Backend::KeyedEvent</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>.<span class="ident">prepare_park</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>),
-            <span class="ident">Backend::WaitAddress</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>.<span class="ident">prepare_park</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>),
+            <span class="ident">Backend::KeyedEvent</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">prepare_park</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>),
+            <span class="ident">Backend::WaitAddress</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">prepare_park</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>),
         }
     }
 
     <span class="comment">// Checks if the park timed out. This should be called while holding the</span>
     <span class="comment">// queue lock after park_until has returned false.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">timed_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">timed_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">backend</span> {
-            <span class="ident">Backend::KeyedEvent</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>.<span class="ident">timed_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>),
-            <span class="ident">Backend::WaitAddress</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>.<span class="ident">timed_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>),
+            <span class="ident">Backend::KeyedEvent</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">timed_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>),
+            <span class="ident">Backend::WaitAddress</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">timed_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>),
         }
     }
 
@@ -300,8 +300,8 @@
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">park</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">backend</span> {
-            <span class="ident">Backend::KeyedEvent</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>.<span class="ident">park</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>),
-            <span class="ident">Backend::WaitAddress</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>.<span class="ident">park</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>),
+            <span class="ident">Backend::KeyedEvent</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">park</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>),
+            <span class="ident">Backend::WaitAddress</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">park</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>),
         }
     }
 
@@ -309,10 +309,10 @@
     <span class="comment">// should be called after it has been added to the queue, after unlocking</span>
     <span class="comment">// the queue. Returns true if we were unparked and false if we timed out.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">park_until</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">timeout</span>: <span class="ident">Instant</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">park_until</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">timeout</span>: <span class="ident">Instant</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">backend</span> {
-            <span class="ident">Backend::KeyedEvent</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>.<span class="ident">park_until</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>, <span class="ident">timeout</span>),
-            <span class="ident">Backend::WaitAddress</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>.<span class="ident">park_until</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>, <span class="ident">timeout</span>),
+            <span class="ident">Backend::KeyedEvent</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">park_until</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>, <span class="ident">timeout</span>),
+            <span class="ident">Backend::WaitAddress</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">park_until</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>, <span class="ident">timeout</span>),
         }
     }
 
@@ -320,10 +320,10 @@
     <span class="comment">// necessary to ensure that thread-local ThreadData objects remain valid.</span>
     <span class="comment">// This should be called while holding the queue lock.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unpark_lock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UnparkHandle</span> {
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unpark_lock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">UnparkHandle</span> {
         <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">backend</span> {
-            <span class="ident">Backend::KeyedEvent</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">UnparkHandle::KeyedEvent</span>(<span class="ident">x</span>.<span class="ident">unpark_lock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>)),
-            <span class="ident">Backend::WaitAddress</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">UnparkHandle::WaitAddress</span>(<span class="ident">x</span>.<span class="ident">unpark_lock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>)),
+            <span class="ident">Backend::KeyedEvent</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) =&gt; <span class="ident">UnparkHandle::KeyedEvent</span>(<span class="ident">x</span>.<span class="ident">unpark_lock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>)),
+            <span class="ident">Backend::WaitAddress</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) =&gt; <span class="ident">UnparkHandle::WaitAddress</span>(<span class="ident">x</span>.<span class="ident">unpark_lock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>)),
         }
     }
 }
@@ -342,8 +342,8 @@
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unpark</span>(<span class="self">self</span>) {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">UnparkHandle::KeyedEvent</span>(<span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>.<span class="ident">unpark</span>(),
-            <span class="ident">UnparkHandle::WaitAddress</span>(<span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>.<span class="ident">unpark</span>(),
+            <span class="ident">UnparkHandle::KeyedEvent</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">unpark</span>(),
+            <span class="ident">UnparkHandle::WaitAddress</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>.<span class="ident">unpark</span>(),
         }
     }
 }

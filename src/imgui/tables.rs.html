@@ -367,7 +367,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> <span class="ident">Ui</span><span class="op">&lt;</span><span class="lifetime">&#39;ui</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin_table</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">str_id</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">column</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin_table</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">str_id</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>, <span class="ident">column</span>: <span class="ident">i32</span>) -&gt; <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">begin_table_with_flags</span>(<span class="ident">str_id</span>, <span class="ident">column</span>, <span class="ident">TableFlags::NONE</span>)
     }
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin_table_with_flags</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(
@@ -375,7 +375,7 @@
         <span class="ident">str_id</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;p</span> <span class="ident">ImStr</span>,
         <span class="ident">column</span>: <span class="ident">i32</span>,
         <span class="ident">flags</span>: <span class="ident">TableFlags</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    ) -&gt; <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">begin_table_with_outer_size</span>(<span class="ident">str_id</span>, <span class="ident">column</span>, <span class="ident">flags</span>, [<span class="number">0.0</span>, <span class="number">0.0</span>])
     }
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin_table_with_outer_size</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(
@@ -384,7 +384,7 @@
         <span class="ident">column</span>: <span class="ident">i32</span>,
         <span class="ident">flags</span>: <span class="ident">TableFlags</span>,
         <span class="ident">outer_size</span>: [<span class="ident">f32</span>; <span class="number">2</span>],
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    ) -&gt; <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">begin_table_with_inner_width</span>(<span class="ident">str_id</span>, <span class="ident">column</span>, <span class="ident">flags</span>, <span class="ident">outer_size</span>, <span class="number">0.0</span>)
     }
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin_table_with_inner_width</span><span class="op">&lt;</span><span class="lifetime">&#39;p</span><span class="op">&gt;</span>(
@@ -394,7 +394,7 @@
         <span class="ident">flags</span>: <span class="ident">TableFlags</span>,
         <span class="ident">outer_size</span>: [<span class="ident">f32</span>; <span class="number">2</span>],
         <span class="ident">inner_width</span>: <span class="ident">f32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    ) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">sys::igBeginTable</span>(
                 <span class="ident">str_id</span>.<span class="ident">as_ptr</span>(),
@@ -424,10 +424,10 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_next_column</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_next_column</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igTableNextColumn</span>() }
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_set_column_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">column_n</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_set_column_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">column_n</span>: <span class="ident">i32</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igTableSetColumnIndex</span>(<span class="ident">column_n</span>) }
     }
 
@@ -482,13 +482,13 @@
     <span class="comment">//    unsafe { sys::igTableGetSortSpecs() }</span>
     <span class="comment">//}</span>
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_get_column_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_get_column_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igTableGetColumnCount</span>() }
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_get_column_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_get_column_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igTableGetColumnIndex</span>() }
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_get_row_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_get_row_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span> {
         <span class="kw">unsafe</span> { <span class="ident">sys::igTableGetRowIndex</span>() }
     }
 
@@ -499,10 +499,10 @@
     <span class="comment">//    unsafe { sys::igTableGetColumnName(column_n); }</span>
     <span class="comment">//}</span>
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_get_column_flags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TableColumnFlags</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_get_column_flags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">TableColumnFlags</span> {
         <span class="self">self</span>.<span class="ident">table_get_column_flags_with_column</span>(<span class="op">-</span><span class="number">1</span>)
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_get_column_flags_with_column</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">column_n</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TableColumnFlags</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table_get_column_flags_with_column</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">column_n</span>: <span class="ident">i32</span>) -&gt; <span class="ident">TableColumnFlags</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">TableColumnFlags::from_bits_unchecked</span>(<span class="ident">sys::igTableGetColumnFlags</span>(<span class="ident">column_n</span>) <span class="kw">as</span> <span class="ident">u32</span>)
         }
