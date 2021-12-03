@@ -122,6 +122,27 @@
 <span id="122">122</span>
 <span id="123">123</span>
 <span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::exports</span>;
 <span class="kw">use</span> <span class="ident">serde_crate</span>::{<span class="ident">de::DeserializeOwned</span>, <span class="ident">Serialize</span>};
 <span class="kw">use</span> <span class="ident">serde_json</span>::{<span class="ident">Map</span>, <span class="ident">Value</span>};
@@ -164,7 +185,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will return `false` if something fails.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_file</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">load_data</span>() {
+        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">load_file_helper</span>() {
             <span class="prelude-val">Some</span>(<span class="ident">data</span>) =&gt; {
                 <span class="self">self</span>.<span class="ident">data</span> <span class="op">=</span> <span class="ident">data</span>;
                 <span class="bool-val">true</span>
@@ -174,7 +195,7 @@
     }
 
     <span class="doccomment">/// Helper to load data from the settings file.</span>
-    <span class="kw">fn</span> <span class="ident">load_data</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Map</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Value</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">load_file_helper</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Map</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Value</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::config_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">file</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">File::open</span>(<span class="ident">path</span>).<span class="ident">ok</span>()<span class="question-mark">?</span>;
         <span class="ident">serde_json::from_reader</span>(<span class="ident">BufReader::new</span>(<span class="ident">reader</span>)).<span class="ident">ok</span>()
@@ -208,15 +229,38 @@
         })
     }
 
+    <span class="doccomment">/// Loads data from the settings map.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_data</span><span class="op">&lt;</span><span class="ident">S</span>, <span class="ident">T</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">S</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
+    <span class="kw">where</span>
+        <span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>,
+        <span class="ident">T</span>: <span class="ident">DeserializeOwned</span>,
+    {
+        <span class="self">self</span>.<span class="ident">data</span>
+            .<span class="ident">remove</span>(<span class="ident">id</span>.<span class="ident">as_ref</span>())
+            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">value</span><span class="op">|</span> <span class="ident">serde_json::from_value</span>(<span class="ident">value</span>).<span class="ident">ok</span>())
+            .<span class="ident">flatten</span>()
+    }
+
+    <span class="doccomment">/// Stores data in the settings map.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Silently fails if the data fails serialization.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">store_data</span><span class="op">&lt;</span><span class="ident">S</span>, <span class="ident">T</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">S</span>, <span class="ident">data</span>: <span class="ident">T</span>)
+    <span class="kw">where</span>
+        <span class="ident">S</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+        <span class="ident">T</span>: <span class="ident">Serialize</span>,
+    {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">value</span>) <span class="op">=</span> <span class="ident">serde_json::to_value</span>(<span class="ident">data</span>) {
+            <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">insert</span>(<span class="ident">id</span>.<span class="ident">into</span>(), <span class="ident">value</span>);
+        }
+    }
+
     <span class="doccomment">/// Loads a component&#39;s settings from the settings map.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_component</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">component</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>)
     <span class="kw">where</span>
         <span class="ident">T</span>: <span class="ident">HasSettings</span>,
     {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">value</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">remove</span>(<span class="ident">T::settings_id</span>()) {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">loaded</span>) <span class="op">=</span> <span class="ident">serde_json::from_value</span>(<span class="ident">value</span>) {
-                <span class="ident">component</span>.<span class="ident">load_settings</span>(<span class="ident">loaded</span>)
-            }
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">loaded</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">load_data</span>(<span class="ident">T::settings_id</span>()) {
+            <span class="ident">component</span>.<span class="ident">load_settings</span>(<span class="ident">loaded</span>);
         }
     }
 
@@ -227,9 +271,7 @@
     <span class="kw">where</span>
         <span class="ident">T</span>: <span class="ident">HasSettings</span>,
     {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">value</span>) <span class="op">=</span> <span class="ident">serde_json::to_value</span>(<span class="ident">component</span>.<span class="ident">get_settings</span>()) {
-            <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">insert</span>(<span class="ident">T::settings_id</span>().<span class="ident">into</span>(), <span class="ident">value</span>);
-        }
+        <span class="self">self</span>.<span class="ident">store_data</span>(<span class="ident">T::settings_id</span>(), <span class="ident">component</span>.<span class="ident">current_settings</span>());
     }
 }
 
@@ -241,7 +283,7 @@
     <span class="kw">fn</span> <span class="ident">settings_id</span>() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>;
 
     <span class="doccomment">/// Returns the component&#39;s current settings state.</span>
-    <span class="kw">fn</span> <span class="ident">get_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::Settings</span>;
+    <span class="kw">fn</span> <span class="ident">current_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::Settings</span>;
 
     <span class="doccomment">/// Loads the component&#39;s settings from a loaded state.</span>
     <span class="kw">fn</span> <span class="ident">load_settings</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">loaded</span>: <span class="ident"><span class="self">Self</span>::Settings</span>);

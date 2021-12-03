@@ -139,10 +139,10 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Log</span> {
     <span class="doccomment">/// Current contents of the log.</span>
-    <span class="ident">contents</span>: <span class="ident">ImString</span>,
+    <span class="kw">pub</span> <span class="ident">contents</span>: <span class="ident">ImString</span>,
 
     <span class="doccomment">/// Whether the log is active.</span>
-    <span class="ident">active</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span> <span class="ident">active</span>: <span class="ident">bool</span>,
 
     <span class="doccomment">/// Last maximum scroll position.</span>
     <span class="ident">last_scroll_max</span>: <span class="ident">f32</span>,

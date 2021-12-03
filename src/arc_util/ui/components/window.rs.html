@@ -262,8 +262,6 @@
 <span id="262">262</span>
 <span id="263">263</span>
 <span id="264">264</span>
-<span id="265">265</span>
-<span id="266">266</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Window component.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ui</span>::{<span class="ident">Component</span>, <span class="ident">Hideable</span>, <span class="ident">Windowed</span>};
@@ -481,10 +479,8 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;settings&quot;</span>)]</span>
 <span class="kw">mod</span> <span class="ident">settings</span> {
-    <span class="kw">use</span> <span class="kw">crate</span>::{
-        <span class="ident">settings::HasSettings</span>,
-        <span class="ident">ui</span>::{<span class="ident">Component</span>, <span class="ident">Hideable</span>, <span class="ident">Window</span>, <span class="ident">Windowed</span>},
-    };
+    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::settings::HasSettings</span>;
     <span class="kw">use</span> <span class="ident">serde_crate</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
@@ -508,11 +504,11 @@
             <span class="ident">T::settings_id</span>()
         }
 
-        <span class="kw">fn</span> <span class="ident">get_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::Settings</span> {
+        <span class="kw">fn</span> <span class="ident">current_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::Settings</span> {
             <span class="ident">WindowSettings</span> {
                 <span class="ident">shown</span>: <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">is_visible</span>()),
                 <span class="ident">hotkey</span>: <span class="self">self</span>.<span class="ident">hotkey</span>(),
-                <span class="ident">settings</span>: <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">get_settings</span>()),
+                <span class="ident">settings</span>: <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">current_settings</span>()),
             }
         }
 
