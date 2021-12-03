@@ -11,10 +11,10 @@ const FORMAT: &str = "%b %d %H:%M:%S.%3f";
 #[derive(Debug, Clone)]
 pub struct Log {
     /// Current contents of the log.
-    contents: ImString,
+    pub contents: ImString,
 
     /// Whether the log is active.
-    active: bool,
+    pub active: bool,
 
     /// Last maximum scroll position.
     last_scroll_max: f32,

@@ -215,10 +215,8 @@ impl WindowProps {
 
 #[cfg(feature = "settings")]
 mod settings {
-    use crate::{
-        settings::HasSettings,
-        ui::{Component, Hideable, Window, Windowed},
-    };
+    use super::*;
+    use crate::settings::HasSettings;
     use serde_crate::{Deserialize, Serialize};
 
     #[derive(Debug, Serialize, Deserialize)]
@@ -242,11 +240,11 @@ mod settings {
             T::settings_id()
         }
 
-        fn get_settings(&self) -> Self::Settings {
+        fn current_settings(&self) -> Self::Settings {
             WindowSettings {
                 shown: Some(self.is_visible()),
                 hotkey: self.hotkey(),
-                settings: Some(self.inner.get_settings()),
+                settings: Some(self.inner.current_settings()),
             }
         }
 

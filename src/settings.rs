@@ -40,7 +40,7 @@ impl Settings {
     ///
     /// This will return `false` if something fails.
     pub fn load_file(&mut self) -> bool {
-        match self.load_data() {
+        match self.load_file_helper() {
             Some(data) => {
                 self.data = data;
                 true
@@ -50,7 +50,7 @@ impl Settings {
     }
 
     /// Helper to load data from the settings file.
-    fn load_data(&self) -> Option<Map<String, Value>> {
+    fn load_file_helper(&self) -> Option<Map<String, Value>> {
         let path = Self::config_path(&self.file)?;
         let reader = File::open(path).ok()?;
         serde_json::from_reader(BufReader::new(reader)).ok()
@@ -84,15 +84,38 @@ impl Settings {
         })
     }
 
+    /// Loads data from the settings map.
+    pub fn load_data<S, T>(&mut self, id: S) -> Option<T>
+    where
+        S: AsRef<str>,
+        T: DeserializeOwned,
+    {
+        self.data
+            .remove(id.as_ref())
+            .map(|value| serde_json::from_value(value).ok())
+            .flatten()
+    }
+
+    /// Stores data in the settings map.
+    ///
+    /// Silently fails if the data fails serialization.
+    pub fn store_data<S, T>(&mut self, id: S, data: T)
+    where
+        S: Into<String>,
+        T: Serialize,
+    {
+        if let Ok(value) = serde_json::to_value(data) {
+            self.data.insert(id.into(), value);
+        }
+    }
+
     /// Loads a component's settings from the settings map.
     pub fn load_component<T>(&mut self, component: &mut T)
     where
         T: HasSettings,
     {
-        if let Some(value) = self.data.remove(T::settings_id()) {
-            if let Ok(loaded) = serde_json::from_value(value) {
-                component.load_settings(loaded)
-            }
+        if let Some(loaded) = self.load_data(T::settings_id()) {
+            component.load_settings(loaded);
         }
     }
 
@@ -103,9 +126,7 @@ impl Settings {
     where
         T: HasSettings,
     {
-        if let Ok(value) = serde_json::to_value(component.get_settings()) {
-            self.data.insert(T::settings_id().into(), value);
-        }
+        self.store_data(T::settings_id(), component.current_settings());
     }
 }
 
@@ -117,7 +138,7 @@ pub trait HasSettings {
     fn settings_id() -> &'static str;
 
     /// Returns the component's current settings state.
-    fn get_settings(&self) -> Self::Settings;
+    fn current_settings(&self) -> Self::Settings;
 
     /// Loads the component's settings from a loaded state.
     fn load_settings(&mut self, loaded: Self::Settings);
