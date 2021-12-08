@@ -29,7 +29,7 @@ pub fn read_buff_instance_id(event: &CombatEvent) -> u32 {
 /// Whether the entity is an ally or enemy.
 ///
 /// *Arc calls this "iff" for if friend/foe.*
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, FromPrimitive)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, FromPrimitive)]
 #[repr(u8)]
 pub enum Team {
     /// Allied entity.
@@ -46,7 +46,7 @@ pub enum Team {
 /// Strike types.
 ///
 /// *Arc calls this "combat result".*
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, FromPrimitive)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, FromPrimitive)]
 #[repr(u8)]
 pub enum Strike {
     /// Normal damage strike.
@@ -113,7 +113,7 @@ pub enum Strike {
 /// Skill activation (cast).
 ///
 /// *Arc calls this "combat activation".*
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, FromPrimitive)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, FromPrimitive)]
 #[repr(u8)]
 pub enum Activation {
     /// Not used, different kind of event.
@@ -140,7 +140,7 @@ pub enum Activation {
 }
 
 /// Combat state change.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, FromPrimitive)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, FromPrimitive)]
 #[repr(u8)]
 pub enum StateChange {
     /// Not used, different kind of event.
@@ -412,7 +412,7 @@ pub enum StateChange {
 }
 
 /// Combat buff remove.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, FromPrimitive)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, FromPrimitive)]
 #[repr(u8)]
 pub enum BuffRemove {
     /// Not used, different kind of event.
@@ -443,7 +443,7 @@ pub enum BuffRemove {
 }
 
 /// Combat buff cycle.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, FromPrimitive)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, FromPrimitive)]
 #[repr(u8)]
 pub enum BuffCycle {
     /// Damage happened on tick timer.
@@ -469,7 +469,7 @@ pub enum BuffCycle {
 }
 
 /// ArcDPS custom skill ids.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, TryFromPrimitive)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, TryFromPrimitive)]
 #[repr(u16)]
 pub enum CustomSkill {
     /// Resurrect skill.
@@ -489,7 +489,7 @@ pub enum CustomSkill {
 }
 
 /// Buff info category.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, TryFromPrimitive)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, TryFromPrimitive)]
 #[repr(u8)]
 pub enum BuffCategory {
     Boon = 0,
@@ -504,7 +504,7 @@ pub enum BuffCategory {
 }
 
 /// Core UI color.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[repr(C)]
 pub enum CoreColor {
     Transparent,

@@ -1,3 +1,5 @@
+//! Load/save settings.
+
 use crate::exports;
 use serde_crate::{de::DeserializeOwned, Serialize};
 use serde_json::{Map, Value};

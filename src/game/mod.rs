@@ -14,7 +14,18 @@ use serde_crate::{Deserialize, Serialize};
 
 /// GW2 client language.
 #[derive(
-    Debug, Clone, Copy, PartialEq, Eq, Hash, IntoPrimitive, TryFromPrimitive, Display, IntoStaticStr,
+    Debug,
+    Clone,
+    Copy,
+    PartialEq,
+    Eq,
+    PartialOrd,
+    Ord,
+    Hash,
+    IntoPrimitive,
+    TryFromPrimitive,
+    Display,
+    IntoStaticStr,
 )]
 #[cfg_attr(
     feature = "serde",
@@ -33,7 +44,18 @@ pub enum Language {
 // TODO: document unclear attributes
 /// Buff formula attributes.
 #[derive(
-    Debug, Clone, Copy, PartialEq, Eq, Hash, IntoPrimitive, FromPrimitive, Display, IntoStaticStr,
+    Debug,
+    Clone,
+    Copy,
+    PartialEq,
+    Eq,
+    PartialOrd,
+    Ord,
+    Hash,
+    IntoPrimitive,
+    FromPrimitive,
+    Display,
+    IntoStaticStr,
 )]
 #[cfg_attr(
     feature = "serde",

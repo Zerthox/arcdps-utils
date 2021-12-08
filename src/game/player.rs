@@ -101,7 +101,18 @@ impl cmp::Ord for Player {
 
 /// Player profession.
 #[derive(
-    Debug, Clone, Copy, PartialEq, Eq, Hash, IntoPrimitive, FromPrimitive, Display, IntoStaticStr,
+    Debug,
+    Clone,
+    Copy,
+    PartialEq,
+    Eq,
+    PartialOrd,
+    Ord,
+    Hash,
+    IntoPrimitive,
+    FromPrimitive,
+    Display,
+    IntoStaticStr,
 )]
 #[cfg_attr(
     feature = "serde",
@@ -127,7 +138,18 @@ pub enum Profession {
 
 /// Player specialization.
 #[derive(
-    Debug, Clone, Copy, PartialEq, Eq, Hash, IntoPrimitive, FromPrimitive, Display, IntoStaticStr,
+    Debug,
+    Clone,
+    Copy,
+    PartialEq,
+    Eq,
+    PartialOrd,
+    Ord,
+    Hash,
+    IntoPrimitive,
+    FromPrimitive,
+    Display,
+    IntoStaticStr,
 )]
 #[cfg_attr(
     feature = "serde",
