@@ -4,7 +4,7 @@ Utilities for [Rust](https://www.rust-lang.org/learn/get-started)-based [ArcDPS]
 ## Usage
 ```toml
 [dependencies]
-arc_util = { git = "https://github.com/zerthox/gw2-arcdps-utils", branch = "master" }
+arc_util = { git = "https://github.com/zerthox/gw2-arcdps-utils", tag = "0.3.2" }
 ```
 
 Documentation can be found here: [zerthox.github.io/gw2-arcdps-utils/arc_util](https://zerthox.github.io/gw2-arcdps-utils/arc_util/)
