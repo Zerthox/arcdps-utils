@@ -1,5 +1,5 @@
 var N = null;var sourcesIndex = {};
-sourcesIndex["arc_util"] = {"name":"","dirs":[{"name":"ui","dirs":[{"name":"components","files":["log.rs","mod.rs","window.rs"]}],"files":["align.rs","mod.rs"]}],"files":["api.rs","exports.rs","game.rs","lib.rs","settings.rs"]};
+sourcesIndex["arc_util"] = {"name":"","dirs":[{"name":"game","files":["mod.rs","player.rs"]},{"name":"ui","dirs":[{"name":"components","files":["log.rs","mod.rs","window.rs"]}],"files":["align.rs","mod.rs"]}],"files":["api.rs","exports.rs","lib.rs","settings.rs"]};
 sourcesIndex["arcdps"] = {"name":"","dirs":[{"name":"unofficial_extras","files":["mod.rs","raw_structs.rs"]}],"files":["exported_functions.rs","helpers.rs","lib.rs","logging.rs","raw_structs.rs"]};
 sourcesIndex["arcdps_codegen"] = {"name":"","files":["lib.rs","parse.rs"]};
 sourcesIndex["bitflags"] = {"name":"","files":["lib.rs"]};
@@ -26,7 +26,7 @@ sourcesIndex["paste"] = {"name":"","files":["attr.rs","error.rs","lib.rs","segme
 sourcesIndex["proc_macro2"] = {"name":"","files":["detection.rs","fallback.rs","lib.rs","marker.rs","parse.rs","wrapper.rs"]};
 sourcesIndex["proc_macro_crate"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["quote"] = {"name":"","files":["ext.rs","format.rs","ident_fragment.rs","lib.rs","runtime.rs","spanned.rs","to_tokens.rs"]};
-sourcesIndex["rustversion"] = {"name":"","files":["attr.rs","bound.rs","constfn.rs","date.rs","error.rs","expr.rs","iter.rs","lib.rs","release.rs","time.rs","token.rs","version.rs"]};
+sourcesIndex["rustversion"] = {"name":"","files":["attr.rs","bound.rs","constfn.rs","date.rs","error.rs","expand.rs","expr.rs","iter.rs","lib.rs","release.rs","time.rs","token.rs","version.rs"]};
 sourcesIndex["ryu"] = {"name":"","dirs":[{"name":"buffer","files":["mod.rs"]},{"name":"pretty","files":["exponent.rs","mantissa.rs","mod.rs"]}],"files":["common.rs","d2s.rs","d2s_full_table.rs","d2s_intrinsics.rs","digit_table.rs","f2s.rs","f2s_intrinsics.rs","lib.rs"]};
 sourcesIndex["scopeguard"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["serde"] = {"name":"","dirs":[{"name":"de","files":["ignored_any.rs","impls.rs","mod.rs","seed.rs","utf8.rs","value.rs"]},{"name":"private","files":["de.rs","doc.rs","mod.rs","ser.rs","size_hint.rs"]},{"name":"ser","files":["fmt.rs","impls.rs","impossible.rs","mod.rs"]}],"files":["integer128.rs","lib.rs","macros.rs"]};
