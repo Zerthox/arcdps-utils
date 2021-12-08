@@ -1,29 +1,102 @@
-//! General GW2 related data.
-//!
-//! This is also used in the ArcDPS API, but may be useful outside.
-
-use num_enum::{FromPrimitive, IntoPrimitive, TryFromPrimitive};
+use num_enum::{FromPrimitive, IntoPrimitive};
+use std::cmp;
 use strum_macros::{Display, IntoStaticStr};
 
 #[cfg(feature = "serde")]
 use serde_crate::{Deserialize, Serialize};
 
-/// GW2 client language.
-#[derive(
-    Debug, Clone, Copy, PartialEq, Eq, Hash, IntoPrimitive, TryFromPrimitive, Display, IntoStaticStr,
-)]
+/// Struct representing a player.
+#[derive(Debug, Clone)]
 #[cfg_attr(
     feature = "serde",
     derive(Serialize, Deserialize),
     serde(crate = "serde_crate")
 )]
-#[repr(u8)]
-pub enum Language {
-    English = 0,
-    French = 2,
-    German = 3,
-    Spanish = 4,
-    Chinese = 5,
+pub struct Player {
+    /// Player id given by the game.
+    pub id: usize,
+
+    /// Player character name.
+    pub character: String,
+
+    /// Player account name.
+    pub account: String,
+
+    /// Whether the player is the local player.
+    pub is_self: bool,
+
+    /// Profession (class) of the player character.
+    pub profession: Profession,
+
+    /// Current elite specialization the player has equipped.
+    pub elite: Specialization,
+
+    /// Current squad subgroup the player is in.
+    pub subgroup: usize,
+
+    /// Whether the player is currently in combat.
+    pub combat: bool,
+}
+
+impl Player {
+    /// Creates a new player.
+    pub fn new<C, A>(
+        id: usize,
+        character: C,
+        account: A,
+        is_self: bool,
+        profession: Profession,
+        elite: Specialization,
+        subgroup: usize,
+    ) -> Self
+    where
+        C: Into<String>,
+        A: Into<String>,
+    {
+        Self {
+            id,
+            character: character.into(),
+            account: account.into(),
+            is_self,
+            profession,
+            elite,
+            subgroup,
+            combat: false,
+        }
+    }
+
+    /// Enters the player into combat.
+    pub fn enter_combat(&mut self, new_subgroup: Option<usize>) {
+        self.combat = true;
+        if let Some(sub) = new_subgroup {
+            self.subgroup = sub;
+        }
+    }
+
+    /// Exits the player from combat.
+    pub fn exit_combat(&mut self) {
+        self.combat = false;
+    }
+}
+
+impl PartialEq for Player {
+    fn eq(&self, other: &Self) -> bool {
+        self.id == other.id
+    }
+}
+
+impl Eq for Player {}
+
+impl cmp::PartialOrd for Player {
+    fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering> {
+        self.id.partial_cmp(&other.id)
+    }
+}
+
+impl cmp::Ord for Player {
+    fn cmp(&self, other: &Self) -> cmp::Ordering {
+        self.id.cmp(&other.id)
+    }
 }
 
 /// Player profession.
@@ -52,7 +125,7 @@ pub enum Profession {
     Revenant = 9,
 }
 
-/// Player specializations.
+/// Player specialization.
 #[derive(
     Debug, Clone, Copy, PartialEq, Eq, Hash, IntoPrimitive, FromPrimitive, Display, IntoStaticStr,
 )]
@@ -147,45 +220,4 @@ pub enum Specialization {
     Air = 41,
     Tempest = 48,
     Weaver = 56,
-}
-
-// TODO: document unclear attributes
-/// Buff formula attributes.
-#[derive(
-    Debug, Clone, Copy, PartialEq, Eq, Hash, IntoPrimitive, FromPrimitive, Display, IntoStaticStr,
-)]
-#[cfg_attr(
-    feature = "serde",
-    derive(Serialize, Deserialize),
-    serde(crate = "serde_crate")
-)]
-#[repr(u16)]
-pub enum Attribute {
-    None,
-
-    Power,
-    Precision,
-    Toughness,
-    Vitality,
-    Ferocity,
-    Healing,
-    Condition,
-    Concentration,
-    Expertise,
-
-    Armor,
-    Agony,
-    StatInc,
-    FlatInc,
-    PhysInc,
-    CondInc,
-    PhysRec,
-    CondRec,
-    Attackspeed,
-    SiphonInc,
-    SiphonRec,
-
-    /// Unknown or invalid.
-    #[num_enum(default)]
-    Unknown = 65535,
 }
