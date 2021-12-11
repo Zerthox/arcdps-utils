@@ -200,7 +200,7 @@ pub enum StateChange {
     /// Source entity swapped weapon set.
     ///
     /// Destination contains the current set id.
-    /// 0`/`1` for underwater weapons and `4`/`5` for land weapons.
+    /// `0`/`1` for underwater weapons and `4`/`5` for land weapons.
     WeaponSwap,
 
     /// Source entity maximum health change.

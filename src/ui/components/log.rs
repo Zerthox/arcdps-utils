@@ -38,7 +38,7 @@ impl Log {
         }
     }
 
-    /// Appends output to the debug log.
+    /// Appends output to the log.
     pub fn log<S>(&mut self, output: S)
     where
         S: AsRef<str>,
