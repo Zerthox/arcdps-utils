@@ -170,6 +170,7 @@ pub enum Specialization {
     Chronomancer = 40,
     Chaos = 45,
     Mirage = 59,
+    Virtuoso = 66,
 
     // necromancer
     DeathMagic = 2,
@@ -179,6 +180,7 @@ pub enum Specialization {
     SoulReaping = 50,
     Spite = 53,
     Scourge = 60,
+    Harbinger = 64,
 
     // revenant
     Invocation = 3,
@@ -188,6 +190,7 @@ pub enum Specialization {
     Salvation = 12,
     Herald = 52,
     Renegade = 63,
+    Vindicator = 69,
 
     // warrior
     Strength = 4,
@@ -197,6 +200,7 @@ pub enum Specialization {
     Arms = 36,
     Discipline = 51,
     Spellbreaker = 61,
+    Bladesworn = 68,
 
     // ranger
     Druid = 5,
@@ -206,6 +210,7 @@ pub enum Specialization {
     Beastmastery = 32,
     WildernessSurvival = 33,
     Soulbeast = 55,
+    Untamed = 72,
 
     // engineer
     Explosives = 6,
@@ -215,6 +220,7 @@ pub enum Specialization {
     Scrapper = 43,
     Inventions = 47,
     Holosmith = 57,
+    Mechanist = 70,
 
     // thief
     Daredevil = 7,
@@ -224,6 +230,7 @@ pub enum Specialization {
     Trickery = 44,
     Acrobatics = 54,
     Deadeye = 58,
+    Specter = 71,
 
     // guardian
     Valor = 13,
@@ -233,6 +240,7 @@ pub enum Specialization {
     Virtues = 46,
     Honor = 49,
     Firebrand = 62,
+    Willbender = 65,
 
     // elementalist
     Water = 17,
@@ -242,4 +250,5 @@ pub enum Specialization {
     Air = 41,
     Tempest = 48,
     Weaver = 56,
+    Catalyst = 67,
 }
