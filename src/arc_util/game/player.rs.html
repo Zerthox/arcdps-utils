@@ -243,6 +243,15 @@
 <span id="243">243</span>
 <span id="244">244</span>
 <span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">num_enum</span>::{<span class="ident">FromPrimitive</span>, <span class="ident">IntoPrimitive</span>};
 <span class="kw">use</span> <span class="ident">std::cmp</span>;
 <span class="kw">use</span> <span class="ident">strum_macros</span>::{<span class="ident">Display</span>, <span class="ident">IntoStaticStr</span>};
@@ -415,6 +424,7 @@
     <span class="ident">Chronomancer</span> <span class="op">=</span> <span class="number">40</span>,
     <span class="ident">Chaos</span> <span class="op">=</span> <span class="number">45</span>,
     <span class="ident">Mirage</span> <span class="op">=</span> <span class="number">59</span>,
+    <span class="ident">Virtuoso</span> <span class="op">=</span> <span class="number">66</span>,
 
     <span class="comment">// necromancer</span>
     <span class="ident">DeathMagic</span> <span class="op">=</span> <span class="number">2</span>,
@@ -424,6 +434,7 @@
     <span class="ident">SoulReaping</span> <span class="op">=</span> <span class="number">50</span>,
     <span class="ident">Spite</span> <span class="op">=</span> <span class="number">53</span>,
     <span class="ident">Scourge</span> <span class="op">=</span> <span class="number">60</span>,
+    <span class="ident">Harbinger</span> <span class="op">=</span> <span class="number">64</span>,
 
     <span class="comment">// revenant</span>
     <span class="ident">Invocation</span> <span class="op">=</span> <span class="number">3</span>,
@@ -433,6 +444,7 @@
     <span class="ident">Salvation</span> <span class="op">=</span> <span class="number">12</span>,
     <span class="ident">Herald</span> <span class="op">=</span> <span class="number">52</span>,
     <span class="ident">Renegade</span> <span class="op">=</span> <span class="number">63</span>,
+    <span class="ident">Vindicator</span> <span class="op">=</span> <span class="number">69</span>,
 
     <span class="comment">// warrior</span>
     <span class="ident">Strength</span> <span class="op">=</span> <span class="number">4</span>,
@@ -442,6 +454,7 @@
     <span class="ident">Arms</span> <span class="op">=</span> <span class="number">36</span>,
     <span class="ident">Discipline</span> <span class="op">=</span> <span class="number">51</span>,
     <span class="ident">Spellbreaker</span> <span class="op">=</span> <span class="number">61</span>,
+    <span class="ident">Bladesworn</span> <span class="op">=</span> <span class="number">68</span>,
 
     <span class="comment">// ranger</span>
     <span class="ident">Druid</span> <span class="op">=</span> <span class="number">5</span>,
@@ -451,6 +464,7 @@
     <span class="ident">Beastmastery</span> <span class="op">=</span> <span class="number">32</span>,
     <span class="ident">WildernessSurvival</span> <span class="op">=</span> <span class="number">33</span>,
     <span class="ident">Soulbeast</span> <span class="op">=</span> <span class="number">55</span>,
+    <span class="ident">Untamed</span> <span class="op">=</span> <span class="number">72</span>,
 
     <span class="comment">// engineer</span>
     <span class="ident">Explosives</span> <span class="op">=</span> <span class="number">6</span>,
@@ -460,6 +474,7 @@
     <span class="ident">Scrapper</span> <span class="op">=</span> <span class="number">43</span>,
     <span class="ident">Inventions</span> <span class="op">=</span> <span class="number">47</span>,
     <span class="ident">Holosmith</span> <span class="op">=</span> <span class="number">57</span>,
+    <span class="ident">Mechanist</span> <span class="op">=</span> <span class="number">70</span>,
 
     <span class="comment">// thief</span>
     <span class="ident">Daredevil</span> <span class="op">=</span> <span class="number">7</span>,
@@ -469,6 +484,7 @@
     <span class="ident">Trickery</span> <span class="op">=</span> <span class="number">44</span>,
     <span class="ident">Acrobatics</span> <span class="op">=</span> <span class="number">54</span>,
     <span class="ident">Deadeye</span> <span class="op">=</span> <span class="number">58</span>,
+    <span class="ident">Specter</span> <span class="op">=</span> <span class="number">71</span>,
 
     <span class="comment">// guardian</span>
     <span class="ident">Valor</span> <span class="op">=</span> <span class="number">13</span>,
@@ -478,6 +494,7 @@
     <span class="ident">Virtues</span> <span class="op">=</span> <span class="number">46</span>,
     <span class="ident">Honor</span> <span class="op">=</span> <span class="number">49</span>,
     <span class="ident">Firebrand</span> <span class="op">=</span> <span class="number">62</span>,
+    <span class="ident">Willbender</span> <span class="op">=</span> <span class="number">65</span>,
 
     <span class="comment">// elementalist</span>
     <span class="ident">Water</span> <span class="op">=</span> <span class="number">17</span>,
@@ -487,6 +504,7 @@
     <span class="ident">Air</span> <span class="op">=</span> <span class="number">41</span>,
     <span class="ident">Tempest</span> <span class="op">=</span> <span class="number">48</span>,
     <span class="ident">Weaver</span> <span class="op">=</span> <span class="number">56</span>,
+    <span class="ident">Catalyst</span> <span class="op">=</span> <span class="number">67</span>,
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="arc_util" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
