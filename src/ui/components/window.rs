@@ -230,6 +230,21 @@ mod settings {
         settings: Option<T::Settings>,
     }
 
+    impl<T> Default for WindowSettings<T>
+    where
+        T: Windowed + HasSettings,
+        T::Settings: Default,
+    {
+        fn default() -> Self {
+            let props = T::window_props();
+            Self {
+                shown: Some(props.visible),
+                hotkey: props.hotkey,
+                settings: Some(T::Settings::default()),
+            }
+        }
+    }
+
     impl<T> HasSettings for Window<T>
     where
         T: Component + Windowed + HasSettings,
