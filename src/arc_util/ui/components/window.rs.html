@@ -260,6 +260,21 @@
 <span id="260">260</span>
 <span id="261">261</span>
 <span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Window component.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ui</span>::{<span class="ident">Component</span>, <span class="ident">Hideable</span>, <span class="ident">Windowed</span>};
@@ -490,6 +505,21 @@
         <span class="ident">shown</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
         <span class="ident">hotkey</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
         <span class="ident">settings</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T::Settings</span><span class="op">&gt;</span>,
+    }
+
+    <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">WindowSettings</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
+    <span class="kw">where</span>
+        <span class="ident">T</span>: <span class="ident">Windowed</span> <span class="op">+</span> <span class="ident">HasSettings</span>,
+        <span class="ident">T::Settings</span>: <span class="ident">Default</span>,
+    {
+        <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
+            <span class="kw">let</span> <span class="ident">props</span> <span class="op">=</span> <span class="ident">T::window_props</span>();
+            <span class="self">Self</span> {
+                <span class="ident">shown</span>: <span class="prelude-val">Some</span>(<span class="ident">props</span>.<span class="ident">visible</span>),
+                <span class="ident">hotkey</span>: <span class="ident">props</span>.<span class="ident">hotkey</span>,
+                <span class="ident">settings</span>: <span class="prelude-val">Some</span>(<span class="ident">T::Settings::default</span>()),
+            }
+        }
     }
 
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">HasSettings</span> <span class="kw">for</span> <span class="ident">Window</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
