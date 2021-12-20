@@ -145,6 +145,14 @@
 <span id="145">145</span>
 <span id="146">146</span>
 <span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Load/save settings.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::exports</span>;
@@ -263,7 +271,7 @@
     <span class="kw">where</span>
         <span class="ident">T</span>: <span class="ident">HasSettings</span>,
     {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">loaded</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">load_data</span>(<span class="ident">T::settings_id</span>()) {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">loaded</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">load_data</span>(<span class="ident">T::SETTINGS_ID</span>) {
             <span class="ident">component</span>.<span class="ident">load_settings</span>(<span class="ident">loaded</span>);
         }
     }
@@ -275,7 +283,7 @@
     <span class="kw">where</span>
         <span class="ident">T</span>: <span class="ident">HasSettings</span>,
     {
-        <span class="self">self</span>.<span class="ident">store_data</span>(<span class="ident">T::settings_id</span>(), <span class="ident">component</span>.<span class="ident">current_settings</span>());
+        <span class="self">self</span>.<span class="ident">store_data</span>(<span class="ident">T::SETTINGS_ID</span>, <span class="ident">component</span>.<span class="ident">current_settings</span>());
     }
 }
 
@@ -283,14 +291,22 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">HasSettings</span> {
     <span class="kw">type</span> <span class="ident">Settings</span>: <span class="ident">Serialize</span> <span class="op">+</span> <span class="ident">DeserializeOwned</span>;
 
-    <span class="doccomment">/// Returns the component&#39;s settings id.</span>
-    <span class="kw">fn</span> <span class="ident">settings_id</span>() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>;
+    <span class="doccomment">/// The component&#39;s settings id.</span>
+    <span class="kw">const</span> <span class="ident">SETTINGS_ID</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>;
 
     <span class="doccomment">/// Returns the component&#39;s current settings state.</span>
     <span class="kw">fn</span> <span class="ident">current_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::Settings</span>;
 
     <span class="doccomment">/// Loads the component&#39;s settings from a loaded state.</span>
     <span class="kw">fn</span> <span class="ident">load_settings</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">loaded</span>: <span class="ident"><span class="self">Self</span>::Settings</span>);
+
+    <span class="doccomment">/// Resets the component&#39;s settings to the defaults.</span>
+    <span class="kw">fn</span> <span class="ident">reset_settings</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>)
+    <span class="kw">where</span>
+        <span class="ident"><span class="self">Self</span>::Settings</span>: <span class="ident">Default</span>,
+    {
+        <span class="self">self</span>.<span class="ident">load_settings</span>(<span class="ident"><span class="self">Self</span>::Settings::default</span>())
+    }
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="arc_util" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
