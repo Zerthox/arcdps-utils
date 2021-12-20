@@ -236,9 +236,7 @@ mod settings {
     {
         type Settings = WindowSettings<T>;
 
-        fn settings_id() -> &'static str {
-            T::settings_id()
-        }
+        const SETTINGS_ID: &'static str = T::SETTINGS_ID;
 
         fn current_settings(&self) -> Self::Settings {
             WindowSettings {

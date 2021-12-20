@@ -116,7 +116,7 @@ impl Settings {
     where
         T: HasSettings,
     {
-        if let Some(loaded) = self.load_data(T::settings_id()) {
+        if let Some(loaded) = self.load_data(T::SETTINGS_ID) {
             component.load_settings(loaded);
         }
     }
@@ -128,7 +128,7 @@ impl Settings {
     where
         T: HasSettings,
     {
-        self.store_data(T::settings_id(), component.current_settings());
+        self.store_data(T::SETTINGS_ID, component.current_settings());
     }
 }
 
@@ -136,12 +136,20 @@ impl Settings {
 pub trait HasSettings {
     type Settings: Serialize + DeserializeOwned;
 
-    /// Returns the component's settings id.
-    fn settings_id() -> &'static str;
+    /// The component's settings id.
+    const SETTINGS_ID: &'static str;
 
     /// Returns the component's current settings state.
     fn current_settings(&self) -> Self::Settings;
 
     /// Loads the component's settings from a loaded state.
     fn load_settings(&mut self, loaded: Self::Settings);
+
+    /// Resets the component's settings to the defaults.
+    fn reset_settings(&mut self)
+    where
+        Self::Settings: Default,
+    {
+        self.load_settings(Self::Settings::default())
+    }
 }
