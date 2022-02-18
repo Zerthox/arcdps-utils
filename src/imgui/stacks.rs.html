@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\git\checkouts\imgui-rs-dfdaff1419027952\ac6ba81\imgui\src\stacks.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>stacks.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../imgui/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\git\checkouts\imgui-rs-dfdaff1419027952\ac6ba81\imgui\src\stacks.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>stacks.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../imgui/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -459,7 +460,7 @@
         <span class="kw">let</span> <span class="ident">font</span> <span class="op">=</span> <span class="ident">fonts</span>
             .<span class="ident">get_font</span>(<span class="ident">id</span>)
             .<span class="ident">expect</span>(<span class="string">&quot;Font atlas did not contain the given font&quot;</span>);
-        <span class="kw">unsafe</span> { <span class="ident">sys::igPushFont</span>(<span class="ident">font</span>.<span class="ident">raw</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>) };
+        <span class="kw">unsafe</span> { <span class="ident">sys::igPushFont</span>(<span class="ident">font</span>.<span class="ident">raw</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>) };
         <span class="ident">FontStackToken</span> { <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span> }
     }
     <span class="doccomment">/// Changes a style color by pushing a change to the color stack.</span>
@@ -576,7 +577,7 @@
 <span class="doccomment">/// Tracks a font pushed to the font stack that must be popped by calling `.pop()`</span>
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FontStackToken</span> {
-    <span class="ident">ctx</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Context</span>,
+    <span class="ident">ctx</span>: <span class="kw-2">*const</span> <span class="ident">Context</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">FontStackToken</span> {
@@ -588,7 +589,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">FontStackToken</span> {
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">is_null</span>() <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">thread::panicking</span>() {
             <span class="macro">panic!</span>(<span class="string">&quot;A FontStackToken was leaked. Did you call .pop()?&quot;</span>);
         }
@@ -599,7 +600,7 @@
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ColorStackToken</span> {
     <span class="ident">count</span>: <span class="ident">usize</span>,
-    <span class="ident">ctx</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Context</span>,
+    <span class="ident">ctx</span>: <span class="kw-2">*const</span> <span class="ident">Context</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">ColorStackToken</span> {
@@ -611,7 +612,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">ColorStackToken</span> {
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">is_null</span>() <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">thread::panicking</span>() {
             <span class="macro">panic!</span>(<span class="string">&quot;A ColorStackToken was leaked. Did you call .pop()?&quot;</span>);
         }
@@ -622,7 +623,7 @@
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StyleStackToken</span> {
     <span class="ident">count</span>: <span class="ident">usize</span>,
-    <span class="ident">ctx</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Context</span>,
+    <span class="ident">ctx</span>: <span class="kw-2">*const</span> <span class="ident">Context</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">StyleStackToken</span> {
@@ -634,7 +635,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">StyleStackToken</span> {
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">is_null</span>() <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">thread::panicking</span>() {
             <span class="macro">panic!</span>(<span class="string">&quot;A StyleStackToken was leaked. Did you call .pop()?&quot;</span>);
         }
@@ -746,7 +747,7 @@
 
 <span class="doccomment">/// Tracks a change pushed to the item width stack</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ItemWidthStackToken</span> {
-    <span class="ident">_ctx</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Context</span>,
+    <span class="ident">_ctx</span>: <span class="kw-2">*const</span> <span class="ident">Context</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">ItemWidthStackToken</span> {
@@ -759,7 +760,7 @@
 
 <span class="doccomment">/// Tracks a change pushed to the text wrap position stack</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextWrapPosStackToken</span> {
-    <span class="ident">_ctx</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Context</span>,
+    <span class="ident">_ctx</span>: <span class="kw-2">*const</span> <span class="ident">Context</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">TextWrapPosStackToken</span> {
@@ -773,7 +774,7 @@
 <span class="doccomment">/// Tracks a change pushed to the item flags stack</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ItemFlagsStackToken</span> {
     <span class="ident">discriminant</span>: <span class="ident">mem::Discriminant</span><span class="op">&lt;</span><span class="ident">ItemFlag</span><span class="op">&gt;</span>,
-    <span class="ident">_ctx</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Context</span>,
+    <span class="ident">_ctx</span>: <span class="kw-2">*const</span> <span class="ident">Context</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">ItemFlagsStackToken</span> {
@@ -806,11 +807,11 @@
             <span class="kw">match</span> <span class="ident">id</span> {
                 <span class="ident">Id::Int</span>(<span class="ident">i</span>) =&gt; <span class="ident">sys::igPushIDInt</span>(<span class="ident">i</span>),
                 <span class="ident">Id::Str</span>(<span class="ident">s</span>) =&gt; {
-                    <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>;
+                    <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>;
                     <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="ident">start</span>.<span class="ident">add</span>(<span class="ident">s</span>.<span class="ident">len</span>());
                     <span class="ident">sys::igPushIDStrStr</span>(<span class="ident">start</span>, <span class="ident">end</span>)
                 }
-                <span class="ident">Id::Ptr</span>(<span class="ident">p</span>) =&gt; <span class="ident">sys::igPushIDPtr</span>(<span class="ident">p</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_void</span>),
+                <span class="ident">Id::Ptr</span>(<span class="ident">p</span>) =&gt; <span class="ident">sys::igPushIDPtr</span>(<span class="ident">p</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_void</span>),
             }
         }
         <span class="ident">IdStackToken</span> { <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span> }
@@ -820,7 +821,7 @@
 <span class="doccomment">/// Tracks an ID pushed to the ID stack that must be popped by calling `.pop()`</span>
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IdStackToken</span> {
-    <span class="ident">ctx</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Context</span>,
+    <span class="ident">ctx</span>: <span class="kw-2">*const</span> <span class="ident">Context</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">IdStackToken</span> {
@@ -832,7 +833,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">IdStackToken</span> {
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">is_null</span>() <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">thread::panicking</span>() {
             <span class="macro">panic!</span>(<span class="string">&quot;A IdStackToken was leaked. Did you call .pop()?&quot;</span>);
         }
@@ -840,5 +841,4 @@
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="imgui" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
 </body></html>

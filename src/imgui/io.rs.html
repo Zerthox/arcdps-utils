@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\git\checkouts\imgui-rs-dfdaff1419027952\ac6ba81\imgui\src\io.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>io.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../imgui/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\git\checkouts\imgui-rs-dfdaff1419027952\ac6ba81\imgui\src\io.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>io.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../imgui/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -630,8 +631,8 @@
     <span class="doccomment">/// Minimum time between saving positions/sizes to .ini file, in seconds</span>
     <span class="kw">pub</span> <span class="ident">ini_saving_rate</span>: <span class="ident">f32</span>,
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">ini_filename</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">log_filename</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">ini_filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">log_filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
 
     <span class="doccomment">/// Time for a double-click, in seconds</span>
     <span class="kw">pub</span> <span class="ident">mouse_double_click_time</span>: <span class="ident">f32</span>,
@@ -647,15 +648,15 @@
     <span class="doccomment">/// When holding a key/button, rate at which it repeats, in seconds</span>
     <span class="kw">pub</span> <span class="ident">key_repeat_rate</span>: <span class="ident">f32</span>,
 
-    <span class="ident">user_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">fonts</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">FontAtlas</span>,
+    <span class="ident">user_data</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">fonts</span>: <span class="kw-2">*mut</span> <span class="ident">FontAtlas</span>,
 
     <span class="doccomment">/// Global scale for all fonts</span>
     <span class="kw">pub</span> <span class="ident">font_global_scale</span>: <span class="ident">f32</span>,
     <span class="doccomment">/// Allow user to scale text of individual window with CTRL+wheel</span>
     <span class="kw">pub</span> <span class="ident">font_allow_user_scaling</span>: <span class="ident">bool</span>,
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">font_default</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Font</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">font_default</span>: <span class="kw-2">*mut</span> <span class="ident">Font</span>,
 
     <span class="doccomment">/// For retina display or other situations where window coordinates are different from</span>
     <span class="doccomment">/// framebuffer coordinates</span>
@@ -692,18 +693,18 @@
     <span class="doccomment">/// Set to -1.0 to disable.</span>
     <span class="kw">pub</span> <span class="ident">config_memory_compact_timer</span>: <span class="ident">f32</span>,
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">backend_platform_name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">backend_renderer_name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
-    <span class="ident">backend_platform_user_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
-    <span class="ident">backend_renderer_user_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
-    <span class="ident">backend_language_user_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">backend_platform_name</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">backend_renderer_name</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
+    <span class="ident">backend_platform_user_data</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
+    <span class="ident">backend_renderer_user_data</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
+    <span class="ident">backend_language_user_data</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">get_clipboard_text_fn</span>:
-        <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="ident">user_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span><span class="op">&gt;</span>,
+        <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="ident">user_data</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>) -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span><span class="op">&gt;</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">set_clipboard_text_fn</span>:
-        <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="ident">user_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>, <span class="ident">text</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>)<span class="op">&gt;</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">clipboard_user_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
+        <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="ident">user_data</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>, <span class="ident">text</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>)<span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">clipboard_user_data</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
     <span class="ident">ime_set_input_screen_pos_fn</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="ident">x</span>: <span class="ident">c_int</span>, <span class="ident">y</span>: <span class="ident">c_int</span>)<span class="op">&gt;</span>,
-    <span class="ident">ime_window_handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
+    <span class="ident">ime_window_handle</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
     <span class="doccomment">/// Mouse position, in pixels.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Set to [f32::MAX, f32::MAX] if mouse is unavailable (on another screen, etc.).</span>
@@ -804,15 +805,15 @@
 
 <span class="kw">impl</span> <span class="ident">Io</span> {
     <span class="doccomment">/// Queue new character input</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_input_character</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">character</span>: <span class="ident">char</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_input_character</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">character</span>: <span class="ident">char</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> [<span class="number">0</span>; <span class="number">5</span>];
-        <span class="ident">character</span>.<span class="ident">encode_utf8</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>);
+        <span class="ident">character</span>.<span class="ident">encode_utf8</span>(<span class="kw-2">&amp;mut</span> <span class="ident">buf</span>);
         <span class="kw">unsafe</span> {
-            <span class="ident">sys::ImGuiIO_AddInputCharactersUTF8</span>(<span class="self">self</span>.<span class="ident">raw_mut</span>(), <span class="ident">buf</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>);
+            <span class="ident">sys::ImGuiIO_AddInputCharactersUTF8</span>(<span class="self">self</span>.<span class="ident">raw_mut</span>(), <span class="ident">buf</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>);
         }
     }
     <span class="doccomment">/// Clear character input buffer</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear_input_characters</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear_input_characters</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">sys::ImGuiIO_ClearInputCharacters</span>(<span class="self">self</span>.<span class="ident">raw_mut</span>());
         }
@@ -822,7 +823,7 @@
         <span class="kw">let</span> <span class="ident">c16_slice</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">input_queue_characters</span>.<span class="ident">as_slice</span>();
         <span class="ident">String::from_utf16</span>(<span class="ident">c16_slice</span>).<span class="ident">unwrap</span>()
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">update_delta_time</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">delta</span>: <span class="ident">Duration</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">update_delta_time</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">delta</span>: <span class="ident">Duration</span>) {
         <span class="kw">let</span> <span class="ident">delta_s</span> <span class="op">=</span> <span class="ident">delta</span>.<span class="ident">as_secs</span>() <span class="kw">as</span> <span class="ident">f32</span> <span class="op">+</span> <span class="ident">delta</span>.<span class="ident">subsec_nanos</span>() <span class="kw">as</span> <span class="ident">f32</span> <span class="op">/</span> <span class="number">1_000_000_000.0</span>;
         <span class="kw">if</span> <span class="ident">delta_s</span> <span class="op">&gt;</span> <span class="number">0.0</span> {
             <span class="self">self</span>.<span class="ident">delta_time</span> <span class="op">=</span> <span class="ident">delta_s</span>;
@@ -841,8 +842,8 @@
 }
 
 <span class="kw">impl</span> <span class="ident">IndexMut</span><span class="op">&lt;</span><span class="ident">Key</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Io</span> {
-    <span class="kw">fn</span> <span class="ident">index_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">Key</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">u32</span> {
-        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">key_map</span>[<span class="ident">index</span> <span class="kw">as</span> <span class="ident">usize</span>]
+    <span class="kw">fn</span> <span class="ident">index_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">Key</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">u32</span> {
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">key_map</span>[<span class="ident">index</span> <span class="kw">as</span> <span class="ident">usize</span>]
     }
 }
 
@@ -854,8 +855,8 @@
 }
 
 <span class="kw">impl</span> <span class="ident">IndexMut</span><span class="op">&lt;</span><span class="ident">NavInput</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Io</span> {
-    <span class="kw">fn</span> <span class="ident">index_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">NavInput</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">f32</span> {
-        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">nav_inputs</span>[<span class="ident">index</span> <span class="kw">as</span> <span class="ident">usize</span>]
+    <span class="kw">fn</span> <span class="ident">index_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">NavInput</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">f32</span> {
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">nav_inputs</span>[<span class="ident">index</span> <span class="kw">as</span> <span class="ident">usize</span>]
     }
 }
 
@@ -867,8 +868,8 @@
 }
 
 <span class="kw">impl</span> <span class="ident">IndexMut</span><span class="op">&lt;</span><span class="ident">MouseButton</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Io</span> {
-    <span class="kw">fn</span> <span class="ident">index_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">MouseButton</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span> {
-        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">mouse_down</span>[<span class="ident">index</span> <span class="kw">as</span> <span class="ident">usize</span>]
+    <span class="kw">fn</span> <span class="ident">index_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">MouseButton</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">bool</span> {
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">mouse_down</span>[<span class="ident">index</span> <span class="kw">as</span> <span class="ident">usize</span>]
     }
 }
 
@@ -974,5 +975,4 @@
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="imgui" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
 </body></html>

@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-0.3.9\src\um\winbase.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>winbase.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../winapi/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-0.3.9\src\um\winbase.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>winbase.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../winapi/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -3002,7 +3003,7 @@
     <span class="ident">dwProvSpec2</span>: <span class="ident">DWORD</span>,
     <span class="ident">wcProvChar</span>: [<span class="ident">WCHAR</span>; <span class="number">1</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCOMMPROP</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">COMMPROP</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCOMMPROP</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">COMMPROP</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">COMSTAT</span> {
     <span class="ident">BitFields</span>: <span class="ident">DWORD</span>,
     <span class="ident">cbInQue</span>: <span class="ident">DWORD</span>,
@@ -3018,7 +3019,7 @@
     <span class="ident">fTxim</span> <span class="ident">set_fTxim</span>[<span class="number">6</span>..<span class="number">7</span>],
     <span class="ident">fReserved</span> <span class="ident">set_fReserved</span>[<span class="number">7</span>..<span class="number">32</span>],
 ]}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCOMSTAT</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">COMSTAT</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCOMSTAT</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">COMSTAT</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DTR_CONTROL_DISABLE</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DTR_CONTROL_ENABLE</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x01</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DTR_CONTROL_HANDSHAKE</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x02</span>;
@@ -3059,7 +3060,7 @@
     <span class="ident">fAbortOnError</span> <span class="ident">set_fAbortOnError</span>[<span class="number">14</span>..<span class="number">15</span>],
     <span class="ident">fDummy2</span> <span class="ident">set_fDummy2</span>[<span class="number">15</span>..<span class="number">32</span>],
 ]}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPDCB</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DCB</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPDCB</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">DCB</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">COMMTIMEOUTS</span> {
     <span class="ident">ReadIntervalTimeout</span>: <span class="ident">DWORD</span>,
     <span class="ident">ReadTotalTimeoutMultiplier</span>: <span class="ident">DWORD</span>,
@@ -3067,7 +3068,7 @@
     <span class="ident">WriteTotalTimeoutMultiplier</span>: <span class="ident">DWORD</span>,
     <span class="ident">WriteTotalTimeoutConstant</span>: <span class="ident">DWORD</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCOMMTIMEOUTS</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">COMMTIMEOUTS</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCOMMTIMEOUTS</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">COMMTIMEOUTS</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">COMMCONFIG</span> {
     <span class="ident">dwSize</span>: <span class="ident">DWORD</span>,
     <span class="ident">wVersion</span>: <span class="ident">WORD</span>,
@@ -3078,7 +3079,7 @@
     <span class="ident">dwProviderSize</span>: <span class="ident">DWORD</span>,
     <span class="ident">wcProviderData</span>: [<span class="ident">WCHAR</span>; <span class="number">1</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCOMMCONFIG</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">COMMCONFIG</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCOMMCONFIG</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">COMMCONFIG</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GMEM_FIXED</span>: <span class="ident">UINT</span> <span class="op">=</span> <span class="number">0x0000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GMEM_MOVEABLE</span>: <span class="ident">UINT</span> <span class="op">=</span> <span class="number">0x0002</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GMEM_NOCOMPACT</span>: <span class="ident">UINT</span> <span class="op">=</span> <span class="number">0x0010</span>;
@@ -3107,7 +3108,7 @@
     <span class="ident">dwTotalVirtual</span>: <span class="ident">SIZE_T</span>,
     <span class="ident">dwAvailVirtual</span>: <span class="ident">SIZE_T</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPMEMORYSTATUS</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">MEMORYSTATUS</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPMEMORYSTATUS</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">MEMORYSTATUS</span>;
 <span class="comment">// NUMA_NO_PREFERRED_NODE</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DEBUG_PROCESS</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00000001</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DEBUG_ONLY_THIS_PROCESS</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00000002</span>;
@@ -3228,8 +3229,8 @@
     <span class="ident">Reserved2</span>: <span class="ident">WORD</span>,
     <span class="ident">szPathName</span>: [<span class="ident">CHAR</span>; <span class="ident">OFS_MAXPATHNAME</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">POFSTRUCT</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">OFSTRUCT</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPOFSTRUCT</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">OFSTRUCT</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">POFSTRUCT</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">OFSTRUCT</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPOFSTRUCT</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">OFSTRUCT</span>;
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GlobalAlloc</span>(
         <span class="ident">uFlags</span>: <span class="ident">UINT</span>,
@@ -3394,10 +3395,10 @@
         <span class="ident">lpParameter</span>: <span class="ident">LPVOID</span>,
     ) -&gt; <span class="ident">LPVOID</span>;
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUMS_CONTEXT</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUMS_COMPLETION_LIST</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUMS_CONTEXT</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">c_void</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUMS_COMPLETION_LIST</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">c_void</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">UMS_THREAD_INFO_CLASS</span> <span class="op">=</span> <span class="ident">RTL_UMS_THREAD_INFO_CLASS</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUMS_THREAD_INFO_CLASS</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">UMS_THREAD_INFO_CLASS</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUMS_THREAD_INFO_CLASS</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">UMS_THREAD_INFO_CLASS</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUMS_SCHEDULER_ENTRY_POINT</span> <span class="op">=</span> <span class="ident">PRTL_UMS_SCHEDULER_ENTRY_POINT</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">UMS_SCHEDULER_STARTUP_INFO</span> {
     <span class="ident">UmsVersion</span>: <span class="ident">ULONG</span>,
@@ -3405,7 +3406,7 @@
     <span class="ident">SchedulerProc</span>: <span class="ident">PUMS_SCHEDULER_ENTRY_POINT</span>,
     <span class="ident">SchedulerParam</span>: <span class="ident">PVOID</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUMS_SCHEDULER_STARTUP_INFO</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">UMS_SCHEDULER_STARTUP_INFO</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUMS_SCHEDULER_STARTUP_INFO</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">UMS_SCHEDULER_STARTUP_INFO</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">UMS_SYSTEM_THREAD_INFORMATION</span> {
     <span class="ident">UmsVersion</span>: <span class="ident">ULONG</span>,
     <span class="ident">ThreadUmsFlags</span>: <span class="ident">ULONG</span>,
@@ -3414,17 +3415,17 @@
     <span class="ident">IsUmsSchedulerThread</span> <span class="ident">set_IsUmsSchedulerThread</span>[<span class="number">0</span>..<span class="number">1</span>],
     <span class="ident">IsUmsWorkerThread</span> <span class="ident">set_IsUmsWorkerThread</span>[<span class="number">1</span>..<span class="number">2</span>],
 ]}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUMS_SYSTEM_THREAD_INFORMATION</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">UMS_SYSTEM_THREAD_INFORMATION</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUMS_SYSTEM_THREAD_INFORMATION</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">UMS_SYSTEM_THREAD_INFORMATION</span>;
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_pointer_width</span> <span class="op">=</span> <span class="string">&quot;64&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateUmsCompletionList</span>(
-        <span class="ident">UmsCompletionList</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PUMS_COMPLETION_LIST</span>,
+        <span class="ident">UmsCompletionList</span>: <span class="kw-2">*mut</span> <span class="ident">PUMS_COMPLETION_LIST</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_pointer_width</span> <span class="op">=</span> <span class="string">&quot;64&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DequeueUmsCompletionListItems</span>(
         <span class="ident">UmsCompletionList</span>: <span class="ident">PUMS_COMPLETION_LIST</span>,
         <span class="ident">WaitTimeOut</span>: <span class="ident">DWORD</span>,
-        <span class="ident">UmsThreadList</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PUMS_CONTEXT</span>,
+        <span class="ident">UmsThreadList</span>: <span class="kw-2">*mut</span> <span class="ident">PUMS_CONTEXT</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_pointer_width</span> <span class="op">=</span> <span class="string">&quot;64&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetUmsCompletionListEvent</span>(
@@ -3470,7 +3471,7 @@
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_pointer_width</span> <span class="op">=</span> <span class="string">&quot;64&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateUmsThreadContext</span>(
-        <span class="ident">lpUmsThread</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PUMS_CONTEXT</span>,
+        <span class="ident">lpUmsThread</span>: <span class="kw-2">*mut</span> <span class="ident">PUMS_CONTEXT</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_pointer_width</span> <span class="op">=</span> <span class="string">&quot;64&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">EnterUmsSchedulingMode</span>(
@@ -3539,7 +3540,7 @@
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">Wow64SetThreadContext</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
-        <span class="ident">lpContext</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WOW64_CONTEXT</span>,
+        <span class="ident">lpContext</span>: <span class="kw-2">*const</span> <span class="ident">WOW64_CONTEXT</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">Wow64GetThreadSelectorEntry</span>(
         <span class="ident">hThread</span>: <span class="ident">HANDLE</span>,
@@ -3578,7 +3579,7 @@
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetDevicePowerState</span>(
         <span class="ident">hDevice</span>: <span class="ident">HANDLE</span>,
-        <span class="ident">pfOn</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">BOOL</span>,
+        <span class="ident">pfOn</span>: <span class="kw-2">*mut</span> <span class="ident">BOOL</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">SetMessageWaitingIndicator</span>(
         <span class="ident">hMsgIndicator</span>: <span class="ident">HANDLE</span>,
@@ -3693,7 +3694,7 @@
         <span class="ident">pdwQuotaUsed</span>: <span class="ident">PDWORD</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FileTimeToDosDateTime</span>(
-        <span class="ident">lpFileTime</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">FILETIME</span>,
+        <span class="ident">lpFileTime</span>: <span class="kw-2">*const</span> <span class="ident">FILETIME</span>,
         <span class="ident">lpFatDate</span>: <span class="ident">LPWORD</span>,
         <span class="ident">lpFatTime</span>: <span class="ident">LPWORD</span>,
     ) -&gt; <span class="ident">BOOL</span>;
@@ -3709,7 +3710,7 @@
         <span class="ident">dwLanguageId</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPSTR</span>,
         <span class="ident">nSize</span>: <span class="ident">DWORD</span>,
-        <span class="ident">Arguments</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">va_list</span>,
+        <span class="ident">Arguments</span>: <span class="kw-2">*mut</span> <span class="ident">va_list</span>,
     ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FormatMessageW</span>(
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
@@ -3718,7 +3719,7 @@
         <span class="ident">dwLanguageId</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPWSTR</span>,
         <span class="ident">nSize</span>: <span class="ident">DWORD</span>,
-        <span class="ident">Arguments</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">va_list</span>,
+        <span class="ident">Arguments</span>: <span class="kw-2">*mut</span> <span class="ident">va_list</span>,
     ) -&gt; <span class="ident">DWORD</span>;
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FORMAT_MESSAGE_IGNORE_INSERTS</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00000200</span>;
@@ -3861,7 +3862,7 @@
         <span class="ident">lpNumberOfBytesRead</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">bAbort</span>: <span class="ident">BOOL</span>,
         <span class="ident">bProcessSecurity</span>: <span class="ident">BOOL</span>,
-        <span class="ident">lpContext</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LPVOID</span>,
+        <span class="ident">lpContext</span>: <span class="kw-2">*mut</span> <span class="ident">LPVOID</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">BackupSeek</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
@@ -3869,7 +3870,7 @@
         <span class="ident">dwHighBytesToSeek</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpdwLowByteSeeked</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">lpdwHighByteSeeked</span>: <span class="ident">LPDWORD</span>,
-        <span class="ident">lpContext</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LPVOID</span>,
+        <span class="ident">lpContext</span>: <span class="kw-2">*mut</span> <span class="ident">LPVOID</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">BackupWrite</span>(
         <span class="ident">hFile</span>: <span class="ident">HANDLE</span>,
@@ -3878,7 +3879,7 @@
         <span class="ident">lpNumberOfBytesWritten</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">bAbort</span>: <span class="ident">BOOL</span>,
         <span class="ident">bProcessSecurity</span>: <span class="ident">BOOL</span>,
-        <span class="ident">lpContext</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LPVOID</span>,
+        <span class="ident">lpContext</span>: <span class="kw-2">*mut</span> <span class="ident">LPVOID</span>,
     ) -&gt; <span class="ident">BOOL</span>;
 }
 <span class="comment">//2886</span>
@@ -3900,12 +3901,12 @@
     <span class="ident">StartupInfo</span>: <span class="ident">STARTUPINFOA</span>,
     <span class="ident">lpAttributeList</span>: <span class="ident">LPPROC_THREAD_ATTRIBUTE_LIST</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPSTARTUPINFOEXA</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">STARTUPINFOEXA</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPSTARTUPINFOEXA</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">STARTUPINFOEXA</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">STARTUPINFOEXW</span> {
     <span class="ident">StartupInfo</span>: <span class="ident">STARTUPINFOW</span>,
     <span class="ident">lpAttributeList</span>: <span class="ident">LPPROC_THREAD_ATTRIBUTE_LIST</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPSTARTUPINFOEXW</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">STARTUPINFOEXW</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPSTARTUPINFOEXW</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">STARTUPINFOEXW</span>;
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">OpenMutexA</span>(
         <span class="ident">dwDesiredAccess</span>: <span class="ident">DWORD</span>,
@@ -4384,14 +4385,14 @@
         <span class="ident">lpFileName</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">nBufferLength</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPSTR</span>,
-        <span class="ident">lpFilePart</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LPSTR</span>,
+        <span class="ident">lpFilePart</span>: <span class="kw-2">*mut</span> <span class="ident">LPSTR</span>,
         <span class="ident">hTransaction</span>: <span class="ident">HANDLE</span>,
     ) -&gt; <span class="ident">DWORD</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetFullPathNameTransactedW</span>(
         <span class="ident">lpFileName</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">nBufferLength</span>: <span class="ident">DWORD</span>,
         <span class="ident">lpBuffer</span>: <span class="ident">LPWSTR</span>,
-        <span class="ident">lpFilePart</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LPWSTR</span>,
+        <span class="ident">lpFilePart</span>: <span class="kw-2">*mut</span> <span class="ident">LPWSTR</span>,
         <span class="ident">hTransaction</span>: <span class="ident">HANDLE</span>,
     );
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DefineDosDeviceA</span>(
@@ -4660,13 +4661,13 @@
     <span class="ident">Info</span>: <span class="ident">COPYFILE2_MESSAGE_Info</span>,
 }}
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">PCOPYFILE2_PROGRESS_ROUTINE</span>(
-    <span class="ident">pMessage</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">COPYFILE2_MESSAGE</span>,
+    <span class="ident">pMessage</span>: <span class="kw-2">*const</span> <span class="ident">COPYFILE2_MESSAGE</span>,
     <span class="ident">pvCallbackContext</span>: <span class="ident">PVOID</span>,
 ) -&gt; <span class="ident">COPYFILE2_MESSAGE_ACTION</span>}
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">COPYFILE2_EXTENDED_PARAMETERS</span> {
     <span class="ident">dwSize</span>: <span class="ident">DWORD</span>,
     <span class="ident">dwCopyFlags</span>: <span class="ident">DWORD</span>,
-    <span class="ident">pfCancel</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">BOOL</span>,
+    <span class="ident">pfCancel</span>: <span class="kw-2">*mut</span> <span class="ident">BOOL</span>,
     <span class="ident">pProgressRoutine</span>: <span class="ident">PCOPYFILE2_PROGRESS_ROUTINE</span>,
     <span class="ident">pvCallbackContext</span>: <span class="ident">PVOID</span>,
 }}
@@ -4674,7 +4675,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CopyFile2</span>(
         <span class="ident">pwszExistingFileName</span>: <span class="ident">PCWSTR</span>,
         <span class="ident">pwszNewFileName</span>: <span class="ident">PCWSTR</span>,
-        <span class="ident">pExtendedParameters</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">COPYFILE2_EXTENDED_PARAMETERS</span>,
+        <span class="ident">pExtendedParameters</span>: <span class="kw-2">*mut</span> <span class="ident">COPYFILE2_EXTENDED_PARAMETERS</span>,
     ) -&gt; <span class="ident">HRESULT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MoveFileA</span>(
         <span class="ident">lpExistingFileName</span>: <span class="ident">LPCSTR</span>,
@@ -4894,7 +4895,7 @@
         <span class="ident">lpUserSid</span>: <span class="ident">PSID</span>,
         <span class="ident">wNumStrings</span>: <span class="ident">WORD</span>,
         <span class="ident">dwDataSize</span>: <span class="ident">DWORD</span>,
-        <span class="ident">lpStrings</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LPCSTR</span>,
+        <span class="ident">lpStrings</span>: <span class="kw-2">*mut</span> <span class="ident">LPCSTR</span>,
         <span class="ident">lpRawData</span>: <span class="ident">LPVOID</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ReportEventW</span>(
@@ -4905,7 +4906,7 @@
         <span class="ident">lpUserSid</span>: <span class="ident">PSID</span>,
         <span class="ident">wNumStrings</span>: <span class="ident">WORD</span>,
         <span class="ident">dwDataSize</span>: <span class="ident">DWORD</span>,
-        <span class="ident">lpStrings</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LPCWSTR</span>,
+        <span class="ident">lpStrings</span>: <span class="kw-2">*mut</span> <span class="ident">LPCWSTR</span>,
         <span class="ident">lpRawData</span>: <span class="ident">LPVOID</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="comment">// pub fn GetEventLogInformation();</span>
@@ -4943,7 +4944,7 @@
         <span class="ident">nndPreferred</span>: <span class="ident">DWORD</span>,
     ) -&gt; <span class="ident">LPVOID</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsBadReadPtr</span>(
-        <span class="ident">lp</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">VOID</span>,
+        <span class="ident">lp</span>: <span class="kw-2">*const</span> <span class="ident">VOID</span>,
         <span class="ident">ucb</span>: <span class="ident">UINT_PTR</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsBadWritePtr</span>(
@@ -4951,7 +4952,7 @@
         <span class="ident">ucb</span>: <span class="ident">UINT_PTR</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsBadHugeReadPtr</span>(
-        <span class="ident">lp</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">VOID</span>,
+        <span class="ident">lp</span>: <span class="kw-2">*const</span> <span class="ident">VOID</span>,
         <span class="ident">ucb</span>: <span class="ident">UINT_PTR</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IsBadHugeWritePtr</span>(
@@ -5144,8 +5145,8 @@
         <span class="ident">dwLogonType</span>: <span class="ident">DWORD</span>,
         <span class="ident">dwLogonProvider</span>: <span class="ident">DWORD</span>,
         <span class="ident">phToken</span>: <span class="ident">PHANDLE</span>,
-        <span class="ident">ppLogonSid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PSID</span>,
-        <span class="ident">ppProfileBuffer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PVOID</span>,
+        <span class="ident">ppLogonSid</span>: <span class="kw-2">*mut</span> <span class="ident">PSID</span>,
+        <span class="ident">ppProfileBuffer</span>: <span class="kw-2">*mut</span> <span class="ident">PVOID</span>,
         <span class="ident">pdwProfileLength</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">pQuotaLimits</span>: <span class="ident">PQUOTA_LIMITS</span>,
     ) -&gt; <span class="ident">BOOL</span>;
@@ -5156,8 +5157,8 @@
         <span class="ident">dwLogonType</span>: <span class="ident">DWORD</span>,
         <span class="ident">dwLogonProvider</span>: <span class="ident">DWORD</span>,
         <span class="ident">phToken</span>: <span class="ident">PHANDLE</span>,
-        <span class="ident">ppLogonSid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PSID</span>,
-        <span class="ident">ppProfileBuffer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PVOID</span>,
+        <span class="ident">ppLogonSid</span>: <span class="kw-2">*mut</span> <span class="ident">PSID</span>,
+        <span class="ident">ppProfileBuffer</span>: <span class="kw-2">*mut</span> <span class="ident">PVOID</span>,
         <span class="ident">pdwProfileLength</span>: <span class="ident">LPDWORD</span>,
         <span class="ident">pQuotaLimits</span>: <span class="ident">PQUOTA_LIMITS</span>,
     ) -&gt; <span class="ident">BOOL</span>;
@@ -5245,7 +5246,7 @@
         <span class="ident">Flags</span>: <span class="ident">ULONG</span>,
     ) -&gt; <span class="ident">HANDLE</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">AddIntegrityLabelToBoundaryDescriptor</span>(
-        <span class="ident">BoundaryDescriptor</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">HANDLE</span>,
+        <span class="ident">BoundaryDescriptor</span>: <span class="kw-2">*mut</span> <span class="ident">HANDLE</span>,
         <span class="ident">IntegrityLabel</span>: <span class="ident">PSID</span>,
     ) -&gt; <span class="ident">BOOL</span>;
 }
@@ -5261,13 +5262,13 @@
     <span class="ident">szHwProfileGuid</span>: [<span class="ident">CHAR</span>; <span class="ident">HW_PROFILE_GUIDLEN</span>],
     <span class="ident">szHwProfileName</span>: [<span class="ident">CHAR</span>; <span class="ident">MAX_PROFILE_LEN</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPHW_PROFILE_INFOA</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">HW_PROFILE_INFOA</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPHW_PROFILE_INFOA</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">HW_PROFILE_INFOA</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">HW_PROFILE_INFOW</span> {
     <span class="ident">dwDockInfo</span>: <span class="ident">DWORD</span>,
     <span class="ident">szHwProfileGuid</span>: [<span class="ident">WCHAR</span>; <span class="ident">HW_PROFILE_GUIDLEN</span>],
     <span class="ident">szHwProfileName</span>: [<span class="ident">WCHAR</span>; <span class="ident">MAX_PROFILE_LEN</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPHW_PROFILE_INFOW</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">HW_PROFILE_INFOW</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPHW_PROFILE_INFOW</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">HW_PROFILE_INFOW</span>;
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentHwProfileA</span>(
         <span class="ident">lpHwProfileInfo</span>: <span class="ident">LPHW_PROFILE_INFOA</span>,
@@ -5294,7 +5295,7 @@
     <span class="ident">BatteryLifeTime</span>: <span class="ident">DWORD</span>,
     <span class="ident">BatteryFullLifeTime</span>: <span class="ident">DWORD</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPSYSTEM_POWER_STATUS</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">SYSTEM_POWER_STATUS</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPSYSTEM_POWER_STATUS</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">SYSTEM_POWER_STATUS</span>;
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetSystemPowerStatus</span>(
         <span class="ident">lpSystemPowerStatus</span>: <span class="ident">LPSYSTEM_POWER_STATUS</span>,
@@ -5304,7 +5305,7 @@
         <span class="ident">fForce</span>: <span class="ident">BOOL</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">MapUserPhysicalPagesScatter</span>(
-        <span class="ident">VirtualAddresses</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PVOID</span>,
+        <span class="ident">VirtualAddresses</span>: <span class="kw-2">*mut</span> <span class="ident">PVOID</span>,
         <span class="ident">NumberOfPages</span>: <span class="ident">ULONG_PTR</span>,
         <span class="ident">PageArray</span>: <span class="ident">PULONG_PTR</span>,
     ) -&gt; <span class="ident">BOOL</span>;
@@ -5394,7 +5395,7 @@
     <span class="ident">lpApplicationName</span>: <span class="ident">LPCSTR</span>,
     <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PACTCTXA</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ACTCTXA</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PACTCTXA</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">ACTCTXA</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">ACTCTXW</span> {
     <span class="ident">cbSize</span>: <span class="ident">ULONG</span>,
     <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
@@ -5406,9 +5407,9 @@
     <span class="ident">lpApplicationName</span>: <span class="ident">LPCWSTR</span>,
     <span class="ident">hModule</span>: <span class="ident">HMODULE</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PACTCTXW</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ACTCTXW</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCACTCTXA</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ACTCTXA</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCACTCTXW</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ACTCTXW</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PACTCTXW</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">ACTCTXW</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCACTCTXA</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">ACTCTXA</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCACTCTXW</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">ACTCTXW</span>;
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateActCtxA</span>(
         <span class="ident">pActCtx</span>: <span class="ident">PCACTCTXA</span>,
@@ -5427,14 +5428,14 @@
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ActivateActCtx</span>(
         <span class="ident">hActCtx</span>: <span class="ident">HANDLE</span>,
-        <span class="ident">lpCookie</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ULONG_PTR</span>,
+        <span class="ident">lpCookie</span>: <span class="kw-2">*mut</span> <span class="ident">ULONG_PTR</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DeactivateActCtx</span>(
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
         <span class="ident">ulCookie</span>: <span class="ident">ULONG_PTR</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetCurrentActCtx</span>(
-        <span class="ident">lphActCtx</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">HANDLE</span>,
+        <span class="ident">lphActCtx</span>: <span class="kw-2">*mut</span> <span class="ident">HANDLE</span>,
     ) -&gt; <span class="ident">BOOL</span>;
 }
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA</span> {
@@ -5445,9 +5446,9 @@
     <span class="ident">ulSectionGlobalDataLength</span>: <span class="ident">ULONG</span>,
 }}
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA</span> <span class="op">=</span>
-    <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA</span>;
+    <span class="kw-2">*mut</span> <span class="ident">ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA</span> <span class="op">=</span>
-    <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA</span>;
+    <span class="kw-2">*const</span> <span class="ident">ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">ACTCTX_SECTION_KEYED_DATA</span> {
     <span class="ident">cbSize</span>: <span class="ident">ULONG</span>,
     <span class="ident">ulDataFormatVersion</span>: <span class="ident">ULONG</span>,
@@ -5462,28 +5463,28 @@
     <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
     <span class="ident">AssemblyMetadata</span>: <span class="ident">ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PACTCTX_SECTION_KEYED_DATA</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ACTCTX_SECTION_KEYED_DATA</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCACTCTX_SECTION_KEYED_DATA</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ACTCTX_SECTION_KEYED_DATA</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PACTCTX_SECTION_KEYED_DATA</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">ACTCTX_SECTION_KEYED_DATA</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCACTCTX_SECTION_KEYED_DATA</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">ACTCTX_SECTION_KEYED_DATA</span>;
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindActCtxSectionStringA</span>(
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
-        <span class="ident">lpExtensionGuid</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GUID</span>,
+        <span class="ident">lpExtensionGuid</span>: <span class="kw-2">*const</span> <span class="ident">GUID</span>,
         <span class="ident">ulSectionId</span>: <span class="ident">ULONG</span>,
         <span class="ident">lpStringToFind</span>: <span class="ident">LPCSTR</span>,
         <span class="ident">ReturnedData</span>: <span class="ident">PACTCTX_SECTION_KEYED_DATA</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindActCtxSectionStringW</span>(
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
-        <span class="ident">lpExtensionGuid</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GUID</span>,
+        <span class="ident">lpExtensionGuid</span>: <span class="kw-2">*const</span> <span class="ident">GUID</span>,
         <span class="ident">ulSectionId</span>: <span class="ident">ULONG</span>,
         <span class="ident">lpStringToFind</span>: <span class="ident">LPCWSTR</span>,
         <span class="ident">ReturnedData</span>: <span class="ident">PACTCTX_SECTION_KEYED_DATA</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FindActCtxSectionGuid</span>(
         <span class="ident">dwFlags</span>: <span class="ident">DWORD</span>,
-        <span class="ident">lpExtensionGuid</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GUID</span>,
+        <span class="ident">lpExtensionGuid</span>: <span class="kw-2">*const</span> <span class="ident">GUID</span>,
         <span class="ident">ulSectionId</span>: <span class="ident">ULONG</span>,
-        <span class="ident">lpGuidToFind</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GUID</span>,
+        <span class="ident">lpGuidToFind</span>: <span class="kw-2">*const</span> <span class="ident">GUID</span>,
         <span class="ident">ReturnedData</span>: <span class="ident">PACTCTX_SECTION_KEYED_DATA</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">QueryActCtxW</span>(
@@ -5493,7 +5494,7 @@
         <span class="ident">ulInfoClass</span>: <span class="ident">ULONG</span>,
         <span class="ident">pvBuffer</span>: <span class="ident">PVOID</span>,
         <span class="ident">cbBuffer</span>: <span class="ident">SIZE_T</span>,
-        <span class="ident">pcbWrittenOrRequired</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">SIZE_T</span>,
+        <span class="ident">pcbWrittenOrRequired</span>: <span class="kw-2">*mut</span> <span class="ident">SIZE_T</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WTSGetActiveConsoleSessionId</span>() -&gt; <span class="ident">DWORD</span>;
     <span class="comment">// pub fn WTSGetServiceSessionId();</span>
@@ -5555,8 +5556,8 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">UnregisterApplicationRestart</span>() -&gt; <span class="ident">HRESULT</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetApplicationRecoveryCallback</span>(
         <span class="ident">hProcess</span>: <span class="ident">HANDLE</span>,
-        <span class="ident">pRecoveryCallback</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">APPLICATION_RECOVERY_CALLBACK</span>,
-        <span class="ident">ppvParameter</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PVOID</span>,
+        <span class="ident">pRecoveryCallback</span>: <span class="kw-2">*mut</span> <span class="ident">APPLICATION_RECOVERY_CALLBACK</span>,
+        <span class="ident">ppvParameter</span>: <span class="kw-2">*mut</span> <span class="ident">PVOID</span>,
         <span class="ident">pdwPingInterval</span>: <span class="ident">PDWORD</span>,
         <span class="ident">pdwFlags</span>: <span class="ident">PDWORD</span>,
     ) -&gt; <span class="ident">HRESULT</span>;
@@ -5599,7 +5600,7 @@
     <span class="ident">Type</span>: <span class="ident">FILE_ID_TYPE</span>,
     <span class="ident">u</span>: <span class="ident">FILE_ID_DESCRIPTOR_u</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPFILE_ID_DESCRIPTOR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">FILE_ID_DESCRIPTOR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPFILE_ID_DESCRIPTOR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">FILE_ID_DESCRIPTOR</span>;
 <span class="kw">extern</span> <span class="string">&quot;system&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">OpenFileById</span>(
         <span class="ident">hVolumeHint</span>: <span class="ident">HANDLE</span>,
@@ -5626,7 +5627,7 @@
         <span class="ident">settingName</span>: <span class="ident">PCWSTR</span>,
         <span class="ident">pvBuffer</span>: <span class="ident">PWSTR</span>,
         <span class="ident">dwBuffer</span>: <span class="ident">SIZE_T</span>,
-        <span class="ident">pdwWrittenOrRequired</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">SIZE_T</span>,
+        <span class="ident">pdwWrittenOrRequired</span>: <span class="kw-2">*mut</span> <span class="ident">SIZE_T</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CreateSymbolicLinkTransactedA</span>(
         <span class="ident">lpSymlinkFileName</span>: <span class="ident">LPCSTR</span>,
@@ -5659,7 +5660,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">InitializeContext</span>(
         <span class="ident">Buffer</span>: <span class="ident">PVOID</span>,
         <span class="ident">ContextFlags</span>: <span class="ident">DWORD</span>,
-        <span class="ident">Context</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PCONTEXT</span>,
+        <span class="ident">Context</span>: <span class="kw-2">*mut</span> <span class="ident">PCONTEXT</span>,
         <span class="ident">ContextLength</span>: <span class="ident">PDWORD</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">GetEnabledXStateFeatures</span>() -&gt; <span class="ident">DWORD64</span>;
@@ -5682,7 +5683,7 @@
         <span class="ident">ThreadHandle</span>: <span class="ident">HANDLE</span>,
         <span class="ident">Flags</span>: <span class="ident">DWORD</span>,
         <span class="ident">HardwareCounters</span>: <span class="ident">DWORD64</span>,
-        <span class="ident">PerformanceDataHandle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">HANDLE</span>,
+        <span class="ident">PerformanceDataHandle</span>: <span class="kw-2">*mut</span> <span class="ident">HANDLE</span>,
     ) -&gt; <span class="ident">BOOL</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DisableThreadProfiling</span>(
         <span class="ident">PerformanceDataHandle</span>: <span class="ident">HANDLE</span>,
@@ -5708,5 +5709,4 @@
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="winapi" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
 </body></html>

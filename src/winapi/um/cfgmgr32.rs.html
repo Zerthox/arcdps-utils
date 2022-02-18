@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-0.3.9\src\um\cfgmgr32.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cfgmgr32.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../winapi/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-0.3.9\src\um\cfgmgr32.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cfgmgr32.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../winapi/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -2091,7 +2092,7 @@
     <span class="ident">PCHAR</span>, <span class="ident">PCSTR</span>, <span class="ident">PCWSTR</span>, <span class="ident">PDWORDLONG</span>, <span class="ident">PSTR</span>, <span class="ident">PVOID</span>, <span class="ident">PWCHAR</span>, <span class="ident">PWSTR</span>, <span class="ident">ULONGLONG</span>, <span class="ident">VOID</span>, <span class="ident">WCHAR</span>
 };
 <span class="kw">use</span> <span class="ident">um::winreg::REGSAM</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCVOID</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">VOID</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCVOID</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">VOID</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAX_DEVICE_ID_LEN</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">200</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAX_DEVNODE_ID_LEN</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">MAX_DEVICE_ID_LEN</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAX_GUID_STRING_LEN</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">39</span>;
@@ -2110,28 +2111,28 @@
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">CONFIGRET</span> <span class="op">=</span> <span class="ident">RETURN_TYPE</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DEVNODE</span> <span class="op">=</span> <span class="ident">DWORD</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DEVINST</span> <span class="op">=</span> <span class="ident">DWORD</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDEVNODE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DEVNODE</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDEVINST</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DEVNODE</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DEVNODEID_A</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DEVINSTID_A</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DEVNODEID_W</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DEVINSTID_W</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDEVNODE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">DEVNODE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDEVINST</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">DEVNODE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DEVNODEID_A</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DEVINSTID_A</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DEVNODEID_W</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DEVINSTID_W</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LOG_CONF</span> <span class="op">=</span> <span class="ident">DWORD_PTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLOG_CONF</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LOG_CONF</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLOG_CONF</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">LOG_CONF</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RES_DES</span> <span class="op">=</span> <span class="ident">DWORD_PTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRES_DES</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">RES_DES</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRES_DES</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">RES_DES</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RESOURCEID</span> <span class="op">=</span> <span class="ident">ULONG</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRESOURCEID</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">RESOURCEID</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRESOURCEID</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">RESOURCEID</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRIORITY</span> <span class="op">=</span> <span class="ident">ULONG</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PPRIORITY</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PRIORITY</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PPRIORITY</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">PRIORITY</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RANGE_LIST</span> <span class="op">=</span> <span class="ident">DWORD_PTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRANGE_LIST</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">RANGE_LIST</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRANGE_LIST</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">RANGE_LIST</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RANGE_ELEMENT</span> <span class="op">=</span> <span class="ident">DWORD_PTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRANGE_ELEMENT</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">RANGE_ELEMENT</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRANGE_ELEMENT</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">RANGE_ELEMENT</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">HMACHINE</span> <span class="op">=</span> <span class="ident">HANDLE</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PHMACHINE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">HMACHINE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PHMACHINE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">HMACHINE</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">CONFLICT_LIST</span> <span class="op">=</span> <span class="ident">ULONG_PTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCONFLICT_LIST</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CONFLICT_LIST</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCONFLICT_LIST</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CONFLICT_LIST</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">CONFLICT_DETAILS_A</span> {
     <span class="ident">CD_ulSize</span>: <span class="ident">ULONG</span>,
     <span class="ident">CD_ulMask</span>: <span class="ident">ULONG</span>,
@@ -2140,7 +2141,7 @@
     <span class="ident">CD_ulFlags</span>: <span class="ident">ULONG</span>,
     <span class="ident">CD_szDescription</span>: [<span class="ident">CHAR</span>; <span class="ident">MAX_PATH</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCONFLICT_DETAILS_A</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CONFLICT_DETAILS_A</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCONFLICT_DETAILS_A</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CONFLICT_DETAILS_A</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">CONFLICT_DETAILS_W</span> {
     <span class="ident">CD_ulSize</span>: <span class="ident">ULONG</span>,
     <span class="ident">CD_ulMask</span>: <span class="ident">ULONG</span>,
@@ -2149,7 +2150,7 @@
     <span class="ident">CD_ulFlags</span>: <span class="ident">ULONG</span>,
     <span class="ident">CD_szDescription</span>: [<span class="ident">WCHAR</span>; <span class="ident">MAX_PATH</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCONFLICT_DETAILS_W</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CONFLICT_DETAILS_W</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCONFLICT_DETAILS_W</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CONFLICT_DETAILS_W</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CM_CDMASK_DEVINST</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000001</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CM_CDMASK_RESDES</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000002</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CM_CDMASK_FLAGS</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000004</span>;
@@ -2193,7 +2194,7 @@
     <span class="ident">MR_Flags</span>: <span class="ident">DWORD</span>,
     <span class="ident">MR_Reserved</span>: <span class="ident">DWORD</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMEM_RANGE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">MEM_RANGE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMEM_RANGE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">MEM_RANGE</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">MEM_DES</span> {
     <span class="ident">MD_Count</span>: <span class="ident">DWORD</span>,
     <span class="ident">MD_Type</span>: <span class="ident">DWORD</span>,
@@ -2202,12 +2203,12 @@
     <span class="ident">MD_Flags</span>: <span class="ident">DWORD</span>,
     <span class="ident">MD_Reserved</span>: <span class="ident">DWORD</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMEM_DES</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">MEM_DES</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMEM_DES</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">MEM_DES</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">MEM_RESOURCE</span> {
     <span class="ident">MEM_Header</span>: <span class="ident">MEM_DES</span>,
     <span class="ident">MEM_Data</span>: [<span class="ident">MEM_RANGE</span>; <span class="ident">ANYSIZE_ARRAY</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMEM_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">MEM_RESOURCE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMEM_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">MEM_RESOURCE</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">MEM_LARGE_RANGE</span> {
     <span class="ident">MLR_Align</span>: <span class="ident">DWORDLONG</span>,
     <span class="ident">MLR_nBytes</span>: <span class="ident">ULONGLONG</span>,
@@ -2216,7 +2217,7 @@
     <span class="ident">MLR_Flags</span>: <span class="ident">DWORD</span>,
     <span class="ident">MLR_Reserved</span>: <span class="ident">DWORD</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMEM_LARGE_RANGE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">MEM_LARGE_RANGE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMEM_LARGE_RANGE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">MEM_LARGE_RANGE</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">MEM_LARGE_DES</span> {
     <span class="ident">MLD_Count</span>: <span class="ident">DWORD</span>,
     <span class="ident">MLD_Type</span>: <span class="ident">DWORD</span>,
@@ -2225,12 +2226,12 @@
     <span class="ident">MLD_Flags</span>: <span class="ident">DWORD</span>,
     <span class="ident">MLD_Reserved</span>: <span class="ident">DWORD</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMEM_LARGE_DES</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">MEM_LARGE_DES</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMEM_LARGE_DES</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">MEM_LARGE_DES</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">MEM_LARGE_RESOURCE</span> {
     <span class="ident">MEM_LARGE_Header</span>: <span class="ident">MEM_LARGE_DES</span>,
     <span class="ident">MEM_LARGE_Data</span>: [<span class="ident">MEM_LARGE_RANGE</span>; <span class="ident">ANYSIZE_ARRAY</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMEM_LARGE_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">MEM_LARGE_RESOURCE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMEM_LARGE_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">MEM_LARGE_RESOURCE</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">fIOD_PortType</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">fIOD_Memory</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">fIOD_IO</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x1</span>;
@@ -2254,7 +2255,7 @@
     <span class="ident">IOR_RangeFlags</span>: <span class="ident">DWORD</span>,
     <span class="ident">IOR_Alias</span>: <span class="ident">DWORDLONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIO_RANGE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">IO_RANGE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIO_RANGE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">IO_RANGE</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">IO_DES</span> {
     <span class="ident">IOD_Count</span>: <span class="ident">DWORD</span>,
     <span class="ident">IOD_Type</span>: <span class="ident">DWORD</span>,
@@ -2262,12 +2263,12 @@
     <span class="ident">IOD_Alloc_End</span>: <span class="ident">DWORDLONG</span>,
     <span class="ident">IOD_DesFlags</span>: <span class="ident">DWORD</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIO_DES</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">IO_DES</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIO_DES</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">IO_DES</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">IO_RESOURCE</span> {
     <span class="ident">IO_Header</span>: <span class="ident">IO_DES</span>,
     <span class="ident">IO_Data</span>: [<span class="ident">IO_RANGE</span>; <span class="ident">ANYSIZE_ARRAY</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIO_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">IO_RESOURCE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIO_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">IO_RESOURCE</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">mDD_Width</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x3</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">fDD_BYTE</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">fDD_WORD</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x1</span>;
@@ -2286,19 +2287,19 @@
     <span class="ident">DR_Max</span>: <span class="ident">ULONG</span>,
     <span class="ident">DR_Flags</span>: <span class="ident">ULONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDMA_RANGE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DMA_RANGE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDMA_RANGE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">DMA_RANGE</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">DMA_DES</span> {
     <span class="ident">DD_Count</span>: <span class="ident">DWORD</span>,
     <span class="ident">DD_Type</span>: <span class="ident">DWORD</span>,
     <span class="ident">DD_Flags</span>: <span class="ident">DWORD</span>,
     <span class="ident">DD_Alloc_Chan</span>: <span class="ident">ULONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDMA_DES</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DMA_DES</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDMA_DES</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">DMA_DES</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">DMA_RESOURCE</span> {
     <span class="ident">DMA_Header</span>: <span class="ident">DMA_DES</span>,
     <span class="ident">DMA_Data</span>: [<span class="ident">DMA_RANGE</span>; <span class="ident">ANYSIZE_ARRAY</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDMA_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DMA_RESOURCE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDMA_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">DMA_RESOURCE</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">mIRQD_Share</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">fIRQD_Exclusive</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">fIRQD_Share</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x1</span>;
@@ -2312,7 +2313,7 @@
     <span class="ident">IRQR_Max</span>: <span class="ident">ULONG</span>,
     <span class="ident">IRQR_Flags</span>: <span class="ident">ULONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIRQ_RANGE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">IRQ_RANGE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIRQ_RANGE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">IRQ_RANGE</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">IRQ_DES_32</span> {
     <span class="ident">IRQD_Count</span>: <span class="ident">DWORD</span>,
     <span class="ident">IRQD_Type</span>: <span class="ident">DWORD</span>,
@@ -2320,7 +2321,7 @@
     <span class="ident">IRQD_Alloc_Num</span>: <span class="ident">ULONG</span>,
     <span class="ident">IRQD_Affinity</span>: <span class="ident">ULONG32</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIRQ_DES_32</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">IRQ_DES_32</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIRQ_DES_32</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">IRQ_DES_32</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">IRQ_DES_64</span> {
     <span class="ident">IRQD_Count</span>: <span class="ident">DWORD</span>,
     <span class="ident">IRQD_Type</span>: <span class="ident">DWORD</span>,
@@ -2328,23 +2329,23 @@
     <span class="ident">IRQD_Alloc_Num</span>: <span class="ident">ULONG</span>,
     <span class="ident">IRQD_Affinity</span>: <span class="ident">ULONG64</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIRQ_DES_64</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">IRQ_DES_64</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIRQ_DES_64</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">IRQ_DES_64</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">IRQ_RESOURCE_32</span> {
     <span class="ident">IRQ_Header</span>: <span class="ident">IRQ_DES_32</span>,
     <span class="ident">IRQ_Data</span>: [<span class="ident">IRQ_RANGE</span>; <span class="ident">ANYSIZE_ARRAY</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIRQ_RESOURCE_32</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">IRQ_RESOURCE_32</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIRQ_RESOURCE_32</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">IRQ_RESOURCE_32</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">IRQ_RESOURCE_64</span> {
     <span class="ident">IRQ_Header</span>: <span class="ident">IRQ_DES_64</span>,
     <span class="ident">IRQ_Data</span>: [<span class="ident">IRQ_RANGE</span>; <span class="ident">ANYSIZE_ARRAY</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIRQ_RESOURCE_64</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">IRQ_RESOURCE_64</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PIRQ_RESOURCE_64</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">IRQ_RESOURCE_64</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">DEVPRIVATE_RANGE</span> {
     <span class="ident">PR_Data1</span>: <span class="ident">DWORD</span>,
     <span class="ident">PR_Data2</span>: <span class="ident">DWORD</span>,
     <span class="ident">PR_Data3</span>: <span class="ident">DWORD</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDEVPRIVATE_RANGE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DEVPRIVATE_RANGE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDEVPRIVATE_RANGE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">DEVPRIVATE_RANGE</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">DEVPRIVATE_DES</span> {
     <span class="ident">PD_Count</span>: <span class="ident">DWORD</span>,
     <span class="ident">PD_Type</span>: <span class="ident">DWORD</span>,
@@ -2353,12 +2354,12 @@
     <span class="ident">PD_Data3</span>: <span class="ident">DWORD</span>,
     <span class="ident">PD_Flags</span>: <span class="ident">DWORD</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDEVPRIVATE_DES</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DEVPRIVATE_DES</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDEVPRIVATE_DES</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">DEVPRIVATE_DES</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">DEVPRIVATE_RESOURCE</span> {
     <span class="ident">PRV_Header</span>: <span class="ident">DEVPRIVATE_DES</span>,
     <span class="ident">PRV_Data</span>: [<span class="ident">DEVPRIVATE_RANGE</span>; <span class="ident">ANYSIZE_ARRAY</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDEVPRIVATE_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DEVPRIVATE_RESOURCE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDEVPRIVATE_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">DEVPRIVATE_RESOURCE</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">CS_DES</span> {
     <span class="ident">CSD_SignatureLength</span>: <span class="ident">DWORD</span>,
     <span class="ident">CSD_LegacyDataOffset</span>: <span class="ident">DWORD</span>,
@@ -2367,11 +2368,11 @@
     <span class="ident">CSD_ClassGuid</span>: <span class="ident">GUID</span>,
     <span class="ident">CSD_Signature</span>: [<span class="ident">BYTE</span>; <span class="ident">ANYSIZE_ARRAY</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCS_DES</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CS_DES</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCS_DES</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CS_DES</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">CS_RESOURCE</span> {
     <span class="ident">CS_Header</span>: <span class="ident">CS_DES</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCS_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CS_RESOURCE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCS_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CS_RESOURCE</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">mPCD_IO_8_16</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">fPCD_IO_8</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">fPCD_IO_16</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x1</span>;
@@ -2421,11 +2422,11 @@
     <span class="ident">PCD_MemoryFlags</span>: [<span class="ident">WORD</span>; <span class="ident">PCD_MAX_MEMORY</span>],
     <span class="ident">PCD_IoFlags</span>: [<span class="ident">BYTE</span>; <span class="ident">PCD_MAX_IO</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PPCCARD_DES</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PCCARD_DES</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PPCCARD_DES</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">PCCARD_DES</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">PCCARD_RESOURCE</span> {
     <span class="ident">PcCard_Header</span>: <span class="ident">PCCARD_DES</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PPCCARD_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PCCARD_RESOURCE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PPCCARD_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">PCCARD_RESOURCE</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">mPMF_AUDIO_ENABLE</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x8</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">fPMF_AUDIO_ENABLE</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x8</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">MFCARD_DES</span> {
@@ -2437,18 +2438,18 @@
     <span class="ident">PMF_Reserved</span>: [<span class="ident">BYTE</span>; <span class="number">2</span>],
     <span class="ident">PMF_ConfigRegisterBase</span>: <span class="ident">DWORD</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMFCARD_DES</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">MFCARD_DES</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMFCARD_DES</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">MFCARD_DES</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">MFCARD_RESOURCE</span> {
     <span class="ident">MfCard_Header</span>: <span class="ident">MFCARD_DES</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMFCARD_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">MFCARD_RESOURCE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PMFCARD_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">MFCARD_RESOURCE</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">BUSNUMBER_RANGE</span> {
     <span class="ident">BUSR_Min</span>: <span class="ident">ULONG</span>,
     <span class="ident">BUSR_Max</span>: <span class="ident">ULONG</span>,
     <span class="ident">BUSR_nBusNumbers</span>: <span class="ident">ULONG</span>,
     <span class="ident">BUSR_Flags</span>: <span class="ident">ULONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PBUSNUMBER_RANGE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">BUSNUMBER_RANGE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PBUSNUMBER_RANGE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">BUSNUMBER_RANGE</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">BUSNUMBER_DES</span> {
     <span class="ident">BUSD_Count</span>: <span class="ident">DWORD</span>,
     <span class="ident">BUSD_Type</span>: <span class="ident">DWORD</span>,
@@ -2456,12 +2457,12 @@
     <span class="ident">BUSD_Alloc_Base</span>: <span class="ident">ULONG</span>,
     <span class="ident">BUSD_Alloc_End</span>: <span class="ident">ULONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PBUSNUMBER_DES</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">BUSNUMBER_DES</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PBUSNUMBER_DES</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">BUSNUMBER_DES</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">BUSNUMBER_RESOURCE</span> {
     <span class="ident">BusNumber_Header</span>: <span class="ident">BUSNUMBER_DES</span>,
     <span class="ident">BusNumber_Data</span>: [<span class="ident">BUSNUMBER_RANGE</span>; <span class="ident">ANYSIZE_ARRAY</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PBUSNUMBER_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">BUSNUMBER_RESOURCE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PBUSNUMBER_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">BUSNUMBER_RESOURCE</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">CONNECTION_DES</span> {
     <span class="ident">COND_Type</span>: <span class="ident">DWORD</span>,
     <span class="ident">COND_Flags</span>: <span class="ident">DWORD</span>,
@@ -2471,11 +2472,11 @@
     <span class="ident">COND_Reserved2</span>: <span class="ident">BYTE</span>,
     <span class="ident">COND_Id</span>: <span class="ident">LARGE_INTEGER</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCONNECTION_DES</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CONNECTION_DES</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCONNECTION_DES</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CONNECTION_DES</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">CONNECTION_RESOURCE</span> {
     <span class="ident">Connection_Header</span>: <span class="ident">CONNECTION_DES</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCONNECTION_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CONNECTION_RESOURCE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCONNECTION_RESOURCE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CONNECTION_RESOURCE</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CM_HWPI_NOT_DOCKABLE</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00000000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CM_HWPI_UNDOCKED</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00000001</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CM_HWPI_DOCKED</span>: <span class="ident">DWORD</span> <span class="op">=</span> <span class="number">0x00000002</span>;
@@ -2484,13 +2485,13 @@
     <span class="ident">HWPI_szFriendlyName</span>: [<span class="ident">CHAR</span>; <span class="ident">MAX_PROFILE_LEN</span>],
     <span class="ident">HWPI_dwFlags</span>: <span class="ident">DWORD</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PHWPROFILEINFO_A</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">HWPROFILEINFO_A</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PHWPROFILEINFO_A</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">HWPROFILEINFO_A</span>;
 <span class="macro">STRUCT!</span>{<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span> <span class="kw">struct</span> <span class="ident">HWPROFILEINFO_W</span> {
     <span class="ident">HWPI_ulHWProfile</span>: <span class="ident">ULONG</span>,
     <span class="ident">HWPI_szFriendlyName</span>: [<span class="ident">WCHAR</span>; <span class="ident">MAX_PROFILE_LEN</span>],
     <span class="ident">HWPI_dwFlags</span>: <span class="ident">DWORD</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PHWPROFILEINFO_W</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">HWPROFILEINFO_W</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PHWPROFILEINFO_W</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">HWPROFILEINFO_W</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ResType_All</span>: <span class="ident">RESOURCEID</span> <span class="op">=</span> <span class="number">0x00000000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ResType_None</span>: <span class="ident">RESOURCEID</span> <span class="op">=</span> <span class="number">0x00000000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ResType_Mem</span>: <span class="ident">RESOURCEID</span> <span class="op">=</span> <span class="number">0x00000001</span>;
@@ -2704,7 +2705,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CM_CLASS_PROPERTY_INTERFACE</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000001</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CM_CLASS_PROPERTY_BITS</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000001</span>;
 <span class="macro">DECLARE_HANDLE!</span>{<span class="ident">HCMNOTIFICATION</span>, <span class="ident">HCMNOTIFICATION__</span>}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PHCMNOTIFICATION</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">HCMNOTIFICATION</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PHCMNOTIFICATION</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">HCMNOTIFICATION</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CM_NOTIFY_FILTER_FLAG_ALL_INTERFACE_CLASSES</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000001</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CM_NOTIFY_FILTER_FLAG_ALL_DEVICE_INSTANCES</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000002</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CM_NOTIFY_FILTER_VALID_FLAGS</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="ident">CM_NOTIFY_FILTER_FLAG_ALL_INTERFACE_CLASSES</span>
@@ -2715,7 +2716,7 @@
     <span class="ident">CM_NOTIFY_FILTER_TYPE_DEVICEINSTANCE</span>,
     <span class="ident">CM_NOTIFY_FILTER_TYPE_MAX</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCM_NOTIFY_FILTER_TYPE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CM_NOTIFY_FILTER_TYPE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCM_NOTIFY_FILTER_TYPE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CM_NOTIFY_FILTER_TYPE</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">CM_NOTIFY_FILTER_DeviceInterface</span> {
     <span class="ident">ClassGuid</span>: <span class="ident">GUID</span>,
 }}
@@ -2738,7 +2739,7 @@
     <span class="ident">Reserved</span>: <span class="ident">DWORD</span>,
     <span class="ident">u</span>: <span class="ident">CM_NOTIFY_FILTER_u</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCM_NOTIFY_FILTER</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CM_NOTIFY_FILTER</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCM_NOTIFY_FILTER</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CM_NOTIFY_FILTER</span>;
 <span class="macro">ENUM!</span>{<span class="kw">enum</span> <span class="ident">CM_NOTIFY_ACTION</span> {
     <span class="ident">CM_NOTIFY_ACTION_DEVICEINTERFACEARRIVAL</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">CM_NOTIFY_ACTION_DEVICEINTERFACEREMOVAL</span>,
@@ -2752,7 +2753,7 @@
     <span class="ident">CM_NOTIFY_ACTION_DEVICEINSTANCEREMOVED</span>,
     <span class="ident">CM_NOTIFY_ACTION_MAX</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCM_NOTIFY_ACTION</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CM_NOTIFY_ACTION</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCM_NOTIFY_ACTION</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CM_NOTIFY_ACTION</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">CM_NOTIFY_EVENT_DATA_DeviceInterface</span> {
     <span class="ident">ClassGuid</span>: <span class="ident">GUID</span>,
     <span class="ident">SymbolicLink</span>: [<span class="ident">WCHAR</span>; <span class="ident">ANYSIZE_ARRAY</span>],
@@ -2777,7 +2778,7 @@
     <span class="ident">Reserved</span>: <span class="ident">DWORD</span>,
     <span class="ident">u</span>: <span class="ident">CM_NOTIFY_EVENT_DATA_u</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCM_NOTIFY_EVENT_DATA</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CM_NOTIFY_EVENT_DATA</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCM_NOTIFY_EVENT_DATA</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CM_NOTIFY_EVENT_DATA</span>;
 <span class="macro">FN!</span>{<span class="ident">stdcall</span> <span class="ident">PCM_NOTIFY_CALLBACK</span>(
     <span class="ident">hNotify</span>: <span class="ident">HCMNOTIFICATION</span>,
     <span class="ident">Context</span>: <span class="ident">PVOID</span>,
@@ -3195,16 +3196,16 @@
     ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_PropertyW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
-        <span class="ident">PropertyKey</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">DEVPROPKEY</span>,
-        <span class="ident">PropertyType</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DEVPROPTYPE</span>,
+        <span class="ident">PropertyKey</span>: <span class="kw-2">*const</span> <span class="ident">DEVPROPKEY</span>,
+        <span class="ident">PropertyType</span>: <span class="kw-2">*mut</span> <span class="ident">DEVPROPTYPE</span>,
         <span class="ident">PropertyBuffer</span>: <span class="ident">PBYTE</span>,
         <span class="ident">PropertyBufferSize</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
     ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_DevNode_PropertyExW</span>(
         <span class="ident">dnDevInst</span>: <span class="ident">DEVINST</span>,
-        <span class="ident">PropertyKey</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">DEVPROPKEY</span>,
-        <span class="ident">PropertyType</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DEVPROPTYPE</span>,
+        <span class="ident">PropertyKey</span>: <span class="kw-2">*const</span> <span class="ident">DEVPROPKEY</span>,
+        <span class="ident">PropertyType</span>: <span class="kw-2">*mut</span> <span class="ident">DEVPROPTYPE</span>,
         <span class="ident">PropertyBuffer</span>: <span class="ident">PBYTE</span>,
         <span class="ident">PropertyBufferSize</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
@@ -3447,16 +3448,16 @@
     ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_PropertyW</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCWSTR</span>,
-        <span class="ident">PropertyKey</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">DEVPROPKEY</span>,
-        <span class="ident">PropertyType</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DEVPROPTYPE</span>,
+        <span class="ident">PropertyKey</span>: <span class="kw-2">*const</span> <span class="ident">DEVPROPKEY</span>,
+        <span class="ident">PropertyType</span>: <span class="kw-2">*mut</span> <span class="ident">DEVPROPTYPE</span>,
         <span class="ident">PropertyBuffer</span>: <span class="ident">PBYTE</span>,
         <span class="ident">PropertyBufferSize</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
     ) -&gt; <span class="ident">CONFIGRET</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">CM_Get_Device_Interface_PropertyExW</span>(
         <span class="ident">pszDeviceInterface</span>: <span class="ident">LPCWSTR</span>,
-        <span class="ident">PropertyKey</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">DEVPROPKEY</span>,
-        <span class="ident">PropertyType</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DEVPROPTYPE</span>,
+        <span class="ident">PropertyKey</span>: <span class="kw-2">*const</span> <span class="ident">DEVPROPKEY</span>,
+        <span class="ident">PropertyType</span>: <span class="kw-2">*mut</span> <span class="ident">DEVPROPTYPE</span>,
         <span class="ident">PropertyBuffer</span>: <span class="ident">PBYTE</span>,
         <span class="ident">PropertyBufferSize</span>: <span class="ident">PULONG</span>,
         <span class="ident">ulFlags</span>: <span class="ident">ULONG</span>,
@@ -4154,5 +4155,4 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NUM_CR_RESULTS</span>: <span class="ident">CONFIGRET</span> <span class="op">=</span> <span class="number">0x0000003C</span>;
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="winapi" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
 </body></html>

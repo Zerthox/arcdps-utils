@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-0.3.9\src\shared\ntdef.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ntdef.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../winapi/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-0.3.9\src\shared\ntdef.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ntdef.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../winapi/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1107,7 +1108,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SYSTEM_CACHE_ALIGNMENT_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">64</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">any</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86&quot;</span>)))]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SYSTEM_CACHE_ALIGNMENT_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">128</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PVOID</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PVOID</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">c_void</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PVOID64</span> <span class="op">=</span> <span class="ident">u64</span>; <span class="comment">// This is a 64-bit pointer, even when in 32-bit</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">VOID</span> <span class="op">=</span> <span class="ident">c_void</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">CHAR</span> <span class="op">=</span> <span class="ident">c_char</span>;
@@ -1115,110 +1116,110 @@
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LONG</span> <span class="op">=</span> <span class="ident">c_long</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">INT</span> <span class="op">=</span> <span class="ident">c_int</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">WCHAR</span> <span class="op">=</span> <span class="ident">wchar_t</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PWCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPWCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PWCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCWCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCWCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">NWPSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PWCHAR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPWCH</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PWCH</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCWCH</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCWCH</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">NWPSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPWSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPTSTR</span> <span class="op">=</span> <span class="ident">LPSTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PZPWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PWSTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCZPWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">PWSTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPUWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PZPCWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PCWSTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCZPCWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">PCWSTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCUWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PZZWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCZZWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUZZWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUZZWSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PNZWCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCNZWCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUNZWCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUNZWCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCWCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCWCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCUWCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUWCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PWSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PZPWSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">PWSTR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCZPWSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">PWSTR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPUWSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUWSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCWSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCWSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PZPCWSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">PCWSTR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCZPCWSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">PCWSTR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCUWSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUWSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PZZWSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCZZWSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUZZWSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUZZWSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PNZWCH</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCNZWCH</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUNZWCH</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUNZWCH</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCWCHAR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCWCHAR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCUWCHAR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUWCHAR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WCHAR</span>; <span class="comment">// Unaligned pointer</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">UCSCHAR</span> <span class="op">=</span> <span class="ident">c_ulong</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UCSCHAR_INVALID_CHARACTER</span>: <span class="ident">UCSCHAR</span> <span class="op">=</span> <span class="number">0xffffffff</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MIN_UCSCHAR</span>: <span class="ident">UCSCHAR</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAX_UCSCHAR</span>: <span class="ident">UCSCHAR</span> <span class="op">=</span> <span class="number">0x0010FFFF</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUCSCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">UCSCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUCSCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">UCSCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUCSSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">UCSCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUUCSSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">UCSCHAR</span>; <span class="comment">// Unaligned pointer</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUCSSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">UCSCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUUCSSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">UCSCHAR</span>; <span class="comment">// Unaligned pointer</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUUCSCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">UCSCHAR</span>; <span class="comment">// Unaligned pointer</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUUCSCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">UCSCHAR</span>; <span class="comment">// Unaligned pointer</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">NPSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PZPSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PSTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCZPSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">PSTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PZPCSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PCSTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCZPCSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">PCSTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PZZSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCZZSTR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PNZCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCNZCH</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUCSCHAR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">UCSCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUCSCHAR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">UCSCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUCSSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">UCSCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUUCSSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">UCSCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUCSSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">UCSCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUUCSSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">UCSCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUUCSCHAR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">UCSCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUUCSCHAR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">UCSCHAR</span>; <span class="comment">// Unaligned pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCHAR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCH</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCH</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCCH</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCCH</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">NPSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PZPSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">PSTR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCZPSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">PSTR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LPCSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PZPCSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">PCSTR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCZPCSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">PCSTR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PZZSTR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCZZSTR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PNZCH</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCNZCH</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">CHAR</span>;
 <span class="comment">// Skipping TCHAR things</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DOUBLE</span> <span class="op">=</span> <span class="ident">c_double</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">QUAD</span> {
     <span class="ident">UseThisFieldToCopy</span>: <span class="ident">__int64</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSHORT</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">SHORT</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLONG</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LONG</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PQUAD</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">QUAD</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSHORT</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">SHORT</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLONG</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">LONG</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PQUAD</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">QUAD</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">UCHAR</span> <span class="op">=</span> <span class="ident">c_uchar</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">USHORT</span> <span class="op">=</span> <span class="ident">c_ushort</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ULONG</span> <span class="op">=</span> <span class="ident">c_ulong</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">UQUAD</span> <span class="op">=</span> <span class="ident">QUAD</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">UCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUSHORT</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">USHORT</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PULONG</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ULONG</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUQUAD</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">UQUAD</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">UCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUSHORT</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">USHORT</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCULONG</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ULONG</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUQUAD</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">UQUAD</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUCHAR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">UCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUSHORT</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">USHORT</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PULONG</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">ULONG</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUQUAD</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">UQUAD</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUCHAR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">UCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUSHORT</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">USHORT</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCULONG</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">ULONG</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUQUAD</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">UQUAD</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">SCHAR</span> <span class="op">=</span> <span class="ident">c_schar</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">SCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCSCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">SCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSCHAR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">SCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCSCHAR</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">SCHAR</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ALL_PROCESSOR_GROUPS</span>: <span class="ident">USHORT</span> <span class="op">=</span> <span class="number">0xffff</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">PROCESSOR_NUMBER</span> {
     <span class="ident">Group</span>: <span class="ident">USHORT</span>,
     <span class="ident">Number</span>: <span class="ident">UCHAR</span>,
     <span class="ident">Reserved</span>: <span class="ident">UCHAR</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PPROCESSOR_NUMBER</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PROCESSOR_NUMBER</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PPROCESSOR_NUMBER</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">PROCESSOR_NUMBER</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">GROUP_AFFINITY</span> {
     <span class="ident">Mask</span>: <span class="ident">KAFFINITY</span>,
     <span class="ident">Group</span>: <span class="ident">USHORT</span>,
     <span class="ident">Reserved</span>: [<span class="ident">USHORT</span>; <span class="number">3</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PGROUP_AFFINITY</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GROUP_AFFINITY</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PGROUP_AFFINITY</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">GROUP_AFFINITY</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAXIMUM_PROC_PER_GROUP</span>: <span class="ident">UCHAR</span> <span class="op">=</span> <span class="number">64</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>))]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAXIMUM_PROC_PER_GROUP</span>: <span class="ident">UCHAR</span> <span class="op">=</span> <span class="number">32</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAXIMUM_PROCESSORS</span>: <span class="ident">UCHAR</span> <span class="op">=</span> <span class="ident">MAXIMUM_PROC_PER_GROUP</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">HANDLE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PHANDLE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">HANDLE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">HANDLE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">c_void</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PHANDLE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">HANDLE</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">FCHAR</span> <span class="op">=</span> <span class="ident">UCHAR</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">FSHORT</span> <span class="op">=</span> <span class="ident">USHORT</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">FLONG</span> <span class="op">=</span> <span class="ident">ULONG</span>;
@@ -1227,9 +1228,9 @@
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">CCHAR</span> <span class="op">=</span> <span class="ident">c_char</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">CSHORT</span> <span class="op">=</span> <span class="ident">c_short</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">CLONG</span> <span class="op">=</span> <span class="ident">ULONG</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCCHAR</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCSHORT</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CSHORT</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCLONG</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CLONG</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCCHAR</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CCHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCSHORT</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CSHORT</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCLONG</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CLONG</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LCID</span> <span class="op">=</span> <span class="ident">ULONG</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLCID</span> <span class="op">=</span> <span class="ident">PULONG</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LANGID</span> <span class="op">=</span> <span class="ident">USHORT</span>;
@@ -1237,12 +1238,12 @@
     <span class="ident">UNSPECIFIED_COMPARTMENT_ID</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">DEFAULT_COMPARTMENT_ID</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCOMPARTMENT_ID</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">COMPARTMENT_ID</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCOMPARTMENT_ID</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">COMPARTMENT_ID</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LOGICAL</span> <span class="op">=</span> <span class="ident">ULONG</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLOGICAL</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ULONG</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLOGICAL</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">ULONG</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">NTSTATUS</span> <span class="op">=</span> <span class="ident">LONG</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PNTSTATUS</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">NTSTATUS</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCNTSTATUS</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">NTSTATUS</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PNTSTATUS</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">NTSTATUS</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCNTSTATUS</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">NTSTATUS</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">NT_SUCCESS</span>(<span class="ident">Status</span>: <span class="ident">NTSTATUS</span>) -&gt; <span class="ident">bool</span> {
     <span class="ident">Status</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span>
@@ -1266,17 +1267,17 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ERROR_SEVERITY_ERROR</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0xC0000000</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">SECURITY_STATUS</span> <span class="op">=</span> <span class="ident">c_long</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TIME</span> <span class="op">=</span> <span class="ident">LARGE_INTEGER</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PTIME</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TIME</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PTIME</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">TIME</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">FLOAT128</span> {
     <span class="ident">LowPart</span>: <span class="ident">__int64</span>,
     <span class="ident">HighPart</span>: <span class="ident">__int64</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PFLOAT128</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">FLOAT128</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PFLOAT128</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">FLOAT128</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LONGLONG</span> <span class="op">=</span> <span class="ident">__int64</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ULONGLONG</span> <span class="op">=</span> <span class="ident">__uint64</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAXLONGLONG</span>: <span class="ident">LONGLONG</span> <span class="op">=</span> <span class="number">0x7fffffffffffffff</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLONGLONG</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LONGLONG</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PULONGLONG</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ULONGLONG</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLONGLONG</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">LONGLONG</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PULONGLONG</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">ULONGLONG</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">USN</span> <span class="op">=</span> <span class="ident">LONGLONG</span>;
 <span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">LARGE_INTEGER</span> {
     [<span class="ident">i64</span>; <span class="number">1</span>],
@@ -1292,7 +1293,7 @@
     <span class="ident">LowPart</span>: <span class="ident">ULONG</span>,
     <span class="ident">HighPart</span>: <span class="ident">LONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLARGE_INTEGER</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LARGE_INTEGER</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLARGE_INTEGER</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">LARGE_INTEGER</span>;
 <span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">ULARGE_INTEGER</span> {
     [<span class="ident">u64</span>; <span class="number">1</span>],
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">ULARGE_INTEGER_s</span>,
@@ -1307,18 +1308,18 @@
     <span class="ident">LowPart</span>: <span class="ident">ULONG</span>,
     <span class="ident">HighPart</span>: <span class="ident">ULONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PULARGE_INTEGER</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ULARGE_INTEGER</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PULARGE_INTEGER</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">ULARGE_INTEGER</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RTL_REFERENCE_COUNT</span> <span class="op">=</span> <span class="ident">LONG_PTR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRTL_REFERENCE_COUNT</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">RTL_REFERENCE_COUNT</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRTL_REFERENCE_COUNT</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">RTL_REFERENCE_COUNT</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">LUID</span> {
     <span class="ident">LowPart</span>: <span class="ident">ULONG</span>,
     <span class="ident">HighPart</span>: <span class="ident">LONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLUID</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LUID</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLUID</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">LUID</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DWORDLONG</span> <span class="op">=</span> <span class="ident">ULONGLONG</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDWORDLONG</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DWORDLONG</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PDWORDLONG</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">DWORDLONG</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PHYSICAL_ADDRESS</span> <span class="op">=</span> <span class="ident">LARGE_INTEGER</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PPHYSICAL_ADDRESS</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">PHYSICAL_ADDRESS</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PPHYSICAL_ADDRESS</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">PHYSICAL_ADDRESS</span>;
 <span class="macro">ENUM!</span>{<span class="kw">enum</span> <span class="ident">EVENT_TYPE</span> {
     <span class="ident">NotificationEvent</span>,
     <span class="ident">SynchronizationEvent</span>,
@@ -1333,26 +1334,26 @@
     <span class="ident">WaitNotification</span>,
     <span class="ident">WaitDequeue</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSZ</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCSZ</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSZ</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CHAR</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCSZ</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RTL_STRING_LENGTH_TYPE</span> <span class="op">=</span> <span class="ident">USHORT</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">STRING</span> {
     <span class="ident">Length</span>: <span class="ident">USHORT</span>,
     <span class="ident">MaximumLength</span>: <span class="ident">USHORT</span>,
     <span class="ident">Buffer</span>: <span class="ident">PCHAR</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSTRING</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">STRING</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSTRING</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">STRING</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ANSI_STRING</span> <span class="op">=</span> <span class="ident">STRING</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PANSI_STRING</span> <span class="op">=</span> <span class="ident">PSTRING</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">OEM_STRING</span> <span class="op">=</span> <span class="ident">STRING</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">POEM_STRING</span> <span class="op">=</span> <span class="ident">PSTRING</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCOEM_STRING</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">STRING</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCOEM_STRING</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">STRING</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">CSTRING</span> {
     <span class="ident">Length</span>: <span class="ident">USHORT</span>,
     <span class="ident">MaximumLength</span>: <span class="ident">USHORT</span>,
-    <span class="ident">Buffer</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
+    <span class="ident">Buffer</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCSTRING</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">CSTRING</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCSTRING</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">CSTRING</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ANSI_NULL</span>: <span class="ident">CHAR</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">CANSI_STRING</span> <span class="op">=</span> <span class="ident">STRING</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCANSI_STRING</span> <span class="op">=</span> <span class="ident">PSTRING</span>;
@@ -1361,58 +1362,58 @@
     <span class="ident">MaximumLength</span>: <span class="ident">USHORT</span>,
     <span class="ident">Buffer</span>: <span class="ident">PWCH</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUNICODE_STRING</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">UNICODE_STRING</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUNICODE_STRING</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">UNICODE_STRING</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUNICODE_STRING</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">UNICODE_STRING</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCUNICODE_STRING</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">UNICODE_STRING</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UNICODE_NULL</span>: <span class="ident">WCHAR</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UNICODE_STRING_MAX_BYTES</span>: <span class="ident">USHORT</span> <span class="op">=</span> <span class="number">65534</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UNICODE_STRING_MAX_CHARS</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">32767</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">BOOLEAN</span> <span class="op">=</span> <span class="ident">UCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PBOOLEAN</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">BOOLEAN</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PBOOLEAN</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">BOOLEAN</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">LIST_ENTRY</span> {
-    <span class="ident">Flink</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LIST_ENTRY</span>,
-    <span class="ident">Blink</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LIST_ENTRY</span>,
+    <span class="ident">Flink</span>: <span class="kw-2">*mut</span> <span class="ident">LIST_ENTRY</span>,
+    <span class="ident">Blink</span>: <span class="kw-2">*mut</span> <span class="ident">LIST_ENTRY</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLIST_ENTRY</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LIST_ENTRY</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRLIST_ENTRY</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LIST_ENTRY</span>; <span class="comment">// Restricted pointer</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLIST_ENTRY</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">LIST_ENTRY</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRLIST_ENTRY</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">LIST_ENTRY</span>; <span class="comment">// Restricted pointer</span>
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">SINGLE_LIST_ENTRY</span> {
-    <span class="ident">Next</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">SINGLE_LIST_ENTRY</span>,
+    <span class="ident">Next</span>: <span class="kw-2">*mut</span> <span class="ident">SINGLE_LIST_ENTRY</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSINGLE_LIST_ENTRY</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">SINGLE_LIST_ENTRY</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSINGLE_LIST_ENTRY</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">SINGLE_LIST_ENTRY</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">RTL_BALANCED_NODE</span> {
     <span class="ident">u</span>: <span class="ident">RTL_BALANCED_NODE_u</span>,
     <span class="ident">ParentValue</span>: <span class="ident">ULONG_PTR</span>,
 }}
 <span class="macro">UNION!</span>{<span class="kw">union</span> <span class="ident">RTL_BALANCED_NODE_u</span> {
     [<span class="ident">usize</span>; <span class="number">2</span>],
-    <span class="ident">Children</span> <span class="ident">Children_mut</span>: [<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">RTL_BALANCED_NODE</span>; <span class="number">2</span>],
+    <span class="ident">Children</span> <span class="ident">Children_mut</span>: [<span class="kw-2">*mut</span> <span class="ident">RTL_BALANCED_NODE</span>; <span class="number">2</span>],
     <span class="ident">s</span> <span class="ident">s_mut</span>: <span class="ident">RTL_BALANCED_NODE_s</span>,
 }}
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">RTL_BALANCED_NODE_s</span> {
-    <span class="ident">Left</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">RTL_BALANCED_NODE</span>,
-    <span class="ident">Right</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">RTL_BALANCED_NODE</span>,
+    <span class="ident">Left</span>: <span class="kw-2">*mut</span> <span class="ident">RTL_BALANCED_NODE</span>,
+    <span class="ident">Right</span>: <span class="kw-2">*mut</span> <span class="ident">RTL_BALANCED_NODE</span>,
 }}
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RTL_BALANCED_NODE_RESERVED_PARENT_MASK</span>: <span class="ident">ULONG_PTR</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRTL_BALANCED_NODE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">RTL_BALANCED_NODE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PRTL_BALANCED_NODE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">RTL_BALANCED_NODE</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">RTL_BALANCED_NODE_GET_PARENT_POINTER</span>(
     <span class="ident">Node</span>: <span class="ident">PRTL_BALANCED_NODE</span>,
 ) -&gt; <span class="ident">PRTL_BALANCED_NODE</span> {
-    ((<span class="kw-2">*</span><span class="ident">Node</span>).<span class="ident">ParentValue</span> <span class="op">&amp;</span> <span class="op">!</span><span class="ident">RTL_BALANCED_NODE_RESERVED_PARENT_MASK</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">RTL_BALANCED_NODE</span>
+    ((<span class="kw-2">*</span><span class="ident">Node</span>).<span class="ident">ParentValue</span> <span class="op">&amp;</span> <span class="op">!</span><span class="ident">RTL_BALANCED_NODE_RESERVED_PARENT_MASK</span>) <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">RTL_BALANCED_NODE</span>
 }
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">LIST_ENTRY32</span> {
     <span class="ident">Flink</span>: <span class="ident">ULONG</span>,
     <span class="ident">Blink</span>: <span class="ident">ULONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLIST_ENTRY32</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LIST_ENTRY32</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLIST_ENTRY32</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">LIST_ENTRY32</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">LIST_ENTRY64</span> {
     <span class="ident">Flink</span>: <span class="ident">ULONGLONG</span>,
     <span class="ident">Blink</span>: <span class="ident">ULONGLONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLIST_ENTRY64</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">LIST_ENTRY64</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PLIST_ENTRY64</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">LIST_ENTRY64</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">SINGLE_LIST_ENTRY32</span> {
     <span class="ident">Next</span>: <span class="ident">ULONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSINGLE_LIST_ENTRY32</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">SINGLE_LIST_ENTRY32</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSINGLE_LIST_ENTRY32</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">SINGLE_LIST_ENTRY32</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">ListEntry32To64</span>(<span class="ident">l32</span>: <span class="ident">PLIST_ENTRY32</span>, <span class="ident">l64</span>: <span class="ident">PLIST_ENTRY64</span>) {
     (<span class="kw-2">*</span><span class="ident">l64</span>).<span class="ident">Flink</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">l32</span>).<span class="ident">Flink</span> <span class="kw">as</span> <span class="ident">ULONGLONG</span>;
@@ -1426,28 +1427,28 @@
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">WNF_STATE_NAME</span> {
     <span class="ident">Data</span>: [<span class="ident">ULONG</span>; <span class="number">2</span>],
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PWNF_STATE_NAME</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">WNF_STATE_NAME</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCWNF_STATE_NAME</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">WNF_STATE_NAME</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PWNF_STATE_NAME</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">WNF_STATE_NAME</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCWNF_STATE_NAME</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">WNF_STATE_NAME</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">STRING32</span> {
     <span class="ident">Length</span>: <span class="ident">USHORT</span>,
     <span class="ident">MaximumLength</span>: <span class="ident">USHORT</span>,
     <span class="ident">Buffer</span>: <span class="ident">ULONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSTRING32</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">STRING32</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSTRING32</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">STRING32</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">UNICODE_STRING32</span> <span class="op">=</span> <span class="ident">STRING32</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUNICODE_STRING32</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">UNICODE_STRING32</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUNICODE_STRING32</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">UNICODE_STRING32</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ANSI_STRING32</span> <span class="op">=</span> <span class="ident">STRING32</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PANSI_STRING32</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ANSI_STRING32</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PANSI_STRING32</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">ANSI_STRING32</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">STRING64</span> {
     <span class="ident">Length</span>: <span class="ident">USHORT</span>,
     <span class="ident">MaximumLength</span>: <span class="ident">USHORT</span>,
     <span class="ident">Buffer</span>: <span class="ident">ULONGLONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSTRING64</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">STRING64</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PSTRING64</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">STRING64</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">UNICODE_STRING64</span> <span class="op">=</span> <span class="ident">STRING64</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUNICODE_STRING64</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">UNICODE_STRING64</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PUNICODE_STRING64</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">UNICODE_STRING64</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ANSI_STRING64</span> <span class="op">=</span> <span class="ident">STRING64</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PANSI_STRING64</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ANSI_STRING64</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PANSI_STRING64</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">ANSI_STRING64</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">OBJ_INHERIT</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000002</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">OBJ_PERMANENT</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000010</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">OBJ_EXCLUSIVE</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0x00000020</span>;
@@ -1467,8 +1468,8 @@
     <span class="ident">SecurityDescriptor</span>: <span class="ident">ULONG64</span>,
     <span class="ident">SecurityQualityOfService</span>: <span class="ident">ULONG64</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">POBJECT_ATTRIBUTES64</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">OBJECT_ATTRIBUTES64</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCOBJECT_ATTRIBUTES64</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">OBJECT_ATTRIBUTES64</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">POBJECT_ATTRIBUTES64</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">OBJECT_ATTRIBUTES64</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCOBJECT_ATTRIBUTES64</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">OBJECT_ATTRIBUTES64</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">OBJECT_ATTRIBUTES32</span> {
     <span class="ident">Length</span>: <span class="ident">ULONG</span>,
     <span class="ident">RootDirectory</span>: <span class="ident">ULONG</span>,
@@ -1477,8 +1478,8 @@
     <span class="ident">SecurityDescriptor</span>: <span class="ident">ULONG</span>,
     <span class="ident">SecurityQualityOfService</span>: <span class="ident">ULONG</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">POBJECT_ATTRIBUTES32</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">OBJECT_ATTRIBUTES32</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCOBJECT_ATTRIBUTES32</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">OBJECT_ATTRIBUTES32</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">POBJECT_ATTRIBUTES32</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">OBJECT_ATTRIBUTES32</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCOBJECT_ATTRIBUTES32</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">OBJECT_ATTRIBUTES32</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct</span> <span class="ident">OBJECT_ATTRIBUTES</span> {
     <span class="ident">Length</span>: <span class="ident">ULONG</span>,
     <span class="ident">RootDirectory</span>: <span class="ident">HANDLE</span>,
@@ -1487,8 +1488,8 @@
     <span class="ident">SecurityDescriptor</span>: <span class="ident">PVOID</span>,
     <span class="ident">SecurityQualityOfService</span>: <span class="ident">PVOID</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">POBJECT_ATTRIBUTES</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">OBJECT_ATTRIBUTES</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCOBJECT_ATTRIBUTES</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">OBJECT_ATTRIBUTES</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">POBJECT_ATTRIBUTES</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">OBJECT_ATTRIBUTES</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PCOBJECT_ATTRIBUTES</span> <span class="op">=</span> <span class="kw-2">*const</span> <span class="ident">OBJECT_ATTRIBUTES</span>;
 <span class="attribute">#[<span class="ident">inline</span>]</span>
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">InitializeObjectAttributes</span>(
     <span class="ident">p</span>: <span class="ident">POBJECT_ATTRIBUTES</span>,
@@ -1524,13 +1525,13 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAXULONG</span>: <span class="ident">ULONG</span> <span class="op">=</span> <span class="number">0xffffffff</span>;
 <span class="comment">// PEXCEPTION_ROUTINE: Can&#39;t define here, because it needs EXCEPTION_RECORD and CONTEXT.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">KIRQL</span> <span class="op">=</span> <span class="ident">UCHAR</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PKIRQL</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">KIRQL</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PKIRQL</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">KIRQL</span>;
 <span class="macro">ENUM!</span>{<span class="kw">enum</span> <span class="ident">NT_PRODUCT_TYPE</span> {
     <span class="ident">NtProductWinNt</span> <span class="op">=</span> <span class="number">1</span>,
     <span class="ident">NtProductLanManNt</span>,
     <span class="ident">NtProductServer</span>,
 }}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PNT_PRODUCT_TYPE</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">NT_PRODUCT_TYPE</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PNT_PRODUCT_TYPE</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">NT_PRODUCT_TYPE</span>;
 <span class="macro">ENUM!</span>{<span class="kw">enum</span> <span class="ident">SUITE_TYPE</span> {
     <span class="ident">SmallBusiness</span>,
     <span class="ident">Enterprise</span>,
@@ -2166,5 +2167,4 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOCALE_UNASSIGNED_LCID</span>: <span class="ident">LCID</span> <span class="op">=</span> <span class="ident">LOCALE_CUSTOM_UNSPECIFIED</span>;
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="winapi" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
 </body></html>
