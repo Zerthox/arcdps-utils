@@ -48,7 +48,7 @@ where
 /// Interface for window UI components.
 pub trait Windowed
 where
-    Self: Component + Default + Sized,
+    Self: Component + Sized,
 {
     /// Returns the default [`WindowProps`] for the [`Component`]'s [`Window`].
     fn window_props() -> WindowProps;
