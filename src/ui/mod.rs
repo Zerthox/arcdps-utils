@@ -4,7 +4,7 @@ pub mod align;
 pub mod components;
 
 pub use arcdps::imgui::Ui;
-pub use components::window::Window;
+pub use components::window::{Window, WindowProps};
 
 /// Interface for UI components.
 pub trait Component {
