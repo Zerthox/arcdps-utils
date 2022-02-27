@@ -10,62 +10,9 @@ pub struct Window<T>
 where
     T: Component,
 {
-    inner: T,
-    shown: bool,
-}
-
-impl<T> Window<T>
-where
-    T: Component,
-{
-    /// Creates a new window with a given inner [`Component`].
-    pub fn new(inner: T) -> Self {
-        Self { inner, shown: true }
-    }
-
-    /// Returns a reference to the inner [`Component`].
-    pub fn inner(&self) -> &T {
-        &self.inner
-    }
-
-    /// Returns a mutable reference to the inner [`Component`].
-    pub fn inner_mut(&mut self) -> &mut T {
-        &mut self.inner
-    }
-}
-
-impl<T> Default for Window<T>
-where
-    T: Component + Default,
-{
-    fn default() -> Self {
-        Self::new(T::default())
-    }
-}
-
-impl<T> Deref for Window<T>
-where
-    T: Component,
-{
-    type Target = T;
-
-    fn deref(&self) -> &Self::Target {
-        self.inner()
-    }
-}
-
-impl<T> DerefMut for Window<T>
-where
-    T: Component,
-{
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        self.inner_mut()
-    }
-}
-
-#[derive(Debug, Clone)]
-pub struct WindowProps {
+    pub inner: T,
     pub name: String,
+    pub visible: bool,
     pub width: f32,
     pub height: f32,
     pub resize: bool,
@@ -73,10 +20,16 @@ pub struct WindowProps {
     pub scroll: bool,
 }
 
-impl WindowProps {
-    pub fn new(name: impl Into<String>) -> Self {
+impl<T> Window<T>
+where
+    T: Component,
+{
+    /// Creates a new window with a given inner [`Component`].
+    pub fn new(name: impl Into<String>, inner: T) -> Self {
         Self {
+            inner,
             name: name.into(),
+            visible: true,
             width: 0.0,
             height: 0.0,
             resize: true,
@@ -91,34 +44,70 @@ impl WindowProps {
         self
     }
 
+    /// Sets whether the window is visible.
+    pub fn visible(mut self, visible: bool) -> Self {
+        self.visible = visible;
+        self
+    }
+
     /// Sets the default window width.
-    pub const fn width(mut self, width: f32) -> Self {
+    pub fn width(mut self, width: f32) -> Self {
         self.width = width;
         self
     }
 
     /// Sets the default window height.
-    pub const fn height(mut self, height: f32) -> Self {
+    pub fn height(mut self, height: f32) -> Self {
         self.height = height;
         self
     }
 
     /// Sets whether the window is resizable.
-    pub const fn resize(mut self, value: bool) -> Self {
+    pub fn resize(mut self, value: bool) -> Self {
         self.resize = value;
         self
     }
 
     /// Sets whether the window automatically resizes.
-    pub const fn auto_resize(mut self, value: bool) -> Self {
+    pub fn auto_resize(mut self, value: bool) -> Self {
         self.auto_resize = value;
         self
     }
 
     /// Sets whether the window is scrollable.
-    pub const fn scroll(mut self, value: bool) -> Self {
+    pub fn scroll(mut self, value: bool) -> Self {
         self.scroll = value;
         self
+    }
+}
+
+impl<T> Window<T>
+where
+    T: Component + Default,
+{
+    /// Creates a new window with the [`Default`] of the inner [`Component`].
+    pub fn with_default(name: impl Into<String>) -> Self {
+        Self::new(name, T::default())
+    }
+}
+
+impl<T> Deref for Window<T>
+where
+    T: Component,
+{
+    type Target = T;
+
+    fn deref(&self) -> &Self::Target {
+        &self.inner
+    }
+}
+
+impl<T> DerefMut for Window<T>
+where
+    T: Component,
+{
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.inner
     }
 }
 
@@ -126,28 +115,24 @@ impl<T> Component for Window<T>
 where
     T: Component,
 {
-    type Props = (WindowProps, T::Props);
+    type Props = T::Props;
 
     fn render(&mut self, ui: &Ui, props: &Self::Props) {
-        if self.shown {
-            let (window_props, inner_props) = props;
+        if self.visible {
             let inner = &mut self.inner;
 
-            imgui::Window::new(&window_props.name)
+            imgui::Window::new(&self.name)
                 .title_bar(true)
                 .draw_background(true)
                 .collapsible(false)
-                .size(
-                    [window_props.width, window_props.height],
-                    imgui::Condition::FirstUseEver,
-                )
-                .always_auto_resize(window_props.auto_resize)
-                .resizable(window_props.resize)
-                .scroll_bar(window_props.scroll)
-                .scrollable(window_props.scroll)
+                .size([self.width, self.height], imgui::Condition::FirstUseEver)
+                .always_auto_resize(self.auto_resize)
+                .resizable(self.resize)
+                .scroll_bar(self.scroll)
+                .scrollable(self.scroll)
                 .focus_on_appearing(false)
-                .opened(&mut self.shown)
-                .build(ui, || inner.render(ui, inner_props));
+                .opened(&mut self.visible)
+                .build(ui, || inner.render(ui, props));
         }
     }
 }
@@ -157,10 +142,10 @@ where
     T: Component,
 {
     fn is_visible(&self) -> bool {
-        self.shown
+        self.visible
     }
     fn is_visible_mut(&mut self) -> &mut bool {
-        &mut self.shown
+        &mut self.visible
     }
 }
 
