@@ -1,16 +1,15 @@
 //! Window component.
 
-use crate::ui::{Component, Hideable, Windowed};
-use arcdps::imgui::{self, Condition, ImString, Ui};
+use crate::ui::{Component, Hideable};
+use arcdps::imgui::{self, Ui};
 use std::ops::{Deref, DerefMut};
 
 /// Window component.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Window<T>
 where
     T: Component,
 {
-    props: WindowProps,
     inner: T,
     shown: bool,
 }
@@ -20,13 +19,8 @@ where
     T: Component,
 {
     /// Creates a new window with a given inner [`Component`].
-    pub fn with_inner(props: WindowProps, inner: T) -> Self {
-        let shown = props.visible;
-        Self {
-            props,
-            inner,
-            shown,
-        }
+    pub fn new(inner: T) -> Self {
+        Self { inner, shown: true }
     }
 
     /// Returns a reference to the inner [`Component`].
@@ -38,34 +32,14 @@ where
     pub fn inner_mut(&mut self) -> &mut T {
         &mut self.inner
     }
-
-    /// Returns the window hotkey.
-    pub fn hotkey(&self) -> Option<usize> {
-        self.props.hotkey
-    }
-
-    /// Sets the window hotkey.
-    pub fn set_hotkey(&mut self, key: Option<usize>) {
-        self.props.hotkey = key
-    }
-}
-
-impl<T> Window<T>
-where
-    T: Component + Default,
-{
-    /// Creates a new window with the [`Default`] value of the inner [`Component`].
-    pub fn with_default(props: WindowProps) -> Self {
-        Self::with_inner(props, T::default())
-    }
 }
 
 impl<T> Default for Window<T>
 where
-    T: Default + Windowed,
+    T: Component + Default,
 {
     fn default() -> Self {
-        T::default().windowed()
+        Self::new(T::default())
     }
 }
 
@@ -89,70 +63,31 @@ where
     }
 }
 
-impl<T> Component for Window<T>
-where
-    T: Component,
-{
-    fn render(&mut self, ui: &Ui) {
-        if self.shown {
-            let inner = &mut self.inner;
-            self.props
-                .new_window()
-                .opened(&mut self.shown)
-                .build(ui, || inner.render(ui))
-        }
-    }
-}
-
-impl<T> Hideable for Window<T>
-where
-    T: Component,
-{
-    fn is_visible(&self) -> bool {
-        self.shown
-    }
-    fn is_visible_mut(&mut self) -> &mut bool {
-        &mut self.shown
-    }
-}
-
-/// Window props.
 #[derive(Debug, Clone)]
 pub struct WindowProps {
-    name: ImString,
-    width: f32,
-    height: f32,
-    visible: bool,
-    resize: bool,
-    auto_resize: bool,
-    scroll: bool,
-    hotkey: Option<usize>,
+    pub name: String,
+    pub width: f32,
+    pub height: f32,
+    pub resize: bool,
+    pub auto_resize: bool,
+    pub scroll: bool,
 }
 
 impl WindowProps {
-    /// Creates a new set of window props.
-    pub fn new<S>(name: S) -> Self
-    where
-        S: Into<String>,
-    {
+    pub fn new(name: impl Into<String>) -> Self {
         Self {
-            name: ImString::new(name.into()),
+            name: name.into(),
             width: 0.0,
             height: 0.0,
             resize: true,
-            visible: true,
             auto_resize: false,
             scroll: true,
-            hotkey: None,
         }
     }
 
     /// Sets the window name.
-    pub fn name<S>(mut self, name: S) -> Self
-    where
-        S: Into<String>,
-    {
-        self.name = ImString::new(name.into());
+    pub fn name(mut self, name: impl Into<String>) -> Self {
+        self.name = name.into();
         self
     }
 
@@ -165,12 +100,6 @@ impl WindowProps {
     /// Sets the default window height.
     pub const fn height(mut self, height: f32) -> Self {
         self.height = height;
-        self
-    }
-
-    /// Sets whether the window is visible.
-    pub const fn visible(mut self, value: bool) -> Self {
-        self.visible = value;
         self
     }
 
@@ -191,25 +120,47 @@ impl WindowProps {
         self.scroll = value;
         self
     }
+}
 
-    /// Sets the window hotkey
-    pub const fn hotkey(mut self, value: usize) -> Self {
-        self.hotkey = Some(value);
-        self
+impl<T> Component for Window<T>
+where
+    T: Component,
+{
+    type Props = (WindowProps, T::Props);
+
+    fn render(&mut self, ui: &Ui, props: &Self::Props) {
+        if self.shown {
+            let (window_props, inner_props) = props;
+            let inner = &mut self.inner;
+
+            imgui::Window::new(&window_props.name)
+                .title_bar(true)
+                .draw_background(true)
+                .collapsible(false)
+                .size(
+                    [window_props.width, window_props.height],
+                    imgui::Condition::FirstUseEver,
+                )
+                .always_auto_resize(window_props.auto_resize)
+                .resizable(window_props.resize)
+                .scroll_bar(window_props.scroll)
+                .scrollable(window_props.scroll)
+                .focus_on_appearing(false)
+                .opened(&mut self.shown)
+                .build(ui, || inner.render(ui, inner_props));
+        }
     }
+}
 
-    /// Creates the [`imgui::Window`] corresponding to the props.
-    fn new_window(&self) -> imgui::Window {
-        imgui::Window::new(&self.name)
-            .title_bar(true)
-            .draw_background(true)
-            .collapsible(false)
-            .size([self.width, self.height], Condition::FirstUseEver)
-            .always_auto_resize(self.auto_resize)
-            .resizable(self.resize)
-            .scroll_bar(self.scroll)
-            .scrollable(self.scroll)
-            .focus_on_appearing(false)
+impl<T> Hideable for Window<T>
+where
+    T: Component,
+{
+    fn is_visible(&self) -> bool {
+        self.shown
+    }
+    fn is_visible_mut(&mut self) -> &mut bool {
+        &mut self.shown
     }
 }
 
@@ -232,14 +183,13 @@ mod settings {
 
     impl<T> Default for WindowSettings<T>
     where
-        T: Windowed + HasSettings,
+        T: HasSettings,
         T::Settings: Default,
     {
         fn default() -> Self {
-            let props = T::window_props();
             Self {
-                shown: Some(props.visible),
-                hotkey: props.hotkey,
+                shown: Some(true),
+                hotkey: None,
                 settings: Some(T::Settings::default()),
             }
         }
@@ -247,7 +197,7 @@ mod settings {
 
     impl<T> HasSettings for Window<T>
     where
-        T: Component + Windowed + HasSettings,
+        T: Component + HasSettings,
     {
         type Settings = WindowSettings<T>;
 
@@ -256,7 +206,7 @@ mod settings {
         fn current_settings(&self) -> Self::Settings {
             WindowSettings {
                 shown: Some(self.is_visible()),
-                hotkey: self.hotkey(),
+                hotkey: None,
                 settings: Some(self.inner.current_settings()),
             }
         }
@@ -265,7 +215,7 @@ mod settings {
             if let Some(shown) = loaded.shown {
                 self.set_visibility(shown);
             }
-            self.set_hotkey(loaded.hotkey);
+            // self.set_hotkey(loaded.hotkey);
             if let Some(settings) = loaded.settings {
                 self.inner.load_settings(settings);
             }

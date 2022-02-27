@@ -30,27 +30,21 @@ impl LeftAlign {
     /// Renders the next item.
     ///
     /// Items are passed from **left to right**.
-    pub fn item<F>(&mut self, ui: &Ui, render: F)
-    where
-        F: FnOnce(),
-    {
+    pub fn item(&mut self, ui: &Ui, render: impl FnOnce()) {
         self.item_with_margin(ui, self.default_margin, render);
     }
 
     /// Renders the next item with a temporary margin override.
     ///
     /// Items are passed from **left to right**.
-    pub fn item_with_margin<F>(&mut self, ui: &Ui, margin: f32, render: F)
-    where
-        F: FnOnce(),
-    {
+    pub fn item_with_margin(&mut self, ui: &Ui, margin: f32, render: impl FnOnce()) {
         // prepare
         if self.accumulated.is_nan() {
             // first render is normal
             self.accumulated = 0.0;
         } else {
             // successive renders on same line
-            ui.same_line(self.accumulated);
+            ui.same_line_with_pos(self.accumulated);
         }
 
         // render item
@@ -93,10 +87,7 @@ impl RightAlign {
     ///
     /// The item width will be used for alignment and updated with the correct width after render.
     /// It can be a guessed default on the first render.
-    pub fn item<F>(&mut self, ui: &Ui, item_width: &mut f32, render: F)
-    where
-        F: FnOnce(),
-    {
+    pub fn item(&mut self, ui: &Ui, item_width: &mut f32, render: impl FnOnce()) {
         self.item_with_margin(ui, self.margin, item_width, render)
     }
 
@@ -106,13 +97,16 @@ impl RightAlign {
     ///
     /// The item width will be used for alignment and updated with the correct width after render.
     /// It can be a guessed default on the first render.
-    pub fn item_with_margin<F>(&mut self, ui: &Ui, margin: f32, item_width: &mut f32, render: F)
-    where
-        F: FnOnce(),
-    {
+    pub fn item_with_margin(
+        &mut self,
+        ui: &Ui,
+        margin: f32,
+        item_width: &mut f32,
+        render: impl FnOnce(),
+    ) {
         // prepare alignment
         let [window_x, _] = ui.window_content_region_max();
-        ui.same_line(window_x - self.accumulated - *item_width);
+        ui.same_line_with_pos(window_x - self.accumulated - *item_width);
 
         // render item
         render();

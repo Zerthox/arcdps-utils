@@ -1,7 +1,7 @@
 //! Log component.
 
-use crate::ui::{align::RightAlign, Component, WindowProps, Windowed};
-use arcdps::imgui::{im_str, ChildWindow, ImString, Ui};
+use crate::ui::{align::RightAlign, Component};
+use arcdps::imgui::{ChildWindow, Ui};
 use chrono::Local;
 
 /// Time format used for log messages.
@@ -11,7 +11,7 @@ const FORMAT: &str = "%b %d %H:%M:%S.%3f";
 #[derive(Debug, Clone)]
 pub struct Log {
     /// Current contents of the log.
-    pub contents: ImString,
+    pub contents: String,
 
     /// Whether the log is active.
     pub active: bool,
@@ -29,7 +29,7 @@ impl Log {
     /// Creates a new log.
     pub fn new() -> Self {
         Self {
-            contents: ImString::default(),
+            contents: String::new(),
             active: true,
             last_scroll_max: 0.0,
             activity_toggle_width: 60.0,
@@ -66,7 +66,9 @@ impl Default for Log {
 }
 
 impl Component for Log {
-    fn render(&mut self, ui: &Ui) {
+    type Props = ();
+
+    fn render(&mut self, ui: &Ui, _props: &Self::Props) {
         // time
         ui.align_text_to_frame_padding();
         ui.text(format!("Time: {}", Local::now().format(FORMAT)));
@@ -77,14 +79,14 @@ impl Component for Log {
         // clear button
         let contents = &mut self.contents;
         align.item(ui, &mut self.clear_button_width, || {
-            if ui.button(im_str!("Clear"), [0.0, 0.0]) {
+            if ui.button("Clear") {
                 contents.clear();
             }
         });
 
         // copy button
         align.item(ui, &mut self.copy_button_width, || {
-            if ui.button(im_str!("Copy"), [0.0, 0.0]) {
+            if ui.button("Copy") {
                 ui.set_clipboard_text(contents);
             }
         });
@@ -92,13 +94,13 @@ impl Component for Log {
         // activity toggle
         let active = &mut self.active;
         align.item_with_margin(ui, 10.0, &mut self.activity_toggle_width, || {
-            ui.checkbox(im_str!("Active"), active);
+            ui.checkbox("Active", active);
         });
 
         ui.separator();
 
         // log contents
-        ChildWindow::new(im_str!("##log-scroller"))
+        ChildWindow::new("##log-scroller")
             .scrollable(true)
             .horizontal_scrollbar(true)
             .build(ui, || {
@@ -114,15 +116,6 @@ impl Component for Log {
 
                 // update last max
                 self.last_scroll_max = ui.scroll_max_y();
-            })
-    }
-}
-
-impl Windowed for Log {
-    fn window_props() -> WindowProps {
-        WindowProps::new("Log")
-            .visible(true)
-            .width(600.0)
-            .height(300.0)
+            });
     }
 }
