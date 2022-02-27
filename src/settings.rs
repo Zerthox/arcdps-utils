@@ -18,10 +18,7 @@ pub struct Settings {
 
 impl Settings {
     /// Creates new empty settings.
-    pub fn empty<P>(file: P) -> Self
-    where
-        P: Into<PathBuf>,
-    {
+    pub fn empty(file: impl Into<PathBuf>) -> Self {
         Self {
             file: file.into(),
             data: Map::new(),
@@ -29,10 +26,7 @@ impl Settings {
     }
 
     /// Creates new settings from a file.
-    pub fn from_file<P>(file: P) -> Self
-    where
-        P: AsRef<Path>,
-    {
+    pub fn from_file(file: impl AsRef<Path>) -> Self {
         let mut settings = Settings::empty(file.as_ref());
         settings.load_file();
         settings
@@ -73,10 +67,7 @@ impl Settings {
     }
 
     /// Returns the path to the config file.
-    pub fn config_path<P>(file: P) -> Option<PathBuf>
-    where
-        P: AsRef<Path>,
-    {
+    pub fn config_path(file: impl AsRef<Path>) -> Option<PathBuf> {
         exports::config_path().map(|mut path| {
             if !path.is_dir() {
                 path.pop();
@@ -87,9 +78,8 @@ impl Settings {
     }
 
     /// Loads data from the settings map.
-    pub fn load_data<S, T>(&mut self, id: S) -> Option<T>
+    pub fn load_data<T>(&mut self, id: impl AsRef<str>) -> Option<T>
     where
-        S: AsRef<str>,
         T: DeserializeOwned,
     {
         self.data
@@ -101,11 +91,7 @@ impl Settings {
     /// Stores data in the settings map.
     ///
     /// Silently fails if the data fails serialization.
-    pub fn store_data<S, T>(&mut self, id: S, data: T)
-    where
-        S: Into<String>,
-        T: Serialize,
-    {
+    pub fn store_data(&mut self, id: impl Into<String>, data: impl Serialize) {
         if let Ok(value) = serde_json::to_value(data) {
             self.data.insert(id.into(), value);
         }
