@@ -162,7 +162,6 @@ mod settings {
         T: HasSettings,
     {
         shown: Option<bool>,
-        hotkey: Option<usize>,
         settings: Option<T::Settings>,
     }
 
@@ -174,7 +173,6 @@ mod settings {
         fn default() -> Self {
             Self {
                 shown: Some(true),
-                hotkey: None,
                 settings: Some(T::Settings::default()),
             }
         }
@@ -191,7 +189,6 @@ mod settings {
         fn current_settings(&self) -> Self::Settings {
             WindowSettings {
                 shown: Some(self.is_visible()),
-                hotkey: None,
                 settings: Some(self.inner.current_settings()),
             }
         }
