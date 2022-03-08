@@ -84,8 +84,7 @@ impl Settings {
     {
         self.data
             .remove(id.as_ref())
-            .map(|value| serde_json::from_value(value).ok())
-            .flatten()
+            .and_then(|value| serde_json::from_value(value).ok())
     }
 
     /// Stores data in the settings map.
