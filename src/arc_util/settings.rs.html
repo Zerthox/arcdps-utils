@@ -140,7 +140,6 @@
 <span id="138">138</span>
 <span id="139">139</span>
 <span id="140">140</span>
-<span id="141">141</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Load/save settings.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::exports</span>;
@@ -227,8 +226,7 @@
     {
         <span class="self">self</span>.<span class="ident">data</span>
             .<span class="ident">remove</span>(<span class="ident">id</span>.<span class="ident">as_ref</span>())
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">value</span><span class="op">|</span> <span class="ident">serde_json::from_value</span>(<span class="ident">value</span>).<span class="ident">ok</span>())
-            .<span class="ident">flatten</span>()
+            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">value</span><span class="op">|</span> <span class="ident">serde_json::from_value</span>(<span class="ident">value</span>).<span class="ident">ok</span>())
     }
 
     <span class="doccomment">/// Stores data in the settings map.</span>
