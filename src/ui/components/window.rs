@@ -153,10 +153,9 @@ where
 mod settings {
     use super::*;
     use crate::settings::HasSettings;
-    use serde_crate::{Deserialize, Serialize};
+    use serde::{Deserialize, Serialize};
 
     #[derive(Debug, Serialize, Deserialize)]
-    #[serde(crate = "serde_crate")]
     pub struct WindowSettings<T>
     where
         T: HasSettings,

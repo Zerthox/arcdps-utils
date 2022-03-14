@@ -10,7 +10,7 @@ use num_enum::{FromPrimitive, IntoPrimitive, TryFromPrimitive};
 use strum_macros::{Display, IntoStaticStr};
 
 #[cfg(feature = "serde")]
-use serde_crate::{Deserialize, Serialize};
+use serde::{Deserialize, Serialize};
 
 /// GW2 client language.
 #[derive(
@@ -27,11 +27,7 @@ use serde_crate::{Deserialize, Serialize};
     Display,
     IntoStaticStr,
 )]
-#[cfg_attr(
-    feature = "serde",
-    derive(Serialize, Deserialize),
-    serde(crate = "serde_crate")
-)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(u8)]
 pub enum Language {
     English = 0,
@@ -57,11 +53,7 @@ pub enum Language {
     Display,
     IntoStaticStr,
 )]
-#[cfg_attr(
-    feature = "serde",
-    derive(Serialize, Deserialize),
-    serde(crate = "serde_crate")
-)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(u16)]
 pub enum Attribute {
     None,

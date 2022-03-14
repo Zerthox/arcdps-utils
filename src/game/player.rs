@@ -3,15 +3,11 @@ use std::cmp;
 use strum_macros::{Display, IntoStaticStr};
 
 #[cfg(feature = "serde")]
-use serde_crate::{Deserialize, Serialize};
+use serde::{Deserialize, Serialize};
 
 /// Struct representing a player.
 #[derive(Debug, Clone)]
-#[cfg_attr(
-    feature = "serde",
-    derive(Serialize, Deserialize),
-    serde(crate = "serde_crate")
-)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Player {
     /// Player id given by the game.
     pub id: usize,
@@ -114,11 +110,7 @@ impl cmp::Ord for Player {
     Display,
     IntoStaticStr,
 )]
-#[cfg_attr(
-    feature = "serde",
-    derive(Serialize, Deserialize),
-    serde(crate = "serde_crate")
-)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(u32)]
 pub enum Profession {
     /// Unknown or invalid.
@@ -151,11 +143,7 @@ pub enum Profession {
     Display,
     IntoStaticStr,
 )]
-#[cfg_attr(
-    feature = "serde",
-    derive(Serialize, Deserialize),
-    serde(crate = "serde_crate")
-)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(u32)]
 pub enum Specialization {
     /// Unknown or invalid.
