@@ -42,8 +42,17 @@ mod tests {
 
     #[test]
     fn code_to_name() {
-        assert_eq!(Some(String::from("ALT")), keycode_to_name(18));
-        assert_eq!(Some(String::from("A")), keycode_to_name(65));
-        assert_eq!(Some(String::from("F")), keycode_to_name(70));
+        assert_eq!(
+            Some(String::from("ALT")),
+            keycode_to_name(18).map(|name| name.to_uppercase())
+        );
+        assert_eq!(
+            Some(String::from("A")),
+            keycode_to_name(65).map(|name| name.to_uppercase())
+        );
+        assert_eq!(
+            Some(String::from("F")),
+            keycode_to_name(70).map(|name| name.to_uppercase())
+        );
     }
 }

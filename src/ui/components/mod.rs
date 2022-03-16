@@ -59,9 +59,7 @@ pub fn key_input(ui: &Ui, id: impl AsRef<str>, label: impl AsRef<str>, keycode: 
     }
 
     // display key name
-    let name = keycode
-        .and_then(|keycode| keycode_to_name(keycode))
-        .unwrap_or_default();
+    let name = keycode.and_then(keycode_to_name).unwrap_or_default();
     ui.same_line_with_spacing(0.0, SPACING);
     ui.text(name);
 }
