@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["item_context_menu","Renders a right-click context menu for the last item."]],"mod":[["log","Log component."],["window","Window component."]]});
+initSidebarItems({"fn":[["item_context_menu","Renders a right-click context menu for the last item."],["key_input","Renders a custom key input."]],"mod":[["log","Log component."],["window","Window component."]]});
