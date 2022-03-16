@@ -49,6 +49,15 @@
 <span id="47">47</span>
 <span id="48">48</span>
 <span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::ffi::CString</span>;
 <span class="kw">use</span> <span class="ident">windows::Win32</span>::{
     <span class="ident">Foundation::CHAR</span>,
@@ -93,9 +102,18 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">code_to_name</span>() {
-        <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="ident">String::from</span>(<span class="string">&quot;ALT&quot;</span>)), <span class="ident">keycode_to_name</span>(<span class="number">18</span>));
-        <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="ident">String::from</span>(<span class="string">&quot;A&quot;</span>)), <span class="ident">keycode_to_name</span>(<span class="number">65</span>));
-        <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="ident">String::from</span>(<span class="string">&quot;F&quot;</span>)), <span class="ident">keycode_to_name</span>(<span class="number">70</span>));
+        <span class="macro">assert_eq!</span>(
+            <span class="prelude-val">Some</span>(<span class="ident">String::from</span>(<span class="string">&quot;ALT&quot;</span>)),
+            <span class="ident">keycode_to_name</span>(<span class="number">18</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">name</span><span class="op">|</span> <span class="ident">name</span>.<span class="ident">to_uppercase</span>())
+        );
+        <span class="macro">assert_eq!</span>(
+            <span class="prelude-val">Some</span>(<span class="ident">String::from</span>(<span class="string">&quot;A&quot;</span>)),
+            <span class="ident">keycode_to_name</span>(<span class="number">65</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">name</span><span class="op">|</span> <span class="ident">name</span>.<span class="ident">to_uppercase</span>())
+        );
+        <span class="macro">assert_eq!</span>(
+            <span class="prelude-val">Some</span>(<span class="ident">String::from</span>(<span class="string">&quot;F&quot;</span>)),
+            <span class="ident">keycode_to_name</span>(<span class="number">70</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">name</span><span class="op">|</span> <span class="ident">name</span>.<span class="ident">to_uppercase</span>())
+        );
     }
 }
 </code></pre></div>

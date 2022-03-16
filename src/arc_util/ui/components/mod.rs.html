@@ -65,8 +65,6 @@
 <span id="63">63</span>
 <span id="64">64</span>
 <span id="65">65</span>
-<span id="66">66</span>
-<span id="67">67</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Predefined UI components &amp; render helpers.</span>
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">window</span>;
@@ -128,9 +126,7 @@
     }
 
     <span class="comment">// display key name</span>
-    <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">keycode</span>
-        .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">keycode</span><span class="op">|</span> <span class="ident">keycode_to_name</span>(<span class="ident">keycode</span>))
-        .<span class="ident">unwrap_or_default</span>();
+    <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">keycode</span>.<span class="ident">and_then</span>(<span class="ident">keycode_to_name</span>).<span class="ident">unwrap_or_default</span>();
     <span class="ident">ui</span>.<span class="ident">same_line_with_spacing</span>(<span class="number">0.0</span>, <span class="ident">SPACING</span>);
     <span class="ident">ui</span>.<span class="ident">text</span>(<span class="ident">name</span>);
 }
