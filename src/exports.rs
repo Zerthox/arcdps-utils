@@ -36,6 +36,9 @@ pub struct Colors {
     raw: [*mut ImVec4; 5],
 }
 
+/// ArcDPS color type.
+pub type Color = [f32; 4];
+
 impl Colors {
     /// Reads a color from the raw color array.
     ///
@@ -46,12 +49,12 @@ impl Colors {
     ///
     /// This is unsafe since indexing the raw color array is only valid with specific indices.
     /// Incorrect indices may cause undefined behavior.
-    unsafe fn read_color(&self, first_index: usize, second_index: usize) -> Option<ImVec4> {
+    unsafe fn read_color(&self, first_index: usize, second_index: usize) -> Option<Color> {
         let ptr = self.raw[first_index];
         if !ptr.is_null() {
             // we do not need the full length slice
             let slice = slice::from_raw_parts(ptr, second_index + 1);
-            Some(slice[second_index])
+            Some(slice[second_index].into())
         } else {
             None
         }
@@ -60,21 +63,21 @@ impl Colors {
     /// Returns the base color for a specific [`CoreColor`].
     ///
     /// This will return [`None`] if ArcDPS did not yield the requested color when the [`Colors`] struct was retrieved.
-    pub fn core(&self, color: CoreColor) -> Option<ImVec4> {
+    pub fn core(&self, color: CoreColor) -> Option<Color> {
         unsafe { self.read_color(0, color as usize) }
     }
 
     /// Returns the base color for a specific [`Profession`].
     ///
     /// This will return [`None`] if ArcDPS did not yield the requested color when the [`Colors`] struct was retrieved.
-    pub fn prof_base(&self, prof: Profession) -> Option<ImVec4> {
+    pub fn prof_base(&self, prof: Profession) -> Option<Color> {
         unsafe { self.read_color(1, prof as usize) }
     }
 
     /// Returns the highlight color for a specific [`Profession`].
     ///
     /// This will return [`None`] if ArcDPS did not yield the requested color when the [`Colors`] struct was retrieved.
-    pub fn prof_highlight(&self, prof: Profession) -> Option<ImVec4> {
+    pub fn prof_highlight(&self, prof: Profession) -> Option<Color> {
         unsafe { self.read_color(2, prof as usize) }
     }
 
@@ -82,7 +85,7 @@ impl Colors {
     ///
     /// This will return [`None`] if ArcDPS did not yield the requested color when the [`Colors`] struct was retrieved.
     /// Also returns [`None`] if the subgroup is out of the game subgroup range.
-    pub fn sub_base(&self, sub: usize) -> Option<ImVec4> {
+    pub fn sub_base(&self, sub: usize) -> Option<Color> {
         // range check
         if sub != 0 && sub <= 15 {
             unsafe { self.read_color(3, sub) }
@@ -95,7 +98,7 @@ impl Colors {
     ///
     /// This will return [`None`] if ArcDPS did not yield the requested color when the [`Colors`] struct was retrieved.
     /// Also returns [`None`] if the subgroup is out of the game subgroup range.
-    pub fn sub_highlight(&self, sub: usize) -> Option<ImVec4> {
+    pub fn sub_highlight(&self, sub: usize) -> Option<Color> {
         // range check
         if sub != 0 && sub <= 15 {
             unsafe { self.read_color(4, sub) }
