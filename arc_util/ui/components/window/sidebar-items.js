@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Window","Window component."],["WindowSettings",""]]});
+initSidebarItems({"enum":[["WindowAnchor",""],["WindowPosition",""]],"struct":[["Window","Window component."],["WindowOptions","Window options."],["WindowSettings",""]]});

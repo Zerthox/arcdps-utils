@@ -219,7 +219,7 @@
 
         <span class="comment">// activity toggle</span>
         <span class="kw">let</span> <span class="ident">active</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">active</span>;
-        <span class="ident">align</span>.<span class="ident">item_with_margin</span>(<span class="ident">ui</span>, <span class="number">10.0</span>, <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">activity_toggle_width</span>, <span class="op">|</span><span class="op">|</span> {
+        <span class="ident">align</span>.<span class="ident">item_with_spacing</span>(<span class="ident">ui</span>, <span class="number">10.0</span>, <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">activity_toggle_width</span>, <span class="op">|</span><span class="op">|</span> {
             <span class="ident">ui</span>.<span class="ident">checkbox</span>(<span class="string">&quot;Active&quot;</span>, <span class="ident">active</span>);
         });
 
