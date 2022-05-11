@@ -9,7 +9,7 @@ use crate::{
     ui::ch_width,
     util::{keycode_to_name, name_to_keycode},
 };
-use arcdps::imgui::{sys, Ui};
+use arcdps::imgui::{sys, InputTextFlags, Ui};
 use std::ffi::CString;
 
 /// Renders a right-click context menu for the last item.
@@ -39,6 +39,31 @@ pub fn window_context_menu(str_id: impl Into<String>, contents: impl FnOnce()) {
             contents();
             unsafe { sys::igEndPopup() };
         }
+    }
+}
+
+/// Renders a float input with a custom format.
+pub fn input_float_with_format(
+    label: impl Into<String>,
+    value: &mut f32,
+    step: f32,
+    step_fast: f32,
+    format: impl Into<String>,
+    flags: InputTextFlags,
+) -> bool {
+    if let (Ok(label), Ok(format)) = (CString::new(label.into()), CString::new(format.into())) {
+        unsafe {
+            sys::igInputFloat(
+                label.as_ptr(),
+                value as *mut f32,
+                step,
+                step_fast,
+                format.as_ptr(),
+                flags.bits() as i32,
+            )
+        }
+    } else {
+        false
     }
 }
 
