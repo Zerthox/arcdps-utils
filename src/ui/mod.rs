@@ -43,3 +43,8 @@ pub trait Hideable {
         *self.visible_mut() = visible;
     }
 }
+
+/// Returns the width of the given number of "0" characters.
+pub fn ch_width(ui: &Ui, count: usize) -> f32 {
+    ui.calc_text_size("0".repeat(count))[0]
+}

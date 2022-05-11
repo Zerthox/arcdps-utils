@@ -5,7 +5,10 @@ pub mod window;
 #[cfg(feature = "log")]
 pub mod log;
 
-use crate::util::{keycode_to_name, name_to_keycode};
+use crate::{
+    ui::ch_width,
+    util::{keycode_to_name, name_to_keycode},
+};
 use arcdps::imgui::{sys, Ui};
 use std::ffi::CString;
 
@@ -50,7 +53,7 @@ pub fn key_input(ui: &Ui, id: impl AsRef<str>, label: impl AsRef<str>, keycode: 
         buffer.push_str(&keycode.to_string());
     }
     ui.same_line_with_spacing(0.0, SPACING);
-    ui.push_item_width(ui.calc_text_size("0000")[0]);
+    ui.set_next_item_width(ch_width(ui, 4));
     if ui
         .input_text(id, &mut buffer)
         .chars_uppercase(true)
