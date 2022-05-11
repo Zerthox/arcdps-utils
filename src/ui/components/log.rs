@@ -93,7 +93,7 @@ impl Component for Log {
 
         // activity toggle
         let active = &mut self.active;
-        align.item_with_margin(ui, 10.0, &mut self.activity_toggle_width, || {
+        align.item_with_spacing(ui, 10.0, &mut self.activity_toggle_width, || {
             ui.checkbox("Active", active);
         });
 
