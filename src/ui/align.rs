@@ -5,6 +5,7 @@ use arcdps::imgui::Ui;
 /// Render state for left alignment.
 #[derive(Debug, Clone, Copy)]
 pub struct LeftAlign {
+    first: bool,
     spacing: f32,
 }
 
@@ -20,7 +21,10 @@ impl LeftAlign {
     ///
     /// Items are passed from **left to right**.
     pub fn with_spacing(spacing: f32) -> Self {
-        Self { spacing }
+        Self {
+            first: false,
+            spacing,
+        }
     }
 
     /// Renders the next item.
@@ -35,7 +39,11 @@ impl LeftAlign {
     /// Items are passed from **left to right**.
     pub fn item_with_spacing(&mut self, ui: &Ui, spacing: f32, render: impl FnOnce()) {
         // prepare
-        ui.same_line_with_spacing(0.0, spacing);
+        if self.first {
+            self.first = false;
+        } else {
+            ui.same_line_with_spacing(0.0, spacing);
+        }
 
         // render item
         render();
