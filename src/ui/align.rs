@@ -5,8 +5,7 @@ use arcdps::imgui::Ui;
 /// Render state for left alignment.
 #[derive(Debug, Clone, Copy)]
 pub struct LeftAlign {
-    default_margin: f32,
-    accumulated: f32,
+    spacing: f32,
 }
 
 impl LeftAlign {
@@ -14,52 +13,39 @@ impl LeftAlign {
     ///
     /// Items are passed from **left to right**.
     pub fn build() -> Self {
-        Self::with_margin(5.0)
+        Self::with_spacing(5.0)
     }
 
     /// Starts rendering items in left alignment with a custom margin.
     ///
     /// Items are passed from **left to right**.
-    pub fn with_margin(margin: f32) -> Self {
-        Self {
-            default_margin: margin,
-            accumulated: f32::NAN, // placeholder to identify first render
-        }
+    pub fn with_spacing(spacing: f32) -> Self {
+        Self { spacing }
     }
 
     /// Renders the next item.
     ///
     /// Items are passed from **left to right**.
     pub fn item(&mut self, ui: &Ui, render: impl FnOnce()) {
-        self.item_with_margin(ui, self.default_margin, render);
+        self.item_with_spacing(ui, self.spacing, render);
     }
 
     /// Renders the next item with a temporary margin override.
     ///
     /// Items are passed from **left to right**.
-    pub fn item_with_margin(&mut self, ui: &Ui, margin: f32, render: impl FnOnce()) {
+    pub fn item_with_spacing(&mut self, ui: &Ui, spacing: f32, render: impl FnOnce()) {
         // prepare
-        if self.accumulated.is_nan() {
-            // first render is normal
-            self.accumulated = 0.0;
-        } else {
-            // successive renders on same line
-            ui.same_line_with_pos(self.accumulated);
-        }
+        ui.same_line_with_spacing(0.0, spacing);
 
         // render item
         render();
-
-        // update accumulated
-        let [last_width, _] = ui.item_rect_size();
-        self.accumulated += last_width + margin;
     }
 }
 
 /// Render state for right alignment.
 #[derive(Debug, Clone, Copy)]
 pub struct RightAlign {
-    margin: f32,
+    spacing: f32,
     accumulated: f32,
 }
 
@@ -68,15 +54,15 @@ impl RightAlign {
     ///
     /// Items are passed from **right to left**.
     pub fn build() -> Self {
-        Self::with_margin(5.0)
+        Self::with_spacing(5.0)
     }
 
     /// Starts rendering items in right alignment with a custom margin.
     ///
     /// Items are passed from **right to left**.
-    pub fn with_margin(margin: f32) -> Self {
+    pub fn with_spacing(spacing: f32) -> Self {
         Self {
-            margin,
+            spacing,
             accumulated: 0.0,
         }
     }
@@ -88,7 +74,7 @@ impl RightAlign {
     /// The item width will be used for alignment and updated with the correct width after render.
     /// It can be a guessed default on the first render.
     pub fn item(&mut self, ui: &Ui, item_width: &mut f32, render: impl FnOnce()) {
-        self.item_with_margin(ui, self.margin, item_width, render)
+        self.item_with_margin(ui, self.spacing, item_width, render)
     }
 
     /// Renders the next item with a temporary margin override.
@@ -100,7 +86,7 @@ impl RightAlign {
     pub fn item_with_margin(
         &mut self,
         ui: &Ui,
-        margin: f32,
+        spacing: f32,
         item_width: &mut f32,
         render: impl FnOnce(),
     ) {
@@ -113,6 +99,6 @@ impl RightAlign {
 
         // update item width & accumulated with actual size
         *item_width = ui.item_rect_size()[0];
-        self.accumulated += *item_width + margin;
+        self.accumulated += *item_width + spacing;
     }
 }
