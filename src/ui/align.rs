@@ -17,7 +17,7 @@ impl LeftAlign {
         Self::with_spacing(5.0)
     }
 
-    /// Starts rendering items in left alignment with a custom margin.
+    /// Starts rendering items in left alignment with a custom spacing.
     ///
     /// Items are passed from **left to right**.
     pub fn with_spacing(spacing: f32) -> Self {
@@ -34,7 +34,7 @@ impl LeftAlign {
         self.item_with_spacing(ui, self.spacing, render);
     }
 
-    /// Renders the next item with a temporary margin override.
+    /// Renders the next item with a temporary spacing override.
     ///
     /// Items are passed from **left to right**.
     pub fn item_with_spacing(&mut self, ui: &Ui, spacing: f32, render: impl FnOnce()) {
@@ -65,7 +65,7 @@ impl RightAlign {
         Self::with_spacing(5.0)
     }
 
-    /// Starts rendering items in right alignment with a custom margin.
+    /// Starts rendering items in right alignment with a custom spacing.
     ///
     /// Items are passed from **right to left**.
     pub fn with_spacing(spacing: f32) -> Self {
@@ -82,16 +82,16 @@ impl RightAlign {
     /// The item width will be used for alignment and updated with the correct width after render.
     /// It can be a guessed default on the first render.
     pub fn item(&mut self, ui: &Ui, item_width: &mut f32, render: impl FnOnce()) {
-        self.item_with_margin(ui, self.spacing, item_width, render)
+        self.item_with_spacing(ui, self.spacing, item_width, render)
     }
 
-    /// Renders the next item with a temporary margin override.
+    /// Renders the next item with a temporary spacing override.
     ///
     /// Items are passed from **right to left**.
     ///
     /// The item width will be used for alignment and updated with the correct width after render.
     /// It can be a guessed default on the first render.
-    pub fn item_with_margin(
+    pub fn item_with_spacing(
         &mut self,
         ui: &Ui,
         spacing: f32,
