@@ -24,6 +24,21 @@ pub fn item_context_menu(str_id: impl Into<String>, contents: impl FnOnce()) {
     }
 }
 
+/// Renders a right-click context menu for the window.
+pub fn window_context_menu(str_id: impl Into<String>, contents: impl FnOnce()) {
+    if let Ok(str_id) = CString::new(str_id.into()) {
+        if unsafe {
+            sys::igBeginPopupContextWindow(
+                str_id.as_ptr(),
+                sys::ImGuiPopupFlags_MouseButtonRight as i32,
+            )
+        } {
+            contents();
+            unsafe { sys::igEndPopup() };
+        }
+    }
+}
+
 /// Renders a custom key input.
 pub fn key_input(ui: &Ui, id: impl AsRef<str>, label: impl AsRef<str>, keycode: &mut Option<u32>) {
     const SPACING: f32 = 5.0;
