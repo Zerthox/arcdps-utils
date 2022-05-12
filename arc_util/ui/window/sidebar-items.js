@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["WindowAnchor","Screen anchor point for window."],["WindowPosition","Window position onscreen."]],"fn":[["render_window","Renders a window."],["window_options_menus","Renders menus with window options."]],"struct":[["Window","Window component."],["WindowOptions","Window options."],["WindowSettings",""]]});
