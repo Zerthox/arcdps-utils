@@ -1,10 +1,16 @@
 //! UI related utilities.
 
 pub mod align;
-pub mod components;
+pub mod element;
+pub mod render;
+pub mod window;
+
+#[cfg(feature = "log")]
+pub mod log;
 
 pub use arcdps::imgui::Ui;
-pub use components::window::{Window, WindowOptions};
+pub use element::Element;
+pub use window::{Window, WindowOptions};
 
 /// Interface for UI components.
 pub trait Component {
@@ -12,6 +18,18 @@ pub trait Component {
 
     /// Renders the component.
     fn render(&mut self, ui: &Ui, props: &Self::Props);
+}
+
+/// Interface for windowable UI components.
+pub trait Windowable: Component {
+    /// Whether to enable the context menu.
+    const CONTEXT_MENU: bool;
+
+    /// Whether to enable the default menu entries.
+    const DEFAULT_OPTIONS: bool = true;
+
+    /// Renders the window context menu contents.
+    fn render_menu(&mut self, _ui: &Ui, _props: &Self::Props) {}
 }
 
 /// Interface for hideable UI components.
@@ -42,9 +60,4 @@ pub trait Hideable {
     fn set_visibility(&mut self, visible: bool) {
         *self.visible_mut() = visible;
     }
-}
-
-/// Returns the width of the given number of "0" characters.
-pub fn ch_width(ui: &Ui, count: usize) -> f32 {
-    ui.calc_text_size("0".repeat(count))[0]
 }

@@ -4,6 +4,8 @@ use crate::ui::{align::RightAlign, Component};
 use arcdps::imgui::{ChildWindow, Ui};
 use chrono::Local;
 
+use super::Windowable;
+
 /// Time format used for log messages.
 const FORMAT: &str = "%b %d %H:%M:%S.%3f";
 
@@ -118,4 +120,8 @@ impl Component for Log {
                 self.last_scroll_max = ui.scroll_max_y();
             });
     }
+}
+
+impl Windowable for Log {
+    const CONTEXT_MENU: bool = true;
 }

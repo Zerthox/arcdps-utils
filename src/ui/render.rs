@@ -1,16 +1,13 @@
-//! Predefined UI components & render helpers.
+//! Predefined primitive UI elements & render helpers.
 
-pub mod window;
-
-#[cfg(feature = "log")]
-pub mod log;
-
-use crate::{
-    ui::ch_width,
-    util::{keycode_to_name, name_to_keycode},
-};
+use crate::util::{keycode_to_name, name_to_keycode};
 use arcdps::imgui::{sys, InputTextFlags, Ui};
 use std::ffi::CString;
+
+/// Returns the width of the given number of "0" characters.
+pub fn ch_width(ui: &Ui, count: usize) -> f32 {
+    ui.calc_text_size("0".repeat(count))[0]
+}
 
 /// Renders a right-click context menu for the last item.
 pub fn item_context_menu(str_id: impl Into<String>, contents: impl FnOnce()) {
