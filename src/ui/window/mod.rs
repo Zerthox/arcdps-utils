@@ -31,7 +31,7 @@ impl<T> Window<T>
 where
     T: Windowable,
 {
-    /// Creates a new window with [`WindowOptions`] and a given inner [`Windowed`] component.
+    /// Creates a new window with [`WindowOptions`] and a given inner [`Windowable`] component.
     pub fn new(options: WindowOptions, inner: T) -> Self {
         Self { inner, options }
     }
