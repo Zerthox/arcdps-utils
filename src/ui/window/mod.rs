@@ -7,7 +7,10 @@ mod render;
 #[cfg(feature = "settings")]
 mod settings;
 
-use crate::ui::{render::window_context_menu, Component, Hideable, Ui, Windowable};
+use crate::ui::{
+    render::{small_padding, window_context_menu},
+    Component, Hideable, Ui, Windowable,
+};
 use std::ops::{Deref, DerefMut};
 
 pub use menu::*;
@@ -68,6 +71,8 @@ where
             if T::CONTEXT_MENU {
                 // render context menu
                 window_context_menu(&format!("Options##{}", self.options.name), || {
+                    let _style = small_padding(ui);
+
                     self.inner.render_menu(ui, props);
                     if T::DEFAULT_OPTIONS {
                         window_options_menus(ui, &mut self.options);

@@ -21,9 +21,6 @@ pub fn window_options_menus(ui: &Ui, options: &mut WindowOptions) {
         .core(CoreColor::MediumGrey)
         .unwrap_or([0.5, 0.5, 0.5, 1.0]);
 
-    // use small padding similar to arc & other plugins
-    let _style = ui.push_style_var(StyleVar::FramePadding([1.0, 1.0]));
-
     let input_width = ch_width(ui, 12);
     const STEP: f32 = 1.0;
     const STEP_FAST: f32 = 10.0;
