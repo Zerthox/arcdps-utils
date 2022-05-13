@@ -65,9 +65,10 @@ pub fn input_float_with_format(
 }
 
 /// Renders a custom key input.
-pub fn key_input(ui: &Ui, id: impl AsRef<str>, label: impl AsRef<str>, keycode: &mut Option<u32>) {
+pub fn input_key(ui: &Ui, id: impl AsRef<str>, label: impl AsRef<str>, keycode: &mut Option<u32>) {
     const SPACING: f32 = 5.0;
 
+    ui.align_text_to_frame_padding();
     ui.text(label);
 
     let mut buffer = String::with_capacity(3);
