@@ -103,9 +103,6 @@
 <span id="98"> 98</span>
 <span id="99"> 99</span>
 <span id="100">100</span>
-<span id="101">101</span>
-<span id="102">102</span>
-<span id="103">103</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">api::CoreColor</span>,
@@ -129,21 +126,18 @@
         .<span class="ident">core</span>(<span class="ident">CoreColor::MediumGrey</span>)
         .<span class="ident">unwrap_or</span>([<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">1.0</span>]);
 
-    <span class="comment">// use small padding similar to arc &amp; other plugins</span>
-    <span class="kw">let</span> <span class="ident">_style</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">push_style_var</span>(<span class="ident">StyleVar::FramePadding</span>([<span class="number">1.0</span>, <span class="number">1.0</span>]));
-
     <span class="kw">let</span> <span class="ident">input_width</span> <span class="op">=</span> <span class="ident">ch_width</span>(<span class="ident">ui</span>, <span class="number">12</span>);
     <span class="kw">const</span> <span class="ident">STEP</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">1.0</span>;
     <span class="kw">const</span> <span class="ident">STEP_FAST</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">10.0</span>;
     <span class="kw">const</span> <span class="ident">FORMAT</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;%.0f&quot;</span>;
 
     <span class="ident">ui</span>.<span class="ident">menu</span>(<span class="string">&quot;Style&quot;</span>, <span class="op">|</span><span class="op">|</span> {
-        <span class="ident">ui</span>.<span class="ident">text_colored</span>(<span class="ident">grey</span>, <span class="string">&quot;Window Style&quot;</span>);
+        <span class="ident">ui</span>.<span class="ident">text_colored</span>(<span class="ident">grey</span>, <span class="string">&quot;Window style&quot;</span>);
 
         <span class="ident">ui</span>.<span class="ident">checkbox</span>(<span class="string">&quot;Titlebar&quot;</span>, <span class="kw-2">&amp;mut</span> <span class="ident">options</span>.<span class="ident">title_bar</span>);
         <span class="ident">ui</span>.<span class="ident">checkbox</span>(<span class="string">&quot;Background&quot;</span>, <span class="kw-2">&amp;mut</span> <span class="ident">options</span>.<span class="ident">background</span>);
         <span class="ident">ui</span>.<span class="ident">checkbox</span>(<span class="string">&quot;Scrollbar&quot;</span>, <span class="kw-2">&amp;mut</span> <span class="ident">options</span>.<span class="ident">scroll_bar</span>);
-        <span class="ident">ui</span>.<span class="ident">checkbox</span>(<span class="string">&quot;Auto Resize&quot;</span>, <span class="kw-2">&amp;mut</span> <span class="ident">options</span>.<span class="ident">auto_resize</span>);
+        <span class="ident">ui</span>.<span class="ident">checkbox</span>(<span class="string">&quot;Auto resize&quot;</span>, <span class="kw-2">&amp;mut</span> <span class="ident">options</span>.<span class="ident">auto_resize</span>);
 
         <span class="ident">ui</span>.<span class="ident">set_next_item_width</span>(<span class="ident">input_width</span>);
 
@@ -174,14 +168,14 @@
     });
 
     <span class="ident">ui</span>.<span class="ident">menu</span>(<span class="string">&quot;Position&quot;</span>, <span class="op">|</span><span class="op">|</span> {
-        <span class="ident">ui</span>.<span class="ident">text_colored</span>(<span class="ident">grey</span>, <span class="string">&quot;Window Position&quot;</span>);
+        <span class="ident">ui</span>.<span class="ident">text_colored</span>(<span class="ident">grey</span>, <span class="string">&quot;Window position&quot;</span>);
 
         <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">radio_button_bool</span>(<span class="string">&quot;Manual&quot;</span>, <span class="ident">options</span>.<span class="ident">position</span> <span class="op">==</span> <span class="ident">WindowPosition::Manual</span>) {
             <span class="ident">options</span>.<span class="ident">position</span> <span class="op">=</span> <span class="ident">WindowPosition::Manual</span>;
         }
 
         <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">radio_button_bool</span>(
-            <span class="string">&quot;Screen Relative&quot;</span>,
+            <span class="string">&quot;Screen relative&quot;</span>,
             <span class="macro">matches!</span>(<span class="ident">options</span>.<span class="ident">position</span>, <span class="ident">WindowPosition::Anchored</span> { .. }),
         ) {
             <span class="ident">options</span>.<span class="ident">position</span> <span class="op">=</span> <span class="ident">WindowPosition::Anchored</span> {
@@ -194,10 +188,10 @@
         <span class="kw">if</span> <span class="kw">let</span> <span class="ident">WindowPosition::Anchored</span> { <span class="ident">anchor</span>, <span class="ident">x</span>, <span class="ident">y</span> } <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">options</span>.<span class="ident">position</span> {
             <span class="ident">ui</span>.<span class="ident">indent</span>();
 
-            <span class="ident">ui</span>.<span class="ident">radio_button</span>(<span class="string">&quot;Top Left&quot;</span>, <span class="ident">anchor</span>, <span class="ident">WindowAnchor::TopLeft</span>);
-            <span class="ident">ui</span>.<span class="ident">radio_button</span>(<span class="string">&quot;Top Right&quot;</span>, <span class="ident">anchor</span>, <span class="ident">WindowAnchor::TopRight</span>);
-            <span class="ident">ui</span>.<span class="ident">radio_button</span>(<span class="string">&quot;Bottom Left&quot;</span>, <span class="ident">anchor</span>, <span class="ident">WindowAnchor::BottomLeft</span>);
-            <span class="ident">ui</span>.<span class="ident">radio_button</span>(<span class="string">&quot;Bottom Right&quot;</span>, <span class="ident">anchor</span>, <span class="ident">WindowAnchor::BottomRight</span>);
+            <span class="ident">ui</span>.<span class="ident">radio_button</span>(<span class="string">&quot;Top left&quot;</span>, <span class="ident">anchor</span>, <span class="ident">WindowAnchor::TopLeft</span>);
+            <span class="ident">ui</span>.<span class="ident">radio_button</span>(<span class="string">&quot;Top right&quot;</span>, <span class="ident">anchor</span>, <span class="ident">WindowAnchor::TopRight</span>);
+            <span class="ident">ui</span>.<span class="ident">radio_button</span>(<span class="string">&quot;Bottom left&quot;</span>, <span class="ident">anchor</span>, <span class="ident">WindowAnchor::BottomLeft</span>);
+            <span class="ident">ui</span>.<span class="ident">radio_button</span>(<span class="string">&quot;Bottom right&quot;</span>, <span class="ident">anchor</span>, <span class="ident">WindowAnchor::BottomRight</span>);
 
             <span class="ident">ui</span>.<span class="ident">set_next_item_width</span>(<span class="ident">input_width</span>);
             <span class="ident">input_float_with_format</span>(<span class="string">&quot;x&quot;</span>, <span class="ident">x</span>, <span class="ident">STEP</span>, <span class="ident">STEP_FAST</span>, <span class="ident">FORMAT</span>, <span class="ident">InputTextFlags::empty</span>());
