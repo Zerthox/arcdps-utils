@@ -27,12 +27,12 @@ pub fn window_options_menus(ui: &Ui, options: &mut WindowOptions) {
     const FORMAT: &str = "%.0f";
 
     ui.menu("Style", || {
-        ui.text_colored(grey, "Window Style");
+        ui.text_colored(grey, "Window style");
 
         ui.checkbox("Titlebar", &mut options.title_bar);
         ui.checkbox("Background", &mut options.background);
         ui.checkbox("Scrollbar", &mut options.scroll_bar);
-        ui.checkbox("Auto Resize", &mut options.auto_resize);
+        ui.checkbox("Auto resize", &mut options.auto_resize);
 
         ui.set_next_item_width(input_width);
 
@@ -63,14 +63,14 @@ pub fn window_options_menus(ui: &Ui, options: &mut WindowOptions) {
     });
 
     ui.menu("Position", || {
-        ui.text_colored(grey, "Window Position");
+        ui.text_colored(grey, "Window position");
 
         if ui.radio_button_bool("Manual", options.position == WindowPosition::Manual) {
             options.position = WindowPosition::Manual;
         }
 
         if ui.radio_button_bool(
-            "Screen Relative",
+            "Screen relative",
             matches!(options.position, WindowPosition::Anchored { .. }),
         ) {
             options.position = WindowPosition::Anchored {
@@ -83,10 +83,10 @@ pub fn window_options_menus(ui: &Ui, options: &mut WindowOptions) {
         if let WindowPosition::Anchored { anchor, x, y } = &mut options.position {
             ui.indent();
 
-            ui.radio_button("Top Left", anchor, WindowAnchor::TopLeft);
-            ui.radio_button("Top Right", anchor, WindowAnchor::TopRight);
-            ui.radio_button("Bottom Left", anchor, WindowAnchor::BottomLeft);
-            ui.radio_button("Bottom Right", anchor, WindowAnchor::BottomRight);
+            ui.radio_button("Top left", anchor, WindowAnchor::TopLeft);
+            ui.radio_button("Top right", anchor, WindowAnchor::TopRight);
+            ui.radio_button("Bottom left", anchor, WindowAnchor::BottomLeft);
+            ui.radio_button("Bottom right", anchor, WindowAnchor::BottomRight);
 
             ui.set_next_item_width(input_width);
             input_float_with_format("x", x, STEP, STEP_FAST, FORMAT, InputTextFlags::empty());
