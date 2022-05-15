@@ -7,7 +7,7 @@ mod player;
 pub use player::*;
 
 use num_enum::{FromPrimitive, IntoPrimitive, TryFromPrimitive};
-use strum_macros::{Display, IntoStaticStr};
+use strum::{Display, EnumIter, EnumVariantNames, IntoStaticStr};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -26,6 +26,8 @@ use serde::{Deserialize, Serialize};
     TryFromPrimitive,
     Display,
     IntoStaticStr,
+    EnumIter,
+    EnumVariantNames,
 )]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(u8)]
@@ -52,6 +54,8 @@ pub enum Language {
     FromPrimitive,
     Display,
     IntoStaticStr,
+    EnumIter,
+    EnumVariantNames,
 )]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(u16)]

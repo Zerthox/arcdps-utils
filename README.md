@@ -14,4 +14,4 @@ Documentation can be found here: [zerthox.github.io/arcdps-utils/arc_util](https
 | --- | --- |
 | serde | Adds [serde](https://serde.rs/) Serialize & Deserialize to `game` structs.
 | settings | Includes settings utilitites in `settings`.
-| log | Includes a Log component in `components`.
+| log | Includes a Log component in `ui`.

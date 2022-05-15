@@ -1,6 +1,6 @@
 use num_enum::{FromPrimitive, IntoPrimitive};
 use std::cmp;
-use strum_macros::{Display, IntoStaticStr};
+use strum::{Display, EnumIter, EnumVariantNames, IntoStaticStr};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -109,6 +109,8 @@ impl cmp::Ord for Player {
     FromPrimitive,
     Display,
     IntoStaticStr,
+    EnumIter,
+    EnumVariantNames,
 )]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(u32)]
@@ -142,6 +144,8 @@ pub enum Profession {
     FromPrimitive,
     Display,
     IntoStaticStr,
+    EnumIter,
+    EnumVariantNames,
 )]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(u32)]
