@@ -245,9 +245,13 @@
 <span id="240">240</span>
 <span id="241">241</span>
 <span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">num_enum</span>::{<span class="ident">FromPrimitive</span>, <span class="ident">IntoPrimitive</span>};
 <span class="kw">use</span> <span class="ident">std::cmp</span>;
-<span class="kw">use</span> <span class="ident">strum_macros</span>::{<span class="ident">Display</span>, <span class="ident">IntoStaticStr</span>};
+<span class="kw">use</span> <span class="ident">strum</span>::{<span class="ident">Display</span>, <span class="ident">EnumIter</span>, <span class="ident">EnumVariantNames</span>, <span class="ident">IntoStaticStr</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
@@ -356,6 +360,8 @@
     <span class="ident">FromPrimitive</span>,
     <span class="ident">Display</span>,
     <span class="ident">IntoStaticStr</span>,
+    <span class="ident">EnumIter</span>,
+    <span class="ident">EnumVariantNames</span>,
 )]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
@@ -389,6 +395,8 @@
     <span class="ident">FromPrimitive</span>,
     <span class="ident">Display</span>,
     <span class="ident">IntoStaticStr</span>,
+    <span class="ident">EnumIter</span>,
+    <span class="ident">EnumVariantNames</span>,
 )]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
