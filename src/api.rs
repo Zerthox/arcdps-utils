@@ -26,16 +26,16 @@ pub fn read_buff_instance_id(event: &CombatEvent) -> u32 {
     unsafe { mem::transmute([event.pad61, event.pad62, event.pad63, event.pad64]) }
 }
 
-/// Whether the entity is an ally or enemy.
+/// Whether the agent is an ally or enemy.
 ///
 /// *Arc calls this "iff" for if friend/foe.*
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, FromPrimitive)]
 #[repr(u8)]
 pub enum Team {
-    /// Allied entity.
+    /// Allied agent.
     Friend,
 
-    /// Enemy entity.
+    /// Enemy agent.
     Foe,
 
     /// Uncertain whether ally or enemy.
@@ -75,7 +75,7 @@ pub enum Strike {
 
     /// Strike was absorbed.
     ///
-    /// Usually due to a "true" invulnerability like Guardian Renewed Focus.
+    /// Usually due to an invulnerability like Guardian Renewed Focus.
     Absorb,
 
     /// Strike missed.
@@ -146,36 +146,36 @@ pub enum StateChange {
     /// Not used, different kind of event.
     None,
 
-    /// Source entity entered combat.
+    /// Source agent entered combat.
     ///
-    /// Destination contains the subgroup.
+    /// `dst_agent` contains the subgroup.
     EnterCombat,
 
-    /// Source entity left combat.
+    /// Source agent left combat.
     ExitCombat,
 
-    /// Source entity is now alive.
+    /// Source agent is now alive.
     ChangeUp,
 
-    /// Source entity is now dead.
+    /// Source agent is now dead.
     ChangeDead,
 
-    /// Source entity is now downed.
+    /// Source agent is now downed.
     ChangeDown,
 
-    /// Source entity is now in game tracking range.
+    /// Source agent is now in game tracking range.
     ///
     /// *Not used in realtime API.*
     Spawn,
 
-    /// Source entity is no longer being tracked or out of game tracking range.
+    /// Source agent is no longer being tracked or out of game tracking range.
     ///
     /// *Not used in realtime API.*
     Despawn,
 
-    /// Source entity health change.
+    /// Source agent health change.
     ///
-    /// Destination contains percentage as `percent * 10000`.
+    /// `dst_agent` contains percentage as `percent * 10000`.
     /// For example 99.5% will be `9950`.
     ///
     /// *Not used in realtime API.*
@@ -183,108 +183,108 @@ pub enum StateChange {
 
     /// Logging has started.
     ///
-    /// Value contains the server Unix timestamp as `u32`.
-    /// Buff damage contains the local Unix timestamp.
+    /// `value` contains the server Unix timestamp as `u32`.
+    /// `buff_dmg` contains the local Unix timestamp.
     ///
-    /// Source id is `0x637261` (ArcDPS id) if log EVTC and species id if realtime API.
+    /// `arc_agent` is `0x637261` (ArcDPS id) if log EVTC and species id if realtime API.
     LogStart,
 
     /// Logging has ended.
     ///
-    /// Value contains the server Unix timestamp as `u32`.
-    /// Buff damage contains the local Unix timestamp.
+    /// `value` contains the server Unix timestamp as `u32`.
+    /// `buff_dmg` contains the local Unix timestamp.
     ///
-    /// Source id is `0x637261` (ArcDPS id) if log EVTC and species id if realtime API.
+    /// `src_agent` is `0x637261` (ArcDPS id) if log EVTC and species id if realtime API.
     LogEnd,
 
-    /// Source entity swapped weapon set.
+    /// Source agent swapped weapon set.
     ///
-    /// Destination contains the current set id.
+    /// `dst_agent` contains the current set id.
     /// `0`/`1` for underwater weapons and `4`/`5` for land weapons.
     WeaponSwap,
 
-    /// Source entity maximum health change.
+    /// Source agent maximum health change.
     ///
-    /// Destination contains the new maximum health.
+    /// `dst_agent` contains the new maximum health.
     ///
     /// *Not used in realtime API.*
     MaxHealthUpdate,
 
-    /// Source entity is "recording" player.
+    /// Source agent is "recording" player.
     ///
     /// *Not used in realtime API.*
     PointOfView,
 
-    /// Source entity contains the game text language.
+    /// Source agent contains the game text language.
     ///
     /// *Not used in realtime API.*
     Language,
 
-    /// Source entity contains the game build.
+    /// Source agent contains the game build.
     ///
     /// *Not used in realtime API.*
     GWBuild,
 
-    /// Source entity contains the sever shard id.
+    /// Source agent contains the sever shard id.
     ///
     /// *Not used in realtime API.*
     ShardId,
 
-    /// Source entity got a reward chest.
+    /// Source agent got a reward chest.
     ///
     /// Source is always self.
-    /// Destination contains the reward id.
+    /// `dst_agent` contains the reward id.
     /// Value contains the reward type.
     Reward,
 
-    /// Appears once per buff per entity on logging start.
+    /// Appears once per buff per agent on logging start.
     ///
     /// *(`statechange == 18` and `buff == 18`, normal combat event otherwise)*
     BuffInitial,
 
-    /// Source entity position change.
+    /// Source agent position change.
     ///
-    /// Destination contains x/y/z as array of 3 floats.
+    /// `dst_agent` contains x/y/z as array of 3 floats.
     ///
     /// *Not used in realtime API.*
     Position,
 
-    /// Source entity velocity change.
+    /// Source agent velocity change.
     ///
-    /// Destination contains x/y/z as array of 3 floats.
+    /// `dst_agent` contains x/y/z as array of 3 floats.
     ///
     /// *Not used in realtime API.*
     Velocity,
 
-    /// Source entity facing change.
+    /// Source agent facing change.
     ///
-    /// Destination contains x/y as array of 2 floats.
+    /// `dst_agent` contains x/y as array of 2 floats.
     ///
     /// *Not used in realtime API.*
     Facing,
 
-    /// Source entity team change.
+    /// Source agent team change.
     ///
-    /// Destination contains the new team id.
+    /// `dst_agent` contains the new team id.
     TeamChange,
 
-    /// Source entity is now an attack target.
+    /// Source agent is now an attack target.
     ///
-    /// Destination is the parent entity (gadget type).
+    /// `dst_agent` is the parent agent (gadget type).
     /// Value contains the current targetable state.
     ///
     /// *Not used in realtime API.*
     AttackTarget,
 
-    /// Source entity targetability change.
+    /// Source agent targetability change.
     ///
-    /// Destination contains the new targetable state.
+    /// `dst_agent` contains the new targetable state.
     /// `0` for no, `1` for yes. Default is yes.
     ///
     /// *Not used in realtime API.*
     Targetable,
 
-    /// Source entity contains the map id.
+    /// Source agent contains the map id.
     ///
     /// *Not used in realtime API.*
     MapId,
@@ -293,20 +293,20 @@ pub enum StateChange {
     /// Should not appear anywhere.
     ReplInfo,
 
-    /// Source entity with active buff.
+    /// Source agent with active buff.
     ///
-    /// Destination contains the stack id marked active.
+    /// `dst_agent` contains the stack id marked active.
     StackActive,
 
-    /// Source entity with reset buff.
+    /// Source agent with reset buff.
     ///
-    /// Value is the duration to reset to (also marks inactive).
-    /// Padding 61 contains the stack id.
+    /// `value` is the duration to reset to (also marks inactive).
+    /// `pad61` contains the stack id.
     StackReset,
 
-    /// Source entity is in guild.
+    /// Source agent is in guild.
     ///
-    /// Destination until buff damage is 16 byte (`u8`) guid.
+    /// `dst_agent` until ´buff_dmg´ is 16 byte (`u8`) guid.
     ///
     /// Given in client form, needs minor rearrange for API form.
     Guild,
@@ -317,10 +317,10 @@ pub enum StateChange {
     /// If `is_shields` probably invert.
     ///
     /// Offcycle contains the category.
-    /// Padding 61 contains the stacking type.
-    /// Padding 62 contains the probably resistance.
-    /// Source master instance id contains the max stacks.
-    /// Overstack value contains the duration cap.
+    /// `pad61` contains the stacking type.
+    /// `pad62` contains the probably resistance.
+    /// `src_master_instid` contains the max stacks.
+    /// `overstack_value` contains the duration cap.
     ///
     /// *Not used in realtime API.*
     BuffInfo,
@@ -334,7 +334,7 @@ pub enum StateChange {
     /// If `is_shields` not player.
     /// If `is_offcycle` break.
     ///
-    /// `overstack` is value of type determined by padding 61.
+    /// `overstack_value` is value of type determined by `pad61`.
     ///
     /// Once per formula.
     ///
@@ -350,15 +350,15 @@ pub enum StateChange {
 
     /// Skill action.
     ///
-    /// Source contains the action.
-    /// Destination contains at which millisecond.
+    /// `src_agent` contains the action.
+    /// `dst_agent` contains at which millisecond.
     ///
     /// One per timing.
     ///
     /// *Not used in realtime API.*
     SkillTiming,
 
-    /// Source entity breakbar state change.
+    /// Source agent breakbar state change.
     ///
     /// Value is `u16` game enum (active, recover, immune, none).
     ///
@@ -367,27 +367,27 @@ pub enum StateChange {
 
     /// Breakbar percentage.
     ///
-    /// Value contains percentage as float.
+    /// `value` contains percentage as float.
     ///
     /// *Not used in realtime API.*
     BreakbarPercent,
 
     /// Error.
     ///
-    /// Time contains the error message as an array of up to 32 characters.
+    /// `time` contains the error message as an array of up to 32 characters.
     ///
     /// *Not used in realtime API.*
     Error,
 
-    /// Source entity has tag.
+    /// Source agent has tag.
     ///
-    /// Value is the id of the tag.
+    /// `value` is the id of the tag.
     /// Tag id is volatile, depends on game build.
     Tag,
 
-    /// Source entity barrier change.
+    /// Source agent barrier change.
     ///
-    /// Destination contains percentage as `percent * 10000`.
+    /// `dst_agent` contains percentage as `percent * 10000`.
     /// For example 99.5% will be `9950`.
     ///
     /// *Not used in realtime API.*
@@ -395,7 +395,7 @@ pub enum StateChange {
 
     /// Arc UI stats reset.
     ///
-    /// Source entity contains the npc id of the active log.
+    /// `src_agent` contains the NPC id of the active log.
     ///
     /// *Not used in log EVTC.*
     StatReset,
@@ -405,6 +405,23 @@ pub enum StateChange {
 
     /// Combat event with state change byte set to this.
     ApiDelayed,
+
+    /// Instance started.
+    ///
+    /// `src_agent` contains the time in ms at which the instance was likely started.
+    InstanceStart,
+
+    /// Tick rate.
+    ///
+    /// Every 500ms.
+    /// `src_agent` is `+= 25 - tickrate` (when `tickrate < 21`).
+    Tickrate,
+
+    /// Last 90% before down.
+    ///
+    /// `src_agent` is enemy agent that went down, `dst_agent` agent is time in ms since last 90%.
+    /// For downs contribution.
+    Last90BeforeDown,
 
     /// Unknown or invalid.
     #[num_enum(default)]
