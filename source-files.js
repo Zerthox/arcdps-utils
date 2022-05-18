@@ -39,7 +39,7 @@ sourcesIndex["thiserror"] = {"name":"","files":["aserror.rs","display.rs","lib.r
 sourcesIndex["thiserror_impl"] = {"name":"","files":["ast.rs","attr.rs","expand.rs","fmt.rs","generics.rs","lib.rs","prop.rs","valid.rs"]};
 sourcesIndex["time"] = {"name":"","files":["display.rs","duration.rs","lib.rs","parse.rs","sys.rs"]};
 sourcesIndex["toml"] = {"name":"","files":["datetime.rs","de.rs","lib.rs","macros.rs","map.rs","ser.rs","spanned.rs","tokens.rs","value.rs"]};
-sourcesIndex["unicode_xid"] = {"name":"","files":["lib.rs","tables.rs"]};
+sourcesIndex["unicode_ident"] = {"name":"","files":["lib.rs","tables.rs"]};
 sourcesIndex["winapi"] = {"name":"","dirs":[{"name":"km","files":["mod.rs"]},{"name":"shared","files":["basetsd.rs","cfg.rs","devpropdef.rs","guiddef.rs","ktmtypes.rs","minwindef.rs","mod.rs","ntdef.rs","ntstatus.rs","rpcndr.rs","windef.rs","winerror.rs","wtypesbase.rs"]},{"name":"ucrt","files":["mod.rs"]},{"name":"um","dirs":[{"name":"gl","files":["mod.rs"]}],"files":["cfgmgr32.rs","errhandlingapi.rs","fileapi.rs","handleapi.rs","libloaderapi.rs","minwinbase.rs","mod.rs","processthreadsapi.rs","profileapi.rs","reason.rs","sysinfoapi.rs","timezoneapi.rs","winbase.rs","winnt.rs","winreg.rs"]},{"name":"vc","files":["excpt.rs","mod.rs","vadefs.rs","vcruntime.rs"]},{"name":"winrt","files":["mod.rs"]}],"files":["lib.rs","macros.rs"]};
 sourcesIndex["windows_x86_64_msvc"] = {"name":"","files":["lib.rs"]};
 createSourceSidebar();

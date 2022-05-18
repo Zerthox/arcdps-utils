@@ -524,6 +524,23 @@
 <span id="519">519</span>
 <span id="520">520</span>
 <span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
+<span id="532">532</span>
+<span id="533">533</span>
+<span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
 </pre><pre class="rust"><code><span class="doccomment">//! ArcDPS API utilities.</span>
 
 <span class="kw">use</span> <span class="ident">arcdps::CombatEvent</span>;
@@ -552,16 +569,16 @@
     <span class="kw">unsafe</span> { <span class="ident">mem::transmute</span>([<span class="ident">event</span>.<span class="ident">pad61</span>, <span class="ident">event</span>.<span class="ident">pad62</span>, <span class="ident">event</span>.<span class="ident">pad63</span>, <span class="ident">event</span>.<span class="ident">pad64</span>]) }
 }
 
-<span class="doccomment">/// Whether the entity is an ally or enemy.</span>
+<span class="doccomment">/// Whether the agent is an ally or enemy.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// *Arc calls this &quot;iff&quot; for if friend/foe.*</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>, <span class="ident">FromPrimitive</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u8</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Team</span> {
-    <span class="doccomment">/// Allied entity.</span>
+    <span class="doccomment">/// Allied agent.</span>
     <span class="ident">Friend</span>,
 
-    <span class="doccomment">/// Enemy entity.</span>
+    <span class="doccomment">/// Enemy agent.</span>
     <span class="ident">Foe</span>,
 
     <span class="doccomment">/// Uncertain whether ally or enemy.</span>
@@ -601,7 +618,7 @@
 
     <span class="doccomment">/// Strike was absorbed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Usually due to a &quot;true&quot; invulnerability like Guardian Renewed Focus.</span>
+    <span class="doccomment">/// Usually due to an invulnerability like Guardian Renewed Focus.</span>
     <span class="ident">Absorb</span>,
 
     <span class="doccomment">/// Strike missed.</span>
@@ -672,36 +689,36 @@
     <span class="doccomment">/// Not used, different kind of event.</span>
     <span class="prelude-val">None</span>,
 
-    <span class="doccomment">/// Source entity entered combat.</span>
+    <span class="doccomment">/// Source agent entered combat.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Destination contains the subgroup.</span>
+    <span class="doccomment">/// `dst_agent` contains the subgroup.</span>
     <span class="ident">EnterCombat</span>,
 
-    <span class="doccomment">/// Source entity left combat.</span>
+    <span class="doccomment">/// Source agent left combat.</span>
     <span class="ident">ExitCombat</span>,
 
-    <span class="doccomment">/// Source entity is now alive.</span>
+    <span class="doccomment">/// Source agent is now alive.</span>
     <span class="ident">ChangeUp</span>,
 
-    <span class="doccomment">/// Source entity is now dead.</span>
+    <span class="doccomment">/// Source agent is now dead.</span>
     <span class="ident">ChangeDead</span>,
 
-    <span class="doccomment">/// Source entity is now downed.</span>
+    <span class="doccomment">/// Source agent is now downed.</span>
     <span class="ident">ChangeDown</span>,
 
-    <span class="doccomment">/// Source entity is now in game tracking range.</span>
+    <span class="doccomment">/// Source agent is now in game tracking range.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">Spawn</span>,
 
-    <span class="doccomment">/// Source entity is no longer being tracked or out of game tracking range.</span>
+    <span class="doccomment">/// Source agent is no longer being tracked or out of game tracking range.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">Despawn</span>,
 
-    <span class="doccomment">/// Source entity health change.</span>
+    <span class="doccomment">/// Source agent health change.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Destination contains percentage as `percent * 10000`.</span>
+    <span class="doccomment">/// `dst_agent` contains percentage as `percent * 10000`.</span>
     <span class="doccomment">/// For example 99.5% will be `9950`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
@@ -709,108 +726,108 @@
 
     <span class="doccomment">/// Logging has started.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Value contains the server Unix timestamp as `u32`.</span>
-    <span class="doccomment">/// Buff damage contains the local Unix timestamp.</span>
+    <span class="doccomment">/// `value` contains the server Unix timestamp as `u32`.</span>
+    <span class="doccomment">/// `buff_dmg` contains the local Unix timestamp.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Source id is `0x637261` (ArcDPS id) if log EVTC and species id if realtime API.</span>
+    <span class="doccomment">/// `arc_agent` is `0x637261` (ArcDPS id) if log EVTC and species id if realtime API.</span>
     <span class="ident">LogStart</span>,
 
     <span class="doccomment">/// Logging has ended.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Value contains the server Unix timestamp as `u32`.</span>
-    <span class="doccomment">/// Buff damage contains the local Unix timestamp.</span>
+    <span class="doccomment">/// `value` contains the server Unix timestamp as `u32`.</span>
+    <span class="doccomment">/// `buff_dmg` contains the local Unix timestamp.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Source id is `0x637261` (ArcDPS id) if log EVTC and species id if realtime API.</span>
+    <span class="doccomment">/// `src_agent` is `0x637261` (ArcDPS id) if log EVTC and species id if realtime API.</span>
     <span class="ident">LogEnd</span>,
 
-    <span class="doccomment">/// Source entity swapped weapon set.</span>
+    <span class="doccomment">/// Source agent swapped weapon set.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Destination contains the current set id.</span>
+    <span class="doccomment">/// `dst_agent` contains the current set id.</span>
     <span class="doccomment">/// `0`/`1` for underwater weapons and `4`/`5` for land weapons.</span>
     <span class="ident">WeaponSwap</span>,
 
-    <span class="doccomment">/// Source entity maximum health change.</span>
+    <span class="doccomment">/// Source agent maximum health change.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Destination contains the new maximum health.</span>
+    <span class="doccomment">/// `dst_agent` contains the new maximum health.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">MaxHealthUpdate</span>,
 
-    <span class="doccomment">/// Source entity is &quot;recording&quot; player.</span>
+    <span class="doccomment">/// Source agent is &quot;recording&quot; player.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">PointOfView</span>,
 
-    <span class="doccomment">/// Source entity contains the game text language.</span>
+    <span class="doccomment">/// Source agent contains the game text language.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">Language</span>,
 
-    <span class="doccomment">/// Source entity contains the game build.</span>
+    <span class="doccomment">/// Source agent contains the game build.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">GWBuild</span>,
 
-    <span class="doccomment">/// Source entity contains the sever shard id.</span>
+    <span class="doccomment">/// Source agent contains the sever shard id.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">ShardId</span>,
 
-    <span class="doccomment">/// Source entity got a reward chest.</span>
+    <span class="doccomment">/// Source agent got a reward chest.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Source is always self.</span>
-    <span class="doccomment">/// Destination contains the reward id.</span>
+    <span class="doccomment">/// `dst_agent` contains the reward id.</span>
     <span class="doccomment">/// Value contains the reward type.</span>
     <span class="ident">Reward</span>,
 
-    <span class="doccomment">/// Appears once per buff per entity on logging start.</span>
+    <span class="doccomment">/// Appears once per buff per agent on logging start.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *(`statechange == 18` and `buff == 18`, normal combat event otherwise)*</span>
     <span class="ident">BuffInitial</span>,
 
-    <span class="doccomment">/// Source entity position change.</span>
+    <span class="doccomment">/// Source agent position change.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Destination contains x/y/z as array of 3 floats.</span>
+    <span class="doccomment">/// `dst_agent` contains x/y/z as array of 3 floats.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">Position</span>,
 
-    <span class="doccomment">/// Source entity velocity change.</span>
+    <span class="doccomment">/// Source agent velocity change.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Destination contains x/y/z as array of 3 floats.</span>
+    <span class="doccomment">/// `dst_agent` contains x/y/z as array of 3 floats.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">Velocity</span>,
 
-    <span class="doccomment">/// Source entity facing change.</span>
+    <span class="doccomment">/// Source agent facing change.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Destination contains x/y as array of 2 floats.</span>
+    <span class="doccomment">/// `dst_agent` contains x/y as array of 2 floats.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">Facing</span>,
 
-    <span class="doccomment">/// Source entity team change.</span>
+    <span class="doccomment">/// Source agent team change.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Destination contains the new team id.</span>
+    <span class="doccomment">/// `dst_agent` contains the new team id.</span>
     <span class="ident">TeamChange</span>,
 
-    <span class="doccomment">/// Source entity is now an attack target.</span>
+    <span class="doccomment">/// Source agent is now an attack target.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Destination is the parent entity (gadget type).</span>
+    <span class="doccomment">/// `dst_agent` is the parent agent (gadget type).</span>
     <span class="doccomment">/// Value contains the current targetable state.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">AttackTarget</span>,
 
-    <span class="doccomment">/// Source entity targetability change.</span>
+    <span class="doccomment">/// Source agent targetability change.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Destination contains the new targetable state.</span>
+    <span class="doccomment">/// `dst_agent` contains the new targetable state.</span>
     <span class="doccomment">/// `0` for no, `1` for yes. Default is yes.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">Targetable</span>,
 
-    <span class="doccomment">/// Source entity contains the map id.</span>
+    <span class="doccomment">/// Source agent contains the map id.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">MapId</span>,
@@ -819,20 +836,20 @@
     <span class="doccomment">/// Should not appear anywhere.</span>
     <span class="ident">ReplInfo</span>,
 
-    <span class="doccomment">/// Source entity with active buff.</span>
+    <span class="doccomment">/// Source agent with active buff.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Destination contains the stack id marked active.</span>
+    <span class="doccomment">/// `dst_agent` contains the stack id marked active.</span>
     <span class="ident">StackActive</span>,
 
-    <span class="doccomment">/// Source entity with reset buff.</span>
+    <span class="doccomment">/// Source agent with reset buff.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Value is the duration to reset to (also marks inactive).</span>
-    <span class="doccomment">/// Padding 61 contains the stack id.</span>
+    <span class="doccomment">/// `value` is the duration to reset to (also marks inactive).</span>
+    <span class="doccomment">/// `pad61` contains the stack id.</span>
     <span class="ident">StackReset</span>,
 
-    <span class="doccomment">/// Source entity is in guild.</span>
+    <span class="doccomment">/// Source agent is in guild.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Destination until buff damage is 16 byte (`u8`) guid.</span>
+    <span class="doccomment">/// `dst_agent` until ´buff_dmg´ is 16 byte (`u8`) guid.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Given in client form, needs minor rearrange for API form.</span>
     <span class="ident">Guild</span>,
@@ -843,10 +860,10 @@
     <span class="doccomment">/// If `is_shields` probably invert.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Offcycle contains the category.</span>
-    <span class="doccomment">/// Padding 61 contains the stacking type.</span>
-    <span class="doccomment">/// Padding 62 contains the probably resistance.</span>
-    <span class="doccomment">/// Source master instance id contains the max stacks.</span>
-    <span class="doccomment">/// Overstack value contains the duration cap.</span>
+    <span class="doccomment">/// `pad61` contains the stacking type.</span>
+    <span class="doccomment">/// `pad62` contains the probably resistance.</span>
+    <span class="doccomment">/// `src_master_instid` contains the max stacks.</span>
+    <span class="doccomment">/// `overstack_value` contains the duration cap.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">BuffInfo</span>,
@@ -860,7 +877,7 @@
     <span class="doccomment">/// If `is_shields` not player.</span>
     <span class="doccomment">/// If `is_offcycle` break.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `overstack` is value of type determined by padding 61.</span>
+    <span class="doccomment">/// `overstack_value` is value of type determined by `pad61`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Once per formula.</span>
     <span class="doccomment">///</span>
@@ -876,15 +893,15 @@
 
     <span class="doccomment">/// Skill action.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Source contains the action.</span>
-    <span class="doccomment">/// Destination contains at which millisecond.</span>
+    <span class="doccomment">/// `src_agent` contains the action.</span>
+    <span class="doccomment">/// `dst_agent` contains at which millisecond.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// One per timing.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">SkillTiming</span>,
 
-    <span class="doccomment">/// Source entity breakbar state change.</span>
+    <span class="doccomment">/// Source agent breakbar state change.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Value is `u16` game enum (active, recover, immune, none).</span>
     <span class="doccomment">///</span>
@@ -893,27 +910,27 @@
 
     <span class="doccomment">/// Breakbar percentage.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Value contains percentage as float.</span>
+    <span class="doccomment">/// `value` contains percentage as float.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">BreakbarPercent</span>,
 
     <span class="doccomment">/// Error.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Time contains the error message as an array of up to 32 characters.</span>
+    <span class="doccomment">/// `time` contains the error message as an array of up to 32 characters.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
     <span class="ident">Error</span>,
 
-    <span class="doccomment">/// Source entity has tag.</span>
+    <span class="doccomment">/// Source agent has tag.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Value is the id of the tag.</span>
+    <span class="doccomment">/// `value` is the id of the tag.</span>
     <span class="doccomment">/// Tag id is volatile, depends on game build.</span>
     <span class="ident">Tag</span>,
 
-    <span class="doccomment">/// Source entity barrier change.</span>
+    <span class="doccomment">/// Source agent barrier change.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Destination contains percentage as `percent * 10000`.</span>
+    <span class="doccomment">/// `dst_agent` contains percentage as `percent * 10000`.</span>
     <span class="doccomment">/// For example 99.5% will be `9950`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in realtime API.*</span>
@@ -921,7 +938,7 @@
 
     <span class="doccomment">/// Arc UI stats reset.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Source entity contains the npc id of the active log.</span>
+    <span class="doccomment">/// `src_agent` contains the NPC id of the active log.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// *Not used in log EVTC.*</span>
     <span class="ident">StatReset</span>,
@@ -931,6 +948,23 @@
 
     <span class="doccomment">/// Combat event with state change byte set to this.</span>
     <span class="ident">ApiDelayed</span>,
+
+    <span class="doccomment">/// Instance started.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// `src_agent` contains the time in ms at which the instance was likely started.</span>
+    <span class="ident">InstanceStart</span>,
+
+    <span class="doccomment">/// Tick rate.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Every 500ms.</span>
+    <span class="doccomment">/// `src_agent` is `+= 25 - tickrate` (when `tickrate &lt; 21`).</span>
+    <span class="ident">Tickrate</span>,
+
+    <span class="doccomment">/// Last 90% before down.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// `src_agent` is enemy agent that went down, `dst_agent` agent is time in ms since last 90%.</span>
+    <span class="doccomment">/// For downs contribution.</span>
+    <span class="ident">Last90BeforeDown</span>,
 
     <span class="doccomment">/// Unknown or invalid.</span>
     <span class="attribute">#[<span class="ident">num_enum</span>(<span class="ident">default</span>)]</span>

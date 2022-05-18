@@ -3,10 +3,10 @@
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../../arc_util/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"><a href="#">StateChange</a></h2><div class="sidebar-elems"><section><div class="block"><h3 class="sidebar-title"><a href="#variants">Variants</a></h3><ul><li><a href="#variant.ApiDelayed">ApiDelayed</a></li><li><a href="#variant.AttackTarget">AttackTarget</a></li><li><a href="#variant.BarrierUpdate">BarrierUpdate</a></li><li><a href="#variant.BreakbarPercent">BreakbarPercent</a></li><li><a href="#variant.BreakbarState">BreakbarState</a></li><li><a href="#variant.BuffFormula">BuffFormula</a></li><li><a href="#variant.BuffInfo">BuffInfo</a></li><li><a href="#variant.BuffInitial">BuffInitial</a></li><li><a href="#variant.ChangeDead">ChangeDead</a></li><li><a href="#variant.ChangeDown">ChangeDown</a></li><li><a href="#variant.ChangeUp">ChangeUp</a></li><li><a href="#variant.Despawn">Despawn</a></li><li><a href="#variant.EnterCombat">EnterCombat</a></li><li><a href="#variant.Error">Error</a></li><li><a href="#variant.ExitCombat">ExitCombat</a></li><li><a href="#variant.Extension">Extension</a></li><li><a href="#variant.Facing">Facing</a></li><li><a href="#variant.GWBuild">GWBuild</a></li><li><a href="#variant.Guild">Guild</a></li><li><a href="#variant.HealthUpdate">HealthUpdate</a></li><li><a href="#variant.Language">Language</a></li><li><a href="#variant.LogEnd">LogEnd</a></li><li><a href="#variant.LogStart">LogStart</a></li><li><a href="#variant.MapId">MapId</a></li><li><a href="#variant.MaxHealthUpdate">MaxHealthUpdate</a></li><li><a href="#variant.None">None</a></li><li><a href="#variant.PointOfView">PointOfView</a></li><li><a href="#variant.Position">Position</a></li><li><a href="#variant.ReplInfo">ReplInfo</a></li><li><a href="#variant.Reward">Reward</a></li><li><a href="#variant.ShardId">ShardId</a></li><li><a href="#variant.SkillInfo">SkillInfo</a></li><li><a href="#variant.SkillTiming">SkillTiming</a></li><li><a href="#variant.Spawn">Spawn</a></li><li><a href="#variant.StackActive">StackActive</a></li><li><a href="#variant.StackReset">StackReset</a></li><li><a href="#variant.StatReset">StatReset</a></li><li><a href="#variant.Tag">Tag</a></li><li><a href="#variant.Targetable">Targetable</a></li><li><a href="#variant.TeamChange">TeamChange</a></li><li><a href="#variant.Unknown">Unknown</a></li><li><a href="#variant.Velocity">Velocity</a></li><li><a href="#variant.WeaponSwap">WeaponSwap</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#implementations">Associated Constants</a></h3><ul><li><a href="#associatedconstant.NAME">NAME</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#trait-implementations">Trait Implementations</a></h3><ul><li><a href="#impl-Clone">Clone</a></li><li><a href="#impl-Copy">Copy</a></li><li><a href="#impl-Debug">Debug</a></li><li><a href="#impl-Eq">Eq</a></li><li><a href="#impl-From%3Cu8%3E">From&lt;u8&gt;</a></li><li><a href="#impl-FromPrimitive">FromPrimitive</a></li><li><a href="#impl-Hash">Hash</a></li><li><a href="#impl-Ord">Ord</a></li><li><a href="#impl-PartialEq%3CStateChange%3E">PartialEq&lt;StateChange&gt;</a></li><li><a href="#impl-PartialOrd%3CStateChange%3E">PartialOrd&lt;StateChange&gt;</a></li><li><a href="#impl-StructuralEq">StructuralEq</a></li><li><a href="#impl-StructuralPartialEq">StructuralPartialEq</a></li><li><a href="#impl-TryFromPrimitive">TryFromPrimitive</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul><li><a href="#impl-RefUnwindSafe">RefUnwindSafe</a></li><li><a href="#impl-Send">Send</a></li><li><a href="#impl-Sync">Sync</a></li><li><a href="#impl-Unpin">Unpin</a></li><li><a href="#impl-UnwindSafe">UnwindSafe</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#blanket-implementations">Blanket Implementations</a></h3><ul><li><a href="#impl-Any">Any</a></li><li><a href="#impl-Borrow%3CT%3E">Borrow&lt;T&gt;</a></li><li><a href="#impl-BorrowMut%3CT%3E">BorrowMut&lt;T&gt;</a></li><li><a href="#impl-From%3CT%3E">From&lt;T&gt;</a></li><li><a href="#impl-Into%3CU%3E">Into&lt;U&gt;</a></li><li><a href="#impl-ToOwned">ToOwned</a></li><li><a href="#impl-TryFrom%3CU%3E">TryFrom&lt;U&gt;</a></li><li><a href="#impl-TryInto%3CU%3E">TryInto&lt;U&gt;</a></li></ul></div></section><h2 class="location"><a href="index.html">In arc_util::api</a></h2><div id="sidebar-vars" data-name="StateChange" data-ty="enum" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../arc_util/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
-    <h1 class="fqn"><span class="in-band">Enum <a href="../index.html">arc_util</a>::<wbr><a href="index.html">api</a>::<wbr><a class="enum" href="#">StateChange</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/arc_util/api.rs.html#145-412">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust enum"><code>#[repr(u8)]
+        </a><h2 class="location"><a href="#">StateChange</a></h2><div class="sidebar-elems"><section><div class="block"><h3 class="sidebar-title"><a href="#variants">Variants</a></h3><ul><li><a href="#variant.ApiDelayed">ApiDelayed</a></li><li><a href="#variant.AttackTarget">AttackTarget</a></li><li><a href="#variant.BarrierUpdate">BarrierUpdate</a></li><li><a href="#variant.BreakbarPercent">BreakbarPercent</a></li><li><a href="#variant.BreakbarState">BreakbarState</a></li><li><a href="#variant.BuffFormula">BuffFormula</a></li><li><a href="#variant.BuffInfo">BuffInfo</a></li><li><a href="#variant.BuffInitial">BuffInitial</a></li><li><a href="#variant.ChangeDead">ChangeDead</a></li><li><a href="#variant.ChangeDown">ChangeDown</a></li><li><a href="#variant.ChangeUp">ChangeUp</a></li><li><a href="#variant.Despawn">Despawn</a></li><li><a href="#variant.EnterCombat">EnterCombat</a></li><li><a href="#variant.Error">Error</a></li><li><a href="#variant.ExitCombat">ExitCombat</a></li><li><a href="#variant.Extension">Extension</a></li><li><a href="#variant.Facing">Facing</a></li><li><a href="#variant.GWBuild">GWBuild</a></li><li><a href="#variant.Guild">Guild</a></li><li><a href="#variant.HealthUpdate">HealthUpdate</a></li><li><a href="#variant.InstanceStart">InstanceStart</a></li><li><a href="#variant.Language">Language</a></li><li><a href="#variant.Last90BeforeDown">Last90BeforeDown</a></li><li><a href="#variant.LogEnd">LogEnd</a></li><li><a href="#variant.LogStart">LogStart</a></li><li><a href="#variant.MapId">MapId</a></li><li><a href="#variant.MaxHealthUpdate">MaxHealthUpdate</a></li><li><a href="#variant.None">None</a></li><li><a href="#variant.PointOfView">PointOfView</a></li><li><a href="#variant.Position">Position</a></li><li><a href="#variant.ReplInfo">ReplInfo</a></li><li><a href="#variant.Reward">Reward</a></li><li><a href="#variant.ShardId">ShardId</a></li><li><a href="#variant.SkillInfo">SkillInfo</a></li><li><a href="#variant.SkillTiming">SkillTiming</a></li><li><a href="#variant.Spawn">Spawn</a></li><li><a href="#variant.StackActive">StackActive</a></li><li><a href="#variant.StackReset">StackReset</a></li><li><a href="#variant.StatReset">StatReset</a></li><li><a href="#variant.Tag">Tag</a></li><li><a href="#variant.Targetable">Targetable</a></li><li><a href="#variant.TeamChange">TeamChange</a></li><li><a href="#variant.Tickrate">Tickrate</a></li><li><a href="#variant.Unknown">Unknown</a></li><li><a href="#variant.Velocity">Velocity</a></li><li><a href="#variant.WeaponSwap">WeaponSwap</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#implementations">Associated Constants</a></h3><ul><li><a href="#associatedconstant.NAME">NAME</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#trait-implementations">Trait Implementations</a></h3><ul><li><a href="#impl-Clone">Clone</a></li><li><a href="#impl-Copy">Copy</a></li><li><a href="#impl-Debug">Debug</a></li><li><a href="#impl-Eq">Eq</a></li><li><a href="#impl-From%3Cu8%3E">From&lt;u8&gt;</a></li><li><a href="#impl-FromPrimitive">FromPrimitive</a></li><li><a href="#impl-Hash">Hash</a></li><li><a href="#impl-Ord">Ord</a></li><li><a href="#impl-PartialEq%3CStateChange%3E">PartialEq&lt;StateChange&gt;</a></li><li><a href="#impl-PartialOrd%3CStateChange%3E">PartialOrd&lt;StateChange&gt;</a></li><li><a href="#impl-StructuralEq">StructuralEq</a></li><li><a href="#impl-StructuralPartialEq">StructuralPartialEq</a></li><li><a href="#impl-TryFromPrimitive">TryFromPrimitive</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul><li><a href="#impl-RefUnwindSafe">RefUnwindSafe</a></li><li><a href="#impl-Send">Send</a></li><li><a href="#impl-Sync">Sync</a></li><li><a href="#impl-Unpin">Unpin</a></li><li><a href="#impl-UnwindSafe">UnwindSafe</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#blanket-implementations">Blanket Implementations</a></h3><ul><li><a href="#impl-Any">Any</a></li><li><a href="#impl-Borrow%3CT%3E">Borrow&lt;T&gt;</a></li><li><a href="#impl-BorrowMut%3CT%3E">BorrowMut&lt;T&gt;</a></li><li><a href="#impl-From%3CT%3E">From&lt;T&gt;</a></li><li><a href="#impl-Into%3CU%3E">Into&lt;U&gt;</a></li><li><a href="#impl-ToOwned">ToOwned</a></li><li><a href="#impl-TryFrom%3CU%3E">TryFrom&lt;U&gt;</a></li><li><a href="#impl-TryInto%3CU%3E">TryInto&lt;U&gt;</a></li></ul></div></section><h2 class="location"><a href="index.html">In arc_util::api</a></h2><div id="sidebar-vars" data-name="StateChange" data-ty="enum" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../arc_util/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Enum <a href="../index.html">arc_util</a>::<wbr><a href="index.html">api</a>::<wbr><a class="enum" href="#">StateChange</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/arc_util/api.rs.html#145-429">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust enum"><code>#[repr(u8)]
 pub enum StateChange {
-<details class="rustdoc-toggle type-contents-toggle"><summary class="hideme"><span>Show 43 variants</span></summary>    None,
+<details class="rustdoc-toggle type-contents-toggle"><summary class="hideme"><span>Show 46 variants</span></summary>    None,
     EnterCombat,
     ExitCombat,
     ChangeUp,
@@ -48,90 +48,93 @@ pub enum StateChange {
     StatReset,
     Extension,
     ApiDelayed,
+    InstanceStart,
+    Tickrate,
+    Last90BeforeDown,
     Unknown,
 </details>}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Combat state change.</p>
 </div></details><h2 id="variants" class="variants small-section-header">Variants<a href="#variants" class="anchor"></a></h2><h3 id="variant.None" class="variant small-section-header"><a href="#variant.None" class="anchor field"></a><code>None</code></h3><div class="docblock"><p>Not used, different kind of event.</p>
-</div><h3 id="variant.EnterCombat" class="variant small-section-header"><a href="#variant.EnterCombat" class="anchor field"></a><code>EnterCombat</code></h3><div class="docblock"><p>Source entity entered combat.</p>
-<p>Destination contains the subgroup.</p>
-</div><h3 id="variant.ExitCombat" class="variant small-section-header"><a href="#variant.ExitCombat" class="anchor field"></a><code>ExitCombat</code></h3><div class="docblock"><p>Source entity left combat.</p>
-</div><h3 id="variant.ChangeUp" class="variant small-section-header"><a href="#variant.ChangeUp" class="anchor field"></a><code>ChangeUp</code></h3><div class="docblock"><p>Source entity is now alive.</p>
-</div><h3 id="variant.ChangeDead" class="variant small-section-header"><a href="#variant.ChangeDead" class="anchor field"></a><code>ChangeDead</code></h3><div class="docblock"><p>Source entity is now dead.</p>
-</div><h3 id="variant.ChangeDown" class="variant small-section-header"><a href="#variant.ChangeDown" class="anchor field"></a><code>ChangeDown</code></h3><div class="docblock"><p>Source entity is now downed.</p>
-</div><h3 id="variant.Spawn" class="variant small-section-header"><a href="#variant.Spawn" class="anchor field"></a><code>Spawn</code></h3><div class="docblock"><p>Source entity is now in game tracking range.</p>
+</div><h3 id="variant.EnterCombat" class="variant small-section-header"><a href="#variant.EnterCombat" class="anchor field"></a><code>EnterCombat</code></h3><div class="docblock"><p>Source agent entered combat.</p>
+<p><code>dst_agent</code> contains the subgroup.</p>
+</div><h3 id="variant.ExitCombat" class="variant small-section-header"><a href="#variant.ExitCombat" class="anchor field"></a><code>ExitCombat</code></h3><div class="docblock"><p>Source agent left combat.</p>
+</div><h3 id="variant.ChangeUp" class="variant small-section-header"><a href="#variant.ChangeUp" class="anchor field"></a><code>ChangeUp</code></h3><div class="docblock"><p>Source agent is now alive.</p>
+</div><h3 id="variant.ChangeDead" class="variant small-section-header"><a href="#variant.ChangeDead" class="anchor field"></a><code>ChangeDead</code></h3><div class="docblock"><p>Source agent is now dead.</p>
+</div><h3 id="variant.ChangeDown" class="variant small-section-header"><a href="#variant.ChangeDown" class="anchor field"></a><code>ChangeDown</code></h3><div class="docblock"><p>Source agent is now downed.</p>
+</div><h3 id="variant.Spawn" class="variant small-section-header"><a href="#variant.Spawn" class="anchor field"></a><code>Spawn</code></h3><div class="docblock"><p>Source agent is now in game tracking range.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.Despawn" class="variant small-section-header"><a href="#variant.Despawn" class="anchor field"></a><code>Despawn</code></h3><div class="docblock"><p>Source entity is no longer being tracked or out of game tracking range.</p>
+</div><h3 id="variant.Despawn" class="variant small-section-header"><a href="#variant.Despawn" class="anchor field"></a><code>Despawn</code></h3><div class="docblock"><p>Source agent is no longer being tracked or out of game tracking range.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.HealthUpdate" class="variant small-section-header"><a href="#variant.HealthUpdate" class="anchor field"></a><code>HealthUpdate</code></h3><div class="docblock"><p>Source entity health change.</p>
-<p>Destination contains percentage as <code>percent * 10000</code>.
+</div><h3 id="variant.HealthUpdate" class="variant small-section-header"><a href="#variant.HealthUpdate" class="anchor field"></a><code>HealthUpdate</code></h3><div class="docblock"><p>Source agent health change.</p>
+<p><code>dst_agent</code> contains percentage as <code>percent * 10000</code>.
 For example 99.5% will be <code>9950</code>.</p>
 <p><em>Not used in realtime API.</em></p>
 </div><h3 id="variant.LogStart" class="variant small-section-header"><a href="#variant.LogStart" class="anchor field"></a><code>LogStart</code></h3><div class="docblock"><p>Logging has started.</p>
-<p>Value contains the server Unix timestamp as <code>u32</code>.
-Buff damage contains the local Unix timestamp.</p>
-<p>Source id is <code>0x637261</code> (ArcDPS id) if log EVTC and species id if realtime API.</p>
+<p><code>value</code> contains the server Unix timestamp as <code>u32</code>.
+<code>buff_dmg</code> contains the local Unix timestamp.</p>
+<p><code>arc_agent</code> is <code>0x637261</code> (ArcDPS id) if log EVTC and species id if realtime API.</p>
 </div><h3 id="variant.LogEnd" class="variant small-section-header"><a href="#variant.LogEnd" class="anchor field"></a><code>LogEnd</code></h3><div class="docblock"><p>Logging has ended.</p>
-<p>Value contains the server Unix timestamp as <code>u32</code>.
-Buff damage contains the local Unix timestamp.</p>
-<p>Source id is <code>0x637261</code> (ArcDPS id) if log EVTC and species id if realtime API.</p>
-</div><h3 id="variant.WeaponSwap" class="variant small-section-header"><a href="#variant.WeaponSwap" class="anchor field"></a><code>WeaponSwap</code></h3><div class="docblock"><p>Source entity swapped weapon set.</p>
-<p>Destination contains the current set id.
+<p><code>value</code> contains the server Unix timestamp as <code>u32</code>.
+<code>buff_dmg</code> contains the local Unix timestamp.</p>
+<p><code>src_agent</code> is <code>0x637261</code> (ArcDPS id) if log EVTC and species id if realtime API.</p>
+</div><h3 id="variant.WeaponSwap" class="variant small-section-header"><a href="#variant.WeaponSwap" class="anchor field"></a><code>WeaponSwap</code></h3><div class="docblock"><p>Source agent swapped weapon set.</p>
+<p><code>dst_agent</code> contains the current set id.
 <code>0</code>/<code>1</code> for underwater weapons and <code>4</code>/<code>5</code> for land weapons.</p>
-</div><h3 id="variant.MaxHealthUpdate" class="variant small-section-header"><a href="#variant.MaxHealthUpdate" class="anchor field"></a><code>MaxHealthUpdate</code></h3><div class="docblock"><p>Source entity maximum health change.</p>
-<p>Destination contains the new maximum health.</p>
+</div><h3 id="variant.MaxHealthUpdate" class="variant small-section-header"><a href="#variant.MaxHealthUpdate" class="anchor field"></a><code>MaxHealthUpdate</code></h3><div class="docblock"><p>Source agent maximum health change.</p>
+<p><code>dst_agent</code> contains the new maximum health.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.PointOfView" class="variant small-section-header"><a href="#variant.PointOfView" class="anchor field"></a><code>PointOfView</code></h3><div class="docblock"><p>Source entity is “recording” player.</p>
+</div><h3 id="variant.PointOfView" class="variant small-section-header"><a href="#variant.PointOfView" class="anchor field"></a><code>PointOfView</code></h3><div class="docblock"><p>Source agent is “recording” player.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.Language" class="variant small-section-header"><a href="#variant.Language" class="anchor field"></a><code>Language</code></h3><div class="docblock"><p>Source entity contains the game text language.</p>
+</div><h3 id="variant.Language" class="variant small-section-header"><a href="#variant.Language" class="anchor field"></a><code>Language</code></h3><div class="docblock"><p>Source agent contains the game text language.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.GWBuild" class="variant small-section-header"><a href="#variant.GWBuild" class="anchor field"></a><code>GWBuild</code></h3><div class="docblock"><p>Source entity contains the game build.</p>
+</div><h3 id="variant.GWBuild" class="variant small-section-header"><a href="#variant.GWBuild" class="anchor field"></a><code>GWBuild</code></h3><div class="docblock"><p>Source agent contains the game build.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.ShardId" class="variant small-section-header"><a href="#variant.ShardId" class="anchor field"></a><code>ShardId</code></h3><div class="docblock"><p>Source entity contains the sever shard id.</p>
+</div><h3 id="variant.ShardId" class="variant small-section-header"><a href="#variant.ShardId" class="anchor field"></a><code>ShardId</code></h3><div class="docblock"><p>Source agent contains the sever shard id.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.Reward" class="variant small-section-header"><a href="#variant.Reward" class="anchor field"></a><code>Reward</code></h3><div class="docblock"><p>Source entity got a reward chest.</p>
+</div><h3 id="variant.Reward" class="variant small-section-header"><a href="#variant.Reward" class="anchor field"></a><code>Reward</code></h3><div class="docblock"><p>Source agent got a reward chest.</p>
 <p>Source is always self.
-Destination contains the reward id.
+<code>dst_agent</code> contains the reward id.
 Value contains the reward type.</p>
-</div><h3 id="variant.BuffInitial" class="variant small-section-header"><a href="#variant.BuffInitial" class="anchor field"></a><code>BuffInitial</code></h3><div class="docblock"><p>Appears once per buff per entity on logging start.</p>
+</div><h3 id="variant.BuffInitial" class="variant small-section-header"><a href="#variant.BuffInitial" class="anchor field"></a><code>BuffInitial</code></h3><div class="docblock"><p>Appears once per buff per agent on logging start.</p>
 <p><em>(<code>statechange == 18</code> and <code>buff == 18</code>, normal combat event otherwise)</em></p>
-</div><h3 id="variant.Position" class="variant small-section-header"><a href="#variant.Position" class="anchor field"></a><code>Position</code></h3><div class="docblock"><p>Source entity position change.</p>
-<p>Destination contains x/y/z as array of 3 floats.</p>
+</div><h3 id="variant.Position" class="variant small-section-header"><a href="#variant.Position" class="anchor field"></a><code>Position</code></h3><div class="docblock"><p>Source agent position change.</p>
+<p><code>dst_agent</code> contains x/y/z as array of 3 floats.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.Velocity" class="variant small-section-header"><a href="#variant.Velocity" class="anchor field"></a><code>Velocity</code></h3><div class="docblock"><p>Source entity velocity change.</p>
-<p>Destination contains x/y/z as array of 3 floats.</p>
+</div><h3 id="variant.Velocity" class="variant small-section-header"><a href="#variant.Velocity" class="anchor field"></a><code>Velocity</code></h3><div class="docblock"><p>Source agent velocity change.</p>
+<p><code>dst_agent</code> contains x/y/z as array of 3 floats.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.Facing" class="variant small-section-header"><a href="#variant.Facing" class="anchor field"></a><code>Facing</code></h3><div class="docblock"><p>Source entity facing change.</p>
-<p>Destination contains x/y as array of 2 floats.</p>
+</div><h3 id="variant.Facing" class="variant small-section-header"><a href="#variant.Facing" class="anchor field"></a><code>Facing</code></h3><div class="docblock"><p>Source agent facing change.</p>
+<p><code>dst_agent</code> contains x/y as array of 2 floats.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.TeamChange" class="variant small-section-header"><a href="#variant.TeamChange" class="anchor field"></a><code>TeamChange</code></h3><div class="docblock"><p>Source entity team change.</p>
-<p>Destination contains the new team id.</p>
-</div><h3 id="variant.AttackTarget" class="variant small-section-header"><a href="#variant.AttackTarget" class="anchor field"></a><code>AttackTarget</code></h3><div class="docblock"><p>Source entity is now an attack target.</p>
-<p>Destination is the parent entity (gadget type).
+</div><h3 id="variant.TeamChange" class="variant small-section-header"><a href="#variant.TeamChange" class="anchor field"></a><code>TeamChange</code></h3><div class="docblock"><p>Source agent team change.</p>
+<p><code>dst_agent</code> contains the new team id.</p>
+</div><h3 id="variant.AttackTarget" class="variant small-section-header"><a href="#variant.AttackTarget" class="anchor field"></a><code>AttackTarget</code></h3><div class="docblock"><p>Source agent is now an attack target.</p>
+<p><code>dst_agent</code> is the parent agent (gadget type).
 Value contains the current targetable state.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.Targetable" class="variant small-section-header"><a href="#variant.Targetable" class="anchor field"></a><code>Targetable</code></h3><div class="docblock"><p>Source entity targetability change.</p>
-<p>Destination contains the new targetable state.
+</div><h3 id="variant.Targetable" class="variant small-section-header"><a href="#variant.Targetable" class="anchor field"></a><code>Targetable</code></h3><div class="docblock"><p>Source agent targetability change.</p>
+<p><code>dst_agent</code> contains the new targetable state.
 <code>0</code> for no, <code>1</code> for yes. Default is yes.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.MapId" class="variant small-section-header"><a href="#variant.MapId" class="anchor field"></a><code>MapId</code></h3><div class="docblock"><p>Source entity contains the map id.</p>
+</div><h3 id="variant.MapId" class="variant small-section-header"><a href="#variant.MapId" class="anchor field"></a><code>MapId</code></h3><div class="docblock"><p>Source agent contains the map id.</p>
 <p><em>Not used in realtime API.</em></p>
 </div><h3 id="variant.ReplInfo" class="variant small-section-header"><a href="#variant.ReplInfo" class="anchor field"></a><code>ReplInfo</code></h3><div class="docblock"><p>Used internally by ArcDPS.
 Should not appear anywhere.</p>
-</div><h3 id="variant.StackActive" class="variant small-section-header"><a href="#variant.StackActive" class="anchor field"></a><code>StackActive</code></h3><div class="docblock"><p>Source entity with active buff.</p>
-<p>Destination contains the stack id marked active.</p>
-</div><h3 id="variant.StackReset" class="variant small-section-header"><a href="#variant.StackReset" class="anchor field"></a><code>StackReset</code></h3><div class="docblock"><p>Source entity with reset buff.</p>
-<p>Value is the duration to reset to (also marks inactive).
-Padding 61 contains the stack id.</p>
-</div><h3 id="variant.Guild" class="variant small-section-header"><a href="#variant.Guild" class="anchor field"></a><code>Guild</code></h3><div class="docblock"><p>Source entity is in guild.</p>
-<p>Destination until buff damage is 16 byte (<code>u8</code>) guid.</p>
+</div><h3 id="variant.StackActive" class="variant small-section-header"><a href="#variant.StackActive" class="anchor field"></a><code>StackActive</code></h3><div class="docblock"><p>Source agent with active buff.</p>
+<p><code>dst_agent</code> contains the stack id marked active.</p>
+</div><h3 id="variant.StackReset" class="variant small-section-header"><a href="#variant.StackReset" class="anchor field"></a><code>StackReset</code></h3><div class="docblock"><p>Source agent with reset buff.</p>
+<p><code>value</code> is the duration to reset to (also marks inactive).
+<code>pad61</code> contains the stack id.</p>
+</div><h3 id="variant.Guild" class="variant small-section-header"><a href="#variant.Guild" class="anchor field"></a><code>Guild</code></h3><div class="docblock"><p>Source agent is in guild.</p>
+<p><code>dst_agent</code> until ´buff_dmg´ is 16 byte (<code>u8</code>) guid.</p>
 <p>Given in client form, needs minor rearrange for API form.</p>
 </div><h3 id="variant.BuffInfo" class="variant small-section-header"><a href="#variant.BuffInfo" class="anchor field"></a><code>BuffInfo</code></h3><div class="docblock"><p>Buff information.</p>
 <p>If <code>is_flanking</code> probably invulnerable.
 If <code>is_shields</code> probably invert.</p>
 <p>Offcycle contains the category.
-Padding 61 contains the stacking type.
-Padding 62 contains the probably resistance.
-Source master instance id contains the max stacks.
-Overstack value contains the duration cap.</p>
+<code>pad61</code> contains the stacking type.
+<code>pad62</code> contains the probably resistance.
+<code>src_master_instid</code> contains the max stacks.
+<code>overstack_value</code> contains the duration cap.</p>
 <p><em>Not used in realtime API.</em></p>
 </div><h3 id="variant.BuffFormula" class="variant small-section-header"><a href="#variant.BuffFormula" class="anchor field"></a><code>BuffFormula</code></h3><div class="docblock"><p>Buff formula.</p>
 <p>Time contains <code>type</code>, <code>attr1</code>, <code>attr2</code>, <code>param1</code>, <code>param2</code>, <code>param3</code>, <code>trait_src</code> and <code>trait_self</code> as array of 8 floats.
@@ -139,38 +142,46 @@ Source instance id contains <code>buff_src</code> and <code>buff_self</code> as 
 <p>If <code>is_flanking</code> not NPC.
 If <code>is_shields</code> not player.
 If <code>is_offcycle</code> break.</p>
-<p><code>overstack</code> is value of type determined by padding 61.</p>
+<p><code>overstack_value</code> is value of type determined by <code>pad61</code>.</p>
 <p>Once per formula.</p>
 <p><em>Not used in realtime API.</em></p>
 </div><h3 id="variant.SkillInfo" class="variant small-section-header"><a href="#variant.SkillInfo" class="anchor field"></a><code>SkillInfo</code></h3><div class="docblock"><p>Skill information.</p>
 <p>Time contains <code>recharge</code>, <code>range0</code>, <code>range1</code> and <code>tooltiptime</code> as array of 4 floats.</p>
 <p><em>Not used in realtime API.</em></p>
 </div><h3 id="variant.SkillTiming" class="variant small-section-header"><a href="#variant.SkillTiming" class="anchor field"></a><code>SkillTiming</code></h3><div class="docblock"><p>Skill action.</p>
-<p>Source contains the action.
-Destination contains at which millisecond.</p>
+<p><code>src_agent</code> contains the action.
+<code>dst_agent</code> contains at which millisecond.</p>
 <p>One per timing.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.BreakbarState" class="variant small-section-header"><a href="#variant.BreakbarState" class="anchor field"></a><code>BreakbarState</code></h3><div class="docblock"><p>Source entity breakbar state change.</p>
+</div><h3 id="variant.BreakbarState" class="variant small-section-header"><a href="#variant.BreakbarState" class="anchor field"></a><code>BreakbarState</code></h3><div class="docblock"><p>Source agent breakbar state change.</p>
 <p>Value is <code>u16</code> game enum (active, recover, immune, none).</p>
 <p><em>Not used in realtime API.</em></p>
 </div><h3 id="variant.BreakbarPercent" class="variant small-section-header"><a href="#variant.BreakbarPercent" class="anchor field"></a><code>BreakbarPercent</code></h3><div class="docblock"><p>Breakbar percentage.</p>
-<p>Value contains percentage as float.</p>
+<p><code>value</code> contains percentage as float.</p>
 <p><em>Not used in realtime API.</em></p>
 </div><h3 id="variant.Error" class="variant small-section-header"><a href="#variant.Error" class="anchor field"></a><code>Error</code></h3><div class="docblock"><p>Error.</p>
-<p>Time contains the error message as an array of up to 32 characters.</p>
+<p><code>time</code> contains the error message as an array of up to 32 characters.</p>
 <p><em>Not used in realtime API.</em></p>
-</div><h3 id="variant.Tag" class="variant small-section-header"><a href="#variant.Tag" class="anchor field"></a><code>Tag</code></h3><div class="docblock"><p>Source entity has tag.</p>
-<p>Value is the id of the tag.
+</div><h3 id="variant.Tag" class="variant small-section-header"><a href="#variant.Tag" class="anchor field"></a><code>Tag</code></h3><div class="docblock"><p>Source agent has tag.</p>
+<p><code>value</code> is the id of the tag.
 Tag id is volatile, depends on game build.</p>
-</div><h3 id="variant.BarrierUpdate" class="variant small-section-header"><a href="#variant.BarrierUpdate" class="anchor field"></a><code>BarrierUpdate</code></h3><div class="docblock"><p>Source entity barrier change.</p>
-<p>Destination contains percentage as <code>percent * 10000</code>.
+</div><h3 id="variant.BarrierUpdate" class="variant small-section-header"><a href="#variant.BarrierUpdate" class="anchor field"></a><code>BarrierUpdate</code></h3><div class="docblock"><p>Source agent barrier change.</p>
+<p><code>dst_agent</code> contains percentage as <code>percent * 10000</code>.
 For example 99.5% will be <code>9950</code>.</p>
 <p><em>Not used in realtime API.</em></p>
 </div><h3 id="variant.StatReset" class="variant small-section-header"><a href="#variant.StatReset" class="anchor field"></a><code>StatReset</code></h3><div class="docblock"><p>Arc UI stats reset.</p>
-<p>Source entity contains the npc id of the active log.</p>
+<p><code>src_agent</code> contains the NPC id of the active log.</p>
 <p><em>Not used in log EVTC.</em></p>
 </div><h3 id="variant.Extension" class="variant small-section-header"><a href="#variant.Extension" class="anchor field"></a><code>Extension</code></h3><div class="docblock"><p>Combat event with state change byte set to this.</p>
 </div><h3 id="variant.ApiDelayed" class="variant small-section-header"><a href="#variant.ApiDelayed" class="anchor field"></a><code>ApiDelayed</code></h3><div class="docblock"><p>Combat event with state change byte set to this.</p>
+</div><h3 id="variant.InstanceStart" class="variant small-section-header"><a href="#variant.InstanceStart" class="anchor field"></a><code>InstanceStart</code></h3><div class="docblock"><p>Instance started.</p>
+<p><code>src_agent</code> contains the time in ms at which the instance was likely started.</p>
+</div><h3 id="variant.Tickrate" class="variant small-section-header"><a href="#variant.Tickrate" class="anchor field"></a><code>Tickrate</code></h3><div class="docblock"><p>Tick rate.</p>
+<p>Every 500ms.
+<code>src_agent</code> is <code>+= 25 - tickrate</code> (when <code>tickrate &lt; 21</code>).</p>
+</div><h3 id="variant.Last90BeforeDown" class="variant small-section-header"><a href="#variant.Last90BeforeDown" class="anchor field"></a><code>Last90BeforeDown</code></h3><div class="docblock"><p>Last 90% before down.</p>
+<p><code>src_agent</code> is enemy agent that went down, <code>dst_agent</code> agent is time in ms since last 90%.
+For downs contribution.</p>
 </div><h3 id="variant.Unknown" class="variant small-section-header"><a href="#variant.Unknown" class="anchor field"></a><code>Unknown</code></h3><div class="docblock"><p>Unknown or invalid.</p>
 </div><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-Clone" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/arc_util/api.rs.html#143">source</a></span><a href="#impl-Clone" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="https://doc.rust-lang.org/1.60.0/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="enum" href="enum.StateChange.html" title="enum arc_util::api::StateChange">StateChange</a></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.clone" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/arc_util/api.rs.html#143">source</a></span><a href="#method.clone" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/1.60.0/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; <a class="enum" href="enum.StateChange.html" title="enum arc_util::api::StateChange">StateChange</a></h4></section></summary><div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/1.60.0/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.clone_from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span> · <a class="srclink" href="https://doc.rust-lang.org/1.60.0/src/core/clone.rs.html#130">source</a></span><a href="#method.clone_from" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/1.60.0/core/clone/trait.Clone.html#method.clone_from" class="fnname">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/1.60.0/std/primitive.reference.html">&amp;</a>Self)</h4></section></summary><div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/1.60.0/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
