@@ -11,11 +11,6 @@ use arcdps::imgui::{InputTextFlags, StyleVar};
 
 /// Renders menus with window options.
 pub fn window_options_menus(ui: &Ui, options: &mut WindowOptions) {
-    if options.auto_resize {
-        // update dimensions
-        [options.width, options.height] = ui.window_size();
-    }
-
     let colors = exports::colors();
     let grey = colors
         .core(CoreColor::MediumGrey)

@@ -68,6 +68,9 @@ where
 
     fn render(&mut self, ui: &Ui, props: &Self::Props) {
         if let Some(_window) = render_window(ui, &mut self.options) {
+            // read current window size values
+            [self.options.width, self.options.height] = ui.window_size();
+
             if T::CONTEXT_MENU {
                 // render context menu
                 window_context_menu(&format!("Options##{}", self.options.name), || {

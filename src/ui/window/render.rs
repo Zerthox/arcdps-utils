@@ -11,7 +11,7 @@ pub fn render_window<'ui>(ui: &'ui Ui, options: &mut WindowOptions) -> Option<Wi
             .size(
                 size,
                 if options.auto_resize {
-                    Condition::FirstUseEver
+                    Condition::Never
                 } else {
                     Condition::Always
                 },
