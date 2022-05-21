@@ -138,3 +138,10 @@ pub trait HasSettings {
         self.load_settings(Self::Settings::default())
     }
 }
+
+/// Helper for loading an optional value.
+pub fn load_optional<T>(current: &mut T, loaded: Option<T>) {
+    if let Some(value) = loaded {
+        *current = value;
+    }
+}
