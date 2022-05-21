@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Settings","Settings state."]],"trait":[["HasSettings","Interface for components with settings."]]});
+initSidebarItems({"fn":[["load_optional","Helper for loading an optional value."]],"struct":[["Settings","Settings state."]],"trait":[["HasSettings","Interface for components with settings."]]});
