@@ -13,7 +13,6 @@ pub use element::Element;
 pub use window::{Window, WindowOptions};
 
 /// Interface for UI components.
-// TODO: add lifetime to props
 pub trait Component<'p> {
     type Props;
 
