@@ -26,6 +26,7 @@ pub fn window_options_menus(ui: &Ui, options: &mut WindowOptions) {
 
         ui.checkbox("Titlebar", &mut options.title_bar);
         ui.checkbox("Background", &mut options.background);
+        ui.checkbox("Titlebar background", &mut options.title_bar_background);
         ui.checkbox("Scrollbar", &mut options.scroll_bar);
         ui.checkbox("Auto resize", &mut options.auto_resize);
 

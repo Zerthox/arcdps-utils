@@ -1,11 +1,23 @@
 use super::{WindowOptions, WindowPosition};
-use arcdps::imgui::{Condition, Ui, Window, WindowToken};
+use arcdps::imgui::{Condition, StyleColor, Ui, Window, WindowToken};
+
+const TRANSPARENT: [f32; 4] = [0.0, 0.0, 0.0, 0.0];
 
 /// Renders a window.
 pub fn render_window<'ui>(ui: &'ui Ui, options: &mut WindowOptions) -> Option<WindowToken<'ui>> {
     if options.visible {
         let size = [options.width, options.height];
         let pos = options.position.calc(ui, size);
+
+        let _style = if !options.title_bar_background {
+            Some((
+                ui.push_style_color(StyleColor::TitleBg, TRANSPARENT),
+                ui.push_style_color(StyleColor::TitleBgActive, TRANSPARENT),
+                ui.push_style_color(StyleColor::TitleBgCollapsed, TRANSPARENT),
+            ))
+        } else {
+            None
+        };
 
         Window::new(&options.name)
             .size(
