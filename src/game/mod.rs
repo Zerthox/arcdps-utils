@@ -7,7 +7,7 @@ mod player;
 pub use player::*;
 
 use num_enum::{FromPrimitive, IntoPrimitive, TryFromPrimitive};
-use strum::{Display, EnumIter, EnumVariantNames, IntoStaticStr};
+use strum::{Display, EnumCount, EnumIter, EnumVariantNames, IntoStaticStr};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -25,8 +25,9 @@ use serde::{Deserialize, Serialize};
     IntoPrimitive,
     TryFromPrimitive,
     Display,
-    IntoStaticStr,
+    EnumCount,
     EnumIter,
+    IntoStaticStr,
     EnumVariantNames,
 )]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -39,8 +40,8 @@ pub enum Language {
     Chinese = 5,
 }
 
-// TODO: document unclear attributes
 /// Buff formula attributes.
+// TODO: document unclear attributes
 #[derive(
     Debug,
     Clone,
@@ -53,8 +54,9 @@ pub enum Language {
     IntoPrimitive,
     FromPrimitive,
     Display,
-    IntoStaticStr,
+    EnumCount,
     EnumIter,
+    IntoStaticStr,
     EnumVariantNames,
 )]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]

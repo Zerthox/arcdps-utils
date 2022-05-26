@@ -1,6 +1,6 @@
 use num_enum::{FromPrimitive, IntoPrimitive};
 use std::cmp;
-use strum::{Display, EnumIter, EnumVariantNames, IntoStaticStr};
+use strum::{Display, EnumCount, EnumIter, EnumVariantNames, IntoStaticStr};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -36,19 +36,15 @@ pub struct Player {
 
 impl Player {
     /// Creates a new player.
-    pub fn new<C, A>(
+    pub fn new(
         id: usize,
-        character: C,
-        account: A,
+        character: impl Into<String>,
+        account: impl Into<String>,
         is_self: bool,
         profession: Profession,
         elite: Specialization,
         subgroup: usize,
-    ) -> Self
-    where
-        C: Into<String>,
-        A: Into<String>,
-    {
+    ) -> Self {
         Self {
             id,
             character: character.into(),
@@ -108,8 +104,9 @@ impl cmp::Ord for Player {
     IntoPrimitive,
     FromPrimitive,
     Display,
-    IntoStaticStr,
+    EnumCount,
     EnumIter,
+    IntoStaticStr,
     EnumVariantNames,
 )]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -143,8 +140,9 @@ pub enum Profession {
     IntoPrimitive,
     FromPrimitive,
     Display,
-    IntoStaticStr,
+    EnumCount,
     EnumIter,
+    IntoStaticStr,
     EnumVariantNames,
 )]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
