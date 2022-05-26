@@ -9,6 +9,12 @@ pub fn ch_width(ui: &Ui, count: usize) -> f32 {
     ui.calc_text_size("0".repeat(count))[0]
 }
 
+/// Adjusts the alpha value of a color.
+pub fn with_alpha(mut color: [f32; 4], alpha: f32) -> [f32; 4] {
+    color[3] = alpha;
+    color
+}
+
 /// Enable small padding similar to ArcDPS and other plugins.
 pub fn small_padding<'ui>(ui: &'ui Ui) -> StyleStackToken<'ui> {
     ui.push_style_var(StyleVar::FramePadding([1.0, 1.0]))
