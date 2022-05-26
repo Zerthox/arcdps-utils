@@ -67,7 +67,7 @@ impl Default for Log {
     }
 }
 
-impl Component for Log {
+impl Component<'_> for Log {
     type Props = ();
 
     fn render(&mut self, ui: &Ui, _props: &Self::Props) {
@@ -122,6 +122,6 @@ impl Component for Log {
     }
 }
 
-impl Windowable for Log {
+impl Windowable<'_> for Log {
     const CONTEXT_MENU: bool = true;
 }

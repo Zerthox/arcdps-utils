@@ -13,15 +13,16 @@ pub use element::Element;
 pub use window::{Window, WindowOptions};
 
 /// Interface for UI components.
-pub trait Component {
+// TODO: add lifetime to props
+pub trait Component<'p> {
     type Props;
 
     /// Renders the component.
-    fn render(&mut self, ui: &Ui, props: &Self::Props);
+    fn render(&mut self, ui: &Ui, props: &'p Self::Props);
 }
 
 /// Interface for windowable UI components.
-pub trait Windowable: Component {
+pub trait Windowable<'p>: Component<'p> {
     /// Whether to enable the context menu.
     const CONTEXT_MENU: bool;
 
@@ -29,7 +30,7 @@ pub trait Windowable: Component {
     const DEFAULT_OPTIONS: bool = true;
 
     /// Renders the window context menu contents.
-    fn render_menu(&mut self, _ui: &Ui, _props: &Self::Props) {}
+    fn render_menu(&mut self, _ui: &Ui, _props: &'p Self::Props) {}
 }
 
 /// Interface for hideable UI components.

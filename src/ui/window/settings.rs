@@ -43,9 +43,9 @@ where
     }
 }
 
-impl<T> HasSettings for Window<T>
+impl<'p, T> HasSettings for Window<T>
 where
-    T: Windowable + HasSettings,
+    T: Windowable<'p> + HasSettings,
 {
     type Settings = WindowSettings<T>;
 

@@ -22,17 +22,14 @@ pub use settings::*;
 
 /// Window component.
 #[derive(Debug, Clone)]
-pub struct Window<T>
-where
-    T: Windowable,
-{
+pub struct Window<T> {
     pub options: WindowOptions,
     pub inner: T,
 }
 
-impl<T> Window<T>
+impl<'p, T> Window<T>
 where
-    T: Windowable,
+    T: Windowable<'p>,
 {
     /// Creates a new window with [`WindowOptions`] and a given inner [`Windowable`] component.
     pub fn new(options: WindowOptions, inner: T) -> Self {
@@ -40,9 +37,9 @@ where
     }
 }
 
-impl<T> Deref for Window<T>
+impl<'p, T> Deref for Window<T>
 where
-    T: Windowable,
+    T: Windowable<'p>,
 {
     type Target = T;
 
@@ -51,22 +48,22 @@ where
     }
 }
 
-impl<T> DerefMut for Window<T>
+impl<'p, T> DerefMut for Window<T>
 where
-    T: Windowable,
+    T: Windowable<'p>,
 {
     fn deref_mut(&mut self) -> &mut Self::Target {
         &mut self.inner
     }
 }
 
-impl<T> Component for Window<T>
+impl<'p, T> Component<'p> for Window<T>
 where
-    T: Windowable,
+    T: Windowable<'p>,
 {
     type Props = T::Props;
 
-    fn render(&mut self, ui: &Ui, props: &Self::Props) {
+    fn render(&mut self, ui: &Ui, props: &'p Self::Props) {
         if let Some(_window) = render_window(ui, &mut self.options) {
             // read current window size values
             [self.options.width, self.options.height] = ui.window_size();
@@ -89,9 +86,9 @@ where
     }
 }
 
-impl<T> Hideable for Window<T>
+impl<'p, T> Hideable for Window<T>
 where
-    T: Windowable,
+    T: Windowable<'p>,
 {
     fn is_visible(&self) -> bool {
         self.options.visible

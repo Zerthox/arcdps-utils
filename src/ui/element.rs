@@ -33,7 +33,7 @@ where
     }
 }
 
-impl<P, F> Component for Element<P, F>
+impl<P, F> Component<'_> for Element<P, F>
 where
     F: FnMut(&Ui, &P),
 {
