@@ -14,6 +14,7 @@ where
     pub height: Option<f32>,
     pub title_bar: Option<bool>,
     pub background: Option<bool>,
+    pub title_bar_background: Option<bool>,
     pub resize: Option<bool>,
     pub auto_resize: Option<bool>,
     pub scroll: Option<bool>,
@@ -34,6 +35,7 @@ where
             height: None,
             title_bar: Some(true),
             background: Some(true),
+            title_bar_background: Some(true),
             resize: Some(true),
             auto_resize: Some(false),
             scroll: Some(true),
@@ -59,6 +61,7 @@ where
             height: Some(self.options.height),
             title_bar: Some(self.options.title_bar),
             background: Some(self.options.background),
+            title_bar_background: Some(self.options.title_bar_background),
             resize: Some(self.options.resize),
             auto_resize: Some(self.options.auto_resize),
             scroll: Some(self.options.scroll),
@@ -74,6 +77,10 @@ where
         load_optional(&mut self.options.height, loaded.height);
         load_optional(&mut self.options.title_bar, loaded.title_bar);
         load_optional(&mut self.options.background, loaded.background);
+        load_optional(
+            &mut self.options.title_bar_background,
+            loaded.title_bar_background,
+        );
         load_optional(&mut self.options.resize, loaded.resize);
         load_optional(&mut self.options.auto_resize, loaded.auto_resize);
         load_optional(&mut self.options.scroll, loaded.scroll);
