@@ -1,4 +1,6 @@
 use arcdps::imgui::Ui;
+
+#[cfg(feature = "settings")]
 use serde::{Deserialize, Serialize};
 
 /// Window options.
