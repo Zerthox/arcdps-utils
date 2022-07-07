@@ -4,7 +4,7 @@
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../strum_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
         </a><div class="sidebar-elems"><h2 class="location"><a href="index.html">In strum_macros</a></h2><div id="sidebar-vars" data-name="EnumString" data-ty="derive" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../strum_macros/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
-    <h1 class="fqn"><span class="in-band">Derive Macro <a href="index.html">strum_macros</a>::<wbr><a class="derive" href="#">EnumString</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/strum_macros/lib.rs.html#109-116">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust derive"><code>#[derive(EnumString)]
+    <h1 class="fqn"><span class="in-band">Derive Macro <a href="index.html">strum_macros</a>::<wbr><a class="derive" href="#">EnumString</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/strum_macros/lib.rs.html#112-119">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust derive"><code>#[derive(EnumString)]
 {
     // Attributes available to this derive:
     #[strum]
@@ -23,6 +23,8 @@ variant. There is an option to match on different case conversions through the
 <code>#[strum(serialize_all = &quot;snake_case&quot;)]</code> type attribute.</p>
 <p>See the <a href="https://docs.rs/strum/0.22/strum/additional_attributes/index.html">Additional Attributes</a>
 Section for more information on using this feature.</p>
+<p>If you have a large enum, you may want to consider using the <code>use_phf</code> attribute here. It leverages
+perfect hash functions to parse much quicker than a standard <code>match</code>. (MSRV 1.46)</p>
 <h2 id="example-howto-use-enumstring"><a href="#example-howto-use-enumstring">Example howto use <code>EnumString</code></a></h2>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">std::str::FromStr</span>;
 <span class="kw">use</span> <span class="ident">strum_macros::EnumString</span>;
@@ -79,5 +81,5 @@ impl std::str::FromStr for Color {
 <span class="macro">println!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">Color::Yellow</span>);
 <span class="kw">let</span> <span class="ident">color_variant</span> <span class="op">=</span> <span class="ident">Color::from_str</span>(<span class="string">&quot;bLACk&quot;</span>).<span class="ident">unwrap</span>();
 <span class="macro">assert_eq!</span>(<span class="ident">Color::Black</span>, <span class="ident">color_variant</span>);</code></pre></div>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0 (a8314ef7d 2022-06-27)" ></div>
 </body></html>

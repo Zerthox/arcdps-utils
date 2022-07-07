@@ -93,6 +93,8 @@
 <span id="88">88</span>
 <span id="89">89</span>
 <span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
 </pre><pre class="rust"><code><span class="doccomment">//! General GW2 related data.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This is also used in the ArcDPS API, but may be useful outside.</span>
@@ -102,7 +104,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">player</span>::<span class="kw-2">*</span>;
 
 <span class="kw">use</span> <span class="ident">num_enum</span>::{<span class="ident">FromPrimitive</span>, <span class="ident">IntoPrimitive</span>, <span class="ident">TryFromPrimitive</span>};
-<span class="kw">use</span> <span class="ident">strum</span>::{<span class="ident">Display</span>, <span class="ident">EnumIter</span>, <span class="ident">EnumVariantNames</span>, <span class="ident">IntoStaticStr</span>};
+<span class="kw">use</span> <span class="ident">strum</span>::{<span class="ident">Display</span>, <span class="ident">EnumCount</span>, <span class="ident">EnumIter</span>, <span class="ident">EnumVariantNames</span>, <span class="ident">IntoStaticStr</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
@@ -120,8 +122,9 @@
     <span class="ident">IntoPrimitive</span>,
     <span class="ident">TryFromPrimitive</span>,
     <span class="ident">Display</span>,
-    <span class="ident">IntoStaticStr</span>,
+    <span class="ident">EnumCount</span>,
     <span class="ident">EnumIter</span>,
+    <span class="ident">IntoStaticStr</span>,
     <span class="ident">EnumVariantNames</span>,
 )]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
@@ -134,8 +137,8 @@
     <span class="ident">Chinese</span> <span class="op">=</span> <span class="number">5</span>,
 }
 
-<span class="comment">// TODO: document unclear attributes</span>
 <span class="doccomment">/// Buff formula attributes.</span>
+<span class="comment">// TODO: document unclear attributes</span>
 <span class="attribute">#[<span class="ident">derive</span>(
     <span class="ident">Debug</span>,
     <span class="ident">Clone</span>,
@@ -148,8 +151,9 @@
     <span class="ident">IntoPrimitive</span>,
     <span class="ident">FromPrimitive</span>,
     <span class="ident">Display</span>,
-    <span class="ident">IntoStaticStr</span>,
+    <span class="ident">EnumCount</span>,
     <span class="ident">EnumIter</span>,
+    <span class="ident">IntoStaticStr</span>,
     <span class="ident">EnumVariantNames</span>,
 )]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
@@ -184,5 +188,5 @@
     <span class="ident">Unknown</span> <span class="op">=</span> <span class="number">65535</span>,
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="arc_util" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="arc_util" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0 (a8314ef7d 2022-06-27)" ></div>
 </body></html>

@@ -86,7 +86,13 @@
 <span id="81">81</span>
 <span id="82">82</span>
 <span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">arcdps::imgui::Ui</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;settings&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 
 <span class="doccomment">/// Window options.</span>
@@ -99,6 +105,7 @@
     <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">f32</span>,
     <span class="kw">pub</span> <span class="ident">title_bar</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">background</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span> <span class="ident">title_bar_background</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">resize</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">auto_resize</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">scroll</span>: <span class="ident">bool</span>,
@@ -116,6 +123,7 @@
             <span class="ident">height</span>: <span class="number">0.0</span>,
             <span class="ident">title_bar</span>: <span class="bool-val">true</span>,
             <span class="ident">background</span>: <span class="bool-val">true</span>,
+            <span class="ident">title_bar_background</span>: <span class="bool-val">true</span>,
             <span class="ident">resize</span>: <span class="bool-val">true</span>,
             <span class="ident">auto_resize</span>: <span class="bool-val">false</span>,
             <span class="ident">scroll</span>: <span class="bool-val">true</span>,
@@ -170,5 +178,5 @@
     <span class="ident">BottomRight</span>,
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="arc_util" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="arc_util" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0 (a8314ef7d 2022-06-27)" ></div>
 </body></html>

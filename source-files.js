@@ -1,4 +1,4 @@
-var N = null;var sourcesIndex = {};
+var sourcesIndex = {};
 sourcesIndex["arc_util"] = {"name":"","dirs":[{"name":"game","files":["mod.rs","player.rs"]},{"name":"ui","dirs":[{"name":"window","files":["menu.rs","mod.rs","options.rs","render.rs","settings.rs"]}],"files":["align.rs","element.rs","log.rs","mod.rs","render.rs"]}],"files":["api.rs","exports.rs","lib.rs","settings.rs","util.rs"]};
 sourcesIndex["arcdps"] = {"name":"","dirs":[{"name":"unofficial_extras","files":["mod.rs","raw_structs.rs"]}],"files":["exported_functions.rs","helpers.rs","lib.rs","logging.rs","raw_structs.rs"]};
 sourcesIndex["arcdps_codegen"] = {"name":"","files":["lib.rs","parse.rs"]};

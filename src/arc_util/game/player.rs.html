@@ -247,11 +247,9 @@
 <span id="242">242</span>
 <span id="243">243</span>
 <span id="244">244</span>
-<span id="245">245</span>
-<span id="246">246</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">num_enum</span>::{<span class="ident">FromPrimitive</span>, <span class="ident">IntoPrimitive</span>};
 <span class="kw">use</span> <span class="ident">std::cmp</span>;
-<span class="kw">use</span> <span class="ident">strum</span>::{<span class="ident">Display</span>, <span class="ident">EnumIter</span>, <span class="ident">EnumVariantNames</span>, <span class="ident">IntoStaticStr</span>};
+<span class="kw">use</span> <span class="ident">strum</span>::{<span class="ident">Display</span>, <span class="ident">EnumCount</span>, <span class="ident">EnumIter</span>, <span class="ident">EnumVariantNames</span>, <span class="ident">IntoStaticStr</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
@@ -287,19 +285,15 @@
 
 <span class="kw">impl</span> <span class="ident">Player</span> {
     <span class="doccomment">/// Creates a new player.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">C</span>, <span class="ident">A</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">id</span>: <span class="ident">usize</span>,
-        <span class="ident">character</span>: <span class="ident">C</span>,
-        <span class="ident">account</span>: <span class="ident">A</span>,
+        <span class="ident">character</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+        <span class="ident">account</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
         <span class="ident">is_self</span>: <span class="ident">bool</span>,
         <span class="ident">profession</span>: <span class="ident">Profession</span>,
         <span class="ident">elite</span>: <span class="ident">Specialization</span>,
         <span class="ident">subgroup</span>: <span class="ident">usize</span>,
-    ) -&gt; <span class="self">Self</span>
-    <span class="kw">where</span>
-        <span class="ident">C</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-        <span class="ident">A</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    {
+    ) -&gt; <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">id</span>,
             <span class="ident">character</span>: <span class="ident">character</span>.<span class="ident">into</span>(),
@@ -359,8 +353,9 @@
     <span class="ident">IntoPrimitive</span>,
     <span class="ident">FromPrimitive</span>,
     <span class="ident">Display</span>,
-    <span class="ident">IntoStaticStr</span>,
+    <span class="ident">EnumCount</span>,
     <span class="ident">EnumIter</span>,
+    <span class="ident">IntoStaticStr</span>,
     <span class="ident">EnumVariantNames</span>,
 )]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
@@ -394,8 +389,9 @@
     <span class="ident">IntoPrimitive</span>,
     <span class="ident">FromPrimitive</span>,
     <span class="ident">Display</span>,
-    <span class="ident">IntoStaticStr</span>,
+    <span class="ident">EnumCount</span>,
     <span class="ident">EnumIter</span>,
+    <span class="ident">IntoStaticStr</span>,
     <span class="ident">EnumVariantNames</span>,
 )]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
@@ -496,5 +492,5 @@
     <span class="ident">Catalyst</span> <span class="op">=</span> <span class="number">67</span>,
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="arc_util" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="arc_util" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0 (a8314ef7d 2022-06-27)" ></div>
 </body></html>
