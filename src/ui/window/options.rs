@@ -1,6 +1,6 @@
 use arcdps::imgui::Ui;
 
-#[cfg(feature = "settings")]
+#[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
 /// Window options.
@@ -42,7 +42,7 @@ impl WindowOptions {
 
 /// Window position onscreen.
 #[derive(Debug, Clone, PartialEq, PartialOrd)]
-#[cfg_attr(feature = "settings", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum WindowPosition {
     Manual,
     Anchored {
@@ -78,7 +78,7 @@ impl WindowPosition {
 
 /// Screen anchor point for window.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "settings", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum WindowAnchor {
     TopLeft,
     TopRight,

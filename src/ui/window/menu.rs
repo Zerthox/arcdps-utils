@@ -1,13 +1,12 @@
 use super::*;
-use crate::{
-    api::CoreColor,
-    exports,
-    ui::{
-        render::{ch_width, input_float_with_format},
-        Ui,
-    },
+use crate::ui::{
+    render::{ch_width, input_float_with_format},
+    Ui,
 };
-use arcdps::imgui::{InputTextFlags, StyleVar};
+use arcdps::{
+    exports::{self, CoreColor},
+    imgui::{InputTextFlags, StyleVar},
+};
 
 /// Renders menus with window options.
 pub fn window_options_menus(ui: &Ui, options: &mut WindowOptions) {
