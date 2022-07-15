@@ -30,7 +30,7 @@ pub fn render_window<'ui>(ui: &'ui Ui, options: &mut WindowOptions) -> Option<Wi
             )
             .position(
                 pos,
-                if options.position == WindowPosition::Manual {
+                if let WindowPosition::Manual = options.position {
                     Condition::FirstUseEver
                 } else {
                     Condition::Always

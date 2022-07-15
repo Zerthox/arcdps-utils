@@ -65,17 +65,19 @@ where
 
     fn render(&mut self, ui: &Ui, props: &'p Self::Props) {
         if let Some(_window) = render_window(ui, &mut self.options) {
-            // read current window size values
-            [self.options.width, self.options.height] = ui.window_size();
+            // update options
+            self.options.update(ui);
 
             if T::CONTEXT_MENU {
+                let pos = ui.window_pos();
+
                 // render context menu
                 window_context_menu(&format!("Options##{}", self.options.name), || {
                     let _style = small_padding(ui);
 
                     self.inner.render_menu(ui, props);
                     if T::DEFAULT_OPTIONS {
-                        window_options_menus(ui, &mut self.options);
+                        window_options_menus(ui, &mut self.options, pos);
                     }
                 });
             }

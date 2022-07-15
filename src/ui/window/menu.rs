@@ -9,7 +9,7 @@ use arcdps::{
 };
 
 /// Renders menus with window options.
-pub fn window_options_menus(ui: &Ui, options: &mut WindowOptions) {
+pub fn window_options_menus(ui: &Ui, options: &mut WindowOptions, pos: [f32; 2]) {
     let colors = exports::colors();
     let grey = colors
         .core(CoreColor::MediumGrey)
@@ -60,7 +60,8 @@ pub fn window_options_menus(ui: &Ui, options: &mut WindowOptions) {
     ui.menu("Position", || {
         ui.text_colored(grey, "Window position");
 
-        if ui.radio_button_bool("Manual", options.position == WindowPosition::Manual) {
+        // pos select
+        if ui.radio_button_bool("Manual", matches!(options.position, WindowPosition::Manual)) {
             options.position = WindowPosition::Manual;
         }
 
@@ -68,13 +69,15 @@ pub fn window_options_menus(ui: &Ui, options: &mut WindowOptions) {
             "Screen relative",
             matches!(options.position, WindowPosition::Anchored { .. }),
         ) {
+            let [x, y] = pos;
             options.position = WindowPosition::Anchored {
                 anchor: WindowAnchor::TopLeft,
-                x: 0.0,
-                y: 0.0,
+                x,
+                y,
             }
         }
 
+        // details for anchored
         if let WindowPosition::Anchored { anchor, x, y } = &mut options.position {
             ui.indent();
 

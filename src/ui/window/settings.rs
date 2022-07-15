@@ -30,7 +30,7 @@ where
     fn default() -> Self {
         Self {
             shown: Some(true),
-            position: Some(WindowPosition::Manual),
+            position: Some(WindowPosition::default()),
             width: None,
             height: None,
             title_bar: Some(true),

@@ -26,7 +26,7 @@ impl WindowOptions {
         Self {
             name: name.into(),
             visible: true,
-            position: WindowPosition::Manual,
+            position: WindowPosition::default(),
             width: 0.0,
             height: 0.0,
             title_bar: true,
@@ -38,10 +38,16 @@ impl WindowOptions {
             scroll_bar: true,
         }
     }
+
+    /// Updates the options with values from the [`Ui`]
+    pub fn update(&mut self, ui: &Ui) {
+        // update window size values
+        [self.width, self.height] = ui.window_size();
+    }
 }
 
 /// Window position onscreen.
-#[derive(Debug, Clone, PartialEq, PartialOrd)]
+#[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum WindowPosition {
     Manual,
@@ -52,8 +58,14 @@ pub enum WindowPosition {
     },
 }
 
+impl Default for WindowPosition {
+    fn default() -> Self {
+        Self::Manual
+    }
+}
+
 impl WindowPosition {
-    /// Calculates the UI position.
+    /// Calculates the render position.
     pub fn calc(&self, ui: &Ui, window_size: [f32; 2]) -> [f32; 2] {
         match self {
             Self::Manual => [0.0, 0.0],
