@@ -27,20 +27,17 @@ pub struct Window<T> {
     pub inner: T,
 }
 
-impl<'p, T> Window<T>
-where
-    T: Windowable<'p>,
-{
+impl<'p, T> Window<T> {
     /// Creates a new window with [`WindowOptions`] and a given inner [`Windowable`] component.
-    pub fn new(options: WindowOptions, inner: T) -> Self {
+    pub fn new<P>(options: WindowOptions, inner: T) -> Self
+    where
+        T: Windowable<P>,
+    {
         Self { inner, options }
     }
 }
 
-impl<'p, T> Deref for Window<T>
-where
-    T: Windowable<'p>,
-{
+impl<'p, T> Deref for Window<T> {
     type Target = T;
 
     fn deref(&self) -> &Self::Target {
@@ -48,22 +45,17 @@ where
     }
 }
 
-impl<'p, T> DerefMut for Window<T>
-where
-    T: Windowable<'p>,
-{
+impl<'p, T> DerefMut for Window<T> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         &mut self.inner
     }
 }
 
-impl<'p, T> Component<'p> for Window<T>
+impl<'p, T, P> Component<P> for Window<T>
 where
-    T: Windowable<'p>,
+    T: Windowable<P>,
 {
-    type Props = T::Props;
-
-    fn render(&mut self, ui: &Ui, props: &'p Self::Props) {
+    fn render(&mut self, ui: &Ui, props: P) {
         if let Some(_window) = render_window(ui, &mut self.options) {
             // update options
             self.options.update(ui);
@@ -75,7 +67,7 @@ where
                 window_context_menu(&format!("Options##{}", self.options.name), || {
                     let _style = small_padding(ui);
 
-                    self.inner.render_menu(ui, props);
+                    self.inner.render_menu(ui, &props);
                     if T::DEFAULT_OPTIONS {
                         window_options_menus(ui, &mut self.options, pos);
                     }
@@ -88,10 +80,7 @@ where
     }
 }
 
-impl<'p, T> Hideable for Window<T>
-where
-    T: Windowable<'p>,
-{
+impl<'p, T> Hideable for Window<T> {
     fn is_visible(&self) -> bool {
         self.options.visible
     }

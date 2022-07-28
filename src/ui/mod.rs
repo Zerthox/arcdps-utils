@@ -1,7 +1,6 @@
 //! UI related utilities.
 
 pub mod align;
-pub mod element;
 pub mod render;
 pub mod window;
 
@@ -9,19 +8,25 @@ pub mod window;
 pub mod log;
 
 pub use arcdps::imgui::Ui;
-pub use element::Element;
 pub use window::{Window, WindowOptions};
 
 /// Interface for UI components.
-pub trait Component<'p> {
-    type Props;
-
+pub trait Component<Props> {
     /// Renders the component.
-    fn render(&mut self, ui: &Ui, props: &'p Self::Props);
+    fn render(&mut self, ui: &Ui, props: Props);
+}
+
+impl<T, P> Component<P> for T
+where
+    T: FnMut(&Ui, P),
+{
+    fn render(&mut self, ui: &Ui, props: P) {
+        self(ui, props)
+    }
 }
 
 /// Interface for windowable UI components.
-pub trait Windowable<'p>: Component<'p> {
+pub trait Windowable<Props>: Component<Props> {
     /// Whether to enable the context menu.
     const CONTEXT_MENU: bool;
 
@@ -29,7 +34,7 @@ pub trait Windowable<'p>: Component<'p> {
     const DEFAULT_OPTIONS: bool = true;
 
     /// Renders the window context menu contents.
-    fn render_menu(&mut self, _ui: &Ui, _props: &'p Self::Props) {}
+    fn render_menu(&mut self, _ui: &Ui, _props: &Props) {}
 }
 
 /// Interface for hideable UI components.
