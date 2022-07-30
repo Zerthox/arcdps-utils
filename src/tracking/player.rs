@@ -1,4 +1,4 @@
-use arcdps::{Profession, Specialization};
+use arcdps::{Agent, Profession, Specialization};
 use std::cmp;
 
 #[cfg(feature = "serde")]
@@ -54,6 +54,21 @@ impl Player {
             subgroup,
             combat: false,
         }
+    }
+
+    /// Creates a new player from tracking change agents.
+    pub fn from_tracking_change(src: Agent, dst: Agent) -> Option<Self> {
+        debug_assert!(src.elite == 0 && src.prof != 0);
+        let acc_name = dst.name?;
+        Some(Self::new(
+            src.id,
+            src.name?,
+            acc_name.strip_prefix(':').unwrap_or(acc_name),
+            dst.is_self != 0,
+            dst.prof.into(),
+            dst.elite.into(),
+            dst.team as usize,
+        ))
     }
 
     /// Enters the player into combat.
