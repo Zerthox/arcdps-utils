@@ -96,7 +96,7 @@ impl<T> CachedTracker<T> {
     pub fn remove_player(&mut self, id: usize) -> bool {
         self.tracker
             .remove_player(id)
-            .map(|entry| self.cache_entry(entry))
+            .map(|entry| self.maybe_cache(entry))
             .is_some()
     }
 
@@ -106,7 +106,7 @@ impl<T> CachedTracker<T> {
         T: Clone,
     {
         self.tracker.remove_player(id).map(|entry| {
-            self.cache_entry(entry.clone());
+            self.maybe_cache(entry.clone());
             entry
         })
     }
@@ -131,13 +131,25 @@ impl<T> CachedTracker<T> {
         self.tracker.player_mut(id)
     }
 
+    /// Caches the entry if necessary.
+    fn maybe_cache(&mut self, entry: Entry<T>) {
+        if self.cache_policy(entry.player.is_self).can_cache() {
+            self.cache_entry(entry.into())
+        }
+    }
+
     /// Adds an entry to the cache.
     ///
     /// Caching happens automatically based on the set [`CachePolicy`], so usually this does not have to be called manually.
-    pub fn cache_entry(&mut self, entry: Entry<T>) {
-        if self.cache_policy(entry.player.is_self).can_cache() {
-            self.cache.push(entry.into());
-        }
+    pub fn cache_entry(&mut self, entry: CacheEntry<T>) {
+        self.cache.push(entry)
+    }
+
+    /// Adds multiple entries to the cache.
+    ///
+    /// Caching happens automatically based on the set [`CachePolicy`], so usually this does not have to be called manually.
+    pub fn cache_multiple(&mut self, entries: impl Iterator<Item = CacheEntry<T>>) {
+        self.cache.extend(entries)
     }
 
     /// Returns an iterator over the current cache contents.
