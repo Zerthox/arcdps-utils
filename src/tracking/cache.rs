@@ -152,8 +152,18 @@ impl<T> CachedTracker<T> {
         self.cache.extend(entries)
     }
 
+    /// Returns whether there are any cached entries.
+    pub fn cached(&self) -> bool {
+        !self.cache.is_empty()
+    }
+
+    /// Returns the amount of cached entries.
+    pub fn cache_len(&self) -> usize {
+        self.cache.len()
+    }
+
     /// Returns an iterator over the current cache contents.
-    pub fn cached(&self) -> impl Iterator<Item = &CacheEntry<T>> {
+    pub fn cache_iter(&self) -> impl Iterator<Item = &CacheEntry<T>> {
         self.cache.iter()
     }
 
