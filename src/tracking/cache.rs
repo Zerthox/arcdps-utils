@@ -1,4 +1,5 @@
 use super::{Entry, Player, Tracker};
+use arcdps::Profession;
 use std::ops;
 
 /// Player tracker with caching.
@@ -172,15 +173,18 @@ impl<T> ops::DerefMut for CachedTracker<T> {
 pub struct CacheEntry<T> {
     pub character: String,
     pub account: String,
+    pub profession: Profession,
     pub data: T,
 }
 
 impl<T> From<Entry<T>> for CacheEntry<T> {
     fn from(entry: Entry<T>) -> Self {
+        let Entry { player, data } = entry;
         Self {
-            character: entry.player.character,
-            account: entry.player.account,
-            data: entry.data,
+            character: player.character,
+            account: player.account,
+            profession: player.profession,
+            data,
         }
     }
 }
