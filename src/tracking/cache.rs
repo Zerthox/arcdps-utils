@@ -88,15 +88,6 @@ impl<T> CachedTracker<T> {
         self.add_player(player, T::default())
     }
 
-    /// Adds an entry to the cache.
-    ///
-    /// Caching happens automatically based on the set [`CachePolicy`], so usually this does not have to be called manually.
-    pub fn cache_entry(&mut self, entry: Entry<T>) {
-        if self.cache_policy(entry.player.is_self).can_cache() {
-            self.cache.push(entry.into());
-        }
-    }
-
     /// Removes a tracked player, returning `true` if the player was tracked.
     pub fn remove_player(&mut self, id: usize) -> bool {
         self.tracker
@@ -136,9 +127,29 @@ impl<T> CachedTracker<T> {
         self.tracker.player_mut(id)
     }
 
+    /// Adds an entry to the cache.
+    ///
+    /// Caching happens automatically based on the set [`CachePolicy`], so usually this does not have to be called manually.
+    pub fn cache_entry(&mut self, entry: Entry<T>) {
+        if self.cache_policy(entry.player.is_self).can_cache() {
+            self.cache.push(entry.into());
+        }
+    }
+
+    /// Returns an iterator over the current cache contents.
+    pub fn cached(&self) -> impl Iterator<Item = &CacheEntry<T>> {
+        self.cache.iter()
+    }
+
     /// Clears the cache.
     pub fn clear_cache(&mut self) {
         self.cache.clear()
+    }
+}
+
+impl<T> Default for CachedTracker<T> {
+    fn default() -> Self {
+        Self::for_self()
     }
 }
 
@@ -158,7 +169,7 @@ impl<T> ops::DerefMut for CachedTracker<T> {
 
 /// Cache entry.
 #[derive(Debug, Clone)]
-struct CacheEntry<T> {
+pub struct CacheEntry<T> {
     pub character: String,
     pub account: String,
     pub data: T,
