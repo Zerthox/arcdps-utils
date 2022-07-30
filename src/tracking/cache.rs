@@ -1,5 +1,4 @@
 use super::{Entry, Player, Tracker};
-use arcdps::Profession;
 use std::ops;
 
 #[cfg(feature = "serde")]
@@ -12,7 +11,7 @@ pub struct CachedTracker<T> {
     tracker: Tracker<T>,
 
     /// Cache for data.
-    cache: Vec<CacheEntry<T>>,
+    cache: Vec<Entry<T>>,
 
     /// How to cache for self.
     pub self_policy: CachePolicy,
@@ -52,10 +51,7 @@ impl<T> CachedTracker<T> {
     }
 
     /// Searches the cache for an entry, removing it when found.
-    fn search_cache(
-        &mut self,
-        predicate: impl FnMut(&CacheEntry<T>) -> bool,
-    ) -> Option<CacheEntry<T>> {
+    fn search_cache(&mut self, predicate: impl FnMut(&Entry<T>) -> bool) -> Option<Entry<T>> {
         let index = self.cache.iter().position(predicate)?;
         Some(self.cache.remove(index))
     }
@@ -65,17 +61,17 @@ impl<T> CachedTracker<T> {
         let cached = match self.cache_policy(player.is_self) {
             CachePolicy::None => None,
             CachePolicy::PerAccount => self
-                .search_cache(|entry| entry.account == player.account)
-                .and_then(|entry| {
-                    if entry.character == player.character {
-                        Some(entry.data)
+                .search_cache(|cached| cached.player.account == player.account)
+                .and_then(|cached| {
+                    if cached.player.character == player.character {
+                        Some(cached.data)
                     } else {
                         None
                     }
                 }),
             CachePolicy::PerCharacter => self
-                .search_cache(|entry| entry.character == player.character)
-                .map(|entry| entry.data),
+                .search_cache(|cached| cached.player.character == player.character)
+                .map(|cached| cached.data),
         };
         let found = cached.is_some();
 
@@ -141,14 +137,14 @@ impl<T> CachedTracker<T> {
     /// Adds an entry to the cache.
     ///
     /// Caching happens automatically based on the set [`CachePolicy`], so usually this does not have to be called manually.
-    pub fn cache_entry(&mut self, entry: CacheEntry<T>) {
+    pub fn cache_entry(&mut self, entry: Entry<T>) {
         self.cache.push(entry)
     }
 
     /// Adds multiple entries to the cache.
     ///
     /// Caching happens automatically based on the set [`CachePolicy`], so usually this does not have to be called manually.
-    pub fn cache_multiple(&mut self, entries: impl Iterator<Item = CacheEntry<T>>) {
+    pub fn cache_multiple(&mut self, entries: impl Iterator<Item = Entry<T>>) {
         self.cache.extend(entries)
     }
 
@@ -163,7 +159,7 @@ impl<T> CachedTracker<T> {
     }
 
     /// Returns an iterator over the current cache contents.
-    pub fn cache_iter(&self) -> impl Iterator<Item = &CacheEntry<T>> {
+    pub fn cache_iter(&self) -> impl Iterator<Item = &Entry<T>> {
         self.cache.iter()
     }
 
@@ -190,28 +186,6 @@ impl<T> ops::Deref for CachedTracker<T> {
 impl<T> ops::DerefMut for CachedTracker<T> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         self.tracker.entries.as_mut_slice()
-    }
-}
-
-/// Cache entry.
-#[derive(Debug, Clone)]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-pub struct CacheEntry<T> {
-    pub character: String,
-    pub account: String,
-    pub profession: Profession,
-    pub data: T,
-}
-
-impl<T> From<Entry<T>> for CacheEntry<T> {
-    fn from(entry: Entry<T>) -> Self {
-        let Entry { player, data } = entry;
-        Self {
-            character: player.character,
-            account: player.account,
-            profession: player.profession,
-            data,
-        }
     }
 }
 
