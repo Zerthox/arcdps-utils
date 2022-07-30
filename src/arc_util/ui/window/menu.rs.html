@@ -99,19 +99,20 @@
 <span id="94">94</span>
 <span id="95">95</span>
 <span id="96">96</span>
+<span id="97">97</span>
+<span id="98">98</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">api::CoreColor</span>,
-    <span class="ident">exports</span>,
-    <span class="ident">ui</span>::{
-        <span class="ident">render</span>::{<span class="ident">ch_width</span>, <span class="ident">input_float_with_format</span>},
-        <span class="ident">Ui</span>,
-    },
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ui</span>::{
+    <span class="ident">render</span>::{<span class="ident">ch_width</span>, <span class="ident">input_float_with_format</span>},
+    <span class="ident">Ui</span>,
 };
-<span class="kw">use</span> <span class="ident">arcdps::imgui</span>::{<span class="ident">InputTextFlags</span>, <span class="ident">StyleVar</span>};
+<span class="kw">use</span> <span class="ident">arcdps</span>::{
+    <span class="ident">exports</span>::{<span class="self">self</span>, <span class="ident">CoreColor</span>},
+    <span class="ident">imgui</span>::{<span class="ident">InputTextFlags</span>, <span class="ident">StyleVar</span>},
+};
 
 <span class="doccomment">/// Renders menus with window options.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">window_options_menus</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>, <span class="ident">options</span>: <span class="kw-2">&amp;mut</span> <span class="ident">WindowOptions</span>) {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">window_options_menus</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>, <span class="ident">options</span>: <span class="kw-2">&amp;mut</span> <span class="ident">WindowOptions</span>, <span class="ident">pos</span>: [<span class="ident">f32</span>; <span class="number">2</span>]) {
     <span class="kw">let</span> <span class="ident">colors</span> <span class="op">=</span> <span class="ident">exports::colors</span>();
     <span class="kw">let</span> <span class="ident">grey</span> <span class="op">=</span> <span class="ident">colors</span>
         .<span class="ident">core</span>(<span class="ident">CoreColor::MediumGrey</span>)
@@ -162,7 +163,8 @@
     <span class="ident">ui</span>.<span class="ident">menu</span>(<span class="string">&quot;Position&quot;</span>, <span class="op">|</span><span class="op">|</span> {
         <span class="ident">ui</span>.<span class="ident">text_colored</span>(<span class="ident">grey</span>, <span class="string">&quot;Window position&quot;</span>);
 
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">radio_button_bool</span>(<span class="string">&quot;Manual&quot;</span>, <span class="ident">options</span>.<span class="ident">position</span> <span class="op">==</span> <span class="ident">WindowPosition::Manual</span>) {
+        <span class="comment">// pos select</span>
+        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">radio_button_bool</span>(<span class="string">&quot;Manual&quot;</span>, <span class="macro">matches!</span>(<span class="ident">options</span>.<span class="ident">position</span>, <span class="ident">WindowPosition::Manual</span>)) {
             <span class="ident">options</span>.<span class="ident">position</span> <span class="op">=</span> <span class="ident">WindowPosition::Manual</span>;
         }
 
@@ -170,13 +172,15 @@
             <span class="string">&quot;Screen relative&quot;</span>,
             <span class="macro">matches!</span>(<span class="ident">options</span>.<span class="ident">position</span>, <span class="ident">WindowPosition::Anchored</span> { .. }),
         ) {
+            <span class="kw">let</span> [<span class="ident">x</span>, <span class="ident">y</span>] <span class="op">=</span> <span class="ident">pos</span>;
             <span class="ident">options</span>.<span class="ident">position</span> <span class="op">=</span> <span class="ident">WindowPosition::Anchored</span> {
                 <span class="ident">anchor</span>: <span class="ident">WindowAnchor::TopLeft</span>,
-                <span class="ident">x</span>: <span class="number">0.0</span>,
-                <span class="ident">y</span>: <span class="number">0.0</span>,
+                <span class="ident">x</span>,
+                <span class="ident">y</span>,
             }
         }
 
+        <span class="comment">// details for anchored</span>
         <span class="kw">if</span> <span class="kw">let</span> <span class="ident">WindowPosition::Anchored</span> { <span class="ident">anchor</span>, <span class="ident">x</span>, <span class="ident">y</span> } <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">options</span>.<span class="ident">position</span> {
             <span class="ident">ui</span>.<span class="ident">indent</span>();
 
@@ -196,5 +200,5 @@
     });
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="arc_util" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0 (a8314ef7d 2022-06-27)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="arc_util" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.1 (e092d0b6b 2022-07-16)" ></div>
 </body></html>

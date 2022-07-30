@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["convert_extras_user","A helper function to convert raw arguments to safe abstractions"],["get_combat_args_from_raw","A helper function to convert raw arguments to safe abstractions"],["get_str_from_pc_char","A helper function to convert arcdps strings to [`&str`]."]],"struct":[["CombatEventArgs",""]]});

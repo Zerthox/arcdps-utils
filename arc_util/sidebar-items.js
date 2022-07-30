@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["api","ArcDPS API utilities."],["exports","ArcDPS exports."],["game","General GW2 related data."],["settings","Load/save settings."],["ui","UI related utilities."],["util",""]]});
+initSidebarItems({"mod":[["api",""],["settings","Load/save settings."],["tracking","Player tracking utilities."],["ui","UI related utilities."],["util",""]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["Foundation",""],["Media",""],["UI",""]]});
+initSidebarItems({"mod":[["Foundation",""],["Media",""],["System",""],["UI",""]]});
