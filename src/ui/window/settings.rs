@@ -45,7 +45,7 @@ where
     }
 }
 
-impl<'p, T> HasSettings for Window<T>
+impl<T> HasSettings for Window<T>
 where
     T: HasSettings,
 {

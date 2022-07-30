@@ -27,7 +27,7 @@ pub struct Window<T> {
     pub inner: T,
 }
 
-impl<'p, T> Window<T> {
+impl<T> Window<T> {
     /// Creates a new window with [`WindowOptions`] and a given inner [`Windowable`] component.
     pub fn new<P>(options: WindowOptions, inner: T) -> Self
     where
@@ -37,7 +37,7 @@ impl<'p, T> Window<T> {
     }
 }
 
-impl<'p, T> Deref for Window<T> {
+impl<T> Deref for Window<T> {
     type Target = T;
 
     fn deref(&self) -> &Self::Target {
@@ -45,13 +45,13 @@ impl<'p, T> Deref for Window<T> {
     }
 }
 
-impl<'p, T> DerefMut for Window<T> {
+impl<T> DerefMut for Window<T> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         &mut self.inner
     }
 }
 
-impl<'p, T, P> Component<P> for Window<T>
+impl<T, P> Component<P> for Window<T>
 where
     T: Windowable<P>,
 {
@@ -80,7 +80,7 @@ where
     }
 }
 
-impl<'p, T> Hideable for Window<T> {
+impl<T> Hideable for Window<T> {
     fn is_visible(&self) -> bool {
         self.options.visible
     }

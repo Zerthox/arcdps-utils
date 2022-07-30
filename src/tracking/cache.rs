@@ -130,7 +130,7 @@ impl<T> CachedTracker<T> {
     /// Caches the entry if necessary.
     fn maybe_cache(&mut self, entry: Entry<T>) {
         if self.cache_policy(entry.player.is_self).can_cache() {
-            self.cache_entry(entry.into())
+            self.cache_entry(entry)
         }
     }
 
