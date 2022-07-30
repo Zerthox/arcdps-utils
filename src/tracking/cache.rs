@@ -2,6 +2,9 @@ use super::{Entry, Player, Tracker};
 use arcdps::Profession;
 use std::ops;
 
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
 /// Player tracker with caching.
 #[derive(Debug, Clone)]
 pub struct CachedTracker<T> {
@@ -170,6 +173,7 @@ impl<T> ops::DerefMut for CachedTracker<T> {
 
 /// Cache entry.
 #[derive(Debug, Clone)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct CacheEntry<T> {
     pub character: String,
     pub account: String,
@@ -191,6 +195,7 @@ impl<T> From<Entry<T>> for CacheEntry<T> {
 
 /// How data should be cached.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum CachePolicy {
     /// Do not cache anything.
     None,

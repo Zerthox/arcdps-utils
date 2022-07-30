@@ -1,7 +1,11 @@
 use super::Player;
 
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
 /// Struct representing a tracker entry.
 #[derive(Debug, Clone)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Entry<T> {
     /// Player this entry corresponds to.
     pub player: Player,
