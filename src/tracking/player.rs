@@ -1,4 +1,4 @@
-use arcdps::{Agent, Profession, Specialization};
+use arcdps::{strip_account_prefix, Agent, Profession, Specialization};
 use std::cmp;
 
 #[cfg(feature = "serde")]
@@ -63,7 +63,7 @@ impl Player {
         Some(Self::new(
             src.id,
             src.name?,
-            acc_name.strip_prefix(':').unwrap_or(acc_name),
+            strip_account_prefix(acc_name),
             dst.is_self != 0,
             dst.prof.into(),
             dst.elite.into(),
