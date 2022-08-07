@@ -109,7 +109,7 @@
 <span id="104">104</span>
 <span id="105">105</span>
 <span id="106">106</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">arcdps</span>::{<span class="ident">Agent</span>, <span class="ident">Profession</span>, <span class="ident">Specialization</span>};
+</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">arcdps</span>::{<span class="ident">strip_account_prefix</span>, <span class="ident">Agent</span>, <span class="ident">Profession</span>, <span class="ident">Specialization</span>};
 <span class="kw">use</span> <span class="ident">std::cmp</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>)]</span>
@@ -174,7 +174,7 @@
         <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::new</span>(
             <span class="ident">src</span>.<span class="ident">id</span>,
             <span class="ident">src</span>.<span class="ident">name</span><span class="question-mark">?</span>,
-            <span class="ident">acc_name</span>.<span class="ident">strip_prefix</span>(<span class="string">&#39;:&#39;</span>).<span class="ident">unwrap_or</span>(<span class="ident">acc_name</span>),
+            <span class="ident">strip_account_prefix</span>(<span class="ident">acc_name</span>),
             <span class="ident">dst</span>.<span class="ident">is_self</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>,
             <span class="ident">dst</span>.<span class="ident">prof</span>.<span class="ident">into</span>(),
             <span class="ident">dst</span>.<span class="ident">elite</span>.<span class="ident">into</span>(),
