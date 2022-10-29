@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["LeftAlign","Render state for left alignment."],["RightAlign","Render state for right alignment."]]});
+window.SIDEBAR_ITEMS = {"struct":[["LeftAlign","Render state for left alignment."],["RightAlign","Render state for right alignment."]]};

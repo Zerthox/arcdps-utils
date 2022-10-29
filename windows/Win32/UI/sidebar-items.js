@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["Input",""],["WindowsAndMessaging",""]]});
+window.SIDEBAR_ITEMS = {"mod":[["Input",""],["WindowsAndMessaging",""]]};

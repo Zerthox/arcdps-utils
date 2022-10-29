@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Log","Component for logging messages."]]});
+window.SIDEBAR_ITEMS = {"struct":[["Log","Component for logging messages."]]};
