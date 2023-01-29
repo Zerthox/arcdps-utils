@@ -1,10 +1,7 @@
 use std::ffi::CString;
 use windows::Win32::{
     Foundation::CHAR,
-    UI::{
-        Input::KeyboardAndMouse::{GetKeyNameTextA, MapVirtualKeyA, VkKeyScanA},
-        WindowsAndMessaging::MAPVK_VK_TO_VSC,
-    },
+    UI::Input::KeyboardAndMouse::{GetKeyNameTextA, MapVirtualKeyA, VkKeyScanA, MAPVK_VK_TO_VSC},
 };
 
 /// Converts a key's name to its keycode.
