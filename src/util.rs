@@ -33,8 +33,8 @@ mod tests {
 
     #[test]
     fn name_to_code() {
-        assert_eq!(65, name_to_keycode('A' as u8));
-        assert_eq!(70, name_to_keycode('F' as u8));
+        assert_eq!(65, name_to_keycode(b'A'));
+        assert_eq!(70, name_to_keycode(b'F'));
     }
 
     #[test]

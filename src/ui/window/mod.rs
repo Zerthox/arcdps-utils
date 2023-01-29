@@ -64,7 +64,7 @@ where
                 let pos = ui.window_pos();
 
                 // render context menu
-                window_context_menu(&format!("Options##{}", self.options.name), || {
+                window_context_menu(format!("Options##{}", self.options.name), || {
                     let _style = small_padding(ui);
 
                     self.inner.render_menu(ui, &props);

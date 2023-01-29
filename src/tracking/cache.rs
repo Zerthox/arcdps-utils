@@ -277,7 +277,7 @@ mod tests {
             1,
         );
 
-        tracker.add_player(char1.clone(), 42);
+        tracker.add_player(char1, 42);
 
         tracker.remove_player(123);
         assert_eq!(1, tracker.cache.len());
