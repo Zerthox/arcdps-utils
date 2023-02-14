@@ -29,19 +29,21 @@ pub fn reset_button(ui: &Ui, label: impl AsRef<str>, confirm: &mut bool) -> bool
             *confirm = true;
         }
     } else {
-        ui.align_text_to_frame_padding();
-        ui.text(format!("{}?", label.as_ref()));
+        ui.group(|| {
+            ui.align_text_to_frame_padding();
+            ui.text(format!("{}?", label.as_ref()));
 
-        ui.same_line();
-        if ui.button("Confirm") {
-            changed = true;
-            *confirm = false;
-        }
+            ui.same_line();
+            if ui.button("Confirm") {
+                changed = true;
+                *confirm = false;
+            }
 
-        ui.same_line_with_spacing(0.0, 5.0);
-        if ui.button("Cancel") {
-            *confirm = false;
-        }
+            ui.same_line_with_spacing(0.0, 5.0);
+            if ui.button("Cancel") {
+                *confirm = false;
+            }
+        });
     }
 
     changed
@@ -104,41 +106,43 @@ pub fn input_float_with_format(
 
 /// Renders a custom key input.
 pub fn input_key(ui: &Ui, id: impl AsRef<str>, label: impl AsRef<str>, keycode: &mut Option<u32>) {
-    const SPACING: f32 = 5.0;
+    ui.group(|| {
+        const SPACING: f32 = 5.0;
 
-    ui.align_text_to_frame_padding();
-    ui.text(label);
+        ui.align_text_to_frame_padding();
+        ui.text(label);
 
-    let mut buffer = String::with_capacity(3);
-    if let Some(keycode) = keycode {
-        buffer.push_str(&keycode.to_string());
-    }
-    ui.same_line_with_spacing(0.0, SPACING);
-    ui.set_next_item_width(ch_width(ui, 4));
-    if ui
-        .input_text(id, &mut buffer)
-        .chars_uppercase(true)
-        .chars_noblank(true)
-        .build()
-    {
-        match buffer.len() {
-            1 => {
-                // read entered key name
-                *keycode = Some(name_to_keycode(buffer.as_bytes()[0]));
-            }
-            2 | 3 => {
-                // read entered keycode
-                *keycode = buffer.parse().ok();
-            }
-            _ => {
-                // reset to none
-                *keycode = None;
+        let mut buffer = String::with_capacity(3);
+        if let Some(keycode) = keycode {
+            buffer.push_str(&keycode.to_string());
+        }
+        ui.same_line_with_spacing(0.0, SPACING);
+        ui.set_next_item_width(ch_width(ui, 4));
+        if ui
+            .input_text(id, &mut buffer)
+            .chars_uppercase(true)
+            .chars_noblank(true)
+            .build()
+        {
+            match buffer.len() {
+                1 => {
+                    // read entered key name
+                    *keycode = Some(name_to_keycode(buffer.as_bytes()[0]));
+                }
+                2 | 3 => {
+                    // read entered keycode
+                    *keycode = buffer.parse().ok();
+                }
+                _ => {
+                    // reset to none
+                    *keycode = None;
+                }
             }
         }
-    }
 
-    // display key name
-    let name = keycode.and_then(keycode_to_name).unwrap_or_default();
-    ui.same_line_with_spacing(0.0, SPACING);
-    ui.text(name);
+        // display key name
+        let name = keycode.and_then(keycode_to_name).unwrap_or_default();
+        ui.same_line_with_spacing(0.0, SPACING);
+        ui.text(name);
+    });
 }
