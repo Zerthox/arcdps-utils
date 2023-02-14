@@ -142,6 +142,10 @@
 <a href="#142" id="142">142</a>
 <a href="#143" id="143">143</a>
 <a href="#144" id="144">144</a>
+<a href="#145" id="145">145</a>
+<a href="#146" id="146">146</a>
+<a href="#147" id="147">147</a>
+<a href="#148" id="148">148</a>
 </pre><pre class="rust"><code><span class="doccomment">//! Predefined primitive UI elements &amp; render helpers.
 
 </span><span class="kw">use </span><span class="kw">crate</span>::util::{keycode_to_name, name_to_keycode};
@@ -173,19 +177,21 @@
             <span class="kw-2">*</span>confirm = <span class="bool-val">true</span>;
         }
     } <span class="kw">else </span>{
-        ui.align_text_to_frame_padding();
-        ui.text(<span class="macro">format!</span>(<span class="string">&quot;{}?&quot;</span>, label.as_ref()));
+        ui.group(|| {
+            ui.align_text_to_frame_padding();
+            ui.text(<span class="macro">format!</span>(<span class="string">&quot;{}?&quot;</span>, label.as_ref()));
 
-        ui.same_line();
-        <span class="kw">if </span>ui.button(<span class="string">&quot;Confirm&quot;</span>) {
-            changed = <span class="bool-val">true</span>;
-            <span class="kw-2">*</span>confirm = <span class="bool-val">false</span>;
-        }
+            ui.same_line();
+            <span class="kw">if </span>ui.button(<span class="string">&quot;Confirm&quot;</span>) {
+                changed = <span class="bool-val">true</span>;
+                <span class="kw-2">*</span>confirm = <span class="bool-val">false</span>;
+            }
 
-        ui.same_line_with_spacing(<span class="number">0.0</span>, <span class="number">5.0</span>);
-        <span class="kw">if </span>ui.button(<span class="string">&quot;Cancel&quot;</span>) {
-            <span class="kw-2">*</span>confirm = <span class="bool-val">false</span>;
-        }
+            ui.same_line_with_spacing(<span class="number">0.0</span>, <span class="number">5.0</span>);
+            <span class="kw">if </span>ui.button(<span class="string">&quot;Cancel&quot;</span>) {
+                <span class="kw-2">*</span>confirm = <span class="bool-val">false</span>;
+            }
+        });
     }
 
     changed
@@ -248,43 +254,45 @@
 
 <span class="doccomment">/// Renders a custom key input.
 </span><span class="kw">pub fn </span>input_key(ui: <span class="kw-2">&amp;</span>Ui, id: <span class="kw">impl </span>AsRef&lt;str&gt;, label: <span class="kw">impl </span>AsRef&lt;str&gt;, keycode: <span class="kw-2">&amp;mut </span><span class="prelude-ty">Option</span>&lt;u32&gt;) {
-    <span class="kw">const </span>SPACING: f32 = <span class="number">5.0</span>;
+    ui.group(|| {
+        <span class="kw">const </span>SPACING: f32 = <span class="number">5.0</span>;
 
-    ui.align_text_to_frame_padding();
-    ui.text(label);
+        ui.align_text_to_frame_padding();
+        ui.text(label);
 
-    <span class="kw">let </span><span class="kw-2">mut </span>buffer = String::with_capacity(<span class="number">3</span>);
-    <span class="kw">if let </span><span class="prelude-val">Some</span>(keycode) = keycode {
-        buffer.push_str(<span class="kw-2">&amp;</span>keycode.to_string());
-    }
-    ui.same_line_with_spacing(<span class="number">0.0</span>, SPACING);
-    ui.set_next_item_width(ch_width(ui, <span class="number">4</span>));
-    <span class="kw">if </span>ui
-        .input_text(id, <span class="kw-2">&amp;mut </span>buffer)
-        .chars_uppercase(<span class="bool-val">true</span>)
-        .chars_noblank(<span class="bool-val">true</span>)
-        .build()
-    {
-        <span class="kw">match </span>buffer.len() {
-            <span class="number">1 </span>=&gt; {
-                <span class="comment">// read entered key name
-                </span><span class="kw-2">*</span>keycode = <span class="prelude-val">Some</span>(name_to_keycode(buffer.as_bytes()[<span class="number">0</span>]));
-            }
-            <span class="number">2 </span>| <span class="number">3 </span>=&gt; {
-                <span class="comment">// read entered keycode
-                </span><span class="kw-2">*</span>keycode = buffer.parse().ok();
-            }
-            <span class="kw">_ </span>=&gt; {
-                <span class="comment">// reset to none
-                </span><span class="kw-2">*</span>keycode = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>buffer = String::with_capacity(<span class="number">3</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(keycode) = keycode {
+            buffer.push_str(<span class="kw-2">&amp;</span>keycode.to_string());
+        }
+        ui.same_line_with_spacing(<span class="number">0.0</span>, SPACING);
+        ui.set_next_item_width(ch_width(ui, <span class="number">4</span>));
+        <span class="kw">if </span>ui
+            .input_text(id, <span class="kw-2">&amp;mut </span>buffer)
+            .chars_uppercase(<span class="bool-val">true</span>)
+            .chars_noblank(<span class="bool-val">true</span>)
+            .build()
+        {
+            <span class="kw">match </span>buffer.len() {
+                <span class="number">1 </span>=&gt; {
+                    <span class="comment">// read entered key name
+                    </span><span class="kw-2">*</span>keycode = <span class="prelude-val">Some</span>(name_to_keycode(buffer.as_bytes()[<span class="number">0</span>]));
+                }
+                <span class="number">2 </span>| <span class="number">3 </span>=&gt; {
+                    <span class="comment">// read entered keycode
+                    </span><span class="kw-2">*</span>keycode = buffer.parse().ok();
+                }
+                <span class="kw">_ </span>=&gt; {
+                    <span class="comment">// reset to none
+                    </span><span class="kw-2">*</span>keycode = <span class="prelude-val">None</span>;
+                }
             }
         }
-    }
 
-    <span class="comment">// display key name
-    </span><span class="kw">let </span>name = keycode.and_then(keycode_to_name).unwrap_or_default();
-    ui.same_line_with_spacing(<span class="number">0.0</span>, SPACING);
-    ui.text(name);
+        <span class="comment">// display key name
+        </span><span class="kw">let </span>name = keycode.and_then(keycode_to_name).unwrap_or_default();
+        ui.same_line_with_spacing(<span class="number">0.0</span>, SPACING);
+        ui.text(name);
+    });
 }
 </code></pre></div>
 </section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="arc_util" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.1 (d5a82bbd2 2023-02-07)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
