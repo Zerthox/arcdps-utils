@@ -115,6 +115,33 @@
 <a href="#115" id="115">115</a>
 <a href="#116" id="116">116</a>
 <a href="#117" id="117">117</a>
+<a href="#118" id="118">118</a>
+<a href="#119" id="119">119</a>
+<a href="#120" id="120">120</a>
+<a href="#121" id="121">121</a>
+<a href="#122" id="122">122</a>
+<a href="#123" id="123">123</a>
+<a href="#124" id="124">124</a>
+<a href="#125" id="125">125</a>
+<a href="#126" id="126">126</a>
+<a href="#127" id="127">127</a>
+<a href="#128" id="128">128</a>
+<a href="#129" id="129">129</a>
+<a href="#130" id="130">130</a>
+<a href="#131" id="131">131</a>
+<a href="#132" id="132">132</a>
+<a href="#133" id="133">133</a>
+<a href="#134" id="134">134</a>
+<a href="#135" id="135">135</a>
+<a href="#136" id="136">136</a>
+<a href="#137" id="137">137</a>
+<a href="#138" id="138">138</a>
+<a href="#139" id="139">139</a>
+<a href="#140" id="140">140</a>
+<a href="#141" id="141">141</a>
+<a href="#142" id="142">142</a>
+<a href="#143" id="143">143</a>
+<a href="#144" id="144">144</a>
 </pre><pre class="rust"><code><span class="doccomment">//! Predefined primitive UI elements &amp; render helpers.
 
 </span><span class="kw">use </span><span class="kw">crate</span>::util::{keycode_to_name, name_to_keycode};
@@ -135,6 +162,33 @@
 <span class="doccomment">/// Enable small padding similar to ArcDPS and other plugins.
 </span><span class="kw">pub fn </span>small_padding&lt;<span class="lifetime">&#39;ui</span>&gt;(ui: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ui </span>Ui) -&gt; StyleStackToken&lt;<span class="lifetime">&#39;ui</span>&gt; {
     ui.push_style_var(StyleVar::FramePadding([<span class="number">1.0</span>, <span class="number">1.0</span>]))
+}
+
+<span class="doccomment">/// Renders a reset button.
+</span><span class="kw">pub fn </span>reset_button(ui: <span class="kw-2">&amp;</span>Ui, label: <span class="kw">impl </span>AsRef&lt;str&gt;, confirm: <span class="kw-2">&amp;mut </span>bool) -&gt; bool {
+    <span class="kw">let </span><span class="kw-2">mut </span>changed = <span class="bool-val">false</span>;
+
+    <span class="kw">if </span>!<span class="kw-2">*</span>confirm {
+        <span class="kw">if </span>ui.button(label) {
+            <span class="kw-2">*</span>confirm = <span class="bool-val">true</span>;
+        }
+    } <span class="kw">else </span>{
+        ui.align_text_to_frame_padding();
+        ui.text(<span class="macro">format!</span>(<span class="string">&quot;{}?&quot;</span>, label.as_ref()));
+
+        ui.same_line();
+        <span class="kw">if </span>ui.button(<span class="string">&quot;Confirm&quot;</span>) {
+            changed = <span class="bool-val">true</span>;
+            <span class="kw-2">*</span>confirm = <span class="bool-val">false</span>;
+        }
+
+        ui.same_line_with_spacing(<span class="number">0.0</span>, <span class="number">5.0</span>);
+        <span class="kw">if </span>ui.button(<span class="string">&quot;Cancel&quot;</span>) {
+            <span class="kw-2">*</span>confirm = <span class="bool-val">false</span>;
+        }
+    }
+
+    changed
 }
 
 <span class="doccomment">/// Renders a right-click context menu for the last item.
@@ -233,4 +287,4 @@
     ui.text(name);
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="arc_util" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0 (fc594f156 2023-01-24)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="arc_util" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.1 (d5a82bbd2 2023-02-07)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
