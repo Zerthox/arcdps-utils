@@ -1,5 +1,6 @@
 //! UI related utilities.
 
+pub mod action;
 pub mod align;
 pub mod render;
 pub mod window;
