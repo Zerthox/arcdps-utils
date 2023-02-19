@@ -70,13 +70,17 @@
 <a href="#70" id="70">70</a>
 <a href="#71" id="71">71</a>
 <a href="#72" id="72">72</a>
+<a href="#73" id="73">73</a>
+<a href="#74" id="74">74</a>
 </pre><pre class="rust"><code><span class="kw">use </span>arcdps::imgui::{StyleVar, Ui};
 
 <span class="doccomment">/// An action for ordered lists in UI.
 ///
 /// # Examples
 /// ```no_run
-/// # let ui: Ui = todo!();
+/// use arc_util::ui::action::Action;
+///
+/// # let ui: &amp;arcdps::imgui::Ui = todo!();
 /// let mut vec = vec![&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
 /// let mut action = Action::new();
 /// for (i, entry) in vec.iter().enumerate() {
