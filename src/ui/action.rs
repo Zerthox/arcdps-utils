@@ -4,7 +4,9 @@ use arcdps::imgui::{StyleVar, Ui};
 ///
 /// # Examples
 /// ```no_run
-/// # let ui: Ui = todo!();
+/// use arc_util::ui::action::Action;
+///
+/// # let ui: &arcdps::imgui::Ui = todo!();
 /// let mut vec = vec!["a", "b", "c"];
 /// let mut action = Action::new();
 /// for (i, entry) in vec.iter().enumerate() {
