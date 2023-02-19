@@ -7,12 +7,12 @@ repository = "https://github.com/zerthox/arcdps-utils"
 
 [dependencies]
 arcdps = { git = "https://github.com/zerthox/arcdps-bindings" }
-chrono = { version = "0.4", optional = true }
-serde = { version = "1.0", features = ["derive"], optional = true }
-serde_json = { version = "1.0", optional = true }
+chrono = { version = "0.4.23", optional = true }
+serde = { version = "1.0.152", features = ["derive"], optional = true }
+serde_json = { version = "1.0.93", optional = true }
 
 [dependencies.windows]
-version = "0.44"
+version = "0.44.0"
 features = [
     "System",
     "Win32_Foundation",
