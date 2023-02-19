@@ -1,5 +1,5 @@
 var sourcesIndex = JSON.parse('{\
-"arc_util":["",[["tracking",[],["cache.rs","entry.rs","mod.rs","player.rs"]],["ui",[["window",[],["menu.rs","mod.rs","options.rs","render.rs","settings.rs"]]],["align.rs","log.rs","mod.rs","render.rs"]]],["api.rs","lib.rs","settings.rs","util.rs"]],\
+"arc_util":["",[["tracking",[],["cache.rs","entry.rs","mod.rs","player.rs"]],["ui",[["window",[],["menu.rs","mod.rs","options.rs","render.rs","settings.rs"]]],["action.rs","align.rs","log.rs","mod.rs","render.rs"]]],["api.rs","lib.rs","settings.rs","util.rs"]],\
 "arcdps":["",[["api",[],["agent.rs","mod.rs"]],["exports",[],["mod.rs","raw.rs"]]],["callbacks.rs","globals.rs","lib.rs","panic.rs","util.rs"]],\
 "arcdps_codegen":["",[],["callbacks.rs","export.rs","lib.rs","parse.rs"]],\
 "arcdps_evtc":["",[],["buff.rs","event.rs","game.rs","lib.rs","state_change.rs"]],\

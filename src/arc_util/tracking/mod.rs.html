@@ -126,7 +126,7 @@
         <span class="self">self</span>.add_player(player, T::default())
     }
 
-    <span class="doccomment">/// Removes a tracked player, returning `true` if they were tracked.
+    <span class="doccomment">/// Removes a tracked player, returning the [`Entry`] if they were tracked.
     </span><span class="kw">pub fn </span>remove_player(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: usize) -&gt; <span class="prelude-ty">Option</span>&lt;Entry&lt;T&gt;&gt; {
         <span class="self">self</span>.entries
             .iter()
