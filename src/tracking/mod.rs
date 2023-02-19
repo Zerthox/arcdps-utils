@@ -38,7 +38,7 @@ impl<T> Tracker<T> {
         self.add_player(player, T::default())
     }
 
-    /// Removes a tracked player, returning `true` if they were tracked.
+    /// Removes a tracked player, returning the [`Entry`] if they were tracked.
     pub fn remove_player(&mut self, id: usize) -> Option<Entry<T>> {
         self.entries
             .iter()
