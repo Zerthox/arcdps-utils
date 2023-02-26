@@ -3,6 +3,7 @@
 pub mod action;
 pub mod align;
 pub mod render;
+pub mod texture;
 pub mod window;
 
 #[cfg(feature = "log")]
