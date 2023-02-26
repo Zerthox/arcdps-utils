@@ -441,12 +441,12 @@
             ui.table_setup_column_with(column.as_setup());
         }
 
-        <span class="kw">for </span>column <span class="kw">in </span>columns {
-            table_header_icon(
-                ui,
-                column.name.as_ref(),
-                <span class="kw">if </span>show_icons { column.icon } <span class="kw">else </span>{ <span class="prelude-val">None </span>},
-            );
+        <span class="kw">if </span>show_icons {
+            <span class="kw">for </span>column <span class="kw">in </span>columns {
+                table_header_icon(ui, column.name.as_ref(), column.icon);
+            }
+        } <span class="kw">else </span>{
+            ui.table_headers_row();
         }
 
         <span class="prelude-val">Some</span>(token)
