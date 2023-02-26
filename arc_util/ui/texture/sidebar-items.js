@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":[["create_texture2d","Creates a 2-dimensional texture with the given description and subresource data."],["create_texture2d_from_mem","Creates a 2-dimensional texture from in-memory data."],["create_texture2d_view","Creates a shader resource view for the given 2-dimensional texture."]]};
