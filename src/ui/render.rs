@@ -170,12 +170,12 @@ where
             ui.table_setup_column_with(column.as_setup());
         }
 
-        for column in columns {
-            table_header_icon(
-                ui,
-                column.name.as_ref(),
-                if show_icons { column.icon } else { None },
-            );
+        if show_icons {
+            for column in columns {
+                table_header_icon(ui, column.name.as_ref(), column.icon);
+            }
+        } else {
+            ui.table_headers_row();
         }
 
         Some(token)
