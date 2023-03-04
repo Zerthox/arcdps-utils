@@ -250,18 +250,18 @@ where
 
 /// Renders a table header with icon.
 pub fn table_header_icon(ui: &Ui, label: impl AsRef<str>, icon: Option<&Icon>) {
+    let label = label.as_ref();
     ui.table_next_column();
     if let Some(icon) = icon {
-        // avoid dropping by transmuting the reference
-        let ptr = *unsafe { mem::transmute::<_, &*const c_void>(icon) };
-
         let size = ui.text_line_height_with_spacing();
         let [pos_x, pos_y] = ui.cursor_screen_pos();
         let top = pos_y + (ui.text_line_height() - size) / 2.0;
 
         ui.set_cursor_screen_pos([pos_x + size, pos_y]);
-        ui.table_header("");
+        ui.table_header(format!("##{label}"));
 
+        // avoid dropping by transmuting the reference
+        let ptr = *unsafe { mem::transmute::<_, &*const c_void>(icon) };
         ui.get_window_draw_list()
             .add_image(ptr.into(), [pos_x, top], [pos_x + size, top + size])
             .build();
