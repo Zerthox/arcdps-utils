@@ -521,18 +521,18 @@
 
 <span class="doccomment">/// Renders a table header with icon.
 </span><span class="kw">pub fn </span>table_header_icon(ui: <span class="kw-2">&amp;</span>Ui, label: <span class="kw">impl </span>AsRef&lt;str&gt;, icon: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Icon&gt;) {
+    <span class="kw">let </span>label = label.as_ref();
     ui.table_next_column();
     <span class="kw">if let </span><span class="prelude-val">Some</span>(icon) = icon {
-        <span class="comment">// avoid dropping by transmuting the reference
-        </span><span class="kw">let </span>ptr = <span class="kw-2">*</span><span class="kw">unsafe </span>{ mem::transmute::&lt;<span class="kw">_</span>, <span class="kw-2">&amp;*const </span>c_void&gt;(icon) };
-
         <span class="kw">let </span>size = ui.text_line_height_with_spacing();
         <span class="kw">let </span>[pos_x, pos_y] = ui.cursor_screen_pos();
         <span class="kw">let </span>top = pos_y + (ui.text_line_height() - size) / <span class="number">2.0</span>;
 
         ui.set_cursor_screen_pos([pos_x + size, pos_y]);
-        ui.table_header(<span class="string">&quot;&quot;</span>);
+        ui.table_header(<span class="macro">format!</span>(<span class="string">&quot;##{label}&quot;</span>));
 
+        <span class="comment">// avoid dropping by transmuting the reference
+        </span><span class="kw">let </span>ptr = <span class="kw-2">*</span><span class="kw">unsafe </span>{ mem::transmute::&lt;<span class="kw">_</span>, <span class="kw-2">&amp;*const </span>c_void&gt;(icon) };
         ui.get_window_draw_list()
             .add_image(ptr.into(), [pos_x, top], [pos_x + size, top + size])
             .build();
