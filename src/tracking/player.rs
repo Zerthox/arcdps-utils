@@ -38,6 +38,7 @@ pub struct Player {
 
 impl Player {
     /// Creates a new player.
+    #[allow(clippy::too_many_arguments)]
     pub fn new(
         id: usize,
         instance_id: u16,
