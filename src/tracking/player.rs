@@ -12,7 +12,7 @@ pub struct Player {
     pub id: usize,
 
     // Player instance id on map
-    pub instance_id: usize,
+    pub instance_id: u16,
 
     /// Player character name.
     pub character: String,
@@ -40,7 +40,7 @@ impl Player {
     /// Creates a new player.
     pub fn new(
         id: usize,
-        instance_id: usize,
+        instance_id: u16,
         character: impl Into<String>,
         account: impl Into<String>,
         is_self: bool,
@@ -68,7 +68,7 @@ impl Player {
         let acc_name = dst.name?;
         Some(Self::new(
             src.id,
-            dst.id,
+            dst.id as u16,
             src.name?,
             strip_account_prefix(acc_name),
             dst.is_self != 0,
