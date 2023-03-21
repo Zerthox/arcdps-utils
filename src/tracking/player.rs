@@ -11,6 +11,9 @@ pub struct Player {
     /// Player id given by the game.
     pub id: usize,
 
+    // Player instance id on map
+    pub instance_id: usize,
+
     /// Player character name.
     pub character: String,
 
@@ -37,6 +40,7 @@ impl Player {
     /// Creates a new player.
     pub fn new(
         id: usize,
+        instance_id: usize,
         character: impl Into<String>,
         account: impl Into<String>,
         is_self: bool,
@@ -46,6 +50,7 @@ impl Player {
     ) -> Self {
         Self {
             id,
+            instance_id,
             character: character.into(),
             account: account.into(),
             is_self,
@@ -59,9 +64,11 @@ impl Player {
     /// Creates a new player from tracking change agents.
     pub fn from_tracking_change(src: Agent, dst: Agent) -> Option<Self> {
         debug_assert!(src.elite == 0 && src.prof != 0);
+
         let acc_name = dst.name?;
         Some(Self::new(
             src.id,
+            dst.id,
             src.name?,
             strip_account_prefix(acc_name),
             dst.is_self != 0,
