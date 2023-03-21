@@ -273,7 +273,6 @@ mod tests {
         let char3 = Player::new(
             789,
             3,
-
             "Char3",
             "Account2",
             false,
