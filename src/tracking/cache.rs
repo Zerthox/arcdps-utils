@@ -1,4 +1,5 @@
 use super::{Entry, Player, Tracker};
+use arcdps::{Profession, Specialization};
 use std::ops;
 
 #[cfg(feature = "serde")]
@@ -11,7 +12,7 @@ pub struct CachedTracker<T> {
     tracker: Tracker<T>,
 
     /// Cache for data.
-    cache: Vec<Entry<T>>,
+    cache: Vec<(CachedPlayer, T)>,
 
     /// How to cache for self.
     pub self_policy: CachePolicy,
@@ -51,9 +52,15 @@ impl<T> CachedTracker<T> {
     }
 
     /// Searches the cache for an entry, removing it when found.
-    fn search_cache(&mut self, predicate: impl FnMut(&Entry<T>) -> bool) -> Option<Entry<T>> {
-        let index = self.cache.iter().position(predicate)?;
-        Some(self.cache.remove(index))
+    fn take_cache(
+        &mut self,
+        mut predicate: impl FnMut(&CachedPlayer) -> bool,
+    ) -> Option<(CachedPlayer, T)> {
+        let index = self
+            .cache
+            .iter()
+            .position(|(player, _)| predicate(player))?;
+        Some(self.cache.swap_remove(index))
     }
 
     /// Adds a new tracked player, returning `true` if cached data was used.
@@ -61,17 +68,17 @@ impl<T> CachedTracker<T> {
         let cached = match self.cache_policy(player.is_self) {
             CachePolicy::None => None,
             CachePolicy::PerAccount => self
-                .search_cache(|cached| cached.player.account == player.account)
-                .and_then(|cached| {
-                    if cached.player.character == player.character {
-                        Some(cached.data)
+                .take_cache(|cached| cached.account == player.account)
+                .and_then(|(cached, data)| {
+                    if cached.character == player.character {
+                        Some(data)
                     } else {
                         None
                     }
                 }),
             CachePolicy::PerCharacter => self
-                .search_cache(|cached| cached.player.character == player.character)
-                .map(|cached| cached.data),
+                .take_cache(|cached| cached.character == player.character)
+                .map(|(_, data)| data),
         };
         let found = cached.is_some();
 
@@ -138,13 +145,13 @@ impl<T> CachedTracker<T> {
     ///
     /// Caching happens automatically based on the set [`CachePolicy`], so usually this does not have to be called manually.
     pub fn cache_entry(&mut self, entry: Entry<T>) {
-        self.cache.push(entry)
+        self.cache.push(entry.into())
     }
 
     /// Adds multiple entries to the cache.
     ///
     /// Caching happens automatically based on the set [`CachePolicy`], so usually this does not have to be called manually.
-    pub fn cache_multiple(&mut self, entries: impl Iterator<Item = Entry<T>>) {
+    pub fn cache_multiple(&mut self, entries: impl Iterator<Item = (CachedPlayer, T)>) {
         self.cache.extend(entries)
     }
 
@@ -159,7 +166,7 @@ impl<T> CachedTracker<T> {
     }
 
     /// Returns an iterator over the current cache contents.
-    pub fn cache_iter(&self) -> impl Iterator<Item = &Entry<T>> {
+    pub fn cache_iter(&self) -> impl Iterator<Item = &(CachedPlayer, T)> {
         self.cache.iter()
     }
 
@@ -207,6 +214,57 @@ impl CachePolicy {
     /// Whether caching is allowed.
     pub const fn can_cache(&self) -> bool {
         matches!(self, Self::PerAccount | Self::PerCharacter)
+    }
+}
+
+/// An player entry in the tracker cache.
+#[derive(Debug, Clone)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+pub struct CachedPlayer {
+    /// Account name of cached player.
+    pub account: String,
+
+    /// Character name of cached player.
+    pub character: String,
+
+    /// Profession of cached player.
+    pub profession: Profession,
+
+    /// Elite specialization of cached player.
+    pub elite: Specialization,
+}
+
+impl CachedPlayer {
+    /// Creates a new player cache entry.
+    pub fn new(
+        account: impl Into<String>,
+        character: impl Into<String>,
+        profession: Profession,
+        specialization: Specialization,
+    ) -> Self {
+        Self {
+            account: account.into(),
+            character: character.into(),
+            profession,
+            elite: specialization,
+        }
+    }
+}
+
+impl From<Player> for CachedPlayer {
+    fn from(player: Player) -> Self {
+        Self::new(
+            player.account,
+            player.character,
+            player.profession,
+            player.elite,
+        )
+    }
+}
+
+impl<T> From<Entry<T>> for (CachedPlayer, T) {
+    fn from(entry: Entry<T>) -> Self {
+        (entry.player.into(), entry.data)
     }
 }
 
