@@ -1,12 +1,11 @@
 use std::ffi::CString;
-use windows::Win32::{
-    Foundation::CHAR,
-    UI::Input::KeyboardAndMouse::{GetKeyNameTextA, MapVirtualKeyA, VkKeyScanA, MAPVK_VK_TO_VSC},
+use windows::Win32::UI::Input::KeyboardAndMouse::{
+    GetKeyNameTextA, MapVirtualKeyA, VkKeyScanA, MAPVK_VK_TO_VSC,
 };
 
 /// Converts a key's name to its keycode.
 pub fn name_to_keycode(name: u8) -> u32 {
-    let result = unsafe { VkKeyScanA(CHAR(name)) } as u32;
+    let result = unsafe { VkKeyScanA(name) } as u32;
     result & 0xff
 }
 

@@ -13,6 +13,7 @@ pub use arcdps::imgui::Ui;
 pub use window::{Window, WindowOptions};
 
 /// Interface for UI components.
+// TODO: replace trait with closures?
 pub trait Component<Props> {
     /// Renders the component.
     fn render(&mut self, ui: &Ui, props: Props);
