@@ -221,6 +221,7 @@ mod tests {
 
         let player = Player::new(
             123,
+            456,
             "Char",
             "Acc",
             true,
@@ -249,6 +250,7 @@ mod tests {
 
         let char1 = Player::new(
             123,
+            1,
             "Char1",
             "Account1",
             false,
@@ -259,6 +261,7 @@ mod tests {
 
         let char2 = Player::new(
             456,
+            2,
             "Char2",
             "Account1",
             false,
@@ -269,6 +272,7 @@ mod tests {
 
         let char3 = Player::new(
             789,
+            3,
             "Char3",
             "Account2",
             false,
