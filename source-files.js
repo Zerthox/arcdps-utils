@@ -39,6 +39,6 @@ var sourcesIndex = JSON.parse('{\
 "winapi":["",[["km",[],["mod.rs"]],["shared",[],["basetsd.rs","cfg.rs","devpropdef.rs","guiddef.rs","ktmtypes.rs","minwindef.rs","mod.rs","ntdef.rs","ntstatus.rs","rpcndr.rs","windef.rs","winerror.rs","wtypesbase.rs"]],["ucrt",[],["mod.rs"]],["um",[["gl",[],["mod.rs"]]],["cfgmgr32.rs","errhandlingapi.rs","fileapi.rs","handleapi.rs","libloaderapi.rs","minwinbase.rs","mod.rs","processthreadsapi.rs","profileapi.rs","reason.rs","sysinfoapi.rs","timezoneapi.rs","winbase.rs","winnt.rs","winreg.rs"]],["vc",[],["excpt.rs","mod.rs","vadefs.rs","vcruntime.rs"]],["winrt",[],["mod.rs"]]],["lib.rs","macros.rs"]],\
 "windows_targets":["",[],["lib.rs"]],\
 "windows_x86_64_msvc":["",[],["lib.rs"]],\
-"winnow":["",[["bits",[],["complete.rs","mod.rs","streaming.rs"]],["branch",[],["mod.rs"]],["bytes",[],["complete.rs","mod.rs","streaming.rs"]],["character",[],["complete.rs","mod.rs","streaming.rs"]],["combinator",[],["mod.rs"]],["multi",[],["mod.rs"]],["number",[],["complete.rs","mod.rs","streaming.rs"]],["sequence",[],["mod.rs"]],["stream",[],["impls.rs","mod.rs"]],["trace",[],["mod.rs"]]],["error.rs","lib.rs","macros.rs","parser.rs"]]\
+"winnow":["",[["bits",[],["mod.rs"]],["branch",[],["mod.rs"]],["bytes",[],["mod.rs"]],["character",[],["mod.rs"]],["combinator",[],["mod.rs"]],["multi",[],["mod.rs"]],["number",[],["mod.rs"]],["sequence",[],["mod.rs"]],["stream",[],["impls.rs","mod.rs"]],["trace",[],["mod.rs"]]],["error.rs","lib.rs","macros.rs","parser.rs"]]\
 }');
 createSourceSidebar();

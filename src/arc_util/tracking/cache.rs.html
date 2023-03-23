@@ -367,6 +367,8 @@
 <a href="#367" id="367">367</a>
 <a href="#368" id="368">368</a>
 <a href="#369" id="369">369</a>
+<a href="#370" id="370">370</a>
+<a href="#371" id="371">371</a>
 </pre><pre class="rust"><code><span class="kw">use super</span>::{Entry, Player, Tracker};
 <span class="kw">use </span>arcdps::{Profession, Specialization};
 <span class="kw">use </span>std::ops;
@@ -597,9 +599,11 @@
     </span><span class="kw">pub </span>character: String,
 
     <span class="doccomment">/// Profession of cached player.
+    </span><span class="attr">#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(default))]
     </span><span class="kw">pub </span>profession: Profession,
 
     <span class="doccomment">/// Elite specialization of cached player.
+    </span><span class="attr">#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(default))]
     </span><span class="kw">pub </span>elite: Specialization,
 }
 
