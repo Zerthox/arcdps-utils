@@ -228,9 +228,11 @@ pub struct CachedPlayer {
     pub character: String,
 
     /// Profession of cached player.
+    #[cfg_attr(feature = "serde", serde(default))]
     pub profession: Profession,
 
     /// Elite specialization of cached player.
+    #[cfg_attr(feature = "serde", serde(default))]
     pub elite: Specialization,
 }
 

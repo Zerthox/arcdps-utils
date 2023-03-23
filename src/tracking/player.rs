@@ -8,10 +8,11 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Player {
-    /// Player id given by the game.
+    /// Player id.
     pub id: usize,
 
-    // Player instance id on map
+    // Player instance id on map.
+    #[cfg_attr(feature = "serde", serde(default))]
     pub instance_id: u16,
 
     /// Player character name.
@@ -21,18 +22,23 @@ pub struct Player {
     pub account: String,
 
     /// Whether the player is the local player.
+    #[cfg_attr(feature = "serde", serde(default))]
     pub is_self: bool,
 
     /// Profession (class) of the player character.
+    #[cfg_attr(feature = "serde", serde(default))]
     pub profession: Profession,
 
     /// Current elite specialization the player has equipped.
+    #[cfg_attr(feature = "serde", serde(default))]
     pub elite: Specialization,
 
     /// Current squad subgroup the player is in.
+    #[cfg_attr(feature = "serde", serde(default))]
     pub subgroup: usize,
 
     /// Whether the player is currently in combat.
+    #[cfg_attr(feature = "serde", serde(default))]
     pub combat: bool,
 }
 
