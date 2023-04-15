@@ -1,6 +1,6 @@
 [package]
 name = "arc_util"
-version = "0.9.3"
+version = "0.9.4"
 edition = "2021"
 authors = ["Zerthox"]
 repository = "https://github.com/zerthox/arcdps-utils"
@@ -12,7 +12,7 @@ serde = { version = "1.0.152", features = ["derive"], optional = true }
 serde_json = { version = "1.0.93", optional = true }
 
 [dependencies.windows]
-version = "0.46.0"
+version = "0.48.0"
 features = [
     "System",
     "Win32_Foundation",
