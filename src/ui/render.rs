@@ -184,6 +184,7 @@ where
     if let Some(token) =
         ui.begin_table_with_sizing(label, columns.len(), flags, outer_size, inner_size)
     {
+        ui.table_setup_scroll_freeze(0, 1);
         for column in columns {
             ui.table_setup_column_with(column.as_setup());
         }
