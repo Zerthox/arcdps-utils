@@ -170,6 +170,11 @@ impl<T> CachedTracker<T> {
         self.cache.iter()
     }
 
+    /// Returns a mutable iterator over the current cache contents.
+    pub fn cache_iter_mut(&mut self) -> impl Iterator<Item = &mut (CachedPlayer, T)> {
+        self.cache.iter_mut()
+    }
+
     /// Clears the cache.
     pub fn clear_cache(&mut self) {
         self.cache.clear()
