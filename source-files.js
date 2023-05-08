@@ -2,7 +2,7 @@ var sourcesIndex = JSON.parse('{\
 "arc_util":["",[["tracking",[],["cache.rs","entry.rs","mod.rs","player.rs"]],["ui",[["window",[],["menu.rs","mod.rs","options.rs","render.rs","settings.rs"]]],["action.rs","align.rs","log.rs","mod.rs","render.rs","texture.rs"]]],["api.rs","lib.rs","settings.rs","util.rs"]],\
 "arcdps":["",[["evtc",[],["agent.rs","mod.rs"]],["exports",[],["has.rs","mod.rs","raw.rs"]]],["callbacks.rs","globals.rs","lib.rs","panic.rs","util.rs"]],\
 "arcdps_codegen":["",[],["callbacks.rs","export.rs","lib.rs","parse.rs"]],\
-"arcdps_evtc":["",[],["agent.rs","buff.rs","event.rs","game.rs","lib.rs","state_change.rs"]],\
+"arcdps_evtc":["",[],["agent.rs","buff.rs","effect.rs","event.rs","language.rs","lib.rs","player.rs","position.rs","skill.rs","state_change.rs","strike.rs"]],\
 "arcdps_imgui":["",[["fonts",[],["atlas.rs","font.rs","glyph.rs","glyph_ranges.rs","mod.rs"]],["input",[],["keyboard.rs","mod.rs","mouse.rs"]],["render",[],["draw_data.rs","mod.rs","renderer.rs"]],["widget",[],["color_editors.rs","combo_box.rs","drag.rs","image.rs","list_box.rs","menu.rs","misc.rs","mod.rs","progress_bar.rs","selectable.rs","slider.rs","tab.rs","text.rs","tree.rs"]],["window",[],["child_window.rs","content_region.rs","mod.rs","scroll.rs"]]],["clipboard.rs","color.rs","columns.rs","context.rs","drag_drop.rs","draw_list.rs","input_widget.rs","internal.rs","io.rs","layout.rs","lib.rs","list_clipper.rs","plothistogram.rs","plotlines.rs","popups.rs","stacks.rs","string.rs","style.rs","tables.rs","tokens.rs","utils.rs"]],\
 "arcdps_imgui_sys":["",[],["bindings.rs","lib.rs"]],\
 "bitflags":["",[],["lib.rs"]],\
@@ -40,6 +40,6 @@ var sourcesIndex = JSON.parse('{\
 "winapi":["",[["km",[],["mod.rs"]],["shared",[],["basetsd.rs","cfg.rs","devpropdef.rs","guiddef.rs","ktmtypes.rs","minwindef.rs","mod.rs","ntdef.rs","ntstatus.rs","rpcndr.rs","windef.rs","winerror.rs","wtypesbase.rs"]],["ucrt",[],["mod.rs"]],["um",[["gl",[],["mod.rs"]]],["cfgmgr32.rs","errhandlingapi.rs","fileapi.rs","handleapi.rs","libloaderapi.rs","minwinbase.rs","mod.rs","processthreadsapi.rs","profileapi.rs","reason.rs","sysinfoapi.rs","timezoneapi.rs","winbase.rs","winnt.rs","winreg.rs"]],["vc",[],["excpt.rs","mod.rs","vadefs.rs","vcruntime.rs"]],["winrt",[],["mod.rs"]]],["lib.rs","macros.rs"]],\
 "windows_targets":["",[],["lib.rs"]],\
 "windows_x86_64_msvc":["",[],["lib.rs"]],\
-"winnow":["",[["bits",[],["mod.rs"]],["branch",[],["mod.rs"]],["bytes",[],["mod.rs"]],["character",[],["mod.rs"]],["combinator",[],["mod.rs"]],["multi",[],["mod.rs"]],["number",[],["mod.rs"]],["sequence",[],["mod.rs"]],["stream",[],["impls.rs","mod.rs"]],["trace",[],["mod.rs"]]],["error.rs","lib.rs","macros.rs","parser.rs"]]\
+"winnow":["",[["ascii",[],["mod.rs"]],["binary",[["bits",[],["mod.rs"]]],["mod.rs"]],["combinator",[],["branch.rs","core.rs","mod.rs","multi.rs","parser.rs","sequence.rs"]],["stream",[],["impls.rs","mod.rs"]],["token",[],["mod.rs"]],["trace",[],["mod.rs"]]],["bits.rs","branch.rs","bytes.rs","character.rs","error.rs","lib.rs","macros.rs","multi.rs","number.rs","parser.rs","sequence.rs"]]\
 }');
 createSourceSidebar();

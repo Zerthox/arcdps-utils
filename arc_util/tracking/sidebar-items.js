@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":[["CachePolicy","How data should be cached."]],"struct":[["CachedPlayer","An player entry in the tracker cache."],["CachedTracker","Player tracker with caching."],["Entry","Struct representing a tracker entry."],["Player","Struct representing a player."],["Tracker","Player tracker."]]};
+window.SIDEBAR_ITEMS = {"enum":["CachePolicy"],"struct":["CachedPlayer","CachedTracker","Entry","Player","Tracker"]};

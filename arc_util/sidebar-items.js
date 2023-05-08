@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["api",""],["settings","Load/save settings."],["tracking","Player tracking utilities."],["ui","UI related utilities."],["util",""]]};
+window.SIDEBAR_ITEMS = {"mod":["api","settings","tracking","ui","util"]};

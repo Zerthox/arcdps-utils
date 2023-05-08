@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":[["keycode_to_name","Converts a keycode to the key’s name."],["name_to_keycode","Converts a key’s name to its keycode."]]};
+window.SIDEBAR_ITEMS = {"fn":["keycode_to_name","name_to_keycode"]};

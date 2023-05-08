@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":[["calc_delta","Calculates the time difference (deltatime) between an event happening and now."]]};
+window.SIDEBAR_ITEMS = {"fn":["calc_delta"]};

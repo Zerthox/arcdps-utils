@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":[["Action","An action for ordered lists in UI."]]};
+window.SIDEBAR_ITEMS = {"enum":["Action"]};
