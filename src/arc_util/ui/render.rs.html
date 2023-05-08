@@ -287,6 +287,7 @@
 <a href="#287" id="287">287</a>
 <a href="#288" id="288">288</a>
 <a href="#289" id="289">289</a>
+<a href="#290" id="290">290</a>
 </pre><pre class="rust"><code><span class="doccomment">//! Predefined primitive UI elements &amp; render helpers.
 
 </span><span class="kw">use </span><span class="kw">crate</span>::util::{keycode_to_name, name_to_keycode};
@@ -473,6 +474,7 @@
     <span class="kw">if let </span><span class="prelude-val">Some</span>(token) =
         ui.begin_table_with_sizing(label, columns.len(), flags, outer_size, inner_size)
     {
+        ui.table_setup_scroll_freeze(<span class="number">0</span>, <span class="number">1</span>);
         <span class="kw">for </span>column <span class="kw">in </span>columns {
             ui.table_setup_column_with(column.as_setup());
         }
