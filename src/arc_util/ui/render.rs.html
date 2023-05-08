@@ -269,6 +269,24 @@
 <a href="#269" id="269">269</a>
 <a href="#270" id="270">270</a>
 <a href="#271" id="271">271</a>
+<a href="#272" id="272">272</a>
+<a href="#273" id="273">273</a>
+<a href="#274" id="274">274</a>
+<a href="#275" id="275">275</a>
+<a href="#276" id="276">276</a>
+<a href="#277" id="277">277</a>
+<a href="#278" id="278">278</a>
+<a href="#279" id="279">279</a>
+<a href="#280" id="280">280</a>
+<a href="#281" id="281">281</a>
+<a href="#282" id="282">282</a>
+<a href="#283" id="283">283</a>
+<a href="#284" id="284">284</a>
+<a href="#285" id="285">285</a>
+<a href="#286" id="286">286</a>
+<a href="#287" id="287">287</a>
+<a href="#288" id="288">288</a>
+<a href="#289" id="289">289</a>
 </pre><pre class="rust"><code><span class="doccomment">//! Predefined primitive UI elements &amp; render helpers.
 
 </span><span class="kw">use </span><span class="kw">crate</span>::util::{keycode_to_name, name_to_keycode};
@@ -436,7 +454,25 @@
 <span class="kw">where
     </span>N: AsRef&lt;str&gt;,
 {
-    <span class="kw">if let </span><span class="prelude-val">Some</span>(token) = ui.begin_table_with_flags(label, columns.len(), flags) {
+    table_with_icons_sizing(ui, label, columns, flags, show_icons, [<span class="number">0.0</span>, <span class="number">0.0</span>], <span class="number">0.0</span>)
+}
+
+<span class="doccomment">/// Renders a table with (optional) icon headers and sizing parameters.
+</span><span class="kw">pub fn </span>table_with_icons_sizing&lt;<span class="lifetime">&#39;ui</span>, N&gt;(
+    ui: <span class="kw-2">&amp;</span>Ui&lt;<span class="lifetime">&#39;ui</span>&gt;,
+    label: <span class="kw">impl </span>AsRef&lt;str&gt;,
+    columns: <span class="kw-2">&amp;</span>[TableIconColumn&lt;N&gt;],
+    flags: TableFlags,
+    show_icons: bool,
+    outer_size: [f32; <span class="number">2</span>],
+    inner_size: f32,
+) -&gt; <span class="prelude-ty">Option</span>&lt;TableToken&lt;<span class="lifetime">&#39;ui</span>&gt;&gt;
+<span class="kw">where
+    </span>N: AsRef&lt;str&gt;,
+{
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(token) =
+        ui.begin_table_with_sizing(label, columns.len(), flags, outer_size, inner_size)
+    {
         <span class="kw">for </span>column <span class="kw">in </span>columns {
             ui.table_setup_column_with(column.as_setup());
         }
