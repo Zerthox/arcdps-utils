@@ -165,7 +165,25 @@ pub fn table_with_icons<'ui, N>(
 where
     N: AsRef<str>,
 {
-    if let Some(token) = ui.begin_table_with_flags(label, columns.len(), flags) {
+    table_with_icons_sizing(ui, label, columns, flags, show_icons, [0.0, 0.0], 0.0)
+}
+
+/// Renders a table with (optional) icon headers and sizing parameters.
+pub fn table_with_icons_sizing<'ui, N>(
+    ui: &Ui<'ui>,
+    label: impl AsRef<str>,
+    columns: &[TableIconColumn<N>],
+    flags: TableFlags,
+    show_icons: bool,
+    outer_size: [f32; 2],
+    inner_size: f32,
+) -> Option<TableToken<'ui>>
+where
+    N: AsRef<str>,
+{
+    if let Some(token) =
+        ui.begin_table_with_sizing(label, columns.len(), flags, outer_size, inner_size)
+    {
         for column in columns {
             ui.table_setup_column_with(column.as_setup());
         }

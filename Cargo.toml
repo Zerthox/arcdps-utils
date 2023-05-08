@@ -1,6 +1,6 @@
 [package]
 name = "arc_util"
-version = "0.9.4"
+version = "0.9.5"
 edition = "2021"
 authors = ["Zerthox"]
 repository = "https://github.com/zerthox/arcdps-utils"
