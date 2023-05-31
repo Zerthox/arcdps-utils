@@ -1,5 +1,5 @@
 var sourcesIndex = JSON.parse('{\
-"arc_util":["",[["tracking",[],["cache.rs","entry.rs","mod.rs","player.rs"]],["ui",[["window",[],["menu.rs","mod.rs","options.rs","render.rs","settings.rs"]]],["action.rs","align.rs","log.rs","mod.rs","render.rs","texture.rs"]]],["api.rs","lib.rs","settings.rs","util.rs"]],\
+"arc_util":["",[["tracking",[],["cache.rs","entry.rs","mod.rs","player.rs"]],["ui",[["window",[],["menu.rs","mod.rs","options.rs","render.rs","settings.rs"]]],["action.rs","align.rs","log.rs","mod.rs","render.rs","texture.rs"]]],["api.rs","colors.rs","lib.rs","settings.rs","util.rs"]],\
 "arcdps":["",[["evtc",[],["agent.rs","mod.rs"]],["exports",[],["has.rs","mod.rs","raw.rs"]]],["callbacks.rs","globals.rs","lib.rs","panic.rs","util.rs"]],\
 "arcdps_codegen":["",[],["callbacks.rs","export.rs","lib.rs","parse.rs"]],\
 "arcdps_evtc":["",[],["agent.rs","buff.rs","effect.rs","event.rs","language.rs","lib.rs","player.rs","position.rs","skill.rs","state_change.rs","strike.rs"]],\
@@ -17,7 +17,6 @@ var sourcesIndex = JSON.parse('{\
 "lock_api":["",[],["lib.rs","mutex.rs","remutex.rs","rwlock.rs"]],\
 "num_enum":["",[],["lib.rs"]],\
 "num_enum_derive":["",[],["lib.rs"]],\
-"num_integer":["",[],["average.rs","lib.rs","roots.rs"]],\
 "num_traits":["",[["ops",[],["checked.rs","euclid.rs","inv.rs","mod.rs","mul_add.rs","overflowing.rs","saturating.rs","wrapping.rs"]]],["bounds.rs","cast.rs","float.rs","identities.rs","int.rs","lib.rs","macros.rs","pow.rs","sign.rs"]],\
 "once_cell":["",[],["imp_std.rs","lib.rs","race.rs"]],\
 "parking_lot":["",[],["condvar.rs","deadlock.rs","elision.rs","fair_mutex.rs","lib.rs","mutex.rs","once.rs","raw_fair_mutex.rs","raw_mutex.rs","raw_rwlock.rs","remutex.rs","rwlock.rs","util.rs"]],\
