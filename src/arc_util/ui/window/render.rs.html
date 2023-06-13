@@ -81,7 +81,7 @@
                 },
             )
             .position(
-                pos.unwrap_or_default(),
+                pos,
                 <span class="kw">if let </span>WindowPosition::Manual = options.position {
                     Condition::FirstUseEver
                 } <span class="kw">else </span>{

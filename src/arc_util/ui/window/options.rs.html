@@ -165,23 +165,23 @@
 
 <span class="kw">impl </span>WindowPosition {
     <span class="doccomment">/// Calculates the render position.
-    </span><span class="kw">pub fn </span>calc(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span>Ui, window_size: [f32; <span class="number">2</span>]) -&gt; <span class="prelude-ty">Option</span>&lt;[f32; <span class="number">2</span>]&gt; {
+    </span><span class="kw">pub fn </span>calc(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span>Ui, window_size: [f32; <span class="number">2</span>]) -&gt; [f32; <span class="number">2</span>] {
         <span class="kw">match </span><span class="self">self </span>{
-            <span class="self">Self</span>::Manual =&gt; <span class="prelude-val">None</span>,
+            <span class="self">Self</span>::Manual =&gt; [<span class="number">0.0</span>, <span class="number">0.0</span>],
             <span class="self">Self</span>::Anchored { anchor, x, y } =&gt; {
                 <span class="kw">let </span>[screen_x, screen_y] = ui.io().display_size;
                 <span class="kw">let </span>[window_x, window_y] = window_size;
                 <span class="kw">let </span>rel_x = <span class="kw-2">*</span>x;
                 <span class="kw">let </span>rel_y = <span class="kw-2">*</span>y;
 
-                <span class="prelude-val">Some</span>(<span class="kw">match </span>anchor {
+                <span class="kw">match </span>anchor {
                     WindowAnchor::TopLeft =&gt; [rel_x, rel_y],
                     WindowAnchor::TopRight =&gt; [screen_x - window_x - rel_x, rel_y],
                     WindowAnchor::BottomLeft =&gt; [rel_x, screen_y - window_y - rel_y],
                     WindowAnchor::BottomRight =&gt; {
                         [screen_x - window_x - rel_x, screen_y - window_y - rel_y]
                     }
-                })
+                }
             }
         }
     }
