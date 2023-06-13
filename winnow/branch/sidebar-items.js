@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["alt","permutation"],"macro":["dispatch"],"trait":["Alt","Permutation"]};
+window.SIDEBAR_ITEMS = {};

@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["WindowAnchor","WindowPosition"],"fn":["render_window","window_options_menus"],"struct":["Window","WindowOptions","WindowSettings"]};
+window.SIDEBAR_ITEMS = {"enum":["WindowAnchor","WindowPosition"],"fn":["render_window","window_options_menus","window_position_select","window_style_options"],"struct":["Window","WindowOptions","WindowSettings"]};
