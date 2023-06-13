@@ -66,23 +66,23 @@ impl Default for WindowPosition {
 
 impl WindowPosition {
     /// Calculates the render position.
-    pub fn calc(&self, ui: &Ui, window_size: [f32; 2]) -> [f32; 2] {
+    pub fn calc(&self, ui: &Ui, window_size: [f32; 2]) -> Option<[f32; 2]> {
         match self {
-            Self::Manual => [0.0, 0.0],
+            Self::Manual => None,
             Self::Anchored { anchor, x, y } => {
                 let [screen_x, screen_y] = ui.io().display_size;
                 let [window_x, window_y] = window_size;
                 let rel_x = *x;
                 let rel_y = *y;
 
-                match anchor {
+                Some(match anchor {
                     WindowAnchor::TopLeft => [rel_x, rel_y],
                     WindowAnchor::TopRight => [screen_x - window_x - rel_x, rel_y],
                     WindowAnchor::BottomLeft => [rel_x, screen_y - window_y - rel_y],
                     WindowAnchor::BottomRight => {
                         [screen_x - window_x - rel_x, screen_y - window_y - rel_y]
                     }
-                }
+                })
             }
         }
     }
