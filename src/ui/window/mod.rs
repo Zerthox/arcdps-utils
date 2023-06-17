@@ -23,17 +23,43 @@ pub use settings::*;
 /// Window component.
 #[derive(Debug, Clone)]
 pub struct Window<T> {
-    pub options: WindowOptions,
+    /// The name (title) of the window.
+    pub name: String,
+
+    /// Inner [`Component`] responsible for rendering content.
     pub inner: T,
+
+    /// Current window options state.
+    pub options: WindowOptions,
 }
 
 impl<T> Window<T> {
-    /// Creates a new window with [`WindowOptions`] and a given inner [`Windowable`] component.
-    pub fn new<P>(options: WindowOptions, inner: T) -> Self
+    /// Creates a new window with [`WindowOptions`] and the passed [`Windowable`] component.
+    pub fn new<P>(name: impl Into<String>, inner: T, options: WindowOptions) -> Self
     where
         T: Windowable<P>,
     {
-        Self { inner, options }
+        Self {
+            name: name.into(),
+            inner,
+            options,
+        }
+    }
+
+    /// Creates a new window with [`WindowOptions`] and a default [`Windowable`] component.
+    pub fn with_default<P>(name: impl Into<String>, options: WindowOptions) -> Self
+    where
+        T: Default + Windowable<P>,
+    {
+        Self::new(name, T::default(), options)
+    }
+
+    /// Handles a key press event.
+    ///
+    /// Toggles visibility and returns `true` if the key matches the hotkey.
+    #[inline]
+    pub fn key_press(&mut self, key: usize) -> bool {
+        self.options.key_press(key)
     }
 }
 
@@ -56,7 +82,7 @@ where
     T: Windowable<P>,
 {
     fn render(&mut self, ui: &Ui, props: P) {
-        if let Some(_window) = render_window(ui, &mut self.options) {
+        if let Some(_window) = self.options.render_window(ui, &self.name) {
             // update options
             self.options.update(ui);
 
@@ -64,7 +90,7 @@ where
                 let pos = ui.window_pos();
 
                 // render context menu
-                window_context_menu(format!("Options##{}", self.options.name), || {
+                window_context_menu(format!("Options##{}", self.name), || {
                     let _style = small_padding(ui);
 
                     self.inner.render_menu(ui, &props);
@@ -82,10 +108,10 @@ where
 
 impl<T> Hideable for Window<T> {
     fn is_visible(&self) -> bool {
-        self.options.visible
+        self.options.is_visible()
     }
 
     fn visible_mut(&mut self) -> &mut bool {
-        &mut self.options.visible
+        self.options.visible_mut()
     }
 }

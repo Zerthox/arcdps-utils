@@ -19,6 +19,8 @@ pub const fn with_alpha(mut color: Color, alpha: f32) -> Color {
     color
 }
 
+pub const TRANSPARENT: Color = rgba(0.0, 0.0, 0.0, 0.0);
+
 pub const BLACK: Color = rgb(0.0, 0.0, 0.0);
 
 pub const WHITE: Color = rgb(1.0, 1.0, 1.0);

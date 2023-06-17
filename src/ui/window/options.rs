@@ -3,10 +3,13 @@ use arcdps::imgui::Ui;
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
+use crate::ui::Hideable;
+
 /// Window options.
 #[derive(Debug, Clone)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", serde(default))]
 pub struct WindowOptions {
-    pub name: String,
     pub visible: bool,
     pub position: WindowPosition,
     pub width: f32,
@@ -18,13 +21,14 @@ pub struct WindowOptions {
     pub auto_resize: bool,
     pub scroll: bool,
     pub scroll_bar: bool,
+    pub hotkey: Option<WindowHotkey>,
 }
 
 impl WindowOptions {
     /// Creates new window options.
-    pub fn new(name: impl Into<String>) -> Self {
+    #[inline]
+    pub fn new() -> Self {
         Self {
-            name: name.into(),
             visible: true,
             position: WindowPosition::default(),
             width: 0.0,
@@ -36,13 +40,44 @@ impl WindowOptions {
             auto_resize: false,
             scroll: true,
             scroll_bar: true,
+            hotkey: None,
+        }
+    }
+
+    /// Handles a key press event.
+    ///
+    /// Toggles visibility and returns `true` if the key matches the hotkey.
+    #[inline]
+    pub fn key_press(&mut self, key: usize) -> bool {
+        if matches!(self.hotkey, Some(hotkey) if hotkey == key as u32) {
+            self.toggle_visibility();
+            true
+        } else {
+            false
         }
     }
 
     /// Updates the options with values from the [`Ui`]
+    #[inline]
     pub fn update(&mut self, ui: &Ui) {
         // update window size values
         [self.width, self.height] = ui.window_size();
+    }
+}
+
+impl Default for WindowOptions {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+impl Hideable for WindowOptions {
+    fn is_visible(&self) -> bool {
+        self.visible
+    }
+
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
     }
 }
 
@@ -97,3 +132,6 @@ pub enum WindowAnchor {
     BottomLeft,
     BottomRight,
 }
+
+/// Hotkey to open window.
+pub type WindowHotkey = u32;
