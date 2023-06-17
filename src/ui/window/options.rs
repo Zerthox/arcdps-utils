@@ -29,7 +29,7 @@ impl WindowOptions {
     #[inline]
     pub fn new() -> Self {
         Self {
-            visible: true,
+            visible: false,
             position: WindowPosition::default(),
             width: 0.0,
             height: 0.0,
