@@ -1,13 +1,22 @@
 pub type Color = [f32; 4];
 
+/// Creates a color from RGB values.
 #[inline]
 pub const fn rgb(r: f32, g: f32, b: f32) -> Color {
     [r, g, b, 1.0]
 }
 
+/// Creates a color from RGBA values.
 #[inline]
 pub const fn rgba(r: f32, g: f32, b: f32, a: f32) -> Color {
     [r, g, b, a]
+}
+
+/// Adjusts the alpha value of a color.
+#[inline]
+pub const fn with_alpha(mut color: Color, alpha: f32) -> Color {
+    color[3] = alpha;
+    color
 }
 
 pub const BLACK: Color = rgb(0.0, 0.0, 0.0);
