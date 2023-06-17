@@ -50,56 +50,58 @@
 <a href="#50" id="50">50</a>
 <a href="#51" id="51">51</a>
 <a href="#52" id="52">52</a>
+<a href="#53" id="53">53</a>
 </pre></div><pre class="rust"><code><span class="kw">use super</span>::{WindowOptions, WindowPosition};
+<span class="kw">use </span><span class="kw">crate</span>::colors::TRANSPARENT;
 <span class="kw">use </span>arcdps::imgui::{Condition, StyleColor, Ui, Window, WindowToken};
 
-<span class="kw">const </span>TRANSPARENT: [f32; <span class="number">4</span>] = [<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>];
+<span class="kw">impl </span>WindowOptions {
+    <span class="doccomment">/// Renders the window according to the options.
+    </span><span class="kw">pub fn </span>render_window&lt;<span class="lifetime">&#39;ui</span>&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ui </span>Ui, name: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;WindowToken&lt;<span class="lifetime">&#39;ui</span>&gt;&gt; {
+        <span class="kw">if </span><span class="self">self</span>.visible {
+            <span class="kw">let </span>size = [<span class="self">self</span>.width, <span class="self">self</span>.height];
+            <span class="kw">let </span>pos = <span class="self">self</span>.position.calc(ui, size);
 
-<span class="doccomment">/// Renders a window.
-</span><span class="kw">pub fn </span>render_window&lt;<span class="lifetime">&#39;ui</span>&gt;(ui: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ui </span>Ui, options: <span class="kw-2">&amp;mut </span>WindowOptions) -&gt; <span class="prelude-ty">Option</span>&lt;WindowToken&lt;<span class="lifetime">&#39;ui</span>&gt;&gt; {
-    <span class="kw">if </span>options.visible {
-        <span class="kw">let </span>size = [options.width, options.height];
-        <span class="kw">let </span>pos = options.position.calc(ui, size);
+            <span class="kw">let </span>_style = <span class="kw">if </span>!<span class="self">self</span>.title_bar_background {
+                <span class="prelude-val">Some</span>((
+                    ui.push_style_color(StyleColor::TitleBg, TRANSPARENT),
+                    ui.push_style_color(StyleColor::TitleBgActive, TRANSPARENT),
+                    ui.push_style_color(StyleColor::TitleBgCollapsed, TRANSPARENT),
+                ))
+            } <span class="kw">else </span>{
+                <span class="prelude-val">None
+            </span>};
 
-        <span class="kw">let </span>_style = <span class="kw">if </span>!options.title_bar_background {
-            <span class="prelude-val">Some</span>((
-                ui.push_style_color(StyleColor::TitleBg, TRANSPARENT),
-                ui.push_style_color(StyleColor::TitleBgActive, TRANSPARENT),
-                ui.push_style_color(StyleColor::TitleBgCollapsed, TRANSPARENT),
-            ))
+            Window::new(<span class="kw-2">&amp;</span>name)
+                .size(
+                    size,
+                    <span class="kw">if </span><span class="self">self</span>.auto_resize {
+                        Condition::Never
+                    } <span class="kw">else </span>{
+                        Condition::Always
+                    },
+                )
+                .position(
+                    pos.unwrap_or_default(),
+                    <span class="kw">if let </span>WindowPosition::Manual = <span class="self">self</span>.position {
+                        Condition::FirstUseEver
+                    } <span class="kw">else </span>{
+                        Condition::Always
+                    },
+                )
+                .collapsible(<span class="bool-val">false</span>)
+                .title_bar(<span class="self">self</span>.title_bar)
+                .draw_background(<span class="self">self</span>.background)
+                .always_auto_resize(<span class="self">self</span>.auto_resize)
+                .resizable(<span class="self">self</span>.resize)
+                .scrollable(<span class="self">self</span>.scroll)
+                .scroll_bar(<span class="self">self</span>.scroll_bar)
+                .focus_on_appearing(<span class="bool-val">false</span>)
+                .opened(<span class="kw-2">&amp;mut </span><span class="self">self</span>.visible)
+                .begin(ui)
         } <span class="kw">else </span>{
             <span class="prelude-val">None
-        </span>};
-
-        Window::new(<span class="kw-2">&amp;</span>options.name)
-            .size(
-                size,
-                <span class="kw">if </span>options.auto_resize {
-                    Condition::Never
-                } <span class="kw">else </span>{
-                    Condition::Always
-                },
-            )
-            .position(
-                pos,
-                <span class="kw">if let </span>WindowPosition::Manual = options.position {
-                    Condition::FirstUseEver
-                } <span class="kw">else </span>{
-                    Condition::Always
-                },
-            )
-            .collapsible(<span class="bool-val">false</span>)
-            .title_bar(options.title_bar)
-            .draw_background(options.background)
-            .always_auto_resize(options.auto_resize)
-            .resizable(options.resize)
-            .scrollable(options.scroll)
-            .scroll_bar(options.scroll_bar)
-            .focus_on_appearing(<span class="bool-val">false</span>)
-            .opened(<span class="kw-2">&amp;mut </span>options.visible)
-            .begin(ui)
-    } <span class="kw">else </span>{
-        <span class="prelude-val">None
-    </span>}
+        </span>}
+    }
 }
 </code></pre></div></section></main></body></html>

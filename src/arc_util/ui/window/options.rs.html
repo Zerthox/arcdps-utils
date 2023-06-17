@@ -97,15 +97,56 @@
 <a href="#97" id="97">97</a>
 <a href="#98" id="98">98</a>
 <a href="#99" id="99">99</a>
+<a href="#100" id="100">100</a>
+<a href="#101" id="101">101</a>
+<a href="#102" id="102">102</a>
+<a href="#103" id="103">103</a>
+<a href="#104" id="104">104</a>
+<a href="#105" id="105">105</a>
+<a href="#106" id="106">106</a>
+<a href="#107" id="107">107</a>
+<a href="#108" id="108">108</a>
+<a href="#109" id="109">109</a>
+<a href="#110" id="110">110</a>
+<a href="#111" id="111">111</a>
+<a href="#112" id="112">112</a>
+<a href="#113" id="113">113</a>
+<a href="#114" id="114">114</a>
+<a href="#115" id="115">115</a>
+<a href="#116" id="116">116</a>
+<a href="#117" id="117">117</a>
+<a href="#118" id="118">118</a>
+<a href="#119" id="119">119</a>
+<a href="#120" id="120">120</a>
+<a href="#121" id="121">121</a>
+<a href="#122" id="122">122</a>
+<a href="#123" id="123">123</a>
+<a href="#124" id="124">124</a>
+<a href="#125" id="125">125</a>
+<a href="#126" id="126">126</a>
+<a href="#127" id="127">127</a>
+<a href="#128" id="128">128</a>
+<a href="#129" id="129">129</a>
+<a href="#130" id="130">130</a>
+<a href="#131" id="131">131</a>
+<a href="#132" id="132">132</a>
+<a href="#133" id="133">133</a>
+<a href="#134" id="134">134</a>
+<a href="#135" id="135">135</a>
+<a href="#136" id="136">136</a>
+<a href="#137" id="137">137</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>arcdps::imgui::Ui;
 
 <span class="attr">#[cfg(feature = <span class="string">&quot;serde&quot;</span>)]
 </span><span class="kw">use </span>serde::{Deserialize, Serialize};
 
+<span class="kw">use </span><span class="kw">crate</span>::ui::Hideable;
+
 <span class="doccomment">/// Window options.
 </span><span class="attr">#[derive(Debug, Clone)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(default))]
 </span><span class="kw">pub struct </span>WindowOptions {
-    <span class="kw">pub </span>name: String,
     <span class="kw">pub </span>visible: bool,
     <span class="kw">pub </span>position: WindowPosition,
     <span class="kw">pub </span>width: f32,
@@ -117,14 +158,15 @@
     <span class="kw">pub </span>auto_resize: bool,
     <span class="kw">pub </span>scroll: bool,
     <span class="kw">pub </span>scroll_bar: bool,
+    <span class="kw">pub </span>hotkey: <span class="prelude-ty">Option</span>&lt;WindowHotkey&gt;,
 }
 
 <span class="kw">impl </span>WindowOptions {
     <span class="doccomment">/// Creates new window options.
-    </span><span class="kw">pub fn </span>new(name: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
+    </span><span class="attr">#[inline]
+    </span><span class="kw">pub fn </span>new() -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
-            name: name.into(),
-            visible: <span class="bool-val">true</span>,
+            visible: <span class="bool-val">false</span>,
             position: WindowPosition::default(),
             width: <span class="number">0.0</span>,
             height: <span class="number">0.0</span>,
@@ -135,13 +177,44 @@
             auto_resize: <span class="bool-val">false</span>,
             scroll: <span class="bool-val">true</span>,
             scroll_bar: <span class="bool-val">true</span>,
+            hotkey: <span class="prelude-val">None</span>,
         }
     }
 
+    <span class="doccomment">/// Handles a key press event.
+    ///
+    /// Toggles visibility and returns `true` if the key matches the hotkey.
+    </span><span class="attr">#[inline]
+    </span><span class="kw">pub fn </span>key_press(<span class="kw-2">&amp;mut </span><span class="self">self</span>, key: usize) -&gt; bool {
+        <span class="kw">if </span><span class="macro">matches!</span>(<span class="self">self</span>.hotkey, <span class="prelude-val">Some</span>(hotkey) <span class="kw">if </span>hotkey == key <span class="kw">as </span>u32) {
+            <span class="self">self</span>.toggle_visibility();
+            <span class="bool-val">true
+        </span>} <span class="kw">else </span>{
+            <span class="bool-val">false
+        </span>}
+    }
+
     <span class="doccomment">/// Updates the options with values from the [`Ui`]
+    </span><span class="attr">#[inline]
     </span><span class="kw">pub fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span>Ui) {
         <span class="comment">// update window size values
         </span>[<span class="self">self</span>.width, <span class="self">self</span>.height] = ui.window_size();
+    }
+}
+
+<span class="kw">impl </span>Default <span class="kw">for </span>WindowOptions {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::new()
+    }
+}
+
+<span class="kw">impl </span>Hideable <span class="kw">for </span>WindowOptions {
+    <span class="kw">fn </span>is_visible(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.visible
+    }
+
+    <span class="kw">fn </span>visible_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>bool {
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.visible
     }
 }
 
@@ -165,23 +238,23 @@
 
 <span class="kw">impl </span>WindowPosition {
     <span class="doccomment">/// Calculates the render position.
-    </span><span class="kw">pub fn </span>calc(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span>Ui, window_size: [f32; <span class="number">2</span>]) -&gt; [f32; <span class="number">2</span>] {
+    </span><span class="kw">pub fn </span>calc(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span>Ui, window_size: [f32; <span class="number">2</span>]) -&gt; <span class="prelude-ty">Option</span>&lt;[f32; <span class="number">2</span>]&gt; {
         <span class="kw">match </span><span class="self">self </span>{
-            <span class="self">Self</span>::Manual =&gt; [<span class="number">0.0</span>, <span class="number">0.0</span>],
+            <span class="self">Self</span>::Manual =&gt; <span class="prelude-val">None</span>,
             <span class="self">Self</span>::Anchored { anchor, x, y } =&gt; {
                 <span class="kw">let </span>[screen_x, screen_y] = ui.io().display_size;
                 <span class="kw">let </span>[window_x, window_y] = window_size;
                 <span class="kw">let </span>rel_x = <span class="kw-2">*</span>x;
                 <span class="kw">let </span>rel_y = <span class="kw-2">*</span>y;
 
-                <span class="kw">match </span>anchor {
+                <span class="prelude-val">Some</span>(<span class="kw">match </span>anchor {
                     WindowAnchor::TopLeft =&gt; [rel_x, rel_y],
                     WindowAnchor::TopRight =&gt; [screen_x - window_x - rel_x, rel_y],
                     WindowAnchor::BottomLeft =&gt; [rel_x, screen_y - window_y - rel_y],
                     WindowAnchor::BottomRight =&gt; {
                         [screen_x - window_x - rel_x, screen_y - window_y - rel_y]
                     }
-                }
+                })
             }
         }
     }
@@ -196,4 +269,7 @@
     BottomLeft,
     BottomRight,
 }
+
+<span class="doccomment">/// Hotkey to open window.
+</span><span class="kw">pub type </span>WindowHotkey = u32;
 </code></pre></div></section></main></body></html>
