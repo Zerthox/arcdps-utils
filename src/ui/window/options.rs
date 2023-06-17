@@ -1,14 +1,11 @@
+use crate::ui::Hideable;
 use arcdps::imgui::Ui;
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
-use crate::ui::Hideable;
-
 /// Window options.
 #[derive(Debug, Clone)]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[cfg_attr(feature = "serde", serde(default))]
 pub struct WindowOptions {
     pub visible: bool,
     pub position: WindowPosition,
@@ -21,7 +18,7 @@ pub struct WindowOptions {
     pub auto_resize: bool,
     pub scroll: bool,
     pub scroll_bar: bool,
-    pub hotkey: Option<WindowHotkey>,
+    pub hotkey: WindowHotkey,
 }
 
 impl WindowOptions {
@@ -134,4 +131,4 @@ pub enum WindowAnchor {
 }
 
 /// Hotkey to open window.
-pub type WindowHotkey = u32;
+pub type WindowHotkey = Option<u32>;
