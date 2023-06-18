@@ -37,7 +37,7 @@ pub trait Windowable<Props>: Component<Props> {
     const DEFAULT_OPTIONS: bool = true;
 
     /// Renders the window context menu contents.
-    fn render_menu(&mut self, _ui: &Ui, _props: &Props) {}
+    fn render_menu(&mut self, _ui: &Ui, _props: &mut Props) {}
 }
 
 /// Interface for hideable UI components.

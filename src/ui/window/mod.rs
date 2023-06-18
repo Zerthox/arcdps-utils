@@ -81,7 +81,7 @@ impl<T, P> Component<P> for Window<T>
 where
     T: Windowable<P>,
 {
-    fn render(&mut self, ui: &Ui, props: P) {
+    fn render(&mut self, ui: &Ui, mut props: P) {
         if let Some(_window) = self.options.render_window(ui, &self.name) {
             // update options
             self.options.update(ui);
@@ -93,7 +93,7 @@ where
                 window_context_menu(format!("Options##{}", self.name), || {
                     let _style = small_padding(ui);
 
-                    self.inner.render_menu(ui, &props);
+                    self.inner.render_menu(ui, &mut props);
                     if T::DEFAULT_OPTIONS {
                         window_options_menus(ui, &mut self.options, pos);
                     }
