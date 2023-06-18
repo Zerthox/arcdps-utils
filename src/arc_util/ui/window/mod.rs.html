@@ -198,7 +198,7 @@
 <span class="kw">where
     </span>T: Windowable&lt;P&gt;,
 {
-    <span class="kw">fn </span>render(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span>Ui, props: P) {
+    <span class="kw">fn </span>render(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span>Ui, <span class="kw-2">mut </span>props: P) {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(_window) = <span class="self">self</span>.options.render_window(ui, <span class="kw-2">&amp;</span><span class="self">self</span>.name) {
             <span class="comment">// update options
             </span><span class="self">self</span>.options.update(ui);
@@ -210,7 +210,7 @@
                 </span>window_context_menu(<span class="macro">format!</span>(<span class="string">&quot;Options##{}&quot;</span>, <span class="self">self</span>.name), || {
                     <span class="kw">let </span>_style = small_padding(ui);
 
-                    <span class="self">self</span>.inner.render_menu(ui, <span class="kw-2">&amp;</span>props);
+                    <span class="self">self</span>.inner.render_menu(ui, <span class="kw-2">&amp;mut </span>props);
                     <span class="kw">if </span>T::DEFAULT_OPTIONS {
                         window_options_menus(ui, <span class="kw-2">&amp;mut </span><span class="self">self</span>.options, pos);
                     }
