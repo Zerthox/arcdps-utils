@@ -103,6 +103,20 @@
 <a href="#103" id="103">103</a>
 <a href="#104" id="104">104</a>
 <a href="#105" id="105">105</a>
+<a href="#106" id="106">106</a>
+<a href="#107" id="107">107</a>
+<a href="#108" id="108">108</a>
+<a href="#109" id="109">109</a>
+<a href="#110" id="110">110</a>
+<a href="#111" id="111">111</a>
+<a href="#112" id="112">112</a>
+<a href="#113" id="113">113</a>
+<a href="#114" id="114">114</a>
+<a href="#115" id="115">115</a>
+<a href="#116" id="116">116</a>
+<a href="#117" id="117">117</a>
+<a href="#118" id="118">118</a>
+<a href="#119" id="119">119</a>
 </pre></div><pre class="rust"><code><span class="kw">use super</span>::<span class="kw-2">*</span>;
 <span class="kw">use </span><span class="kw">crate</span>::settings::{load_optional, HasSettings};
 <span class="kw">use </span>serde::{Deserialize, Serialize};
@@ -132,20 +146,34 @@
 <span class="kw">where
     </span>T: HasSettings,
 {
-    <span class="kw">pub fn </span>new(options: <span class="kw-2">&amp;</span>WindowOptions, settings: T::Settings) -&gt; <span class="self">Self </span>{
+    <span class="kw">pub fn </span>new(options: WindowOptions, settings: T::Settings) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>WindowOptions {
+            visible,
+            position,
+            width,
+            height,
+            title_bar,
+            background,
+            title_bar_background,
+            resize,
+            auto_resize,
+            scroll,
+            scroll_bar,
+            hotkey,
+        } = options;
         <span class="self">Self </span>{
-            shown: <span class="prelude-val">Some</span>(options.visible),
-            position: <span class="prelude-val">Some</span>(options.position.clone()),
-            width: <span class="prelude-val">Some</span>(options.width),
-            height: <span class="prelude-val">Some</span>(options.height),
-            title_bar: <span class="prelude-val">Some</span>(options.title_bar),
-            background: <span class="prelude-val">Some</span>(options.background),
-            title_bar_background: <span class="prelude-val">Some</span>(options.title_bar_background),
-            resize: <span class="prelude-val">Some</span>(options.resize),
-            auto_resize: <span class="prelude-val">Some</span>(options.auto_resize),
-            scroll: <span class="prelude-val">Some</span>(options.scroll),
-            scroll_bar: <span class="prelude-val">Some</span>(options.scroll_bar),
-            hotkey: <span class="prelude-val">Some</span>(options.hotkey),
+            shown: <span class="prelude-val">Some</span>(visible),
+            position: <span class="prelude-val">Some</span>(position),
+            width: <span class="prelude-val">Some</span>(width),
+            height: <span class="prelude-val">Some</span>(height),
+            title_bar: <span class="prelude-val">Some</span>(title_bar),
+            background: <span class="prelude-val">Some</span>(background),
+            title_bar_background: <span class="prelude-val">Some</span>(title_bar_background),
+            resize: <span class="prelude-val">Some</span>(resize),
+            auto_resize: <span class="prelude-val">Some</span>(auto_resize),
+            scroll: <span class="prelude-val">Some</span>(scroll),
+            scroll_bar: <span class="prelude-val">Some</span>(scroll_bar),
+            hotkey: <span class="prelude-val">Some</span>(hotkey),
             settings: <span class="prelude-val">Some</span>(settings),
         }
     }
@@ -157,7 +185,7 @@
     T::Settings: Default,
 {
     <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
-        <span class="self">Self</span>::new(<span class="kw-2">&amp;</span>WindowOptions::default(), T::Settings::default())
+        <span class="self">Self</span>::new(WindowOptions::default(), T::Settings::default())
     }
 }
 
@@ -170,7 +198,7 @@
     <span class="kw">const </span>SETTINGS_ID: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = T::SETTINGS_ID;
 
     <span class="kw">fn </span>current_settings(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::Settings {
-        WindowSettings::new(<span class="kw-2">&amp;</span><span class="self">self</span>.options, <span class="self">self</span>.inner.current_settings())
+        WindowSettings::new(<span class="self">self</span>.options.clone(), <span class="self">self</span>.inner.current_settings())
     }
 
     <span class="kw">fn </span>load_settings(<span class="kw-2">&amp;mut </span><span class="self">self</span>, loaded: <span class="self">Self</span>::Settings) {
