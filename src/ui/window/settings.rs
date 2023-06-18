@@ -27,20 +27,34 @@ impl<T> WindowSettings<T>
 where
     T: HasSettings,
 {
-    pub fn new(options: &WindowOptions, settings: T::Settings) -> Self {
+    pub fn new(options: WindowOptions, settings: T::Settings) -> Self {
+        let WindowOptions {
+            visible,
+            position,
+            width,
+            height,
+            title_bar,
+            background,
+            title_bar_background,
+            resize,
+            auto_resize,
+            scroll,
+            scroll_bar,
+            hotkey,
+        } = options;
         Self {
-            shown: Some(options.visible),
-            position: Some(options.position.clone()),
-            width: Some(options.width),
-            height: Some(options.height),
-            title_bar: Some(options.title_bar),
-            background: Some(options.background),
-            title_bar_background: Some(options.title_bar_background),
-            resize: Some(options.resize),
-            auto_resize: Some(options.auto_resize),
-            scroll: Some(options.scroll),
-            scroll_bar: Some(options.scroll_bar),
-            hotkey: Some(options.hotkey),
+            shown: Some(visible),
+            position: Some(position),
+            width: Some(width),
+            height: Some(height),
+            title_bar: Some(title_bar),
+            background: Some(background),
+            title_bar_background: Some(title_bar_background),
+            resize: Some(resize),
+            auto_resize: Some(auto_resize),
+            scroll: Some(scroll),
+            scroll_bar: Some(scroll_bar),
+            hotkey: Some(hotkey),
             settings: Some(settings),
         }
     }
@@ -52,7 +66,7 @@ where
     T::Settings: Default,
 {
     fn default() -> Self {
-        Self::new(&WindowOptions::default(), T::Settings::default())
+        Self::new(WindowOptions::default(), T::Settings::default())
     }
 }
 
@@ -65,7 +79,7 @@ where
     const SETTINGS_ID: &'static str = T::SETTINGS_ID;
 
     fn current_settings(&self) -> Self::Settings {
-        WindowSettings::new(&self.options, self.inner.current_settings())
+        WindowSettings::new(self.options.clone(), self.inner.current_settings())
     }
 
     fn load_settings(&mut self, loaded: Self::Settings) {
