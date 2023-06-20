@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"constant":["ASCENDED","BLACK","BLUE","CYAN","EXOTIC","FINE","GREEN","GREY","LEGENDARY","MAGENTA","MASTERWORK","RARE","RED","TRANSPARENT","WHITE","YELLOW"],"fn":["rgb","rgba","with_alpha"],"type":["Color"]};
+window.SIDEBAR_ITEMS = {"constant":["ASCENDED","BLACK","BLUE","CYAN","EXOTIC","FINE","GREEN","GREY","LEGENDARY","MAGENTA","MASTERWORK","RARE","RED","TRANSPARENT","WHITE","YELLOW"],"fn":["lerp","lerp_f32","rgb","rgba","with_alpha"],"type":["Color"]};
