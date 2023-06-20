@@ -19,6 +19,23 @@ pub const fn with_alpha(mut color: Color, alpha: f32) -> Color {
     color
 }
 
+/// Linearly interpolates between two [`f32`]s.
+#[inline]
+pub fn lerp_f32(a: f32, b: f32, t: f32) -> f32 {
+    (1.0 - t) * a + t * b
+}
+
+/// Linearly interpolates between two colors.
+#[inline]
+pub fn lerp(a: Color, b: Color, t: f32) -> Color {
+    [
+        lerp_f32(a[0], b[0], t),
+        lerp_f32(a[1], b[1], t),
+        lerp_f32(a[2], b[2], t),
+        lerp_f32(a[3], b[3], t),
+    ]
+}
+
 pub const TRANSPARENT: Color = rgba(0.0, 0.0, 0.0, 0.0);
 
 pub const BLACK: Color = rgb(0.0, 0.0, 0.0);
