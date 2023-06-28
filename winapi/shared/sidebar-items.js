@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["basetsd","cfg","devpropdef","guiddef","ktmtypes","minwindef","ntdef","ntstatus","rpcndr","windef","winerror","wtypesbase"]};
+window.SIDEBAR_ITEMS = {"mod":["basetsd","cfg","devpropdef","guiddef","in6addr","inaddr","ktmtypes","minwindef","mstcpip","ntdef","ntstatus","qos","rpcndr","windef","winerror","ws2def","ws2ipdef","wtypesbase"]};

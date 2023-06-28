@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Crate for accessing MS Windows registry"><title>winreg - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-ba5701c5741a7b69.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="winreg" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0 (90c541806 2023-05-31)" data-search-js="search-e077946657036a58.js" data-settings-js="settings-298e1ea74db45b39.js" data-settings-css="settings-7bfb4c59cc6bc502.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ></div><script src="../static.files/storage-62ce34ea385b278a.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-f61008743c98d196.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../winreg/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../winreg/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">Crate winreg</a></h2><div class="sidebar-elems"><ul class="block"><li class="version">Version 0.10.1</li><li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#types">Type Definitions</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Crate <a class="mod" href="#">winreg</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../src/winreg/lib.rs.html#7-1143">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Crate for accessing MS Windows registry</p>
+<h3 id="usage"><a href="#usage">Usage</a></h3><h4 id="basic-usage"><a href="#basic-usage">Basic usage</a></h4><div class="example-wrap"><pre class="language-toml,ignore"><code># Cargo.toml
+[dependencies]
+winreg = &quot;0.10&quot;
+</code></pre></div>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>winreg;
+<span class="kw">use </span>std::io;
+<span class="kw">use </span>std::path::Path;
+<span class="kw">use </span>winreg::enums::<span class="kw-2">*</span>;
+<span class="kw">use </span>winreg::RegKey;
+
+<span class="kw">fn </span>main() -&gt; io::Result&lt;()&gt; {
+    <span class="macro">println!</span>(<span class="string">&quot;Reading some system info...&quot;</span>);
+    <span class="kw">let </span>hklm = RegKey::predef(HKEY_LOCAL_MACHINE);
+    <span class="kw">let </span>cur_ver = hklm.open_subkey(<span class="string">&quot;SOFTWARE\\Microsoft\\Windows\\CurrentVersion&quot;</span>)<span class="question-mark">?</span>;
+    <span class="kw">let </span>pf: String = cur_ver.get_value(<span class="string">&quot;ProgramFilesDir&quot;</span>)<span class="question-mark">?</span>;
+    <span class="kw">let </span>dp: String = cur_ver.get_value(<span class="string">&quot;DevicePath&quot;</span>)<span class="question-mark">?</span>;
+    <span class="macro">println!</span>(<span class="string">&quot;ProgramFiles = {}\nDevicePath = {}&quot;</span>, pf, dp);
+    <span class="kw">let </span>info = cur_ver.query_info()<span class="question-mark">?</span>;
+    <span class="macro">println!</span>(<span class="string">&quot;info = {:?}&quot;</span>, info);
+    <span class="kw">let </span>mt = info.get_last_write_time_system();
+    <span class="macro">println!</span>(
+        <span class="string">&quot;last_write_time as winapi::um::minwinbase::SYSTEMTIME = {}-{:02}-{:02} {:02}:{:02}:{:02}&quot;</span>,
+        mt.wYear, mt.wMonth, mt.wDay, mt.wHour, mt.wMinute, mt.wSecond
+    );
+
+    <span class="comment">// enable `chrono` feature on `winreg` to make this work
+    // println!(
+    //     &quot;last_write_time as chrono::NaiveDateTime = {}&quot;,
+    //     info.get_last_write_time_chrono()
+    // );
+
+    </span><span class="macro">println!</span>(<span class="string">&quot;And now lets write something...&quot;</span>);
+    <span class="kw">let </span>hkcu = RegKey::predef(HKEY_CURRENT_USER);
+    <span class="kw">let </span>path = Path::new(<span class="string">&quot;Software&quot;</span>).join(<span class="string">&quot;WinregRsExample1&quot;</span>);
+    <span class="kw">let </span>(key, disp) = hkcu.create_subkey(<span class="kw-2">&amp;</span>path)<span class="question-mark">?</span>;
+
+    <span class="kw">match </span>disp {
+        REG_CREATED_NEW_KEY =&gt; <span class="macro">println!</span>(<span class="string">&quot;A new key has been created&quot;</span>),
+        REG_OPENED_EXISTING_KEY =&gt; <span class="macro">println!</span>(<span class="string">&quot;An existing key has been opened&quot;</span>),
+    }
+
+    key.set_value(<span class="string">&quot;TestSZ&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;written by Rust&quot;</span>)<span class="question-mark">?</span>;
+    <span class="kw">let </span>sz_val: String = key.get_value(<span class="string">&quot;TestSZ&quot;</span>)<span class="question-mark">?</span>;
+    key.delete_value(<span class="string">&quot;TestSZ&quot;</span>)<span class="question-mark">?</span>;
+    <span class="macro">println!</span>(<span class="string">&quot;TestSZ = {}&quot;</span>, sz_val);
+
+    key.set_value(<span class="string">&quot;TestMultiSZ&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">vec!</span>[<span class="string">&quot;written&quot;</span>, <span class="string">&quot;by&quot;</span>, <span class="string">&quot;Rust&quot;</span>])<span class="question-mark">?</span>;
+    <span class="kw">let </span>multi_sz_val: Vec&lt;String&gt; = key.get_value(<span class="string">&quot;TestMultiSZ&quot;</span>)<span class="question-mark">?</span>;
+    key.delete_value(<span class="string">&quot;TestMultiSZ&quot;</span>)<span class="question-mark">?</span>;
+    <span class="macro">println!</span>(<span class="string">&quot;TestMultiSZ = {:?}&quot;</span>, multi_sz_val);
+
+    key.set_value(<span class="string">&quot;TestDWORD&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1234567890u32</span>)<span class="question-mark">?</span>;
+    <span class="kw">let </span>dword_val: u32 = key.get_value(<span class="string">&quot;TestDWORD&quot;</span>)<span class="question-mark">?</span>;
+    <span class="macro">println!</span>(<span class="string">&quot;TestDWORD = {}&quot;</span>, dword_val);
+
+    key.set_value(<span class="string">&quot;TestQWORD&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1234567891011121314u64</span>)<span class="question-mark">?</span>;
+    <span class="kw">let </span>qword_val: u64 = key.get_value(<span class="string">&quot;TestQWORD&quot;</span>)<span class="question-mark">?</span>;
+    <span class="macro">println!</span>(<span class="string">&quot;TestQWORD = {}&quot;</span>, qword_val);
+
+    key.create_subkey(<span class="string">&quot;sub\\key&quot;</span>)<span class="question-mark">?</span>;
+    hkcu.delete_subkey_all(<span class="kw-2">&amp;</span>path)<span class="question-mark">?</span>;
+
+    <span class="macro">println!</span>(<span class="string">&quot;Trying to open nonexistent key...&quot;</span>);
+    hkcu.open_subkey(<span class="kw-2">&amp;</span>path).unwrap_or_else(|e| <span class="kw">match </span>e.kind() {
+        io::ErrorKind::NotFound =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Key doesn&#39;t exist&quot;</span>),
+        io::ErrorKind::PermissionDenied =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Access denied&quot;</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;{:?}&quot;</span>, e),
+    });
+    <span class="prelude-val">Ok</span>(())
+}</code></pre></div>
+<h4 id="iterators"><a href="#iterators">Iterators</a></h4>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>winreg;
+<span class="kw">use </span>std::io;
+<span class="kw">use </span>winreg::RegKey;
+<span class="kw">use </span>winreg::enums::<span class="kw-2">*</span>;
+
+<span class="kw">fn </span>main() -&gt; io::Result&lt;()&gt; {
+    <span class="macro">println!</span>(<span class="string">&quot;File extensions, registered in system:&quot;</span>);
+    <span class="kw">for </span>i <span class="kw">in </span>RegKey::predef(HKEY_CLASSES_ROOT)
+        .enum_keys().map(|x| x.unwrap())
+        .filter(|x| x.starts_with(<span class="string">&quot;.&quot;</span>))
+    {
+        <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, i);
+    }
+
+    <span class="kw">let </span>system = RegKey::predef(HKEY_LOCAL_MACHINE)
+        .open_subkey(<span class="string">&quot;HARDWARE\\DESCRIPTION\\System&quot;</span>)<span class="question-mark">?</span>;
+    <span class="kw">for </span>(name, value) <span class="kw">in </span>system.enum_values().map(|x| x.unwrap()) {
+        <span class="macro">println!</span>(<span class="string">&quot;{} = {:?}&quot;</span>, name, value);
+    }
+
+    <span class="prelude-val">Ok</span>(())
+}</code></pre></div>
+</div></details><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="enums/index.html" title="mod winreg::enums">enums</a></div><div class="desc docblock-short"><code>use winreg::enums::*;</code> to import all needed enumerations and constants</div></li><li><div class="item-name"><a class="mod" href="types/index.html" title="mod winreg::types">types</a></div><div class="desc docblock-short">Traits for loading/saving Registry values</div></li></ul><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.EnumKeys.html" title="struct winreg::EnumKeys">EnumKeys</a></div><div class="desc docblock-short">Iterator over subkeys names</div></li><li><div class="item-name"><a class="struct" href="struct.EnumValues.html" title="struct winreg::EnumValues">EnumValues</a></div><div class="desc docblock-short">Iterator over values</div></li><li><div class="item-name"><a class="struct" href="struct.RegKey.html" title="struct winreg::RegKey">RegKey</a></div><div class="desc docblock-short">Handle of opened registry key</div></li><li><div class="item-name"><a class="struct" href="struct.RegKeyMetadata.html" title="struct winreg::RegKeyMetadata">RegKeyMetadata</a></div><div class="desc docblock-short">Metadata returned by <code>RegKey::query_info</code></div></li><li><div class="item-name"><a class="struct" href="struct.RegValue.html" title="struct winreg::RegValue">RegValue</a></div><div class="desc docblock-short">Raw registry value</div></li></ul><h2 id="types" class="small-section-header"><a href="#types">Type Definitions</a></h2><ul class="item-table"><li><div class="item-name"><a class="type" href="type.HKEY.html" title="type winreg::HKEY">HKEY</a></div></li></ul></section></div></main></body></html>
