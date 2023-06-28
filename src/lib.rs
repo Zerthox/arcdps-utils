@@ -8,3 +8,6 @@ pub mod util;
 
 #[cfg(feature = "settings")]
 pub mod settings;
+
+#[cfg(feature = "update")]
+pub mod update;
