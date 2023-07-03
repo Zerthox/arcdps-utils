@@ -12,6 +12,7 @@ Documentation can be found here: [zerthox.github.io/arcdps-utils/arc_util](https
 ## Optional Features
 | Flag | Description |
 | --- | --- |
-| serde | Adds [serde](https://serde.rs/) Serialize & Deserialize to `game` structs.
+| serde | Adds [serde](https://serde.rs/) Serialize & Deserialize to structs.
 | settings | Includes settings utilitites in `settings`.
+| update | Includes an `Updater` for update notices.
 | log | Includes a Log component in `ui`.
