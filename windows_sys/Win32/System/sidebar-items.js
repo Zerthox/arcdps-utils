@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["IO","Pipes","SystemServices","WindowsProgramming"]};
+window.SIDEBAR_ITEMS = {"mod":["IO","Memory","Pipes","SystemServices","WindowsProgramming"]};
