@@ -30,5 +30,5 @@ features = [
 default = []
 serde = ["dep:serde", "arcdps/serde"]
 settings = ["serde", "serde_json"]
-update = ["open", "reqwest", "semver", "serde"]
+update = ["open", "reqwest", "semver", "dep:serde"]
 log = ["chrono"]
