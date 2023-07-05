@@ -1,5 +1,5 @@
 var sourcesIndex = JSON.parse('{\
-"arc_util":["",[["tracking",[],["cache.rs","entry.rs","mod.rs","player.rs"]],["ui",[["render",[],["button.rs","context_menu.rs","input.rs","mod.rs","table.rs"]],["window",[],["menu.rs","mod.rs","options.rs","render.rs","settings.rs"]]],["action.rs","align.rs","log.rs","mod.rs","texture.rs"]],["update",[],["mod.rs","repo.rs","ui.rs"]]],["api.rs","colors.rs","lib.rs","settings.rs","util.rs"]],\
+"arc_util":["",[["tracking",[],["cache.rs","entry.rs","mod.rs","player.rs"]],["ui",[["render",[],["button.rs","context_menu.rs","input.rs","mod.rs","table.rs"]],["window",[],["menu.rs","mod.rs","options.rs","render.rs","settings.rs"]]],["action.rs","align.rs","log.rs","mod.rs","texture.rs"]],["update",[],["mod.rs","repo.rs","ui.rs"]]],["colors.rs","lib.rs","settings.rs","time.rs","util.rs"]],\
 "arcdps":["",[["evtc",[],["agent.rs","mod.rs"]],["exports",[],["has.rs","mod.rs","raw.rs"]]],["callbacks.rs","globals.rs","lib.rs","panic.rs","util.rs"]],\
 "arcdps_codegen":["",[],["callbacks.rs","export.rs","lib.rs","parse.rs"]],\
 "arcdps_evtc":["",[],["agent.rs","buff.rs","effect.rs","event.rs","language.rs","lib.rs","player.rs","position.rs","skill.rs","state_change.rs","strike.rs"]],\

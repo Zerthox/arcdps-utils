@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["calc_delta"]};
+window.SIDEBAR_ITEMS = {};
