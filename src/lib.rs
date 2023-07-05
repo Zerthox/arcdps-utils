@@ -1,7 +1,7 @@
 //! Utilities for interfacing with ArcDPS from Rust.
 
-pub mod api;
 pub mod colors;
+pub mod time;
 pub mod tracking;
 pub mod ui;
 pub mod util;
@@ -11,3 +11,9 @@ pub mod settings;
 
 #[cfg(feature = "update")]
 pub mod update;
+
+#[deprecated]
+pub mod api {
+    // backwards comp
+    pub use super::time::time_since_event as delta_time;
+}
