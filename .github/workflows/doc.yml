@@ -3,11 +3,7 @@ name: Docs
 on:
   workflow_dispatch:
   push:
-    branches:
-      - master
-    paths:
-      - src/**
-      - Cargo.toml
+    tags: "*"
 
 jobs:
   docs:
