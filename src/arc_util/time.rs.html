@@ -37,7 +37,7 @@
 
 <span class="doccomment">/// Calculates the time elapsed between the timestamp and now.
 </span><span class="attr">#[inline]
-</span><span class="kw">pub fn </span>time_since(time: u64) -&gt; Duration {
+</span><span class="kw">pub fn </span>since(time: u64) -&gt; Duration {
     <span class="kw">let </span>now = Duration::from_millis(now());
     <span class="kw">let </span>time = Duration::from_millis(time);
     now.saturating_sub(time)
@@ -45,7 +45,7 @@
 
 <span class="doccomment">/// Calculates the time elapsed between an event happening and now.
 </span><span class="attr">#[inline]
-</span><span class="kw">pub fn </span>time_since_event(event: <span class="kw-2">&amp;</span>CombatEvent) -&gt; Duration {
-    time_since(event.time)
+</span><span class="kw">pub fn </span>since_event(event: <span class="kw-2">&amp;</span>CombatEvent) -&gt; Duration {
+    since(event.time)
 }
 </code></pre></div></section></main></body></html>
