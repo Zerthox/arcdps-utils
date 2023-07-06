@@ -15,5 +15,5 @@ pub mod update;
 #[deprecated]
 pub mod api {
     // backwards comp
-    pub use super::time::time_since_event as delta_time;
+    pub use super::time::since_event as delta_time;
 }

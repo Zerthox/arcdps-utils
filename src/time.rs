@@ -12,7 +12,7 @@ pub fn now() -> u64 {
 
 /// Calculates the time elapsed between the timestamp and now.
 #[inline]
-pub fn time_since(time: u64) -> Duration {
+pub fn since(time: u64) -> Duration {
     let now = Duration::from_millis(now());
     let time = Duration::from_millis(time);
     now.saturating_sub(time)
@@ -20,6 +20,6 @@ pub fn time_since(time: u64) -> Duration {
 
 /// Calculates the time elapsed between an event happening and now.
 #[inline]
-pub fn time_since_event(event: &CombatEvent) -> Duration {
-    time_since(event.time)
+pub fn since_event(event: &CombatEvent) -> Duration {
+    since(event.time)
 }
