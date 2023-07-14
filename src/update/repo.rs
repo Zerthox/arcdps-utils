@@ -1,12 +1,10 @@
-use reqwest::blocking::ClientBuilder;
 use semver::Version;
 use serde::Deserialize;
 
 /// Information about a GitHub repository.
 #[derive(Debug, Clone)]
 pub struct Repository {
-    pub owner: String,
-    pub repo: String,
+    url: String,
 }
 
 impl Repository {
@@ -17,23 +15,26 @@ impl Repository {
     #[inline]
     pub fn new(owner: impl Into<String>, repo: impl Into<String>) -> Self {
         Self {
-            owner: owner.into(),
-            repo: repo.into(),
+            url: format!(
+                "https://api.github.com/repos/{}/{}/releases/latest",
+                owner.into(),
+                repo.into()
+            ),
         }
     }
 
     /// Retrieves the latest version from the latest release tag.
     pub fn latest_version_blocking(&self) -> Option<Version> {
-        let Self { owner, repo } = self;
-        let url = format!("https://api.github.com/repos/{owner}/{repo}/releases/latest");
-        let client = ClientBuilder::new()
-            .user_agent(Self::AGENT)
-            .build()
-            .unwrap();
-        let res = client.get(url).send();
-        res.ok()
-            .and_then(|res| res.json::<Release>().ok())
-            .and_then(|release| release.tag_name.parse().ok())
+        let res = minreq::get(&self.url)
+            .with_header("User-Agent", Self::AGENT)
+            .send();
+        let release = res.ok().and_then(|res| res.json::<Release>().ok());
+        release.and_then(|release| release.tag_name.parse().ok())
+    }
+
+    /// Opens the latest release.
+    pub fn open_release(&self) {
+        let _ = open::that(&self.url);
     }
 }
 

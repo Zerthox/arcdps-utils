@@ -1,4 +1,4 @@
-use super::{Repository, Updater};
+use super::Updater;
 use crate::{
     colors::{GREEN, YELLOW},
     ui::{Component, Ui},
@@ -9,12 +9,6 @@ impl Updater {
     /// Renders the update window if necessary.
     #[inline]
     pub fn render(&mut self, ui: &Ui) {
-        Component::render(self, ui, ())
-    }
-}
-
-impl Component<()> for Updater {
-    fn render(&mut self, ui: &Ui, _: ()) {
         if let Some(latest) = self.latest_if_outdated().cloned() {
             let mut open = true;
 
@@ -27,10 +21,7 @@ impl Component<()> for Updater {
                     ui.text_colored(GREEN, format!("Latest version: {latest}"));
 
                     if ui.button("Open") {
-                        let Repository { owner, repo } = &self.repo;
-                        let _ = open::that(format!(
-                            "https://github.com/{owner}/{repo}/releases/latest"
-                        ));
+                        self.repo.open_release();
                     }
                     ui.same_line();
                     if ui.button("Ignore") {
@@ -42,5 +33,11 @@ impl Component<()> for Updater {
                 self.reset();
             }
         }
+    }
+}
+
+impl Component<()> for Updater {
+    fn render(&mut self, ui: &Ui, _: ()) {
+        self.render(ui);
     }
 }
