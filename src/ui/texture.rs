@@ -40,7 +40,7 @@ pub fn create_texture2d_from_mem(
             Quality: 0,
         },
         Usage: usage,
-        BindFlags: D3D11_BIND_SHADER_RESOURCE,
+        BindFlags: D3D11_BIND_SHADER_RESOURCE.0 as _,
         ..Default::default()
     };
     let sub_resource = D3D11_SUBRESOURCE_DATA {
