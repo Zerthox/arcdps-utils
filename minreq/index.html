@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Minreq"><title>minreq - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="minreq" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../minreq/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a></nav><nav class="sidebar"><a class="logo-container" href="../minreq/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">Crate minreq</a></h2><div class="sidebar-elems"><ul class="block"><li class="version">Version 2.11.0</li><li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Aliases</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Crate <a class="mod" href="#">minreq</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../src/minreq/lib.rs.html#1-263">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="minreq"><a href="#minreq">Minreq</a></h2>
+<p>Simple, minimal-dependency HTTP client.  The library has a very
+minimal API, so you’ll probably know everything you need to after
+reading a few examples.</p>
+<p>Note: as a minimal library, minreq has been written with the
+assumption that servers are well-behaved. This means that there is
+little error-correction for incoming data, which may cause some
+requests to fail unexpectedly. If you’re writing an application or
+library that connects to servers you can’t test beforehand,
+consider using a more robust library, such as
+<a href="https://crates.io/crates/curl">curl</a>.</p>
+<h2 id="additional-features"><a href="#additional-features">Additional features</a></h2>
+<p>Since the crate is supposed to be minimal in terms of
+dependencies, there are no default features, and optional
+functionality can be enabled by specifying features for <code>minreq</code>
+dependency in <code>Cargo.toml</code>:</p>
+<div class="example-wrap"><pre class="language-toml"><code>[dependencies]
+minreq = { version = &quot;2.11.0&quot;, features = [&quot;punycode&quot;] }
+</code></pre></div>
+<p>Below is the list of all available features.</p>
+<h3 id="https-or-https-rustls"><a href="#https-or-https-rustls"><code>https</code> or <code>https-rustls</code></a></h3>
+<p>This feature uses the (very good)
+<a href="https://crates.io/crates/rustls"><code>rustls</code></a> crate to secure the
+connection when needed. Note that if this feature is not enabled
+(and it is not by default), requests to urls that start with
+<code>https://</code> will fail and return a
+<a href="enum.Error.html#variant.HttpsFeatureNotEnabled"><code>HttpsFeatureNotEnabled</code></a>
+error. <code>https</code> was the name of this feature until the other https
+feature variants were added, and is now an alias for
+<code>https-rustls</code>.</p>
+<h3 id="https-rustls-probe"><a href="#https-rustls-probe"><code>https-rustls-probe</code></a></h3>
+<p>Like <code>https-rustls</code>, but also includes the
+<a href="https://crates.io/crates/rustls-native-certs"><code>rustls-native-certs</code></a>
+crate to auto-detect root certificates installed in common
+locations.</p>
+<h3 id="https-native"><a href="#https-native"><code>https-native</code></a></h3>
+<p>Like <code>https</code>, but uses
+<a href="https://crates.io/crates/native-tls"><code>tls-native</code></a> instead of
+<code>rustls</code>.</p>
+<h3 id="https-bundled"><a href="#https-bundled"><code>https-bundled</code></a></h3>
+<p>Like <code>https</code>, but uses a statically linked copy of the OpenSSL
+library (provided by
+<a href="https://crates.io/crates/openssl-sys"><code>openssl-sys</code></a> with
+features = “vendored”). This feature on its own doesn’t provide
+any detection of where your root certificates are installed. They
+can be specified via the environment variables <code>SSL_CERT_FILE</code> or
+<code>SSL_CERT_DIR</code>.</p>
+<h3 id="https-bundled-probe"><a href="#https-bundled-probe"><code>https-bundled-probe</code></a></h3>
+<p>Like <code>https-bundled</code>, but also includes the
+<a href="https://crates.io/crates/openssl-probe"><code>openssl-probe</code></a> crate to
+auto-detect root certificates installed in common locations.</p>
+<h3 id="json-using-serde"><a href="#json-using-serde"><code>json-using-serde</code></a></h3>
+<p>This feature allows both serialize and deserialize JSON payload
+using the <a href="https://crates.io/crates/serde_json"><code>serde_json</code></a>
+crate.</p>
+<p><a href="struct.Request.html"><code>Request</code></a> and
+<a href="struct.Response.html"><code>Response</code></a> expose
+<a href="struct.Request.html#method.with_json"><code>with_json()</code></a> and
+<a href="struct.Response.html#method.json"><code>json()</code></a> for constructing the
+struct from JSON and extracting the JSON body out, respectively.</p>
+<h3 id="punycode"><a href="#punycode"><code>punycode</code></a></h3>
+<p>This feature enables requests to non-ascii domains: the
+<a href="https://crates.io/crates/punycode"><code>punycode</code></a> crate is used to
+convert the non-ascii parts into their punycode representations
+before making the request. If you try to make a request to 㯙㯜㯙
+㯟.net or i❤.ws for example, with this feature disabled (as it is
+by default), your request will fail with a
+<a href="enum.Error.html#variant.PunycodeFeatureNotEnabled"><code>PunycodeFeatureNotEnabled</code></a>
+error.</p>
+<h3 id="proxy"><a href="#proxy"><code>proxy</code></a></h3>
+<p>This feature enables HTTP proxy support. See [Proxy].</p>
+<h3 id="urlencoding"><a href="#urlencoding"><code>urlencoding</code></a></h3>
+<p>This feature enables percent-encoding for the URL resource when
+creating a request and any subsequently added parameters from
+<a href="struct.Request.html#method.with_param" title="method minreq::Request::with_param"><code>Request::with_param</code></a>.</p>
+<h2 id="examples"><a href="#examples">Examples</a></h2><h3 id="get"><a href="#get">Get</a></h3>
+<p>This is a simple example of sending a GET request and printing out
+the response’s body, status code, and reason phrase. The <code>?</code> are
+needed because the server could return invalid UTF-8 in the body,
+or something could go wrong during the download.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>response = minreq::get(<span class="string">&quot;http://example.com&quot;</span>).send()<span class="question-mark">?</span>;
+<span class="macro">assert!</span>(response.as_str()<span class="question-mark">?</span>.contains(<span class="string">&quot;&lt;/html&gt;&quot;</span>));
+<span class="macro">assert_eq!</span>(<span class="number">200</span>, response.status_code);
+<span class="macro">assert_eq!</span>(<span class="string">&quot;OK&quot;</span>, response.reason_phrase);</code></pre></div>
+<p>Note: you could change the <code>get</code> function to <code>head</code> or <code>put</code> or
+any other HTTP request method: the api is the same for all of
+them, it just changes what is sent to the server.</p>
+<h3 id="body-sending"><a href="#body-sending">Body (sending)</a></h3>
+<p>To include a body, add <code>with_body(&quot;&lt;body contents&gt;&quot;)</code> before
+<code>send()</code>.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>response = minreq::post(<span class="string">&quot;http://example.com&quot;</span>)
+    .with_body(<span class="string">&quot;Foobar&quot;</span>)
+    .send()<span class="question-mark">?</span>;</code></pre></div>
+<h3 id="headers-sending"><a href="#headers-sending">Headers (sending)</a></h3>
+<p>To add a header, add <code>with_header(&quot;Key&quot;, &quot;Value&quot;)</code> before
+<code>send()</code>.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>response = minreq::get(<span class="string">&quot;http://example.com&quot;</span>)
+    .with_header(<span class="string">&quot;Accept&quot;</span>, <span class="string">&quot;text/html&quot;</span>)
+    .send()<span class="question-mark">?</span>;</code></pre></div>
+<h3 id="headers-receiving"><a href="#headers-receiving">Headers (receiving)</a></h3>
+<p>Reading the headers sent by the servers is done via the
+<a href="struct.Response.html#structfield.headers"><code>headers</code></a> field of the
+<a href="struct.Response.html"><code>Response</code></a>. Note: the header field names
+(that is, the <em>keys</em> of the <code>HashMap</code>) are all lowercase: this is
+because the names are case-insensitive according to the spec, and
+this unifies the casings for easier <code>get()</code>ing.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>response = minreq::get(<span class="string">&quot;http://example.com&quot;</span>).send()<span class="question-mark">?</span>;
+<span class="macro">assert!</span>(response.headers.get(<span class="string">&quot;content-type&quot;</span>).unwrap().starts_with(<span class="string">&quot;text/html&quot;</span>));</code></pre></div>
+<h3 id="timeouts"><a href="#timeouts">Timeouts</a></h3>
+<p>To avoid timing out, or limit the request’s response time, use
+<code>with_timeout(n)</code> before <code>send()</code>. The given value is in seconds.</p>
+<p>NOTE: There is no timeout by default.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>response = minreq::post(<span class="string">&quot;http://example.com&quot;</span>)
+    .with_timeout(<span class="number">10</span>)
+    .send()<span class="question-mark">?</span>;</code></pre></div>
+<h3 id="proxy-1"><a href="#proxy-1">Proxy</a></h3>
+<p>To use a proxy server, simply create a <code>Proxy</code> instance and use
+<code>.with_proxy()</code> on your request.</p>
+<p>Supported proxy formats are <code>host:port</code> and
+<code>user:password@proxy:host</code>. Only HTTP CONNECT proxies are
+supported at this time.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#[cfg(feature = <span class="string">&quot;proxy&quot;</span>)]
+</span>{
+    <span class="kw">let </span>proxy = minreq::Proxy::new(<span class="string">&quot;localhost:8080&quot;</span>)<span class="question-mark">?</span>;
+    <span class="kw">let </span>response = minreq::post(<span class="string">&quot;http://example.com&quot;</span>)
+        .with_proxy(proxy)
+        .send()<span class="question-mark">?</span>;
+    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, response.as_str()<span class="question-mark">?</span>);
+}</code></pre></div>
+<h2 id="timeouts-1"><a href="#timeouts-1">Timeouts</a></h2>
+<p>By default, a request has no timeout. You can change this in two
+ways:</p>
+<ul>
+<li>Use <a href="struct.Request.html#method.with_timeout"><code>with_timeout</code></a> on
+your request to set the timeout per-request like so:
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>minreq::get(<span class="string">&quot;/&quot;</span>).with_timeout(<span class="number">8</span>).send();</code></pre></div>
+</li>
+<li>Set the environment variable <code>MINREQ_TIMEOUT</code> to the desired
+amount of seconds until timeout. Ie. if you have a program called
+<code>foo</code> that uses minreq, and you want all the requests made by that
+program to timeout in 8 seconds, you launch the program like so:<div class="example-wrap"><pre class="language-text"><code>$ MINREQ_TIMEOUT=8 ./foo
+</code></pre></div>Or add the following somewhere before the requests in the code.
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>std::env::set_var(<span class="string">&quot;MINREQ_TIMEOUT&quot;</span>, <span class="string">&quot;8&quot;</span>);</code></pre></div>
+</li>
+</ul>
+<p>If the timeout is set with <code>with_timeout</code>, the environment
+variable will be ignored.</p>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.Request.html" title="struct minreq::Request">Request</a></div><div class="desc docblock-short">An HTTP request.</div></li><li><div class="item-name"><a class="struct" href="struct.Response.html" title="struct minreq::Response">Response</a></div><div class="desc docblock-short">An HTTP response.</div></li><li><div class="item-name"><a class="struct" href="struct.ResponseLazy.html" title="struct minreq::ResponseLazy">ResponseLazy</a></div><div class="desc docblock-short">An HTTP response, which is loaded lazily.</div></li></ul><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.Error.html" title="enum minreq::Error">Error</a></div><div class="desc docblock-short">Represents an error while sending, receiving, or parsing an HTTP response.</div></li><li><div class="item-name"><a class="enum" href="enum.Method.html" title="enum minreq::Method">Method</a></div><div class="desc docblock-short">An HTTP request method.</div></li></ul><h2 id="functions" class="small-section-header"><a href="#functions">Functions</a></h2><ul class="item-table"><li><div class="item-name"><a class="fn" href="fn.connect.html" title="fn minreq::connect">connect</a></div><div class="desc docblock-short">Alias for <a href="struct.Request.html#method.new">Request::new</a> with <code>method</code> set to
+<a href="enum.Method.html">Method::Connect</a>.</div></li><li><div class="item-name"><a class="fn" href="fn.delete.html" title="fn minreq::delete">delete</a></div><div class="desc docblock-short">Alias for <a href="struct.Request.html#method.new">Request::new</a> with <code>method</code> set to
+<a href="enum.Method.html">Method::Delete</a>.</div></li><li><div class="item-name"><a class="fn" href="fn.get.html" title="fn minreq::get">get</a></div><div class="desc docblock-short">Alias for <a href="struct.Request.html#method.new">Request::new</a> with <code>method</code> set to
+<a href="enum.Method.html">Method::Get</a>.</div></li><li><div class="item-name"><a class="fn" href="fn.head.html" title="fn minreq::head">head</a></div><div class="desc docblock-short">Alias for <a href="struct.Request.html#method.new">Request::new</a> with <code>method</code> set to
+<a href="enum.Method.html">Method::Head</a>.</div></li><li><div class="item-name"><a class="fn" href="fn.options.html" title="fn minreq::options">options</a></div><div class="desc docblock-short">Alias for <a href="struct.Request.html#method.new">Request::new</a> with <code>method</code> set to
+<a href="enum.Method.html">Method::Options</a>.</div></li><li><div class="item-name"><a class="fn" href="fn.patch.html" title="fn minreq::patch">patch</a></div><div class="desc docblock-short">Alias for <a href="struct.Request.html#method.new">Request::new</a> with <code>method</code> set to
+<a href="enum.Method.html">Method::Patch</a>.</div></li><li><div class="item-name"><a class="fn" href="fn.post.html" title="fn minreq::post">post</a></div><div class="desc docblock-short">Alias for <a href="struct.Request.html#method.new">Request::new</a> with <code>method</code> set to
+<a href="enum.Method.html">Method::Post</a>.</div></li><li><div class="item-name"><a class="fn" href="fn.put.html" title="fn minreq::put">put</a></div><div class="desc docblock-short">Alias for <a href="struct.Request.html#method.new">Request::new</a> with <code>method</code> set to
+<a href="enum.Method.html">Method::Put</a>.</div></li><li><div class="item-name"><a class="fn" href="fn.trace.html" title="fn minreq::trace">trace</a></div><div class="desc docblock-short">Alias for <a href="struct.Request.html#method.new">Request::new</a> with <code>method</code> set to
+<a href="enum.Method.html">Method::Trace</a>.</div></li></ul><h2 id="types" class="small-section-header"><a href="#types">Type Aliases</a></h2><ul class="item-table"><li><div class="item-name"><a class="type" href="type.URL.html" title="type minreq::URL">URL</a></div><div class="desc docblock-short">A URL type for requests.</div></li></ul></section></div></main></body></html>

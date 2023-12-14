@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Affinity","AgentKind","BreakbarState"],"struct":["AgentId","AgentStatusEvent","AttackTargetEvent","BarrierUpdateEvent","BreakbarPercentEvent","BreakbarStateEvent","DownContributionEvent","EnterCombatEvent","HealthUpdateEvent","MaxHealthEvent","TargetableEvent","TeamChangeEvent"]};

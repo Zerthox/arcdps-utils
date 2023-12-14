@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"mod":["enums","types"],"struct":["EnumKeys","EnumValues","RegKey","RegKeyMetadata","RegValue"],"type":["HKEY"]};

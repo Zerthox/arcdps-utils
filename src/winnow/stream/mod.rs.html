@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\winnow-0.4.8\src\stream\mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ba5701c5741a7b69.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="winnow" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0 (90c541806 2023-05-31)" data-search-js="search-e077946657036a58.js" data-settings-js="settings-298e1ea74db45b39.js" data-settings-css="settings-7bfb4c59cc6bc502.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ></div><script src="../../../static.files/storage-62ce34ea385b278a.js"></script><script defer src="../../../static.files/source-script-905937fbbdc8e9ea.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-f61008743c98d196.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../../winnow/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\winnow-0.5.28\src\stream\mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="winnow" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../../winnow/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -2589,6 +2589,531 @@
 <a href="#2589" id="2589">2589</a>
 <a href="#2590" id="2590">2590</a>
 <a href="#2591" id="2591">2591</a>
+<a href="#2592" id="2592">2592</a>
+<a href="#2593" id="2593">2593</a>
+<a href="#2594" id="2594">2594</a>
+<a href="#2595" id="2595">2595</a>
+<a href="#2596" id="2596">2596</a>
+<a href="#2597" id="2597">2597</a>
+<a href="#2598" id="2598">2598</a>
+<a href="#2599" id="2599">2599</a>
+<a href="#2600" id="2600">2600</a>
+<a href="#2601" id="2601">2601</a>
+<a href="#2602" id="2602">2602</a>
+<a href="#2603" id="2603">2603</a>
+<a href="#2604" id="2604">2604</a>
+<a href="#2605" id="2605">2605</a>
+<a href="#2606" id="2606">2606</a>
+<a href="#2607" id="2607">2607</a>
+<a href="#2608" id="2608">2608</a>
+<a href="#2609" id="2609">2609</a>
+<a href="#2610" id="2610">2610</a>
+<a href="#2611" id="2611">2611</a>
+<a href="#2612" id="2612">2612</a>
+<a href="#2613" id="2613">2613</a>
+<a href="#2614" id="2614">2614</a>
+<a href="#2615" id="2615">2615</a>
+<a href="#2616" id="2616">2616</a>
+<a href="#2617" id="2617">2617</a>
+<a href="#2618" id="2618">2618</a>
+<a href="#2619" id="2619">2619</a>
+<a href="#2620" id="2620">2620</a>
+<a href="#2621" id="2621">2621</a>
+<a href="#2622" id="2622">2622</a>
+<a href="#2623" id="2623">2623</a>
+<a href="#2624" id="2624">2624</a>
+<a href="#2625" id="2625">2625</a>
+<a href="#2626" id="2626">2626</a>
+<a href="#2627" id="2627">2627</a>
+<a href="#2628" id="2628">2628</a>
+<a href="#2629" id="2629">2629</a>
+<a href="#2630" id="2630">2630</a>
+<a href="#2631" id="2631">2631</a>
+<a href="#2632" id="2632">2632</a>
+<a href="#2633" id="2633">2633</a>
+<a href="#2634" id="2634">2634</a>
+<a href="#2635" id="2635">2635</a>
+<a href="#2636" id="2636">2636</a>
+<a href="#2637" id="2637">2637</a>
+<a href="#2638" id="2638">2638</a>
+<a href="#2639" id="2639">2639</a>
+<a href="#2640" id="2640">2640</a>
+<a href="#2641" id="2641">2641</a>
+<a href="#2642" id="2642">2642</a>
+<a href="#2643" id="2643">2643</a>
+<a href="#2644" id="2644">2644</a>
+<a href="#2645" id="2645">2645</a>
+<a href="#2646" id="2646">2646</a>
+<a href="#2647" id="2647">2647</a>
+<a href="#2648" id="2648">2648</a>
+<a href="#2649" id="2649">2649</a>
+<a href="#2650" id="2650">2650</a>
+<a href="#2651" id="2651">2651</a>
+<a href="#2652" id="2652">2652</a>
+<a href="#2653" id="2653">2653</a>
+<a href="#2654" id="2654">2654</a>
+<a href="#2655" id="2655">2655</a>
+<a href="#2656" id="2656">2656</a>
+<a href="#2657" id="2657">2657</a>
+<a href="#2658" id="2658">2658</a>
+<a href="#2659" id="2659">2659</a>
+<a href="#2660" id="2660">2660</a>
+<a href="#2661" id="2661">2661</a>
+<a href="#2662" id="2662">2662</a>
+<a href="#2663" id="2663">2663</a>
+<a href="#2664" id="2664">2664</a>
+<a href="#2665" id="2665">2665</a>
+<a href="#2666" id="2666">2666</a>
+<a href="#2667" id="2667">2667</a>
+<a href="#2668" id="2668">2668</a>
+<a href="#2669" id="2669">2669</a>
+<a href="#2670" id="2670">2670</a>
+<a href="#2671" id="2671">2671</a>
+<a href="#2672" id="2672">2672</a>
+<a href="#2673" id="2673">2673</a>
+<a href="#2674" id="2674">2674</a>
+<a href="#2675" id="2675">2675</a>
+<a href="#2676" id="2676">2676</a>
+<a href="#2677" id="2677">2677</a>
+<a href="#2678" id="2678">2678</a>
+<a href="#2679" id="2679">2679</a>
+<a href="#2680" id="2680">2680</a>
+<a href="#2681" id="2681">2681</a>
+<a href="#2682" id="2682">2682</a>
+<a href="#2683" id="2683">2683</a>
+<a href="#2684" id="2684">2684</a>
+<a href="#2685" id="2685">2685</a>
+<a href="#2686" id="2686">2686</a>
+<a href="#2687" id="2687">2687</a>
+<a href="#2688" id="2688">2688</a>
+<a href="#2689" id="2689">2689</a>
+<a href="#2690" id="2690">2690</a>
+<a href="#2691" id="2691">2691</a>
+<a href="#2692" id="2692">2692</a>
+<a href="#2693" id="2693">2693</a>
+<a href="#2694" id="2694">2694</a>
+<a href="#2695" id="2695">2695</a>
+<a href="#2696" id="2696">2696</a>
+<a href="#2697" id="2697">2697</a>
+<a href="#2698" id="2698">2698</a>
+<a href="#2699" id="2699">2699</a>
+<a href="#2700" id="2700">2700</a>
+<a href="#2701" id="2701">2701</a>
+<a href="#2702" id="2702">2702</a>
+<a href="#2703" id="2703">2703</a>
+<a href="#2704" id="2704">2704</a>
+<a href="#2705" id="2705">2705</a>
+<a href="#2706" id="2706">2706</a>
+<a href="#2707" id="2707">2707</a>
+<a href="#2708" id="2708">2708</a>
+<a href="#2709" id="2709">2709</a>
+<a href="#2710" id="2710">2710</a>
+<a href="#2711" id="2711">2711</a>
+<a href="#2712" id="2712">2712</a>
+<a href="#2713" id="2713">2713</a>
+<a href="#2714" id="2714">2714</a>
+<a href="#2715" id="2715">2715</a>
+<a href="#2716" id="2716">2716</a>
+<a href="#2717" id="2717">2717</a>
+<a href="#2718" id="2718">2718</a>
+<a href="#2719" id="2719">2719</a>
+<a href="#2720" id="2720">2720</a>
+<a href="#2721" id="2721">2721</a>
+<a href="#2722" id="2722">2722</a>
+<a href="#2723" id="2723">2723</a>
+<a href="#2724" id="2724">2724</a>
+<a href="#2725" id="2725">2725</a>
+<a href="#2726" id="2726">2726</a>
+<a href="#2727" id="2727">2727</a>
+<a href="#2728" id="2728">2728</a>
+<a href="#2729" id="2729">2729</a>
+<a href="#2730" id="2730">2730</a>
+<a href="#2731" id="2731">2731</a>
+<a href="#2732" id="2732">2732</a>
+<a href="#2733" id="2733">2733</a>
+<a href="#2734" id="2734">2734</a>
+<a href="#2735" id="2735">2735</a>
+<a href="#2736" id="2736">2736</a>
+<a href="#2737" id="2737">2737</a>
+<a href="#2738" id="2738">2738</a>
+<a href="#2739" id="2739">2739</a>
+<a href="#2740" id="2740">2740</a>
+<a href="#2741" id="2741">2741</a>
+<a href="#2742" id="2742">2742</a>
+<a href="#2743" id="2743">2743</a>
+<a href="#2744" id="2744">2744</a>
+<a href="#2745" id="2745">2745</a>
+<a href="#2746" id="2746">2746</a>
+<a href="#2747" id="2747">2747</a>
+<a href="#2748" id="2748">2748</a>
+<a href="#2749" id="2749">2749</a>
+<a href="#2750" id="2750">2750</a>
+<a href="#2751" id="2751">2751</a>
+<a href="#2752" id="2752">2752</a>
+<a href="#2753" id="2753">2753</a>
+<a href="#2754" id="2754">2754</a>
+<a href="#2755" id="2755">2755</a>
+<a href="#2756" id="2756">2756</a>
+<a href="#2757" id="2757">2757</a>
+<a href="#2758" id="2758">2758</a>
+<a href="#2759" id="2759">2759</a>
+<a href="#2760" id="2760">2760</a>
+<a href="#2761" id="2761">2761</a>
+<a href="#2762" id="2762">2762</a>
+<a href="#2763" id="2763">2763</a>
+<a href="#2764" id="2764">2764</a>
+<a href="#2765" id="2765">2765</a>
+<a href="#2766" id="2766">2766</a>
+<a href="#2767" id="2767">2767</a>
+<a href="#2768" id="2768">2768</a>
+<a href="#2769" id="2769">2769</a>
+<a href="#2770" id="2770">2770</a>
+<a href="#2771" id="2771">2771</a>
+<a href="#2772" id="2772">2772</a>
+<a href="#2773" id="2773">2773</a>
+<a href="#2774" id="2774">2774</a>
+<a href="#2775" id="2775">2775</a>
+<a href="#2776" id="2776">2776</a>
+<a href="#2777" id="2777">2777</a>
+<a href="#2778" id="2778">2778</a>
+<a href="#2779" id="2779">2779</a>
+<a href="#2780" id="2780">2780</a>
+<a href="#2781" id="2781">2781</a>
+<a href="#2782" id="2782">2782</a>
+<a href="#2783" id="2783">2783</a>
+<a href="#2784" id="2784">2784</a>
+<a href="#2785" id="2785">2785</a>
+<a href="#2786" id="2786">2786</a>
+<a href="#2787" id="2787">2787</a>
+<a href="#2788" id="2788">2788</a>
+<a href="#2789" id="2789">2789</a>
+<a href="#2790" id="2790">2790</a>
+<a href="#2791" id="2791">2791</a>
+<a href="#2792" id="2792">2792</a>
+<a href="#2793" id="2793">2793</a>
+<a href="#2794" id="2794">2794</a>
+<a href="#2795" id="2795">2795</a>
+<a href="#2796" id="2796">2796</a>
+<a href="#2797" id="2797">2797</a>
+<a href="#2798" id="2798">2798</a>
+<a href="#2799" id="2799">2799</a>
+<a href="#2800" id="2800">2800</a>
+<a href="#2801" id="2801">2801</a>
+<a href="#2802" id="2802">2802</a>
+<a href="#2803" id="2803">2803</a>
+<a href="#2804" id="2804">2804</a>
+<a href="#2805" id="2805">2805</a>
+<a href="#2806" id="2806">2806</a>
+<a href="#2807" id="2807">2807</a>
+<a href="#2808" id="2808">2808</a>
+<a href="#2809" id="2809">2809</a>
+<a href="#2810" id="2810">2810</a>
+<a href="#2811" id="2811">2811</a>
+<a href="#2812" id="2812">2812</a>
+<a href="#2813" id="2813">2813</a>
+<a href="#2814" id="2814">2814</a>
+<a href="#2815" id="2815">2815</a>
+<a href="#2816" id="2816">2816</a>
+<a href="#2817" id="2817">2817</a>
+<a href="#2818" id="2818">2818</a>
+<a href="#2819" id="2819">2819</a>
+<a href="#2820" id="2820">2820</a>
+<a href="#2821" id="2821">2821</a>
+<a href="#2822" id="2822">2822</a>
+<a href="#2823" id="2823">2823</a>
+<a href="#2824" id="2824">2824</a>
+<a href="#2825" id="2825">2825</a>
+<a href="#2826" id="2826">2826</a>
+<a href="#2827" id="2827">2827</a>
+<a href="#2828" id="2828">2828</a>
+<a href="#2829" id="2829">2829</a>
+<a href="#2830" id="2830">2830</a>
+<a href="#2831" id="2831">2831</a>
+<a href="#2832" id="2832">2832</a>
+<a href="#2833" id="2833">2833</a>
+<a href="#2834" id="2834">2834</a>
+<a href="#2835" id="2835">2835</a>
+<a href="#2836" id="2836">2836</a>
+<a href="#2837" id="2837">2837</a>
+<a href="#2838" id="2838">2838</a>
+<a href="#2839" id="2839">2839</a>
+<a href="#2840" id="2840">2840</a>
+<a href="#2841" id="2841">2841</a>
+<a href="#2842" id="2842">2842</a>
+<a href="#2843" id="2843">2843</a>
+<a href="#2844" id="2844">2844</a>
+<a href="#2845" id="2845">2845</a>
+<a href="#2846" id="2846">2846</a>
+<a href="#2847" id="2847">2847</a>
+<a href="#2848" id="2848">2848</a>
+<a href="#2849" id="2849">2849</a>
+<a href="#2850" id="2850">2850</a>
+<a href="#2851" id="2851">2851</a>
+<a href="#2852" id="2852">2852</a>
+<a href="#2853" id="2853">2853</a>
+<a href="#2854" id="2854">2854</a>
+<a href="#2855" id="2855">2855</a>
+<a href="#2856" id="2856">2856</a>
+<a href="#2857" id="2857">2857</a>
+<a href="#2858" id="2858">2858</a>
+<a href="#2859" id="2859">2859</a>
+<a href="#2860" id="2860">2860</a>
+<a href="#2861" id="2861">2861</a>
+<a href="#2862" id="2862">2862</a>
+<a href="#2863" id="2863">2863</a>
+<a href="#2864" id="2864">2864</a>
+<a href="#2865" id="2865">2865</a>
+<a href="#2866" id="2866">2866</a>
+<a href="#2867" id="2867">2867</a>
+<a href="#2868" id="2868">2868</a>
+<a href="#2869" id="2869">2869</a>
+<a href="#2870" id="2870">2870</a>
+<a href="#2871" id="2871">2871</a>
+<a href="#2872" id="2872">2872</a>
+<a href="#2873" id="2873">2873</a>
+<a href="#2874" id="2874">2874</a>
+<a href="#2875" id="2875">2875</a>
+<a href="#2876" id="2876">2876</a>
+<a href="#2877" id="2877">2877</a>
+<a href="#2878" id="2878">2878</a>
+<a href="#2879" id="2879">2879</a>
+<a href="#2880" id="2880">2880</a>
+<a href="#2881" id="2881">2881</a>
+<a href="#2882" id="2882">2882</a>
+<a href="#2883" id="2883">2883</a>
+<a href="#2884" id="2884">2884</a>
+<a href="#2885" id="2885">2885</a>
+<a href="#2886" id="2886">2886</a>
+<a href="#2887" id="2887">2887</a>
+<a href="#2888" id="2888">2888</a>
+<a href="#2889" id="2889">2889</a>
+<a href="#2890" id="2890">2890</a>
+<a href="#2891" id="2891">2891</a>
+<a href="#2892" id="2892">2892</a>
+<a href="#2893" id="2893">2893</a>
+<a href="#2894" id="2894">2894</a>
+<a href="#2895" id="2895">2895</a>
+<a href="#2896" id="2896">2896</a>
+<a href="#2897" id="2897">2897</a>
+<a href="#2898" id="2898">2898</a>
+<a href="#2899" id="2899">2899</a>
+<a href="#2900" id="2900">2900</a>
+<a href="#2901" id="2901">2901</a>
+<a href="#2902" id="2902">2902</a>
+<a href="#2903" id="2903">2903</a>
+<a href="#2904" id="2904">2904</a>
+<a href="#2905" id="2905">2905</a>
+<a href="#2906" id="2906">2906</a>
+<a href="#2907" id="2907">2907</a>
+<a href="#2908" id="2908">2908</a>
+<a href="#2909" id="2909">2909</a>
+<a href="#2910" id="2910">2910</a>
+<a href="#2911" id="2911">2911</a>
+<a href="#2912" id="2912">2912</a>
+<a href="#2913" id="2913">2913</a>
+<a href="#2914" id="2914">2914</a>
+<a href="#2915" id="2915">2915</a>
+<a href="#2916" id="2916">2916</a>
+<a href="#2917" id="2917">2917</a>
+<a href="#2918" id="2918">2918</a>
+<a href="#2919" id="2919">2919</a>
+<a href="#2920" id="2920">2920</a>
+<a href="#2921" id="2921">2921</a>
+<a href="#2922" id="2922">2922</a>
+<a href="#2923" id="2923">2923</a>
+<a href="#2924" id="2924">2924</a>
+<a href="#2925" id="2925">2925</a>
+<a href="#2926" id="2926">2926</a>
+<a href="#2927" id="2927">2927</a>
+<a href="#2928" id="2928">2928</a>
+<a href="#2929" id="2929">2929</a>
+<a href="#2930" id="2930">2930</a>
+<a href="#2931" id="2931">2931</a>
+<a href="#2932" id="2932">2932</a>
+<a href="#2933" id="2933">2933</a>
+<a href="#2934" id="2934">2934</a>
+<a href="#2935" id="2935">2935</a>
+<a href="#2936" id="2936">2936</a>
+<a href="#2937" id="2937">2937</a>
+<a href="#2938" id="2938">2938</a>
+<a href="#2939" id="2939">2939</a>
+<a href="#2940" id="2940">2940</a>
+<a href="#2941" id="2941">2941</a>
+<a href="#2942" id="2942">2942</a>
+<a href="#2943" id="2943">2943</a>
+<a href="#2944" id="2944">2944</a>
+<a href="#2945" id="2945">2945</a>
+<a href="#2946" id="2946">2946</a>
+<a href="#2947" id="2947">2947</a>
+<a href="#2948" id="2948">2948</a>
+<a href="#2949" id="2949">2949</a>
+<a href="#2950" id="2950">2950</a>
+<a href="#2951" id="2951">2951</a>
+<a href="#2952" id="2952">2952</a>
+<a href="#2953" id="2953">2953</a>
+<a href="#2954" id="2954">2954</a>
+<a href="#2955" id="2955">2955</a>
+<a href="#2956" id="2956">2956</a>
+<a href="#2957" id="2957">2957</a>
+<a href="#2958" id="2958">2958</a>
+<a href="#2959" id="2959">2959</a>
+<a href="#2960" id="2960">2960</a>
+<a href="#2961" id="2961">2961</a>
+<a href="#2962" id="2962">2962</a>
+<a href="#2963" id="2963">2963</a>
+<a href="#2964" id="2964">2964</a>
+<a href="#2965" id="2965">2965</a>
+<a href="#2966" id="2966">2966</a>
+<a href="#2967" id="2967">2967</a>
+<a href="#2968" id="2968">2968</a>
+<a href="#2969" id="2969">2969</a>
+<a href="#2970" id="2970">2970</a>
+<a href="#2971" id="2971">2971</a>
+<a href="#2972" id="2972">2972</a>
+<a href="#2973" id="2973">2973</a>
+<a href="#2974" id="2974">2974</a>
+<a href="#2975" id="2975">2975</a>
+<a href="#2976" id="2976">2976</a>
+<a href="#2977" id="2977">2977</a>
+<a href="#2978" id="2978">2978</a>
+<a href="#2979" id="2979">2979</a>
+<a href="#2980" id="2980">2980</a>
+<a href="#2981" id="2981">2981</a>
+<a href="#2982" id="2982">2982</a>
+<a href="#2983" id="2983">2983</a>
+<a href="#2984" id="2984">2984</a>
+<a href="#2985" id="2985">2985</a>
+<a href="#2986" id="2986">2986</a>
+<a href="#2987" id="2987">2987</a>
+<a href="#2988" id="2988">2988</a>
+<a href="#2989" id="2989">2989</a>
+<a href="#2990" id="2990">2990</a>
+<a href="#2991" id="2991">2991</a>
+<a href="#2992" id="2992">2992</a>
+<a href="#2993" id="2993">2993</a>
+<a href="#2994" id="2994">2994</a>
+<a href="#2995" id="2995">2995</a>
+<a href="#2996" id="2996">2996</a>
+<a href="#2997" id="2997">2997</a>
+<a href="#2998" id="2998">2998</a>
+<a href="#2999" id="2999">2999</a>
+<a href="#3000" id="3000">3000</a>
+<a href="#3001" id="3001">3001</a>
+<a href="#3002" id="3002">3002</a>
+<a href="#3003" id="3003">3003</a>
+<a href="#3004" id="3004">3004</a>
+<a href="#3005" id="3005">3005</a>
+<a href="#3006" id="3006">3006</a>
+<a href="#3007" id="3007">3007</a>
+<a href="#3008" id="3008">3008</a>
+<a href="#3009" id="3009">3009</a>
+<a href="#3010" id="3010">3010</a>
+<a href="#3011" id="3011">3011</a>
+<a href="#3012" id="3012">3012</a>
+<a href="#3013" id="3013">3013</a>
+<a href="#3014" id="3014">3014</a>
+<a href="#3015" id="3015">3015</a>
+<a href="#3016" id="3016">3016</a>
+<a href="#3017" id="3017">3017</a>
+<a href="#3018" id="3018">3018</a>
+<a href="#3019" id="3019">3019</a>
+<a href="#3020" id="3020">3020</a>
+<a href="#3021" id="3021">3021</a>
+<a href="#3022" id="3022">3022</a>
+<a href="#3023" id="3023">3023</a>
+<a href="#3024" id="3024">3024</a>
+<a href="#3025" id="3025">3025</a>
+<a href="#3026" id="3026">3026</a>
+<a href="#3027" id="3027">3027</a>
+<a href="#3028" id="3028">3028</a>
+<a href="#3029" id="3029">3029</a>
+<a href="#3030" id="3030">3030</a>
+<a href="#3031" id="3031">3031</a>
+<a href="#3032" id="3032">3032</a>
+<a href="#3033" id="3033">3033</a>
+<a href="#3034" id="3034">3034</a>
+<a href="#3035" id="3035">3035</a>
+<a href="#3036" id="3036">3036</a>
+<a href="#3037" id="3037">3037</a>
+<a href="#3038" id="3038">3038</a>
+<a href="#3039" id="3039">3039</a>
+<a href="#3040" id="3040">3040</a>
+<a href="#3041" id="3041">3041</a>
+<a href="#3042" id="3042">3042</a>
+<a href="#3043" id="3043">3043</a>
+<a href="#3044" id="3044">3044</a>
+<a href="#3045" id="3045">3045</a>
+<a href="#3046" id="3046">3046</a>
+<a href="#3047" id="3047">3047</a>
+<a href="#3048" id="3048">3048</a>
+<a href="#3049" id="3049">3049</a>
+<a href="#3050" id="3050">3050</a>
+<a href="#3051" id="3051">3051</a>
+<a href="#3052" id="3052">3052</a>
+<a href="#3053" id="3053">3053</a>
+<a href="#3054" id="3054">3054</a>
+<a href="#3055" id="3055">3055</a>
+<a href="#3056" id="3056">3056</a>
+<a href="#3057" id="3057">3057</a>
+<a href="#3058" id="3058">3058</a>
+<a href="#3059" id="3059">3059</a>
+<a href="#3060" id="3060">3060</a>
+<a href="#3061" id="3061">3061</a>
+<a href="#3062" id="3062">3062</a>
+<a href="#3063" id="3063">3063</a>
+<a href="#3064" id="3064">3064</a>
+<a href="#3065" id="3065">3065</a>
+<a href="#3066" id="3066">3066</a>
+<a href="#3067" id="3067">3067</a>
+<a href="#3068" id="3068">3068</a>
+<a href="#3069" id="3069">3069</a>
+<a href="#3070" id="3070">3070</a>
+<a href="#3071" id="3071">3071</a>
+<a href="#3072" id="3072">3072</a>
+<a href="#3073" id="3073">3073</a>
+<a href="#3074" id="3074">3074</a>
+<a href="#3075" id="3075">3075</a>
+<a href="#3076" id="3076">3076</a>
+<a href="#3077" id="3077">3077</a>
+<a href="#3078" id="3078">3078</a>
+<a href="#3079" id="3079">3079</a>
+<a href="#3080" id="3080">3080</a>
+<a href="#3081" id="3081">3081</a>
+<a href="#3082" id="3082">3082</a>
+<a href="#3083" id="3083">3083</a>
+<a href="#3084" id="3084">3084</a>
+<a href="#3085" id="3085">3085</a>
+<a href="#3086" id="3086">3086</a>
+<a href="#3087" id="3087">3087</a>
+<a href="#3088" id="3088">3088</a>
+<a href="#3089" id="3089">3089</a>
+<a href="#3090" id="3090">3090</a>
+<a href="#3091" id="3091">3091</a>
+<a href="#3092" id="3092">3092</a>
+<a href="#3093" id="3093">3093</a>
+<a href="#3094" id="3094">3094</a>
+<a href="#3095" id="3095">3095</a>
+<a href="#3096" id="3096">3096</a>
+<a href="#3097" id="3097">3097</a>
+<a href="#3098" id="3098">3098</a>
+<a href="#3099" id="3099">3099</a>
+<a href="#3100" id="3100">3100</a>
+<a href="#3101" id="3101">3101</a>
+<a href="#3102" id="3102">3102</a>
+<a href="#3103" id="3103">3103</a>
+<a href="#3104" id="3104">3104</a>
+<a href="#3105" id="3105">3105</a>
+<a href="#3106" id="3106">3106</a>
+<a href="#3107" id="3107">3107</a>
+<a href="#3108" id="3108">3108</a>
+<a href="#3109" id="3109">3109</a>
+<a href="#3110" id="3110">3110</a>
+<a href="#3111" id="3111">3111</a>
+<a href="#3112" id="3112">3112</a>
+<a href="#3113" id="3113">3113</a>
+<a href="#3114" id="3114">3114</a>
+<a href="#3115" id="3115">3115</a>
+<a href="#3116" id="3116">3116</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Stream capability for combinators to parse
 //!
 //! Stream types include:
@@ -2600,20 +3125,29 @@
 //! - [`Partial`] can mark an input as partial buffer that is being streamed into
 //! - [Custom stream types][crate::_topic::stream]
 
-</span><span class="kw">use </span>core::num::NonZeroUsize;
+</span><span class="kw">use </span>core::hash::BuildHasher;
+<span class="kw">use </span>core::num::NonZeroUsize;
 
-<span class="kw">use </span><span class="kw">crate</span>::error::{ErrMode, ErrorKind, Needed, ParseError};
+<span class="kw">use </span><span class="kw">crate</span>::ascii::Caseless <span class="kw">as </span>AsciiCaseless;
+<span class="kw">use </span><span class="kw">crate</span>::error::Needed;
 <span class="kw">use </span><span class="kw">crate</span>::lib::std::iter::{Cloned, Enumerate};
 <span class="kw">use </span><span class="kw">crate</span>::lib::std::slice::Iter;
 <span class="kw">use </span><span class="kw">crate</span>::lib::std::str::from_utf8;
 <span class="kw">use </span><span class="kw">crate</span>::lib::std::str::CharIndices;
 <span class="kw">use </span><span class="kw">crate</span>::lib::std::str::FromStr;
-<span class="kw">use </span><span class="kw">crate</span>::IResult;
+
+<span class="attr">#[allow(unused_imports)]
+#[cfg(feature = <span class="string">&quot;unstable-doc&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::error::ErrMode;
 
 <span class="attr">#[cfg(feature = <span class="string">&quot;alloc&quot;</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::lib::std::collections::BTreeMap;
+<span class="attr">#[cfg(feature = <span class="string">&quot;alloc&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::lib::std::collections::BTreeSet;
 <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::lib::std::collections::HashMap;
+<span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::lib::std::collections::HashSet;
 <span class="attr">#[cfg(feature = <span class="string">&quot;alloc&quot;</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::lib::std::string::String;
 <span class="attr">#[cfg(feature = <span class="string">&quot;alloc&quot;</span>)]
@@ -2676,8 +3210,18 @@
 
 <span class="doccomment">/// Allow collecting the span of a parsed token
 ///
+/// Spans are tracked as a [`Range&lt;usize&gt;`] of byte offsets.
+///
+/// Converting byte offsets to line or column numbers is left up to the user, as computing column
+/// numbers requires domain knowledge (are columns byte-based, codepoint-based, or grapheme-based?)
+/// and O(n) iteration over the input to determine codepoint and line boundaries.
+///
+/// [The `line-span` crate](https://docs.rs/line-span/latest/line_span/) can help with converting
+/// byte offsets to line numbers.
+///
 /// See [`Parser::span`][crate::Parser::span] and [`Parser::with_span`][crate::Parser::with_span] for more details
 </span><span class="attr">#[derive(Copy, Clone, Default, Debug, PartialEq, Eq, PartialOrd, Ord)]
+#[doc(alias = <span class="string">&quot;LocatedSpan&quot;</span>)]
 </span><span class="kw">pub struct </span>Located&lt;I&gt; {
     initial: I,
     input: I,
@@ -2694,7 +3238,7 @@
     }
 
     <span class="kw">fn </span>location(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
-        <span class="self">self</span>.initial.offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>.input)
+        <span class="self">self</span>.input.offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>.initial)
     }
 }
 
@@ -2747,9 +3291,9 @@
 ///
 /// type Stream&lt;&#39;is&gt; = Stateful&lt;&amp;&#39;is str, State&lt;&#39;is&gt;&gt;;
 ///
-/// fn word(i: Stream&lt;&#39;_&gt;) -&gt; IResult&lt;Stream&lt;&#39;_&gt;, &amp;str&gt; {
+/// fn word&lt;&#39;s&gt;(i: &amp;mut Stream&lt;&#39;s&gt;) -&gt; PResult&lt;&amp;&#39;s str&gt; {
 ///   i.state.count();
-///   alpha1(i)
+///   alpha1.parse_next(i)
 /// }
 ///
 /// let data = &quot;Hello&quot;;
@@ -2759,6 +3303,7 @@
 /// assert_eq!(state.get(), 1);
 /// ```
 </span><span class="attr">#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[doc(alias = <span class="string">&quot;LocatedSpan&quot;</span>)]
 </span><span class="kw">pub struct </span>Stateful&lt;I, S&gt; {
     <span class="doccomment">/// Inner input being wrapped in state
     </span><span class="kw">pub </span>input: I,
@@ -2790,7 +3335,7 @@
 
 <span class="doccomment">/// Mark the input as a partial buffer for streaming input.
 ///
-/// Complete input means that we already have all of the data.  This will be the common case with
+/// Complete input means that we already have all of the data. This will be the common case with
 /// small files that can be read entirely to memory.
 ///
 /// In contrast, streaming input assumes that we might not have all of the data.
@@ -2809,48 +3354,48 @@
 /// Here is how it works in practice:
 ///
 /// ```rust
-/// # use winnow::{IResult, error::ErrMode, error::Needed, error::{Error, ErrorKind}, token, ascii, stream::Partial};
+/// # use winnow::{PResult, error::ErrMode, error::Needed, error::{InputError, ErrorKind}, token, ascii, stream::Partial};
 /// # use winnow::prelude::*;
 ///
-/// fn take_partial(i: Partial&lt;&amp;[u8]&gt;) -&gt; IResult&lt;Partial&lt;&amp;[u8]&gt;, &amp;[u8]&gt; {
+/// fn take_partial&lt;&#39;s&gt;(i: &amp;mut Partial&lt;&amp;&#39;s [u8]&gt;) -&gt; PResult&lt;&amp;&#39;s [u8], InputError&lt;Partial&lt;&amp;&#39;s [u8]&gt;&gt;&gt; {
 ///   token::take(4u8).parse_next(i)
 /// }
 ///
-/// fn take_complete(i: &amp;[u8]) -&gt; IResult&lt;&amp;[u8], &amp;[u8]&gt; {
+/// fn take_complete&lt;&#39;s&gt;(i: &amp;mut &amp;&#39;s [u8]) -&gt; PResult&lt;&amp;&#39;s [u8], InputError&lt;&amp;&#39;s [u8]&gt;&gt; {
 ///   token::take(4u8).parse_next(i)
 /// }
 ///
 /// // both parsers will take 4 bytes as expected
-/// assert_eq!(take_partial(Partial::new(&amp;b&quot;abcde&quot;[..])), Ok((Partial::new(&amp;b&quot;e&quot;[..]), &amp;b&quot;abcd&quot;[..])));
-/// assert_eq!(take_complete(&amp;b&quot;abcde&quot;[..]), Ok((&amp;b&quot;e&quot;[..], &amp;b&quot;abcd&quot;[..])));
+/// assert_eq!(take_partial.parse_peek(Partial::new(&amp;b&quot;abcde&quot;[..])), Ok((Partial::new(&amp;b&quot;e&quot;[..]), &amp;b&quot;abcd&quot;[..])));
+/// assert_eq!(take_complete.parse_peek(&amp;b&quot;abcde&quot;[..]), Ok((&amp;b&quot;e&quot;[..], &amp;b&quot;abcd&quot;[..])));
 ///
 /// // if the input is smaller than 4 bytes, the partial parser
 /// // will return `Incomplete` to indicate that we need more data
-/// assert_eq!(take_partial(Partial::new(&amp;b&quot;abc&quot;[..])), Err(ErrMode::Incomplete(Needed::new(1))));
+/// assert_eq!(take_partial.parse_peek(Partial::new(&amp;b&quot;abc&quot;[..])), Err(ErrMode::Incomplete(Needed::new(1))));
 ///
 /// // but the complete parser will return an error
-/// assert_eq!(take_complete(&amp;b&quot;abc&quot;[..]), Err(ErrMode::Backtrack(Error::new(&amp;b&quot;abc&quot;[..], ErrorKind::Slice))));
+/// assert_eq!(take_complete.parse_peek(&amp;b&quot;abc&quot;[..]), Err(ErrMode::Backtrack(InputError::new(&amp;b&quot;abc&quot;[..], ErrorKind::Slice))));
 ///
 /// // the alpha0 function recognizes 0 or more alphabetic characters
-/// fn alpha0_partial(i: Partial&lt;&amp;str&gt;) -&gt; IResult&lt;Partial&lt;&amp;str&gt;, &amp;str&gt; {
-///   ascii::alpha0(i)
+/// fn alpha0_partial&lt;&#39;s&gt;(i: &amp;mut Partial&lt;&amp;&#39;s str&gt;) -&gt; PResult&lt;&amp;&#39;s str, InputError&lt;Partial&lt;&amp;&#39;s str&gt;&gt;&gt; {
+///   ascii::alpha0.parse_next(i)
 /// }
 ///
-/// fn alpha0_complete(i: &amp;str) -&gt; IResult&lt;&amp;str, &amp;str&gt; {
-///   ascii::alpha0(i)
+/// fn alpha0_complete&lt;&#39;s&gt;(i: &amp;mut &amp;&#39;s str) -&gt; PResult&lt;&amp;&#39;s str, InputError&lt;&amp;&#39;s str&gt;&gt; {
+///   ascii::alpha0.parse_next(i)
 /// }
 ///
 /// // if there&#39;s a clear limit to the recognized characters, both parsers work the same way
-/// assert_eq!(alpha0_partial(Partial::new(&quot;abcd;&quot;)), Ok((Partial::new(&quot;;&quot;), &quot;abcd&quot;)));
-/// assert_eq!(alpha0_complete(&quot;abcd;&quot;), Ok((&quot;;&quot;, &quot;abcd&quot;)));
+/// assert_eq!(alpha0_partial.parse_peek(Partial::new(&quot;abcd;&quot;)), Ok((Partial::new(&quot;;&quot;), &quot;abcd&quot;)));
+/// assert_eq!(alpha0_complete.parse_peek(&quot;abcd;&quot;), Ok((&quot;;&quot;, &quot;abcd&quot;)));
 ///
 /// // but when there&#39;s no limit, the partial version returns `Incomplete`, because it cannot
 /// // know if more input data should be recognized. The whole input could be &quot;abcd;&quot;, or
 /// // &quot;abcde;&quot;
-/// assert_eq!(alpha0_partial(Partial::new(&quot;abcd&quot;)), Err(ErrMode::Incomplete(Needed::new(1))));
+/// assert_eq!(alpha0_partial.parse_peek(Partial::new(&quot;abcd&quot;)), Err(ErrMode::Incomplete(Needed::new(1))));
 ///
 /// // while the complete version knows that all of the data is there
-/// assert_eq!(alpha0_complete(&quot;abcd&quot;), Ok((&quot;&quot;, &quot;abcd&quot;)));
+/// assert_eq!(alpha0_complete.parse_peek(&quot;abcd&quot;), Ok((&quot;&quot;, &quot;abcd&quot;)));
 /// ```
 </span><span class="attr">#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord)]
 </span><span class="kw">pub struct </span>Partial&lt;I&gt; {
@@ -2908,6 +3453,13 @@
     <span class="doccomment">/// Calculates the input length, as indicated by its name,
     /// and the name of the trait itself
     </span><span class="kw">fn </span>slice_len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize;
+}
+
+<span class="kw">impl</span>&lt;S: SliceLen&gt; SliceLen <span class="kw">for </span>AsciiCaseless&lt;S&gt; {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>slice_len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.<span class="number">0</span>.slice_len()
+    }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; SliceLen <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[T] {
@@ -2993,7 +3545,7 @@
 }
 
 <span class="doccomment">/// Core definition for parser input state
-</span><span class="kw">pub trait </span>Stream: Offset + Clone + <span class="kw">crate</span>::lib::std::fmt::Debug {
+</span><span class="kw">pub trait </span>Stream: Offset&lt;&lt;<span class="self">Self </span><span class="kw">as </span>Stream&gt;::Checkpoint&gt; + <span class="kw">crate</span>::lib::std::fmt::Debug {
     <span class="doccomment">/// The smallest unit being parsed
     ///
     /// Example: `u8` for `&amp;[u8]` or `char` for `&amp;str`
@@ -3006,17 +3558,26 @@
     <span class="doccomment">/// Iterate with the offset from the current location
     </span><span class="kw">type </span>IterOffsets: Iterator&lt;Item = (usize, <span class="self">Self</span>::Token)&gt;;
 
+    <span class="doccomment">/// A parse location within the stream
+    </span><span class="kw">type </span>Checkpoint: Offset + Clone + <span class="kw">crate</span>::lib::std::fmt::Debug;
+
     <span class="doccomment">/// Iterate with the offset from the current location
     </span><span class="kw">fn </span>iter_offsets(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::IterOffsets;
-    <span class="doccomment">/// Returns the offaet to the end of the input
+
+    <span class="doccomment">/// Returns the offset to the end of the input
     </span><span class="kw">fn </span>eof_offset(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize;
 
     <span class="doccomment">/// Split off the next token from the input
-    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(<span class="self">Self</span>, <span class="self">Self</span>::Token)&gt;;
+    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Token&gt;;
     <span class="doccomment">/// Split off the next token from the input
-    </span><span class="attr">#[inline]
-    </span><span class="kw">fn </span>peek_token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(<span class="self">Self</span>, <span class="self">Self</span>::Token)&gt; {
-        <span class="self">self</span>.next_token()
+    </span><span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>peek_token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(<span class="self">Self</span>, <span class="self">Self</span>::Token)&gt;
+    <span class="kw">where
+        </span><span class="self">Self</span>: Clone,
+    {
+        <span class="kw">let </span><span class="kw-2">mut </span>peek = <span class="self">self</span>.clone();
+        <span class="kw">let </span>token = peek.next_token()<span class="question-mark">?</span>;
+        <span class="prelude-val">Some</span>((peek, token))
     }
 
     <span class="doccomment">/// Finds the offset of the next matching token
@@ -3030,7 +3591,7 @@
     <span class="doccomment">/// Split off a slice of tokens from the input
     ///
     /// **NOTE:** For inputs with variable width tokens, like `&amp;str`&#39;s `char`, `offset` might not correspond
-    /// with the number of tokens.  To get a valid offset, use:
+    /// with the number of tokens. To get a valid offset, use:
     /// - [`Stream::eof_offset`]
     /// - [`Stream::iter_offsets`]
     /// - [`Stream::offset_for`]
@@ -3044,12 +3605,45 @@
     /// * Indexes must uphold invariants of the stream, like for `str` they must lie on UTF-8
     ///   sequence boundaries.
     ///
-    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>::Slice);
+    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;mut </span><span class="self">self</span>, offset: usize) -&gt; <span class="self">Self</span>::Slice;
     <span class="doccomment">/// Split off a slice of tokens from the input
-    </span><span class="attr">#[inline]
-    </span><span class="kw">fn </span>peek_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>::Slice) {
-        <span class="self">self</span>.next_slice(offset)
+    </span><span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>peek_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>::Slice)
+    <span class="kw">where
+        </span><span class="self">Self</span>: Clone,
+    {
+        <span class="kw">let </span><span class="kw-2">mut </span>peek = <span class="self">self</span>.clone();
+        <span class="kw">let </span>slice = peek.next_slice(offset);
+        (peek, slice)
     }
+
+    <span class="doccomment">/// Advance to the end of the stream
+    </span><span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>finish(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="self">Self</span>::Slice {
+        <span class="self">self</span>.next_slice(<span class="self">self</span>.eof_offset())
+    }
+    <span class="doccomment">/// Advance to the end of the stream
+    </span><span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>peek_finish(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>::Slice)
+    <span class="kw">where
+        </span><span class="self">Self</span>: Clone,
+    {
+        <span class="kw">let </span><span class="kw-2">mut </span>peek = <span class="self">self</span>.clone();
+        <span class="kw">let </span>slice = peek.finish();
+        (peek, slice)
+    }
+
+    <span class="doccomment">/// Save the current parse location within the stream
+    </span><span class="kw">fn </span>checkpoint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::Checkpoint;
+    <span class="doccomment">/// Revert the stream to a prior [`Self::Checkpoint`]
+    ///
+    /// # Panic
+    ///
+    /// May panic if an invalid [`Self::Checkpoint`] is provided
+    </span><span class="kw">fn </span>reset(<span class="kw-2">&amp;mut </span><span class="self">self</span>, checkpoint: <span class="self">Self</span>::Checkpoint);
+
+    <span class="doccomment">/// Return the inner-most stream
+    </span><span class="kw">fn </span>raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">dyn </span><span class="kw">crate</span>::lib::std::fmt::Debug;
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>, T&gt; Stream <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>[T]
@@ -3061,6 +3655,8 @@
 
     <span class="kw">type </span>IterOffsets = Enumerate&lt;Cloned&lt;Iter&lt;<span class="lifetime">&#39;i</span>, T&gt;&gt;&gt;;
 
+    <span class="kw">type </span>Checkpoint = Checkpoint&lt;<span class="self">Self</span>&gt;;
+
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>iter_offsets(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::IterOffsets {
         <span class="self">self</span>.iter().cloned().enumerate()
@@ -3071,9 +3667,10 @@
     }
 
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(<span class="self">Self</span>, <span class="self">Self</span>::Token)&gt; {
-        <span class="self">self</span>.split_first()
-            .map(|(token, next)| (next, token.clone()))
+    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Token&gt; {
+        <span class="kw">let </span>(token, next) = <span class="self">self</span>.split_first()<span class="question-mark">?</span>;
+        <span class="kw-2">*</span><span class="self">self </span>= next;
+        <span class="prelude-val">Some</span>(token.clone())
     }
 
     <span class="attr">#[inline(always)]
@@ -3092,10 +3689,25 @@
         }
     }
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>::Slice) {
+    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;mut </span><span class="self">self</span>, offset: usize) -&gt; <span class="self">Self</span>::Slice {
         <span class="kw">let </span>(slice, next) = <span class="self">self</span>.split_at(offset);
-        (next, slice)
+        <span class="kw-2">*</span><span class="self">self </span>= next;
+        slice
     }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>checkpoint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::Checkpoint {
+        Checkpoint(<span class="kw-2">*</span><span class="self">self</span>)
+    }
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>reset(<span class="kw-2">&amp;mut </span><span class="self">self</span>, checkpoint: <span class="self">Self</span>::Checkpoint) {
+        <span class="kw-2">*</span><span class="self">self </span>= checkpoint.<span class="number">0</span>;
+    }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">dyn </span><span class="kw">crate</span>::lib::std::fmt::Debug {
+        <span class="self">self
+    </span>}
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; Stream <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str {
@@ -3103,6 +3715,8 @@
     <span class="kw">type </span>Slice = <span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str;
 
     <span class="kw">type </span>IterOffsets = CharIndices&lt;<span class="lifetime">&#39;i</span>&gt;;
+
+    <span class="kw">type </span>Checkpoint = Checkpoint&lt;<span class="self">Self</span>&gt;;
 
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>iter_offsets(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::IterOffsets {
@@ -3114,10 +3728,11 @@
     }
 
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(<span class="self">Self</span>, <span class="self">Self</span>::Token)&gt; {
+    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Token&gt; {
         <span class="kw">let </span>c = <span class="self">self</span>.chars().next()<span class="question-mark">?</span>;
         <span class="kw">let </span>offset = c.len();
-        <span class="prelude-val">Some</span>((<span class="kw-2">&amp;</span><span class="self">self</span>[offset..], c))
+        <span class="kw-2">*</span><span class="self">self </span>= <span class="kw-2">&amp;</span><span class="self">self</span>[offset..];
+        <span class="prelude-val">Some</span>(c)
     }
 
     <span class="attr">#[inline(always)]
@@ -3149,10 +3764,25 @@
         }
     }
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>::Slice) {
+    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;mut </span><span class="self">self</span>, offset: usize) -&gt; <span class="self">Self</span>::Slice {
         <span class="kw">let </span>(slice, next) = <span class="self">self</span>.split_at(offset);
-        (next, slice)
+        <span class="kw-2">*</span><span class="self">self </span>= next;
+        slice
     }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>checkpoint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::Checkpoint {
+        Checkpoint(<span class="kw-2">*</span><span class="self">self</span>)
+    }
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>reset(<span class="kw-2">&amp;mut </span><span class="self">self</span>, checkpoint: <span class="self">Self</span>::Checkpoint) {
+        <span class="kw-2">*</span><span class="self">self </span>= checkpoint.<span class="number">0</span>;
+    }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">dyn </span><span class="kw">crate</span>::lib::std::fmt::Debug {
+        <span class="self">self
+    </span>}
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; Stream <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>Bytes {
@@ -3161,6 +3791,8 @@
 
     <span class="kw">type </span>IterOffsets = Enumerate&lt;Cloned&lt;Iter&lt;<span class="lifetime">&#39;i</span>, u8&gt;&gt;&gt;;
 
+    <span class="kw">type </span>Checkpoint = Checkpoint&lt;<span class="self">Self</span>&gt;;
+
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>iter_offsets(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::IterOffsets {
         <span class="self">self</span>.iter().cloned().enumerate()
@@ -3171,11 +3803,13 @@
     }
 
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(<span class="self">Self</span>, <span class="self">Self</span>::Token)&gt; {
+    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Token&gt; {
         <span class="kw">if </span><span class="self">self</span>.is_empty() {
             <span class="prelude-val">None
         </span>} <span class="kw">else </span>{
-            <span class="prelude-val">Some</span>((Bytes::from_bytes(<span class="kw-2">&amp;</span><span class="self">self</span>[<span class="number">1</span>..]), <span class="self">self</span>[<span class="number">0</span>]))
+            <span class="kw">let </span>token = <span class="self">self</span>[<span class="number">0</span>];
+            <span class="kw-2">*</span><span class="self">self </span>= <span class="kw-2">&amp;</span><span class="self">self</span>[<span class="number">1</span>..];
+            <span class="prelude-val">Some</span>(token)
         }
     }
 
@@ -3195,10 +3829,25 @@
         }
     }
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>::Slice) {
-        <span class="kw">let </span>(next, slice) = (<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>).next_slice(offset);
-        (Bytes::from_bytes(next), slice)
+    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;mut </span><span class="self">self</span>, offset: usize) -&gt; <span class="self">Self</span>::Slice {
+        <span class="kw">let </span>(slice, next) = <span class="self">self</span>.<span class="number">0</span>.split_at(offset);
+        <span class="kw-2">*</span><span class="self">self </span>= Bytes::from_bytes(next);
+        slice
     }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>checkpoint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::Checkpoint {
+        Checkpoint(<span class="kw-2">*</span><span class="self">self</span>)
+    }
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>reset(<span class="kw-2">&amp;mut </span><span class="self">self</span>, checkpoint: <span class="self">Self</span>::Checkpoint) {
+        <span class="kw-2">*</span><span class="self">self </span>= checkpoint.<span class="number">0</span>;
+    }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">dyn </span><span class="kw">crate</span>::lib::std::fmt::Debug {
+        <span class="self">self
+    </span>}
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; Stream <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>BStr {
@@ -3207,6 +3856,8 @@
 
     <span class="kw">type </span>IterOffsets = Enumerate&lt;Cloned&lt;Iter&lt;<span class="lifetime">&#39;i</span>, u8&gt;&gt;&gt;;
 
+    <span class="kw">type </span>Checkpoint = Checkpoint&lt;<span class="self">Self</span>&gt;;
+
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>iter_offsets(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::IterOffsets {
         <span class="self">self</span>.iter().cloned().enumerate()
@@ -3217,11 +3868,13 @@
     }
 
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(<span class="self">Self</span>, <span class="self">Self</span>::Token)&gt; {
+    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Token&gt; {
         <span class="kw">if </span><span class="self">self</span>.is_empty() {
             <span class="prelude-val">None
         </span>} <span class="kw">else </span>{
-            <span class="prelude-val">Some</span>((BStr::from_bytes(<span class="kw-2">&amp;</span><span class="self">self</span>[<span class="number">1</span>..]), <span class="self">self</span>[<span class="number">0</span>]))
+            <span class="kw">let </span>token = <span class="self">self</span>[<span class="number">0</span>];
+            <span class="kw-2">*</span><span class="self">self </span>= <span class="kw-2">&amp;</span><span class="self">self</span>[<span class="number">1</span>..];
+            <span class="prelude-val">Some</span>(token)
         }
     }
 
@@ -3241,20 +3894,37 @@
         }
     }
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>::Slice) {
-        <span class="kw">let </span>(next, slice) = (<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>).next_slice(offset);
-        (BStr::from_bytes(next), slice)
+    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;mut </span><span class="self">self</span>, offset: usize) -&gt; <span class="self">Self</span>::Slice {
+        <span class="kw">let </span>(slice, next) = <span class="self">self</span>.<span class="number">0</span>.split_at(offset);
+        <span class="kw-2">*</span><span class="self">self </span>= BStr::from_bytes(next);
+        slice
     }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>checkpoint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::Checkpoint {
+        Checkpoint(<span class="kw-2">*</span><span class="self">self</span>)
+    }
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>reset(<span class="kw-2">&amp;mut </span><span class="self">self</span>, checkpoint: <span class="self">Self</span>::Checkpoint) {
+        <span class="kw-2">*</span><span class="self">self </span>= checkpoint.<span class="number">0</span>;
+    }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">dyn </span><span class="kw">crate</span>::lib::std::fmt::Debug {
+        <span class="self">self
+    </span>}
 }
 
 <span class="kw">impl</span>&lt;I&gt; Stream <span class="kw">for </span>(I, usize)
 <span class="kw">where
-    </span>I: Stream&lt;Token = u8&gt;,
+    </span>I: Stream&lt;Token = u8&gt; + Clone,
 {
     <span class="kw">type </span>Token = bool;
     <span class="kw">type </span>Slice = (I::Slice, usize, usize);
 
     <span class="kw">type </span>IterOffsets = BitOffsets&lt;I&gt;;
+
+    <span class="kw">type </span>Checkpoint = Checkpoint&lt;(I::Checkpoint, usize)&gt;;
 
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>iter_offsets(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::IterOffsets {
@@ -3274,7 +3944,7 @@
     }
 
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(<span class="self">Self</span>, <span class="self">Self</span>::Token)&gt; {
+    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Token&gt; {
         next_bit(<span class="self">self</span>)
     }
 
@@ -3284,7 +3954,7 @@
         </span>P: Fn(<span class="self">Self</span>::Token) -&gt; bool,
     {
         <span class="self">self</span>.iter_offsets()
-            .find_map(|(o, b)| predicate(b).then(|| o))
+            .find_map(|(o, b)| predicate(b).then_some(o))
     }
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>offset_at(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: usize) -&gt; <span class="prelude-ty">Result</span>&lt;usize, Needed&gt; {
@@ -3298,12 +3968,29 @@
         }
     }
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>::Slice) {
+    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;mut </span><span class="self">self</span>, offset: usize) -&gt; <span class="self">Self</span>::Slice {
         <span class="kw">let </span>byte_offset = (offset + <span class="self">self</span>.<span class="number">1</span>) / <span class="number">8</span>;
         <span class="kw">let </span>end_offset = (offset + <span class="self">self</span>.<span class="number">1</span>) % <span class="number">8</span>;
-        <span class="kw">let </span>(i, s) = <span class="self">self</span>.<span class="number">0</span>.next_slice(byte_offset);
-        ((i, end_offset), (s, <span class="self">self</span>.<span class="number">1</span>, end_offset))
+        <span class="kw">let </span>s = <span class="self">self</span>.<span class="number">0</span>.next_slice(byte_offset);
+        <span class="kw">let </span>start_offset = <span class="self">self</span>.<span class="number">1</span>;
+        <span class="self">self</span>.<span class="number">1 </span>= end_offset;
+        (s, start_offset, end_offset)
     }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>checkpoint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::Checkpoint {
+        Checkpoint((<span class="self">self</span>.<span class="number">0</span>.checkpoint(), <span class="self">self</span>.<span class="number">1</span>))
+    }
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>reset(<span class="kw-2">&amp;mut </span><span class="self">self</span>, checkpoint: <span class="self">Self</span>::Checkpoint) {
+        <span class="self">self</span>.<span class="number">0</span>.reset(checkpoint.<span class="number">0 </span>.<span class="number">0</span>);
+        <span class="self">self</span>.<span class="number">1 </span>= checkpoint.<span class="number">0 </span>.<span class="number">1</span>;
+    }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">dyn </span><span class="kw">crate</span>::lib::std::fmt::Debug {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0
+    </span>}
 }
 
 <span class="doccomment">/// Iterator for [bit][crate::binary::bits] stream (`(I, usize)`)
@@ -3314,37 +4001,40 @@
 
 <span class="kw">impl</span>&lt;I&gt; Iterator <span class="kw">for </span>BitOffsets&lt;I&gt;
 <span class="kw">where
-    </span>I: Stream&lt;Token = u8&gt;,
+    </span>I: Stream&lt;Token = u8&gt; + Clone,
 {
     <span class="kw">type </span>Item = (usize, bool);
     <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
-        <span class="kw">let </span>(next, b) = next_bit(<span class="kw-2">&amp;</span><span class="self">self</span>.i)<span class="question-mark">?</span>;
+        <span class="kw">let </span>b = next_bit(<span class="kw-2">&amp;mut </span><span class="self">self</span>.i)<span class="question-mark">?</span>;
         <span class="kw">let </span>o = <span class="self">self</span>.o;
 
-        <span class="self">self</span>.i = next;
         <span class="self">self</span>.o += <span class="number">1</span>;
 
         <span class="prelude-val">Some</span>((o, b))
     }
 }
 
-<span class="kw">fn </span>next_bit&lt;I&gt;(i: <span class="kw-2">&amp;</span>(I, usize)) -&gt; <span class="prelude-ty">Option</span>&lt;((I, usize), bool)&gt;
+<span class="kw">fn </span>next_bit&lt;I&gt;(i: <span class="kw-2">&amp;mut </span>(I, usize)) -&gt; <span class="prelude-ty">Option</span>&lt;bool&gt;
 <span class="kw">where
-    </span>I: Stream&lt;Token = u8&gt;,
+    </span>I: Stream&lt;Token = u8&gt; + Clone,
 {
     <span class="kw">if </span>i.eof_offset() == <span class="number">0 </span>{
         <span class="kw">return </span><span class="prelude-val">None</span>;
     }
+    <span class="kw">let </span>offset = i.<span class="number">1</span>;
 
-    <span class="kw">let </span>i = i.clone();
-    <span class="kw">let </span>(next_i, byte) = i.<span class="number">0</span>.next_token()<span class="question-mark">?</span>;
-    <span class="kw">let </span>bit = (byte &gt;&gt; i.<span class="number">1</span>) &amp; <span class="number">0x1 </span>== <span class="number">0x1</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>next_i = i.<span class="number">0</span>.clone();
+    <span class="kw">let </span>byte = next_i.next_token()<span class="question-mark">?</span>;
+    <span class="kw">let </span>bit = (byte &gt;&gt; offset) &amp; <span class="number">0x1 </span>== <span class="number">0x1</span>;
 
-    <span class="kw">let </span>next_offset = i.<span class="number">1 </span>+ <span class="number">1</span>;
+    <span class="kw">let </span>next_offset = offset + <span class="number">1</span>;
     <span class="kw">if </span>next_offset == <span class="number">8 </span>{
-        <span class="prelude-val">Some</span>(((next_i, <span class="number">0</span>), bit))
+        i.<span class="number">0 </span>= next_i;
+        i.<span class="number">1 </span>= <span class="number">0</span>;
+        <span class="prelude-val">Some</span>(bit)
     } <span class="kw">else </span>{
-        <span class="prelude-val">Some</span>(((i.<span class="number">0</span>, next_offset), bit))
+        i.<span class="number">1 </span>= next_offset;
+        <span class="prelude-val">Some</span>(bit)
     }
 }
 
@@ -3354,6 +4044,8 @@
 
     <span class="kw">type </span>IterOffsets = &lt;I <span class="kw">as </span>Stream&gt;::IterOffsets;
 
+    <span class="kw">type </span>Checkpoint = Checkpoint&lt;I::Checkpoint&gt;;
+
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>iter_offsets(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::IterOffsets {
         <span class="self">self</span>.input.iter_offsets()
@@ -3364,15 +4056,8 @@
     }
 
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(<span class="self">Self</span>, <span class="self">Self</span>::Token)&gt; {
-        <span class="kw">let </span>(next, token) = <span class="self">self</span>.input.next_token()<span class="question-mark">?</span>;
-        <span class="prelude-val">Some</span>((
-            <span class="self">Self </span>{
-                initial: <span class="self">self</span>.initial.clone(),
-                input: next,
-            },
-            token,
-        ))
+    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Token&gt; {
+        <span class="self">self</span>.input.next_token()
     }
 
     <span class="attr">#[inline(always)]
@@ -3387,15 +4072,22 @@
         <span class="self">self</span>.input.offset_at(tokens)
     }
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>::Slice) {
-        <span class="kw">let </span>(next, slice) = <span class="self">self</span>.input.next_slice(offset);
-        (
-            <span class="self">Self </span>{
-                initial: <span class="self">self</span>.initial.clone(),
-                input: next,
-            },
-            slice,
-        )
+    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;mut </span><span class="self">self</span>, offset: usize) -&gt; <span class="self">Self</span>::Slice {
+        <span class="self">self</span>.input.next_slice(offset)
+    }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>checkpoint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::Checkpoint {
+        Checkpoint(<span class="self">self</span>.input.checkpoint())
+    }
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>reset(<span class="kw-2">&amp;mut </span><span class="self">self</span>, checkpoint: <span class="self">Self</span>::Checkpoint) {
+        <span class="self">self</span>.input.reset(checkpoint.<span class="number">0</span>);
+    }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">dyn </span><span class="kw">crate</span>::lib::std::fmt::Debug {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.input
     }
 }
 
@@ -3405,6 +4097,8 @@
 
     <span class="kw">type </span>IterOffsets = &lt;I <span class="kw">as </span>Stream&gt;::IterOffsets;
 
+    <span class="kw">type </span>Checkpoint = Checkpoint&lt;I::Checkpoint&gt;;
+
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>iter_offsets(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::IterOffsets {
         <span class="self">self</span>.input.iter_offsets()
@@ -3415,15 +4109,8 @@
     }
 
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(<span class="self">Self</span>, <span class="self">Self</span>::Token)&gt; {
-        <span class="kw">let </span>(next, token) = <span class="self">self</span>.input.next_token()<span class="question-mark">?</span>;
-        <span class="prelude-val">Some</span>((
-            <span class="self">Self </span>{
-                input: next,
-                state: <span class="self">self</span>.state.clone(),
-            },
-            token,
-        ))
+    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Token&gt; {
+        <span class="self">self</span>.input.next_token()
     }
 
     <span class="attr">#[inline(always)]
@@ -3438,15 +4125,22 @@
         <span class="self">self</span>.input.offset_at(tokens)
     }
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>::Slice) {
-        <span class="kw">let </span>(next, slice) = <span class="self">self</span>.input.next_slice(offset);
-        (
-            <span class="self">Self </span>{
-                input: next,
-                state: <span class="self">self</span>.state.clone(),
-            },
-            slice,
-        )
+    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;mut </span><span class="self">self</span>, offset: usize) -&gt; <span class="self">Self</span>::Slice {
+        <span class="self">self</span>.input.next_slice(offset)
+    }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>checkpoint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::Checkpoint {
+        Checkpoint(<span class="self">self</span>.input.checkpoint())
+    }
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>reset(<span class="kw-2">&amp;mut </span><span class="self">self</span>, checkpoint: <span class="self">Self</span>::Checkpoint) {
+        <span class="self">self</span>.input.reset(checkpoint.<span class="number">0</span>);
+    }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">dyn </span><span class="kw">crate</span>::lib::std::fmt::Debug {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.input
     }
 }
 
@@ -3456,6 +4150,8 @@
 
     <span class="kw">type </span>IterOffsets = &lt;I <span class="kw">as </span>Stream&gt;::IterOffsets;
 
+    <span class="kw">type </span>Checkpoint = Checkpoint&lt;I::Checkpoint&gt;;
+
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>iter_offsets(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::IterOffsets {
         <span class="self">self</span>.input.iter_offsets()
@@ -3466,15 +4162,8 @@
     }
 
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(<span class="self">Self</span>, <span class="self">Self</span>::Token)&gt; {
-        <span class="kw">let </span>(next, token) = <span class="self">self</span>.input.next_token()<span class="question-mark">?</span>;
-        <span class="prelude-val">Some</span>((
-            Partial {
-                input: next,
-                partial: <span class="self">self</span>.partial,
-            },
-            token,
-        ))
+    </span><span class="kw">fn </span>next_token(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Token&gt; {
+        <span class="self">self</span>.input.next_token()
     }
 
     <span class="attr">#[inline(always)]
@@ -3489,15 +4178,22 @@
         <span class="self">self</span>.input.offset_at(tokens)
     }
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>::Slice) {
-        <span class="kw">let </span>(next, slice) = <span class="self">self</span>.input.next_slice(offset);
-        (
-            Partial {
-                input: next,
-                partial: <span class="self">self</span>.partial,
-            },
-            slice,
-        )
+    </span><span class="kw">fn </span>next_slice(<span class="kw-2">&amp;mut </span><span class="self">self</span>, offset: usize) -&gt; <span class="self">Self</span>::Slice {
+        <span class="self">self</span>.input.next_slice(offset)
+    }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>checkpoint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::Checkpoint {
+        Checkpoint(<span class="self">self</span>.input.checkpoint())
+    }
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>reset(<span class="kw-2">&amp;mut </span><span class="self">self</span>, checkpoint: <span class="self">Self</span>::Checkpoint) {
+        <span class="self">self</span>.input.reset(checkpoint.<span class="number">0</span>);
+    }
+
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw">dyn </span><span class="kw">crate</span>::lib::std::fmt::Debug {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.input
     }
 }
 
@@ -3720,78 +4416,77 @@
 }
 
 <span class="doccomment">/// Useful functions to calculate the offset between slices and show a hexdump of a slice
-</span><span class="kw">pub trait </span>Offset {
-    <span class="doccomment">/// Offset between the first byte of self and the first byte of the argument
-    </span><span class="kw">fn </span>offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>, second: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize;
-    <span class="doccomment">/// Offset between the first byte of the argument and the first byte of the self
-    </span><span class="attr">#[inline]
-    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, second: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
-        second.offset_to(<span class="self">self</span>)
-    }
+</span><span class="kw">pub trait </span>Offset&lt;Start = <span class="self">Self</span>&gt; {
+    <span class="doccomment">/// Offset between the first byte of `start` and the first byte of `self`a
+    ///
+    /// **Note:** This is an offset, not an index, and may point to the end of input
+    /// (`start.len()`) when `self` is exhausted.
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, start: <span class="kw-2">&amp;</span>Start) -&gt; usize;
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; Offset <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[T] {
-    <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>, second: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
-        (<span class="kw-2">*</span><span class="self">self</span>).offset_to(<span class="kw-2">*</span>second)
-    }
-}
-
-<span class="doccomment">/// Convenience implementation to accept `&amp;[T]` instead of `&amp;&amp;[T]` as above
-</span><span class="kw">impl</span>&lt;T&gt; Offset <span class="kw">for </span>[T] {
     <span class="attr">#[inline]
-    </span><span class="kw">fn </span>offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>, second: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
-        <span class="kw">let </span>fst = <span class="self">self</span>.as_ptr();
-        <span class="kw">let </span>snd = second.as_ptr();
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, start: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
+        <span class="kw">let </span>fst = (<span class="kw-2">*</span>start).as_ptr();
+        <span class="kw">let </span>snd = (<span class="kw-2">*</span><span class="self">self</span>).as_ptr();
 
         <span class="macro">debug_assert!</span>(
             fst &lt;= snd,
-            <span class="string">&quot;`Offset::offset_to` only accepts slices of `self`&quot;
+            <span class="string">&quot;`Offset::offset_from({snd:?}, {fst:?})` only accepts slices of `self`&quot;
         </span>);
-        snd <span class="kw">as </span>usize - fst <span class="kw">as </span>usize
+        (snd <span class="kw">as </span>usize - fst <span class="kw">as </span>usize) / <span class="kw">crate</span>::lib::std::mem::size_of::&lt;T&gt;()
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; Offset&lt;&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[T] <span class="kw">as </span>Stream&gt;::Checkpoint&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[T]
+<span class="kw">where
+    </span>T: Clone + <span class="kw">crate</span>::lib::std::fmt::Debug,
+{
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[T] <span class="kw">as </span>Stream&gt;::Checkpoint) -&gt; usize {
+        <span class="self">self</span>.checkpoint().offset_from(other)
     }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Offset <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str {
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>, second: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
-        <span class="self">self</span>.as_bytes().offset_to(second.as_bytes())
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, start: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
+        <span class="self">self</span>.as_bytes().offset_from(<span class="kw-2">&amp;</span>start.as_bytes())
     }
 }
 
-<span class="doccomment">/// Convenience implementation to accept `&amp;str` instead of `&amp;&amp;str` as above
-</span><span class="kw">impl </span>Offset <span class="kw">for </span>str {
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Offset&lt;&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str <span class="kw">as </span>Stream&gt;::Checkpoint&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str {
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>, second: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
-        <span class="self">self</span>.as_bytes().offset_to(second.as_bytes())
-    }
-}
-
-<span class="kw">impl </span>Offset <span class="kw">for </span>Bytes {
-    <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>, second: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
-        <span class="self">self</span>.as_bytes().offset_to(second.as_bytes())
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str <span class="kw">as </span>Stream&gt;::Checkpoint) -&gt; usize {
+        <span class="self">self</span>.checkpoint().offset_from(other)
     }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Offset <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Bytes {
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>, second: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
-        <span class="self">self</span>.as_bytes().offset_to(second.as_bytes())
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, start: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
+        <span class="self">self</span>.as_bytes().offset_from(<span class="kw-2">&amp;</span>start.as_bytes())
     }
 }
 
-<span class="kw">impl </span>Offset <span class="kw">for </span>BStr {
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Offset&lt;&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Bytes <span class="kw">as </span>Stream&gt;::Checkpoint&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Bytes {
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>, second: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
-        <span class="self">self</span>.as_bytes().offset_to(second.as_bytes())
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Bytes <span class="kw">as </span>Stream&gt;::Checkpoint) -&gt; usize {
+        <span class="self">self</span>.checkpoint().offset_from(other)
     }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Offset <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>BStr {
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>, second: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
-        <span class="self">self</span>.as_bytes().offset_to(second.as_bytes())
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, start: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
+        <span class="self">self</span>.as_bytes().offset_from(<span class="kw-2">&amp;</span>start.as_bytes())
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Offset&lt;&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>BStr <span class="kw">as </span>Stream&gt;::Checkpoint&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>BStr {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>BStr <span class="kw">as </span>Stream&gt;::Checkpoint) -&gt; usize {
+        <span class="self">self</span>.checkpoint().offset_from(other)
     }
 }
 
@@ -3800,38 +4495,90 @@
     </span>I: Offset,
 {
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
-        <span class="self">self</span>.<span class="number">0</span>.offset_to(<span class="kw-2">&amp;</span>other.<span class="number">0</span>) * <span class="number">8 </span>+ other.<span class="number">1 </span>- <span class="self">self</span>.<span class="number">1
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, start: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
+        <span class="self">self</span>.<span class="number">0</span>.offset_from(<span class="kw-2">&amp;</span>start.<span class="number">0</span>) * <span class="number">8 </span>+ <span class="self">self</span>.<span class="number">1 </span>- start.<span class="number">1
     </span>}
+}
+
+<span class="kw">impl</span>&lt;I&gt; Offset&lt;&lt;(I, usize) <span class="kw">as </span>Stream&gt;::Checkpoint&gt; <span class="kw">for </span>(I, usize)
+<span class="kw">where
+    </span>I: Stream&lt;Token = u8&gt; + Clone,
+{
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>&lt;(I, usize) <span class="kw">as </span>Stream&gt;::Checkpoint) -&gt; usize {
+        <span class="self">self</span>.checkpoint().offset_from(other)
+    }
 }
 
 <span class="kw">impl</span>&lt;I&gt; Offset <span class="kw">for </span>Located&lt;I&gt;
 <span class="kw">where
-    </span>I: Offset,
+    </span>I: Stream,
 {
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
-        <span class="self">self</span>.input.offset_to(<span class="kw-2">&amp;</span>other.input)
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
+        <span class="self">self</span>.offset_from(<span class="kw-2">&amp;</span>other.checkpoint())
+    }
+}
+
+<span class="kw">impl</span>&lt;I&gt; Offset&lt;&lt;Located&lt;I&gt; <span class="kw">as </span>Stream&gt;::Checkpoint&gt; <span class="kw">for </span>Located&lt;I&gt;
+<span class="kw">where
+    </span>I: Stream,
+{
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>&lt;Located&lt;I&gt; <span class="kw">as </span>Stream&gt;::Checkpoint) -&gt; usize {
+        <span class="self">self</span>.checkpoint().offset_from(other)
     }
 }
 
 <span class="kw">impl</span>&lt;I, S&gt; Offset <span class="kw">for </span>Stateful&lt;I, S&gt;
 <span class="kw">where
-    </span>I: Offset,
+    </span>I: Stream,
+    S: Clone + <span class="kw">crate</span>::lib::std::fmt::Debug,
 {
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
-        <span class="self">self</span>.input.offset_to(<span class="kw-2">&amp;</span>other.input)
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, start: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
+        <span class="self">self</span>.offset_from(<span class="kw-2">&amp;</span>start.checkpoint())
+    }
+}
+
+<span class="kw">impl</span>&lt;I, S&gt; Offset&lt;&lt;Stateful&lt;I, S&gt; <span class="kw">as </span>Stream&gt;::Checkpoint&gt; <span class="kw">for </span>Stateful&lt;I, S&gt;
+<span class="kw">where
+    </span>I: Stream,
+    S: Clone + <span class="kw">crate</span>::lib::std::fmt::Debug,
+{
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>&lt;Stateful&lt;I, S&gt; <span class="kw">as </span>Stream&gt;::Checkpoint) -&gt; usize {
+        <span class="self">self</span>.checkpoint().offset_from(other)
     }
 }
 
 <span class="kw">impl</span>&lt;I&gt; Offset <span class="kw">for </span>Partial&lt;I&gt;
 <span class="kw">where
+    </span>I: Stream,
+{
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, start: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
+        <span class="self">self</span>.offset_from(<span class="kw-2">&amp;</span>start.checkpoint())
+    }
+}
+
+<span class="kw">impl</span>&lt;I&gt; Offset&lt;&lt;Partial&lt;I&gt; <span class="kw">as </span>Stream&gt;::Checkpoint&gt; <span class="kw">for </span>Partial&lt;I&gt;
+<span class="kw">where
+    </span>I: Stream,
+{
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>&lt;Partial&lt;I&gt; <span class="kw">as </span>Stream&gt;::Checkpoint) -&gt; usize {
+        <span class="self">self</span>.checkpoint().offset_from(other)
+    }
+}
+
+<span class="kw">impl</span>&lt;I&gt; Offset <span class="kw">for </span>Checkpoint&lt;I&gt;
+<span class="kw">where
     </span>I: Offset,
 {
     <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>offset_to(<span class="kw-2">&amp;</span><span class="self">self</span>, second: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
-        <span class="self">self</span>.input.offset_to(<span class="kw-2">&amp;</span>second.input)
+    </span><span class="kw">fn </span>offset_from(<span class="kw-2">&amp;</span><span class="self">self</span>, start: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; usize {
+        <span class="self">self</span>.<span class="number">0</span>.offset_from(<span class="kw-2">&amp;</span>start.<span class="number">0</span>)
     }
 }
 
@@ -3964,46 +4711,49 @@
     /// by lowercasing both strings and comparing
     /// the result. This is a temporary solution until
     /// a better one appears
+    </span><span class="attr">#[deprecated(since = <span class="string">&quot;0.5.20&quot;</span>, note = <span class="string">&quot;Replaced with `compare(ascii::Caseless(_))`&quot;</span>)]
     </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: T) -&gt; CompareResult;
-}
-
-<span class="kw">fn </span>lowercase_byte(c: u8) -&gt; u8 {
-    <span class="kw">match </span>c {
-        <span class="string">b&#39;A&#39;</span>..=<span class="string">b&#39;Z&#39; </span>=&gt; c - <span class="string">b&#39;A&#39; </span>+ <span class="string">b&#39;a&#39;</span>,
-        <span class="kw">_ </span>=&gt; c,
-    }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>&gt; Compare&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8]&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] {
     <span class="attr">#[inline]
     </span><span class="kw">fn </span>compare(<span class="kw-2">&amp;</span><span class="self">self</span>, t: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8]) -&gt; CompareResult {
-        <span class="kw">let </span>pos = <span class="self">self</span>.iter().zip(t.iter()).position(|(a, b)| a != b);
-
-        <span class="kw">match </span>pos {
-            <span class="prelude-val">Some</span>(<span class="kw">_</span>) =&gt; CompareResult::Error,
-            <span class="prelude-val">None </span>=&gt; {
-                <span class="kw">if </span><span class="self">self</span>.len() &gt;= t.len() {
-                    CompareResult::Ok
-                } <span class="kw">else </span>{
-                    CompareResult::Incomplete
-                }
-            }
-        }
-    }
-
-    <span class="attr">#[inline]
-    </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8]) -&gt; CompareResult {
-        <span class="kw">if </span><span class="self">self
-            </span>.iter()
-            .zip(t)
-            .any(|(a, b)| lowercase_byte(<span class="kw-2">*</span>a) != lowercase_byte(<span class="kw-2">*</span>b))
-        {
+        <span class="kw">if </span>t.iter().zip(<span class="kw-2">*</span><span class="self">self</span>).any(|(a, b)| a != b) {
             CompareResult::Error
-        } <span class="kw">else if </span><span class="self">self</span>.len() &lt; t.len() {
+        } <span class="kw">else if </span><span class="self">self</span>.len() &lt; t.slice_len() {
             CompareResult::Incomplete
         } <span class="kw">else </span>{
             CompareResult::Ok
         }
+    }
+
+    <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
+    </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8]) -&gt; CompareResult {
+        <span class="self">self</span>.compare(AsciiCaseless(t))
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>&gt; Compare&lt;AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8]&gt;&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] {
+    <span class="attr">#[inline]
+    </span><span class="kw">fn </span>compare(<span class="kw-2">&amp;</span><span class="self">self</span>, t: AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8]&gt;) -&gt; CompareResult {
+        <span class="kw">if </span>t.<span class="number">0
+            </span>.iter()
+            .zip(<span class="kw-2">*</span><span class="self">self</span>)
+            .any(|(a, b)| !a.eq_ignore_ascii_case(b))
+        {
+            CompareResult::Error
+        } <span class="kw">else if </span><span class="self">self</span>.len() &lt; t.slice_len() {
+            CompareResult::Incomplete
+        } <span class="kw">else </span>{
+            CompareResult::Ok
+        }
+    }
+
+    <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
+    </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8]&gt;) -&gt; CompareResult {
+        <span class="self">self</span>.compare(t)
     }
 }
 
@@ -4014,8 +4764,22 @@
     }
 
     <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
     </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: [u8; LEN]) -&gt; CompareResult {
         <span class="self">self</span>.compare_no_case(<span class="kw-2">&amp;</span>t[..])
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="kw">const </span>LEN: usize&gt; Compare&lt;AsciiCaseless&lt;[u8; LEN]&gt;&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>compare(<span class="kw-2">&amp;</span><span class="self">self</span>, t: AsciiCaseless&lt;[u8; LEN]&gt;) -&gt; CompareResult {
+        <span class="self">self</span>.compare(AsciiCaseless(<span class="kw-2">&amp;</span>t.<span class="number">0</span>[..]))
+    }
+
+    <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
+    </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: AsciiCaseless&lt;[u8; LEN]&gt;) -&gt; CompareResult {
+        <span class="self">self</span>.compare_no_case(AsciiCaseless(<span class="kw-2">&amp;</span>t.<span class="number">0</span>[..]))
     }
 }
 
@@ -4026,8 +4790,22 @@
     }
 
     <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
     </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8; LEN]) -&gt; CompareResult {
         <span class="self">self</span>.compare_no_case(<span class="kw-2">&amp;</span>t[..])
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, <span class="kw">const </span>LEN: usize&gt; Compare&lt;AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8; LEN]&gt;&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>compare(<span class="kw-2">&amp;</span><span class="self">self</span>, t: AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8; LEN]&gt;) -&gt; CompareResult {
+        <span class="self">self</span>.compare(AsciiCaseless(<span class="kw-2">&amp;</span>t.<span class="number">0</span>[..]))
+    }
+
+    <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
+    </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8; LEN]&gt;) -&gt; CompareResult {
+        <span class="self">self</span>.compare_no_case(AsciiCaseless(<span class="kw-2">&amp;</span>t.<span class="number">0</span>[..]))
     }
 }
 
@@ -4037,8 +4815,21 @@
         <span class="self">self</span>.compare(t.as_bytes())
     }
     <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
     </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>str) -&gt; CompareResult {
         <span class="self">self</span>.compare_no_case(t.as_bytes())
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>&gt; Compare&lt;AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>str&gt;&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>compare(<span class="kw-2">&amp;</span><span class="self">self</span>, t: AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>str&gt;) -&gt; CompareResult {
+        <span class="self">self</span>.compare(AsciiCaseless(t.<span class="number">0</span>.as_bytes()))
+    }
+    <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
+    </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>str&gt;) -&gt; CompareResult {
+        <span class="self">self</span>.compare_no_case(AsciiCaseless(t.<span class="number">0</span>.as_bytes()))
     }
 }
 
@@ -4048,24 +4839,23 @@
         <span class="self">self</span>.as_bytes().compare(t.as_bytes())
     }
 
-    <span class="comment">//FIXME: this version is too simple and does not use the current locale
-    </span><span class="attr">#[inline]
+    <span class="attr">#[inline]
+    #[allow(deprecated)]
     </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>str) -&gt; CompareResult {
-        <span class="kw">let </span>pos = <span class="self">self
-            </span>.chars()
-            .zip(t.chars())
-            .position(|(a, b)| a.to_lowercase().ne(b.to_lowercase()));
+        <span class="self">self</span>.compare(AsciiCaseless(t))
+    }
+}
 
-        <span class="kw">match </span>pos {
-            <span class="prelude-val">Some</span>(<span class="kw">_</span>) =&gt; CompareResult::Error,
-            <span class="prelude-val">None </span>=&gt; {
-                <span class="kw">if </span><span class="self">self</span>.len() &gt;= t.len() {
-                    CompareResult::Ok
-                } <span class="kw">else </span>{
-                    CompareResult::Incomplete
-                }
-            }
-        }
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>&gt; Compare&lt;AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>str&gt;&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>compare(<span class="kw-2">&amp;</span><span class="self">self</span>, t: AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>str&gt;) -&gt; CompareResult {
+        <span class="self">self</span>.as_bytes().compare(t.as_bytes())
+    }
+
+    <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
+    </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>str&gt;) -&gt; CompareResult {
+        <span class="self">self</span>.compare(t)
     }
 }
 
@@ -4075,7 +4865,20 @@
         AsBStr::as_bstr(<span class="self">self</span>).compare(t)
     }
     <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
     </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8]) -&gt; CompareResult {
+        AsBStr::as_bstr(<span class="self">self</span>).compare_no_case(t)
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>&gt; Compare&lt;AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8]&gt;&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>compare(<span class="kw-2">&amp;</span><span class="self">self</span>, t: AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8]&gt;) -&gt; CompareResult {
+        AsBStr::as_bstr(<span class="self">self</span>).compare(t)
+    }
+    <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
+    </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: AsciiCaseless&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[u8]&gt;) -&gt; CompareResult {
         AsBStr::as_bstr(<span class="self">self</span>).compare_no_case(t)
     }
 }
@@ -4091,6 +4894,7 @@
     }
 
     <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
     </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: T) -&gt; CompareResult {
         <span class="kw">let </span>bytes = (<span class="kw-2">*</span><span class="self">self</span>).as_bytes();
         bytes.compare_no_case(t)
@@ -4108,6 +4912,7 @@
     }
 
     <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
     </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: T) -&gt; CompareResult {
         <span class="kw">let </span>bytes = (<span class="kw-2">*</span><span class="self">self</span>).as_bytes();
         bytes.compare_no_case(t)
@@ -4124,6 +4929,7 @@
     }
 
     <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
     </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, other: U) -&gt; CompareResult {
         <span class="self">self</span>.input.compare_no_case(other)
     }
@@ -4139,6 +4945,7 @@
     }
 
     <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
     </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, other: U) -&gt; CompareResult {
         <span class="self">self</span>.input.compare_no_case(other)
     }
@@ -4154,6 +4961,7 @@
     }
 
     <span class="attr">#[inline(always)]
+    #[allow(deprecated)]
     </span><span class="kw">fn </span>compare_no_case(<span class="kw-2">&amp;</span><span class="self">self</span>, t: T) -&gt; CompareResult {
         <span class="self">self</span>.input.compare_no_case(t)
     }
@@ -4172,10 +4980,52 @@
     }
 }
 
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>, <span class="lifetime">&#39;s</span>&gt; FindSlice&lt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>[u8],)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>[u8],)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        memmem(<span class="self">self</span>, substr.<span class="number">0</span>)
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>, <span class="lifetime">&#39;s</span>&gt; FindSlice&lt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>[u8], <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>[u8])&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>[u8], <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>[u8])) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        memmem2(<span class="self">self</span>, substr)
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>, <span class="lifetime">&#39;s</span>&gt; FindSlice&lt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>[u8], <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>[u8], <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>[u8])&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>[u8], <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>[u8], <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>[u8])) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        memmem3(<span class="self">self</span>, substr)
+    }
+}
+
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; FindSlice&lt;u8&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>[u8] {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: u8) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
         memchr(substr, <span class="self">self</span>)
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; FindSlice&lt;(u8,)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (u8,)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        memchr(substr.<span class="number">0</span>, <span class="self">self</span>)
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; FindSlice&lt;(u8, u8)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (u8, u8)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        memchr2(substr, <span class="self">self</span>)
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; FindSlice&lt;(u8, u8, u8)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (u8, u8, u8)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        memchr3(substr, <span class="self">self</span>)
     }
 }
 
@@ -4186,17 +5036,129 @@
     }
 }
 
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>, <span class="lifetime">&#39;s</span>&gt; FindSlice&lt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str,)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str,)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        memmem(<span class="self">self</span>, substr.<span class="number">0</span>.as_bytes())
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>, <span class="lifetime">&#39;s</span>&gt; FindSlice&lt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        memmem2(<span class="self">self</span>, (substr.<span class="number">0</span>.as_bytes(), substr.<span class="number">1</span>.as_bytes()))
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>, <span class="lifetime">&#39;s</span>&gt; FindSlice&lt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        memmem3(
+            <span class="self">self</span>,
+            (
+                substr.<span class="number">0</span>.as_bytes(),
+                substr.<span class="number">1</span>.as_bytes(),
+                substr.<span class="number">2</span>.as_bytes(),
+            ),
+        )
+    }
+}
+
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>, <span class="lifetime">&#39;s</span>&gt; FindSlice&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
-        <span class="self">self</span>.find(substr)
+        <span class="self">self</span>.as_bytes().find_slice(substr.as_bytes())
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>, <span class="lifetime">&#39;s</span>&gt; FindSlice&lt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str,)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str,)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="self">self</span>.as_bytes().find_slice(substr)
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>, <span class="lifetime">&#39;s</span>&gt; FindSlice&lt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="self">self</span>.as_bytes().find_slice(substr)
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>, <span class="lifetime">&#39;s</span>&gt; FindSlice&lt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>str)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="self">self</span>.as_bytes().find_slice(substr)
     }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; FindSlice&lt;char&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: char) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
-        <span class="self">self</span>.find(substr)
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr = substr.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="self">self</span>.find_slice(<span class="kw-2">&amp;*</span>substr)
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; FindSlice&lt;(char,)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (char,)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr0 = substr.<span class="number">0</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="self">self</span>.find_slice((<span class="kw-2">&amp;*</span>substr0,))
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; FindSlice&lt;(char, char)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (char, char)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr0 = substr.<span class="number">0</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr1 = substr.<span class="number">1</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="self">self</span>.find_slice((<span class="kw-2">&amp;*</span>substr0, <span class="kw-2">&amp;*</span>substr1))
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; FindSlice&lt;(char, char, char)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (char, char, char)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr0 = substr.<span class="number">0</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr1 = substr.<span class="number">1</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr2 = substr.<span class="number">2</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="self">self</span>.find_slice((<span class="kw-2">&amp;*</span>substr0, <span class="kw-2">&amp;*</span>substr1, <span class="kw-2">&amp;*</span>substr2))
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; FindSlice&lt;u8&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: u8) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="self">self</span>.find_slice(substr.as_char())
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; FindSlice&lt;(u8,)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (u8,)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="self">self</span>.find_slice((substr.<span class="number">0</span>.as_char(),))
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; FindSlice&lt;(u8, u8)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (u8, u8)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="self">self</span>.find_slice((substr.<span class="number">0</span>.as_char(), substr.<span class="number">1</span>.as_char()))
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;i</span>&gt; FindSlice&lt;(u8, u8, u8)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;i </span>str {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (u8, u8, u8)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="self">self</span>.find_slice((substr.<span class="number">0</span>.as_char(), substr.<span class="number">1</span>.as_char(), substr.<span class="number">2</span>.as_char()))
     }
 }
 
@@ -4349,6 +5311,10 @@
         }
     }
 }
+
+<span class="doccomment">/// Ensure checkpoint details are kept private
+</span><span class="attr">#[derive(Copy, Clone, Debug)]
+</span><span class="kw">pub struct </span>Checkpoint&lt;T&gt;(T);
 
 <span class="doccomment">/// A range bounded inclusively for counting parses performed
 </span><span class="attr">#[derive(PartialEq, Eq)]
@@ -4570,20 +5536,59 @@
 }
 
 <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
-</span><span class="kw">impl</span>&lt;K, V&gt; Accumulate&lt;(K, V)&gt; <span class="kw">for </span>HashMap&lt;K, V&gt;
+</span><span class="kw">impl</span>&lt;K, V, S&gt; Accumulate&lt;(K, V)&gt; <span class="kw">for </span>HashMap&lt;K, V, S&gt;
 <span class="kw">where
     </span>K: <span class="kw">crate</span>::lib::std::cmp::Eq + <span class="kw">crate</span>::lib::std::hash::Hash,
+    S: BuildHasher + Default,
 {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>initial(capacity: <span class="prelude-ty">Option</span>&lt;usize&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>h = S::default();
         <span class="kw">match </span>capacity {
-            <span class="prelude-val">Some</span>(capacity) =&gt; HashMap::with_capacity(clamp_capacity::&lt;(K, V)&gt;(capacity)),
-            <span class="prelude-val">None </span>=&gt; HashMap::new(),
+            <span class="prelude-val">Some</span>(capacity) =&gt; {
+                HashMap::with_capacity_and_hasher(clamp_capacity::&lt;(K, V)&gt;(capacity), h)
+            }
+            <span class="prelude-val">None </span>=&gt; HashMap::with_hasher(h),
         }
     }
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>accumulate(<span class="kw-2">&amp;mut </span><span class="self">self</span>, (key, value): (K, V)) {
         <span class="self">self</span>.insert(key, value);
+    }
+}
+
+<span class="attr">#[cfg(feature = <span class="string">&quot;alloc&quot;</span>)]
+</span><span class="kw">impl</span>&lt;K&gt; Accumulate&lt;K&gt; <span class="kw">for </span>BTreeSet&lt;K&gt;
+<span class="kw">where
+    </span>K: <span class="kw">crate</span>::lib::std::cmp::Ord,
+{
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>initial(_capacity: <span class="prelude-ty">Option</span>&lt;usize&gt;) -&gt; <span class="self">Self </span>{
+        BTreeSet::new()
+    }
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>accumulate(<span class="kw-2">&amp;mut </span><span class="self">self</span>, key: K) {
+        <span class="self">self</span>.insert(key);
+    }
+}
+
+<span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+</span><span class="kw">impl</span>&lt;K, S&gt; Accumulate&lt;K&gt; <span class="kw">for </span>HashSet&lt;K, S&gt;
+<span class="kw">where
+    </span>K: <span class="kw">crate</span>::lib::std::cmp::Eq + <span class="kw">crate</span>::lib::std::hash::Hash,
+    S: BuildHasher + Default,
+{
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>initial(capacity: <span class="prelude-ty">Option</span>&lt;usize&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>h = S::default();
+        <span class="kw">match </span>capacity {
+            <span class="prelude-val">Some</span>(capacity) =&gt; HashSet::with_capacity_and_hasher(clamp_capacity::&lt;K&gt;(capacity), h),
+            <span class="prelude-val">None </span>=&gt; HashSet::with_hasher(h),
+        }
+    }
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>accumulate(<span class="kw-2">&amp;mut </span><span class="self">self</span>, key: K) {
+        <span class="self">self</span>.insert(key);
     }
 }
 
@@ -4863,15 +5868,15 @@
 /// For example, you could implement `hex_digit0` as:
 /// ```
 /// # use winnow::prelude::*;
-/// # use winnow::{error::ErrMode, error::ErrorKind, error::Error};
+/// # use winnow::{error::ErrMode, error::ErrorKind, error::InputError};
 /// # use winnow::token::take_while;
-/// fn hex_digit1(input: &amp;str) -&gt; IResult&lt;&amp;str, &amp;str&gt; {
+/// fn hex_digit1&lt;&#39;s&gt;(input: &amp;mut &amp;&#39;s str) -&gt; PResult&lt;&amp;&#39;s str, InputError&lt;&amp;&#39;s str&gt;&gt; {
 ///     take_while(1.., (&#39;a&#39;..=&#39;f&#39;, &#39;A&#39;..=&#39;F&#39;, &#39;0&#39;..=&#39;9&#39;)).parse_next(input)
 /// }
 ///
-/// assert_eq!(hex_digit1(&quot;21cZ&quot;), Ok((&quot;Z&quot;, &quot;21c&quot;)));
-/// assert_eq!(hex_digit1(&quot;H2&quot;), Err(ErrMode::Backtrack(Error::new(&quot;H2&quot;, ErrorKind::Slice))));
-/// assert_eq!(hex_digit1(&quot;&quot;), Err(ErrMode::Backtrack(Error::new(&quot;&quot;, ErrorKind::Slice))));
+/// assert_eq!(hex_digit1.parse_peek(&quot;21cZ&quot;), Ok((&quot;Z&quot;, &quot;21c&quot;)));
+/// assert_eq!(hex_digit1.parse_peek(&quot;H2&quot;), Err(ErrMode::Backtrack(InputError::new(&quot;H2&quot;, ErrorKind::Slice))));
+/// assert_eq!(hex_digit1.parse_peek(&quot;&quot;), Err(ErrMode::Backtrack(InputError::new(&quot;&quot;, ErrorKind::Slice))));
 /// ```
 </span><span class="kw">pub trait </span>ContainsToken&lt;T&gt; {
     <span class="doccomment">/// Returns true if self contains the token
@@ -4913,7 +5918,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;C: AsChar, F: Fn(C) -&gt; bool&gt; ContainsToken&lt;C&gt; <span class="kw">for </span>F {
+<span class="kw">impl</span>&lt;C, F: Fn(C) -&gt; bool&gt; ContainsToken&lt;C&gt; <span class="kw">for </span>F {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>contains_token(<span class="kw-2">&amp;</span><span class="self">self</span>, token: C) -&gt; bool {
         <span class="self">self</span>(token)
@@ -5021,14 +6026,6 @@
     }
 }
 
-<span class="kw">impl</span>&lt;C: AsChar&gt; ContainsToken&lt;C&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>str {
-    <span class="attr">#[inline(always)]
-    </span><span class="kw">fn </span>contains_token(<span class="kw-2">&amp;</span><span class="self">self</span>, token: C) -&gt; bool {
-        <span class="kw">let </span>token = token.as_char();
-        <span class="self">self</span>.chars().any(|i| i == token)
-    }
-}
-
 <span class="kw">impl</span>&lt;T&gt; ContainsToken&lt;T&gt; <span class="kw">for </span>() {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>contains_token(<span class="kw-2">&amp;</span><span class="self">self</span>, _token: T) -&gt; bool {
@@ -5070,92 +6067,22 @@
     F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, F13, F14, F15, F16, F17, F18, F19, F20, F21
 );
 
-<span class="doccomment">/// Looks for the first element of the input type for which the condition returns true,
-/// and returns the input up to this position.
-///
-/// *Partial version*: If no element is found matching the condition, this will return `Incomplete`
-</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>split_at_offset_partial&lt;P, I: Stream, E: ParseError&lt;I&gt;&gt;(
-    input: <span class="kw-2">&amp;</span>I,
-    predicate: P,
-) -&gt; IResult&lt;I, &lt;I <span class="kw">as </span>Stream&gt;::Slice, E&gt;
-<span class="kw">where
-    </span>P: Fn(I::Token) -&gt; bool,
-{
-    <span class="kw">let </span>offset = input
-        .offset_for(predicate)
-        .ok_or_else(|| ErrMode::Incomplete(Needed::new(<span class="number">1</span>)))<span class="question-mark">?</span>;
-    <span class="prelude-val">Ok</span>(input.next_slice(offset))
-}
-
-<span class="doccomment">/// Looks for the first element of the input type for which the condition returns true
-/// and returns the input up to this position.
-///
-/// Fails if the produced slice is empty.
-///
-/// *Partial version*: If no element is found matching the condition, this will return `Incomplete`
-</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>split_at_offset1_partial&lt;P, I: Stream, E: ParseError&lt;I&gt;&gt;(
-    input: <span class="kw-2">&amp;</span>I,
-    predicate: P,
-    e: ErrorKind,
-) -&gt; IResult&lt;I, &lt;I <span class="kw">as </span>Stream&gt;::Slice, E&gt;
-<span class="kw">where
-    </span>P: Fn(I::Token) -&gt; bool,
-{
-    <span class="kw">let </span>offset = input
-        .offset_for(predicate)
-        .ok_or_else(|| ErrMode::Incomplete(Needed::new(<span class="number">1</span>)))<span class="question-mark">?</span>;
-    <span class="kw">if </span>offset == <span class="number">0 </span>{
-        <span class="prelude-val">Err</span>(ErrMode::from_error_kind(input.clone(), e))
-    } <span class="kw">else </span>{
-        <span class="prelude-val">Ok</span>(input.next_slice(offset))
-    }
-}
-
-<span class="doccomment">/// Looks for the first element of the input type for which the condition returns true,
-/// and returns the input up to this position.
-///
-/// *Complete version*: If no element is found matching the condition, this will return the whole input
-</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>split_at_offset_complete&lt;P, I: Stream, E: ParseError&lt;I&gt;&gt;(
-    input: <span class="kw-2">&amp;</span>I,
-    predicate: P,
-) -&gt; IResult&lt;I, &lt;I <span class="kw">as </span>Stream&gt;::Slice, E&gt;
-<span class="kw">where
-    </span>P: Fn(I::Token) -&gt; bool,
-{
-    <span class="kw">let </span>offset = input
-        .offset_for(predicate)
-        .unwrap_or_else(|| input.eof_offset());
-    <span class="prelude-val">Ok</span>(input.next_slice(offset))
-}
-
-<span class="doccomment">/// Looks for the first element of the input type for which the condition returns true
-/// and returns the input up to this position.
-///
-/// Fails if the produced slice is empty.
-///
-/// *Complete version*: If no element is found matching the condition, this will return the whole input
-</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>split_at_offset1_complete&lt;P, I: Stream, E: ParseError&lt;I&gt;&gt;(
-    input: <span class="kw-2">&amp;</span>I,
-    predicate: P,
-    e: ErrorKind,
-) -&gt; IResult&lt;I, &lt;I <span class="kw">as </span>Stream&gt;::Slice, E&gt;
-<span class="kw">where
-    </span>P: Fn(I::Token) -&gt; bool,
-{
-    <span class="kw">let </span>offset = input
-        .offset_for(predicate)
-        .unwrap_or_else(|| input.eof_offset());
-    <span class="kw">if </span>offset == <span class="number">0 </span>{
-        <span class="prelude-val">Err</span>(ErrMode::from_error_kind(input.clone(), e))
-    } <span class="kw">else </span>{
-        <span class="prelude-val">Ok</span>(input.next_slice(offset))
-    }
-}
-
 <span class="attr">#[cfg(feature = <span class="string">&quot;simd&quot;</span>)]
 #[inline(always)]
 </span><span class="kw">fn </span>memchr(token: u8, slice: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
     memchr::memchr(token, slice)
+}
+
+<span class="attr">#[cfg(feature = <span class="string">&quot;simd&quot;</span>)]
+#[inline(always)]
+</span><span class="kw">fn </span>memchr2(token: (u8, u8), slice: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    memchr::memchr2(token.<span class="number">0</span>, token.<span class="number">1</span>, slice)
+}
+
+<span class="attr">#[cfg(feature = <span class="string">&quot;simd&quot;</span>)]
+#[inline(always)]
+</span><span class="kw">fn </span>memchr3(token: (u8, u8, u8), slice: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    memchr::memchr3(token.<span class="number">0</span>, token.<span class="number">1</span>, token.<span class="number">2</span>, slice)
 }
 
 <span class="attr">#[cfg(not(feature = <span class="string">&quot;simd&quot;</span>))]
@@ -5164,17 +6091,140 @@
     slice.iter().position(|t| <span class="kw-2">*</span>t == token)
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;simd&quot;</span>)]
+<span class="attr">#[cfg(not(feature = <span class="string">&quot;simd&quot;</span>))]
 #[inline(always)]
-</span><span class="kw">fn </span>memmem(slice: <span class="kw-2">&amp;</span>[u8], tag: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
-    memchr::memmem::find(slice, tag)
+</span><span class="kw">fn </span>memchr2(token: (u8, u8), slice: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    slice.iter().position(|t| <span class="kw-2">*</span>t == token.<span class="number">0 </span>|| <span class="kw-2">*</span>t == token.<span class="number">1</span>)
 }
 
 <span class="attr">#[cfg(not(feature = <span class="string">&quot;simd&quot;</span>))]
+#[inline(always)]
+</span><span class="kw">fn </span>memchr3(token: (u8, u8, u8), slice: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    slice
+        .iter()
+        .position(|t| <span class="kw-2">*</span>t == token.<span class="number">0 </span>|| <span class="kw-2">*</span>t == token.<span class="number">1 </span>|| <span class="kw-2">*</span>t == token.<span class="number">2</span>)
+}
+
+<span class="attr">#[inline(always)]
 </span><span class="kw">fn </span>memmem(slice: <span class="kw-2">&amp;</span>[u8], tag: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    <span class="kw">if </span>tag.len() == <span class="number">1 </span>{
+        memchr(tag[<span class="number">0</span>], slice)
+    } <span class="kw">else </span>{
+        memmem_(slice, tag)
+    }
+}
+
+<span class="attr">#[inline(always)]
+</span><span class="kw">fn </span>memmem2(slice: <span class="kw-2">&amp;</span>[u8], tag: (<span class="kw-2">&amp;</span>[u8], <span class="kw-2">&amp;</span>[u8])) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    <span class="kw">if </span>tag.<span class="number">0</span>.len() == <span class="number">1 </span>&amp;&amp; tag.<span class="number">1</span>.len() == <span class="number">1 </span>{
+        memchr2((tag.<span class="number">0</span>[<span class="number">0</span>], tag.<span class="number">1</span>[<span class="number">0</span>]), slice)
+    } <span class="kw">else </span>{
+        memmem2_(slice, tag)
+    }
+}
+
+<span class="attr">#[inline(always)]
+</span><span class="kw">fn </span>memmem3(slice: <span class="kw-2">&amp;</span>[u8], tag: (<span class="kw-2">&amp;</span>[u8], <span class="kw-2">&amp;</span>[u8], <span class="kw-2">&amp;</span>[u8])) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    <span class="kw">if </span>tag.<span class="number">0</span>.len() == <span class="number">1 </span>&amp;&amp; tag.<span class="number">1</span>.len() == <span class="number">1 </span>&amp;&amp; tag.<span class="number">2</span>.len() == <span class="number">1 </span>{
+        memchr3((tag.<span class="number">0</span>[<span class="number">0</span>], tag.<span class="number">1</span>[<span class="number">0</span>], tag.<span class="number">2</span>[<span class="number">0</span>]), slice)
+    } <span class="kw">else </span>{
+        memmem3_(slice, tag)
+    }
+}
+
+<span class="attr">#[cfg(feature = <span class="string">&quot;simd&quot;</span>)]
+#[inline(always)]
+</span><span class="kw">fn </span>memmem_(slice: <span class="kw-2">&amp;</span>[u8], tag: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    <span class="kw">let </span><span class="kw-2">&amp;</span>prefix = <span class="kw">match </span>tag.first() {
+        <span class="prelude-val">Some</span>(x) =&gt; x,
+        <span class="prelude-val">None </span>=&gt; <span class="kw">return </span><span class="prelude-val">Some</span>(<span class="number">0</span>),
+    };
+    <span class="attr">#[allow(clippy::manual_find)] </span><span class="comment">// faster this way
+    </span><span class="kw">for </span>i <span class="kw">in </span>memchr::memchr_iter(prefix, slice) {
+        <span class="kw">if </span>slice[i..].starts_with(tag) {
+            <span class="kw">return </span><span class="prelude-val">Some</span>(i);
+        }
+    }
+    <span class="prelude-val">None
+</span>}
+
+<span class="attr">#[cfg(feature = <span class="string">&quot;simd&quot;</span>)]
+</span><span class="kw">fn </span>memmem2_(slice: <span class="kw-2">&amp;</span>[u8], tag: (<span class="kw-2">&amp;</span>[u8], <span class="kw-2">&amp;</span>[u8])) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    <span class="kw">let </span>prefix = <span class="kw">match </span>(tag.<span class="number">0</span>.first(), tag.<span class="number">1</span>.first()) {
+        (<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>a), <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>b)) =&gt; (a, b),
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Some</span>(<span class="number">0</span>),
+    };
+    <span class="attr">#[allow(clippy::manual_find)] </span><span class="comment">// faster this way
+    </span><span class="kw">for </span>i <span class="kw">in </span>memchr::memchr2_iter(prefix.<span class="number">0</span>, prefix.<span class="number">1</span>, slice) {
+        <span class="kw">let </span>subslice = <span class="kw-2">&amp;</span>slice[i..];
+        <span class="kw">if </span>subslice.starts_with(tag.<span class="number">0</span>) {
+            <span class="kw">return </span><span class="prelude-val">Some</span>(i);
+        }
+        <span class="kw">if </span>subslice.starts_with(tag.<span class="number">1</span>) {
+            <span class="kw">return </span><span class="prelude-val">Some</span>(i);
+        }
+    }
+    <span class="prelude-val">None
+</span>}
+
+<span class="attr">#[cfg(feature = <span class="string">&quot;simd&quot;</span>)]
+</span><span class="kw">fn </span>memmem3_(slice: <span class="kw-2">&amp;</span>[u8], tag: (<span class="kw-2">&amp;</span>[u8], <span class="kw-2">&amp;</span>[u8], <span class="kw-2">&amp;</span>[u8])) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    <span class="kw">let </span>prefix = <span class="kw">match </span>(tag.<span class="number">0</span>.first(), tag.<span class="number">1</span>.first(), tag.<span class="number">2</span>.first()) {
+        (<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>a), <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>b), <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>c)) =&gt; (a, b, c),
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Some</span>(<span class="number">0</span>),
+    };
+    <span class="attr">#[allow(clippy::manual_find)] </span><span class="comment">// faster this way
+    </span><span class="kw">for </span>i <span class="kw">in </span>memchr::memchr3_iter(prefix.<span class="number">0</span>, prefix.<span class="number">1</span>, prefix.<span class="number">2</span>, slice) {
+        <span class="kw">let </span>subslice = <span class="kw-2">&amp;</span>slice[i..];
+        <span class="kw">if </span>subslice.starts_with(tag.<span class="number">0</span>) {
+            <span class="kw">return </span><span class="prelude-val">Some</span>(i);
+        }
+        <span class="kw">if </span>subslice.starts_with(tag.<span class="number">1</span>) {
+            <span class="kw">return </span><span class="prelude-val">Some</span>(i);
+        }
+        <span class="kw">if </span>subslice.starts_with(tag.<span class="number">2</span>) {
+            <span class="kw">return </span><span class="prelude-val">Some</span>(i);
+        }
+    }
+    <span class="prelude-val">None
+</span>}
+
+<span class="attr">#[cfg(not(feature = <span class="string">&quot;simd&quot;</span>))]
+</span><span class="kw">fn </span>memmem_(slice: <span class="kw-2">&amp;</span>[u8], tag: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
     <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..slice.len() {
         <span class="kw">let </span>subslice = <span class="kw-2">&amp;</span>slice[i..];
         <span class="kw">if </span>subslice.starts_with(tag) {
+            <span class="kw">return </span><span class="prelude-val">Some</span>(i);
+        }
+    }
+    <span class="prelude-val">None
+</span>}
+
+<span class="attr">#[cfg(not(feature = <span class="string">&quot;simd&quot;</span>))]
+</span><span class="kw">fn </span>memmem2_(slice: <span class="kw-2">&amp;</span>[u8], tag: (<span class="kw-2">&amp;</span>[u8], <span class="kw-2">&amp;</span>[u8])) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..slice.len() {
+        <span class="kw">let </span>subslice = <span class="kw-2">&amp;</span>slice[i..];
+        <span class="kw">if </span>subslice.starts_with(tag.<span class="number">0</span>) {
+            <span class="kw">return </span><span class="prelude-val">Some</span>(i);
+        }
+        <span class="kw">if </span>subslice.starts_with(tag.<span class="number">1</span>) {
+            <span class="kw">return </span><span class="prelude-val">Some</span>(i);
+        }
+    }
+    <span class="prelude-val">None
+</span>}
+
+<span class="attr">#[cfg(not(feature = <span class="string">&quot;simd&quot;</span>))]
+</span><span class="kw">fn </span>memmem3_(slice: <span class="kw-2">&amp;</span>[u8], tag: (<span class="kw-2">&amp;</span>[u8], <span class="kw-2">&amp;</span>[u8], <span class="kw-2">&amp;</span>[u8])) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..slice.len() {
+        <span class="kw">let </span>subslice = <span class="kw-2">&amp;</span>slice[i..];
+        <span class="kw">if </span>subslice.starts_with(tag.<span class="number">0</span>) {
+            <span class="kw">return </span><span class="prelude-val">Some</span>(i);
+        }
+        <span class="kw">if </span>subslice.starts_with(tag.<span class="number">1</span>) {
+            <span class="kw">return </span><span class="prelude-val">Some</span>(i);
+        }
+        <span class="kw">if </span>subslice.starts_with(tag.<span class="number">2</span>) {
             <span class="kw">return </span><span class="prelude-val">Some</span>(i);
         }
     }

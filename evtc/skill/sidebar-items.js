@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Activation","CustomSkill"],"struct":["ActivationEvent","SkillInfo","SkillTiming"]};
