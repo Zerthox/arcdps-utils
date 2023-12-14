@@ -374,6 +374,15 @@
 <a href="#374" id="374">374</a>
 <a href="#375" id="375">375</a>
 <a href="#376" id="376">376</a>
+<a href="#377" id="377">377</a>
+<a href="#378" id="378">378</a>
+<a href="#379" id="379">379</a>
+<a href="#380" id="380">380</a>
+<a href="#381" id="381">381</a>
+<a href="#382" id="382">382</a>
+<a href="#383" id="383">383</a>
+<a href="#384" id="384">384</a>
+<a href="#385" id="385">385</a>
 </pre></div><pre class="rust"><code><span class="kw">use super</span>::{Entry, Player, Tracker};
 <span class="kw">use </span>arcdps::{Profession, Specialization};
 <span class="kw">use </span>std::ops;
@@ -529,6 +538,15 @@
     /// Caching happens automatically based on the set [`CachePolicy`], so usually this does not have to be called manually.
     </span><span class="kw">pub fn </span>cache_multiple(<span class="kw-2">&amp;mut </span><span class="self">self</span>, entries: <span class="kw">impl </span>Iterator&lt;Item = (CachedPlayer, T)&gt;) {
         <span class="self">self</span>.cache.extend(entries)
+    }
+
+    <span class="doccomment">/// Removes a cache entry based on the character name.
+    </span><span class="kw">pub fn </span>remove_cache_entry(<span class="kw-2">&amp;mut </span><span class="self">self</span>, character: <span class="kw">impl </span>AsRef&lt;str&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;(CachedPlayer, T)&gt; {
+        <span class="kw">let </span>name = character.as_ref();
+        <span class="self">self</span>.cache
+            .iter()
+            .position(|(player, <span class="kw">_</span>)| player.character == name)
+            .map(|index| <span class="self">self</span>.cache.remove(index))
     }
 
     <span class="doccomment">/// Returns whether there are any cached entries.

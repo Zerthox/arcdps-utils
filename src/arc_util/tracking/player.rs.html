@@ -189,7 +189,7 @@
     }
 
     <span class="doccomment">/// Creates a new player from tracking change agents.
-    </span><span class="kw">pub fn </span>from_tracking_change(src: Agent, dst: Agent) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+    </span><span class="kw">pub fn </span>from_tracking_change(src: <span class="kw-2">&amp;</span>Agent, dst: <span class="kw-2">&amp;</span>Agent) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
         <span class="macro">debug_assert!</span>(src.elite == <span class="number">0 </span>&amp;&amp; src.prof != <span class="number">0</span>);
 
         <span class="kw">let </span>acc_name = dst.name()<span class="question-mark">?</span>;
