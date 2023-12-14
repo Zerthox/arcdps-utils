@@ -155,6 +155,15 @@ impl<T> CachedTracker<T> {
         self.cache.extend(entries)
     }
 
+    /// Removes a cache entry based on the character name.
+    pub fn remove_cache_entry(&mut self, character: impl AsRef<str>) -> Option<(CachedPlayer, T)> {
+        let name = character.as_ref();
+        self.cache
+            .iter()
+            .position(|(player, _)| player.character == name)
+            .map(|index| self.cache.remove(index))
+    }
+
     /// Returns whether there are any cached entries.
     pub fn cached(&self) -> bool {
         !self.cache.is_empty()
