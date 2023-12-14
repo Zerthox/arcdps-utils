@@ -72,11 +72,11 @@ impl Player {
     pub fn from_tracking_change(src: Agent, dst: Agent) -> Option<Self> {
         debug_assert!(src.elite == 0 && src.prof != 0);
 
-        let acc_name = dst.name?;
+        let acc_name = dst.name()?;
         Some(Self::new(
             src.id,
             dst.id as u16,
-            src.name?,
+            src.name()?,
             strip_account_prefix(acc_name),
             dst.is_self != 0,
             dst.prof.into(),
@@ -109,7 +109,7 @@ impl Eq for Player {}
 
 impl cmp::PartialOrd for Player {
     fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering> {
-        self.id.partial_cmp(&other.id)
+        Some(self.id.cmp(&other.id))
     }
 }
 

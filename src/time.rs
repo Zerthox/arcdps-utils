@@ -1,4 +1,4 @@
-use arcdps::CombatEvent;
+use arcdps::Event;
 use std::time::Duration;
 use windows::Win32::Media::timeGetTime;
 
@@ -20,6 +20,6 @@ pub fn since(time: u64) -> Duration {
 
 /// Calculates the time elapsed between an event happening and now.
 #[inline]
-pub fn since_event(event: &CombatEvent) -> Duration {
+pub fn since_event(event: &Event) -> Duration {
     since(event.time)
 }

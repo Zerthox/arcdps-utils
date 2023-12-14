@@ -9,7 +9,7 @@ pub struct Repository {
 
 impl Repository {
     /// User agent used for requests.
-    pub const AGENT: &str = concat!(env!("CARGO_PKG_NAME"), "/", env!("CARGO_PKG_VERSION"));
+    pub const AGENT: &'static str = concat!(env!("CARGO_PKG_NAME"), "/", env!("CARGO_PKG_VERSION"));
 
     /// Creates new repository information.
     #[inline]
