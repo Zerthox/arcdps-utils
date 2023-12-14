@@ -69,7 +69,7 @@ impl Player {
     }
 
     /// Creates a new player from tracking change agents.
-    pub fn from_tracking_change(src: Agent, dst: Agent) -> Option<Self> {
+    pub fn from_tracking_change(src: &Agent, dst: &Agent) -> Option<Self> {
         debug_assert!(src.elite == 0 && src.prof != 0);
 
         let acc_name = dst.name()?;
