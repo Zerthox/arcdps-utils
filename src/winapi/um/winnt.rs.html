@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\winapi-0.3.9\src\um\winnt.rs`."><title>winnt.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="winapi" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../../winapi/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\winapi-0.3.9\src\um\winnt.rs`."><title>winnt.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="winapi" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -8660,17 +8661,17 @@
 <span class="kw">use </span>shared::guiddef::{CLSID, GUID};
 <span class="kw">use </span>shared::ktmtypes::UOW;
 <span class="kw">use </span>shared::minwindef::{BYTE, DWORD, FALSE, PDWORD, TRUE, ULONG, USHORT, WORD};
-<span class="attr">#[cfg(target_arch = <span class="string">&quot;aarch64&quot;</span>)]
+<span class="attr">#[cfg(target_arch = <span class="string">"aarch64"</span>)]
 </span><span class="kw">use </span>shared::minwindef::PBYTE;
 <span class="kw">use </span>vc::excpt::EXCEPTION_DISPOSITION;
 <span class="kw">use </span>vc::vcruntime::size_t;
 <span class="kw">pub const </span>ANYSIZE_ARRAY: usize = <span class="number">1</span>;
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;32&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"32"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub const </span>MAX_NATURAL_ALIGNMENT: usize = <span class="number">4</span>;
 <span class="kw">pub const </span>MEMORY_ALLOCATION_ALIGNMENT: usize = <span class="number">8</span>;
 }
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub const </span>MAX_NATURAL_ALIGNMENT: usize = <span class="number">8</span>;
 <span class="kw">pub const </span>MEMORY_ALLOCATION_ALIGNMENT: usize = <span class="number">16</span>;
@@ -8760,9 +8761,9 @@
     Reserved: [WORD; <span class="number">3</span>],
 }}
 <span class="kw">pub type </span>PGROUP_AFFINITY = <span class="kw-2">*mut </span>GROUP_AFFINITY;
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;32&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"32"</span>)]
 </span><span class="kw">pub const </span>MAXIMUM_PROC_PER_GROUP: BYTE = <span class="number">32</span>;
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
 </span><span class="kw">pub const </span>MAXIMUM_PROC_PER_GROUP: BYTE = <span class="number">64</span>;
 <span class="kw">pub const </span>MAXIMUM_PROCESSORS: BYTE = MAXIMUM_PROC_PER_GROUP;
 <span class="kw">pub type </span>HANDLE = <span class="kw-2">*mut </span>c_void;
@@ -9544,7 +9545,7 @@
     High: LONGLONG,
 }}
 <span class="kw">pub type </span>PM128A = <span class="kw-2">*mut </span>M128A;
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;32&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"32"</span>)]
 </span><span class="macro">STRUCT!</span>{<span class="kw">struct </span>XSAVE_FORMAT { <span class="comment">// FIXME align 16
     </span>ControlWord: WORD,
     StatusWord: WORD,
@@ -9563,7 +9564,7 @@
     XmmRegisters: [M128A; <span class="number">8</span>],
     Reserved4: [BYTE; <span class="number">224</span>],
 }}
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
 </span><span class="macro">STRUCT!</span>{<span class="kw">struct </span>XSAVE_FORMAT { <span class="comment">// FIXME align 16
     </span>ControlWord: WORD,
     StatusWord: WORD,
@@ -9582,7 +9583,7 @@
     XmmRegisters: [M128A; <span class="number">16</span>],
     Reserved4: [BYTE; <span class="number">96</span>],
 }}
-<span class="attr">#[cfg(target_arch = <span class="string">&quot;x86&quot;</span>)]
+<span class="attr">#[cfg(target_arch = <span class="string">"x86"</span>)]
 </span><span class="macro">STRUCT!</span>{<span class="kw">struct </span>XSTATE_CONTEXT {
     Mask: DWORD64,
     Length: DWORD,
@@ -9592,7 +9593,7 @@
     Buffer: PVOID,
     Reserved3: DWORD,
 }}
-<span class="attr">#[cfg(not(target_arch = <span class="string">&quot;x86&quot;</span>))]
+<span class="attr">#[cfg(not(target_arch = <span class="string">"x86"</span>))]
 </span><span class="macro">STRUCT!</span>{<span class="kw">struct </span>XSTATE_CONTEXT {
     Mask: DWORD64,
     Length: DWORD,
@@ -9637,7 +9638,7 @@
 <span class="kw">pub type </span>PSCOPE_TABLE_ARM64 = <span class="kw-2">*mut </span>SCOPE_TABLE_ARM64;
 <span class="comment">// Skip interlocked and bit manipulation stuff because it is all intrinsics
 // Use the native Rust equivalents instead
-</span><span class="attr">#[cfg(target_arch = <span class="string">&quot;x86_64&quot;</span>)]
+</span><span class="attr">#[cfg(target_arch = <span class="string">"x86_64"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub const </span>EXCEPTION_READ_FAULT: DWORD = <span class="number">0</span>;
 <span class="kw">pub const </span>EXCEPTION_WRITE_FAULT: DWORD = <span class="number">1</span>;
@@ -9771,8 +9772,8 @@
     Entries: PDWORD,
     Functions: <span class="kw-2">*mut </span>PRUNTIME_FUNCTION,
 ) -&gt; DWORD}
-<span class="kw">pub const </span>OUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK_EXPORT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str
-    = <span class="string">&quot;OutOfProcessFunctionTableCallback&quot;</span>;
+<span class="kw">pub const </span>OUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK_EXPORT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str
+    = <span class="string">"OutOfProcessFunctionTableCallback"</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct </span>DISPATCHER_CONTEXT {
     ControlPc: DWORD64,
     ImageBase: DWORD64,
@@ -9847,7 +9848,7 @@
 }}
 <span class="kw">pub type </span>PKNONVOLATILE_CONTEXT_POINTERS = <span class="kw-2">*mut </span>KNONVOLATILE_CONTEXT_POINTERS;
 } <span class="comment">// IFDEF(x86_64)
-</span><span class="attr">#[cfg(target_arch = <span class="string">&quot;x86&quot;</span>)]
+</span><span class="attr">#[cfg(target_arch = <span class="string">"x86"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub const </span>EXCEPTION_READ_FAULT: DWORD = <span class="number">0</span>;
 <span class="kw">pub const </span>EXCEPTION_WRITE_FAULT: DWORD = <span class="number">1</span>;
@@ -9943,7 +9944,7 @@
     HighWord: LDT_ENTRY_HighWord,
 }}
 <span class="kw">pub type </span>PLDT_ENTRY = <span class="kw-2">*mut </span>LDT_ENTRY;
-<span class="attr">#[cfg(target_arch = <span class="string">&quot;aarch64&quot;</span>)]
+<span class="attr">#[cfg(target_arch = <span class="string">"aarch64"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub const </span>ARM64_MAX_BREAKPOINTS: usize = <span class="number">8</span>;
 <span class="kw">pub const </span>ARM64_MAX_WATCHPOINTS: usize = <span class="number">2</span>;
@@ -10062,8 +10063,8 @@
     Entries: PDWORD,
     Functions: <span class="kw-2">*mut </span>PRUNTIME_FUNCTION,
 ) -&gt; DWORD}
-<span class="kw">pub const </span>OUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK_EXPORT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str
-    = <span class="string">&quot;OutOfProcessFunctionTableCallback&quot;</span>;
+<span class="kw">pub const </span>OUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK_EXPORT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str
+    = <span class="string">"OutOfProcessFunctionTableCallback"</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct </span>DISPATCHER_CONTEXT {
     ControlPc: ULONG_PTR,
     ImageBase: ULONG_PTR,
@@ -10111,7 +10112,7 @@
 }}
 <span class="kw">pub type </span>PKNONVOLATILE_CONTEXT_POINTERS = <span class="kw-2">*mut </span>KNONVOLATILE_CONTEXT_POINTERS;
 } <span class="comment">// IFDEF(aarch64)
-</span><span class="attr">#[cfg(target_arch = <span class="string">&quot;arm&quot;</span>)]
+</span><span class="attr">#[cfg(target_arch = <span class="string">"arm"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub const </span>ARM_MAX_BREAKPOINTS: usize = <span class="number">8</span>;
 <span class="kw">pub const </span>ARM_MAX_WATCHPOINTS: usize = <span class="number">1</span>;
@@ -10979,9 +10980,9 @@
 <span class="kw">pub type </span>PACL_SIZE_INFORMATION = <span class="kw-2">*mut </span>ACL_SIZE_INFORMATION;
 <span class="kw">pub const </span>SECURITY_DESCRIPTOR_REVISION: DWORD = <span class="number">1</span>;
 <span class="kw">pub const </span>SECURITY_DESCRIPTOR_REVISION1: DWORD = <span class="number">1</span>;
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
 </span><span class="kw">pub const </span>SECURITY_DESCRIPTOR_MIN_LENGTH: usize = <span class="number">40</span>;
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;32&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"32"</span>)]
 </span><span class="kw">pub const </span>SECURITY_DESCRIPTOR_MIN_LENGTH: usize = <span class="number">20</span>;
 <span class="kw">pub type </span>SECURITY_DESCRIPTOR_CONTROL = WORD;
 <span class="kw">pub type </span>PSECURITY_DESCRIPTOR_CONTROL = <span class="kw-2">*mut </span>WORD;
@@ -11039,8 +11040,8 @@
     AuditEventDirectoryServiceAccess,
 }}
 <span class="kw">pub const </span>AUDIT_ALLOW_NO_PRIVILEGE: DWORD = <span class="number">0x1</span>;
-<span class="kw">pub const </span>ACCESS_DS_SOURCE: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;DS&quot;</span>;
-<span class="kw">pub const </span>ACCESS_DS_OBJECT_TYPE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;Directory Service Object&quot;</span>;
+<span class="kw">pub const </span>ACCESS_DS_SOURCE: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"DS"</span>;
+<span class="kw">pub const </span>ACCESS_DS_OBJECT_TYPE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"Directory Service Object"</span>;
 <span class="kw">pub const </span>SE_PRIVILEGE_ENABLED_BY_DEFAULT: DWORD = <span class="number">0x00000001</span>;
 <span class="kw">pub const </span>SE_PRIVILEGE_ENABLED: DWORD = <span class="number">0x00000002</span>;
 <span class="kw">pub const </span>SE_PRIVILEGE_REMOVED: DWORD = <span class="number">0x00000004</span>;
@@ -11113,48 +11114,48 @@
     Privileges: <span class="kw-2">*mut </span>PPRIVILEGE_SET,
 }}
 <span class="kw">pub type </span>PSE_ACCESS_REPLY = <span class="kw-2">*mut </span>SE_ACCESS_REPLY;
-<span class="kw">pub const </span>SE_CREATE_TOKEN_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeCreateTokenPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_ASSIGNPRIMARYTOKEN_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeAssignPrimaryTokenPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_LOCK_MEMORY_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeLockMemoryPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_INCREASE_QUOTA_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeIncreaseQuotaPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_UNSOLICITED_INPUT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeUnsolicitedInputPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_MACHINE_ACCOUNT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeMachineAccountPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_TCB_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeTcbPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_SECURITY_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeSecurityPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_TAKE_OWNERSHIP_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeTakeOwnershipPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_LOAD_DRIVER_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeLoadDriverPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_SYSTEM_PROFILE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeSystemProfilePrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_SYSTEMTIME_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeSystemtimePrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_PROF_SINGLE_PROCESS_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeProfileSingleProcessPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_INC_BASE_PRIORITY_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeIncreaseBasePriorityPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_CREATE_PAGEFILE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeCreatePagefilePrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_CREATE_PERMANENT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeCreatePermanentPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_BACKUP_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeBackupPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_RESTORE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeRestorePrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_SHUTDOWN_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeShutdownPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_DEBUG_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeDebugPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_AUDIT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeAuditPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_SYSTEM_ENVIRONMENT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeSystemEnvironmentPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_CHANGE_NOTIFY_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeChangeNotifyPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_REMOTE_SHUTDOWN_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeRemoteShutdownPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_UNDOCK_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeUndockPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_SYNC_AGENT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeSyncAgentPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_ENABLE_DELEGATION_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeEnableDelegationPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_MANAGE_VOLUME_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeManageVolumePrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_IMPERSONATE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeImpersonatePrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_CREATE_GLOBAL_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeCreateGlobalPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_TRUSTED_CREDMAN_ACCESS_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeTrustedCredManAccessPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_RELABEL_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeRelabelPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_INC_WORKING_SET_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeIncreaseWorkingSetPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_TIME_ZONE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeTimeZonePrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_CREATE_SYMBOLIC_LINK_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;SeCreateSymbolicLinkPrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_DELEGATE_SESSION_USER_IMPERSONATE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str
-    = <span class="string">&quot;SeDelegateSessionUserImpersonatePrivilege&quot;</span>;
-<span class="kw">pub const </span>SE_ACTIVATE_AS_USER_CAPABILITY: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;activateAsUser&quot;</span>;
-<span class="kw">pub const </span>SE_CONSTRAINED_IMPERSONATION_CAPABILITY: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;constrainedImpersonation&quot;</span>;
-<span class="kw">pub const </span>SE_SESSION_IMPERSONATION_CAPABILITY: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;sessionImpersonation&quot;</span>;
-<span class="kw">pub const </span>SE_MUMA_CAPABILITY: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;muma&quot;</span>;
-<span class="kw">pub const </span>SE_DEVELOPMENT_MODE_NETWORK_CAPABILITY: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;developmentModeNetwork&quot;</span>;
+<span class="kw">pub const </span>SE_CREATE_TOKEN_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeCreateTokenPrivilege"</span>;
+<span class="kw">pub const </span>SE_ASSIGNPRIMARYTOKEN_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeAssignPrimaryTokenPrivilege"</span>;
+<span class="kw">pub const </span>SE_LOCK_MEMORY_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeLockMemoryPrivilege"</span>;
+<span class="kw">pub const </span>SE_INCREASE_QUOTA_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeIncreaseQuotaPrivilege"</span>;
+<span class="kw">pub const </span>SE_UNSOLICITED_INPUT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeUnsolicitedInputPrivilege"</span>;
+<span class="kw">pub const </span>SE_MACHINE_ACCOUNT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeMachineAccountPrivilege"</span>;
+<span class="kw">pub const </span>SE_TCB_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeTcbPrivilege"</span>;
+<span class="kw">pub const </span>SE_SECURITY_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeSecurityPrivilege"</span>;
+<span class="kw">pub const </span>SE_TAKE_OWNERSHIP_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeTakeOwnershipPrivilege"</span>;
+<span class="kw">pub const </span>SE_LOAD_DRIVER_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeLoadDriverPrivilege"</span>;
+<span class="kw">pub const </span>SE_SYSTEM_PROFILE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeSystemProfilePrivilege"</span>;
+<span class="kw">pub const </span>SE_SYSTEMTIME_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeSystemtimePrivilege"</span>;
+<span class="kw">pub const </span>SE_PROF_SINGLE_PROCESS_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeProfileSingleProcessPrivilege"</span>;
+<span class="kw">pub const </span>SE_INC_BASE_PRIORITY_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeIncreaseBasePriorityPrivilege"</span>;
+<span class="kw">pub const </span>SE_CREATE_PAGEFILE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeCreatePagefilePrivilege"</span>;
+<span class="kw">pub const </span>SE_CREATE_PERMANENT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeCreatePermanentPrivilege"</span>;
+<span class="kw">pub const </span>SE_BACKUP_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeBackupPrivilege"</span>;
+<span class="kw">pub const </span>SE_RESTORE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeRestorePrivilege"</span>;
+<span class="kw">pub const </span>SE_SHUTDOWN_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeShutdownPrivilege"</span>;
+<span class="kw">pub const </span>SE_DEBUG_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeDebugPrivilege"</span>;
+<span class="kw">pub const </span>SE_AUDIT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeAuditPrivilege"</span>;
+<span class="kw">pub const </span>SE_SYSTEM_ENVIRONMENT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeSystemEnvironmentPrivilege"</span>;
+<span class="kw">pub const </span>SE_CHANGE_NOTIFY_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeChangeNotifyPrivilege"</span>;
+<span class="kw">pub const </span>SE_REMOTE_SHUTDOWN_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeRemoteShutdownPrivilege"</span>;
+<span class="kw">pub const </span>SE_UNDOCK_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeUndockPrivilege"</span>;
+<span class="kw">pub const </span>SE_SYNC_AGENT_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeSyncAgentPrivilege"</span>;
+<span class="kw">pub const </span>SE_ENABLE_DELEGATION_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeEnableDelegationPrivilege"</span>;
+<span class="kw">pub const </span>SE_MANAGE_VOLUME_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeManageVolumePrivilege"</span>;
+<span class="kw">pub const </span>SE_IMPERSONATE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeImpersonatePrivilege"</span>;
+<span class="kw">pub const </span>SE_CREATE_GLOBAL_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeCreateGlobalPrivilege"</span>;
+<span class="kw">pub const </span>SE_TRUSTED_CREDMAN_ACCESS_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeTrustedCredManAccessPrivilege"</span>;
+<span class="kw">pub const </span>SE_RELABEL_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeRelabelPrivilege"</span>;
+<span class="kw">pub const </span>SE_INC_WORKING_SET_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeIncreaseWorkingSetPrivilege"</span>;
+<span class="kw">pub const </span>SE_TIME_ZONE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeTimeZonePrivilege"</span>;
+<span class="kw">pub const </span>SE_CREATE_SYMBOLIC_LINK_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"SeCreateSymbolicLinkPrivilege"</span>;
+<span class="kw">pub const </span>SE_DELEGATE_SESSION_USER_IMPERSONATE_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str
+    = <span class="string">"SeDelegateSessionUserImpersonatePrivilege"</span>;
+<span class="kw">pub const </span>SE_ACTIVATE_AS_USER_CAPABILITY: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"activateAsUser"</span>;
+<span class="kw">pub const </span>SE_CONSTRAINED_IMPERSONATION_CAPABILITY: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"constrainedImpersonation"</span>;
+<span class="kw">pub const </span>SE_SESSION_IMPERSONATION_CAPABILITY: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"sessionImpersonation"</span>;
+<span class="kw">pub const </span>SE_MUMA_CAPABILITY: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"muma"</span>;
+<span class="kw">pub const </span>SE_DEVELOPMENT_MODE_NETWORK_CAPABILITY: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"developmentModeNetwork"</span>;
 <span class="macro">ENUM!</span>{<span class="kw">enum </span>SECURITY_IMPERSONATION_LEVEL {
     SecurityAnonymous,
     SecurityIdentification,
@@ -12927,7 +12928,7 @@
 <span class="kw">pub const </span>IO_COMPLETION_MODIFY_STATE: DWORD = <span class="number">0x0002</span>;
 <span class="kw">pub const </span>IO_COMPLETION_ALL_ACCESS: DWORD = STANDARD_RIGHTS_REQUIRED | SYNCHRONIZE | <span class="number">0x3</span>;
 <span class="kw">pub const </span>IO_QOS_MAX_RESERVATION: DWORD64 = <span class="number">1000000000</span>;
-<span class="kw">pub const </span>SMB_CCF_APP_INSTANCE_EA_NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;ClusteredApplicationInstance&quot;</span>;
+<span class="kw">pub const </span>SMB_CCF_APP_INSTANCE_EA_NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"ClusteredApplicationInstance"</span>;
 <span class="kw">pub const </span>NETWORK_APP_INSTANCE_CSV_FLAGS_VALID_ONLY_IF_CSV_COORDINATOR: DWORD = <span class="number">0x00000001</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct </span>NETWORK_APP_INSTANCE_EA {
     AppInstanceID: GUID,
@@ -14396,13 +14397,13 @@
 <span class="kw">pub const </span>IMAGE_NT_OPTIONAL_HDR32_MAGIC: WORD = <span class="number">0x10b</span>;
 <span class="kw">pub const </span>IMAGE_NT_OPTIONAL_HDR64_MAGIC: WORD = <span class="number">0x20b</span>;
 <span class="kw">pub const </span>IMAGE_ROM_OPTIONAL_HDR_MAGIC: WORD = <span class="number">0x107</span>;
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub type </span>IMAGE_OPTIONAL_HEADER = IMAGE_OPTIONAL_HEADER64;
 <span class="kw">pub type </span>PIMAGE_OPTIONAL_HEADER = PIMAGE_OPTIONAL_HEADER64;
 <span class="kw">pub const </span>IMAGE_NT_OPTIONAL_HDR_MAGIC: WORD = IMAGE_NT_OPTIONAL_HDR64_MAGIC;
 }
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;32&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"32"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub type </span>IMAGE_OPTIONAL_HEADER = IMAGE_OPTIONAL_HEADER32;
 <span class="kw">pub type </span>PIMAGE_OPTIONAL_HEADER = PIMAGE_OPTIONAL_HEADER32;
@@ -14425,12 +14426,12 @@
     OptionalHeader: IMAGE_ROM_OPTIONAL_HEADER,
 }}
 <span class="kw">pub type </span>PIMAGE_ROM_HEADERS = <span class="kw-2">*mut </span>IMAGE_ROM_HEADERS;
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub type </span>IMAGE_NT_HEADERS = IMAGE_NT_HEADERS64;
 <span class="kw">pub type </span>PIMAGE_NT_HEADERS = PIMAGE_NT_HEADERS64;
 }
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;32&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"32"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub type </span>IMAGE_NT_HEADERS = IMAGE_NT_HEADERS32;
 <span class="kw">pub type </span>PIMAGE_NT_HEADERS = PIMAGE_NT_HEADERS32;
@@ -15082,12 +15083,12 @@
 <span class="kw">pub const </span>IMAGE_REL_BASED_ARM_MOV32: WORD = <span class="number">5</span>;
 <span class="kw">pub const </span>IMAGE_REL_BASED_THUMB_MOV32: WORD = <span class="number">7</span>;
 <span class="kw">pub const </span>IMAGE_ARCHIVE_START_SIZE: usize = <span class="number">8</span>;
-<span class="kw">pub const </span>IMAGE_ARCHIVE_START: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;!&lt;arch&gt;\n&quot;</span>;
-<span class="kw">pub const </span>IMAGE_ARCHIVE_END: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;`\n&quot;</span>;
-<span class="kw">pub const </span>IMAGE_ARCHIVE_PAD: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;\n&quot;</span>;
-<span class="kw">pub const </span>IMAGE_ARCHIVE_LINKER_MEMBER: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;/               &quot;</span>;
-<span class="kw">pub const </span>IMAGE_ARCHIVE_LONGNAMES_MEMBER: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;//              &quot;</span>;
-<span class="kw">pub const </span>IMAGE_ARCHIVE_HYBRIDMAP_MEMBER: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;/&lt;HYBRIDMAP&gt;/   &quot;</span>;
+<span class="kw">pub const </span>IMAGE_ARCHIVE_START: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"!&lt;arch&gt;\n"</span>;
+<span class="kw">pub const </span>IMAGE_ARCHIVE_END: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"`\n"</span>;
+<span class="kw">pub const </span>IMAGE_ARCHIVE_PAD: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"\n"</span>;
+<span class="kw">pub const </span>IMAGE_ARCHIVE_LINKER_MEMBER: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"/               "</span>;
+<span class="kw">pub const </span>IMAGE_ARCHIVE_LONGNAMES_MEMBER: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"//              "</span>;
+<span class="kw">pub const </span>IMAGE_ARCHIVE_HYBRIDMAP_MEMBER: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"/&lt;HYBRIDMAP&gt;/   "</span>;
 <span class="macro">STRUCT!</span>{<span class="kw">struct </span>IMAGE_ARCHIVE_MEMBER_HEADER {
     Name: [BYTE; <span class="number">16</span>],
     Date: [BYTE; <span class="number">12</span>],
@@ -15191,7 +15192,7 @@
     Reserved1 set_Reserved1[<span class="number">24</span>..<span class="number">32</span>],
 ]}
 <span class="kw">pub type </span>PIMAGE_TLS_DIRECTORY32 = <span class="kw-2">*mut </span>IMAGE_TLS_DIRECTORY32;
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub const </span>IMAGE_ORDINAL_FLAG: ULONGLONG = IMAGE_ORDINAL_FLAG64;
 <span class="attr">#[inline]
@@ -15207,7 +15208,7 @@
 <span class="kw">pub type </span>IMAGE_TLS_DIRECTORY = IMAGE_TLS_DIRECTORY64;
 <span class="kw">pub type </span>PIMAGE_TLS_DIRECTORY = PIMAGE_TLS_DIRECTORY64;
 }
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;32&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"32"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub const </span>IMAGE_ORDINAL_FLAG: DWORD = IMAGE_ORDINAL_FLAG32;
 <span class="attr">#[inline]
@@ -15355,14 +15356,14 @@
     Flags: DWORD,
 }}
 <span class="kw">pub type </span>PIMAGE_DYNAMIC_RELOCATION64_V2 = <span class="kw-2">*mut </span>IMAGE_DYNAMIC_RELOCATION64_V2;
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub type </span>IMAGE_DYNAMIC_RELOCATION = IMAGE_DYNAMIC_RELOCATION64;
 <span class="kw">pub type </span>PIMAGE_DYNAMIC_RELOCATION = PIMAGE_DYNAMIC_RELOCATION64;
 <span class="kw">pub type </span>IMAGE_DYNAMIC_RELOCATION_V2 = IMAGE_DYNAMIC_RELOCATION64_V2;
 <span class="kw">pub type </span>PIMAGE_DYNAMIC_RELOCATION_V2 = PIMAGE_DYNAMIC_RELOCATION64_V2;
 }
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;32&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"32"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub type </span>IMAGE_DYNAMIC_RELOCATION = IMAGE_DYNAMIC_RELOCATION32;
 <span class="kw">pub type </span>PIMAGE_DYNAMIC_RELOCATION = PIMAGE_DYNAMIC_RELOCATION32;
@@ -15470,12 +15471,12 @@
     EnclaveConfigurationPointer: ULONGLONG,
 }}
 <span class="kw">pub type </span>PIMAGE_LOAD_CONFIG_DIRECTORY64 = <span class="kw-2">*mut </span>IMAGE_LOAD_CONFIG_DIRECTORY64;
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub type </span>IMAGE_LOAD_CONFIG_DIRECTORY = IMAGE_LOAD_CONFIG_DIRECTORY64;
 <span class="kw">pub type </span>PIMAGE_LOAD_CONFIG_DIRECTORY = PIMAGE_LOAD_CONFIG_DIRECTORY64;
 }
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;32&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"32"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub type </span>IMAGE_LOAD_CONFIG_DIRECTORY = IMAGE_LOAD_CONFIG_DIRECTORY32;
 <span class="kw">pub type </span>PIMAGE_LOAD_CONFIG_DIRECTORY = PIMAGE_LOAD_CONFIG_DIRECTORY32;
@@ -15607,12 +15608,12 @@
 <span class="kw">pub type </span>_PIMAGE_RUNTIME_FUNCTION_ENTRY = <span class="kw-2">*mut </span>_IMAGE_RUNTIME_FUNCTION_ENTRY;
 <span class="kw">pub type </span>IMAGE_IA64_RUNTIME_FUNCTION_ENTRY = _IMAGE_RUNTIME_FUNCTION_ENTRY;
 <span class="kw">pub type </span>PIMAGE_IA64_RUNTIME_FUNCTION_ENTRY = _PIMAGE_RUNTIME_FUNCTION_ENTRY;
-<span class="attr">#[cfg(target_arch = <span class="string">&quot;aarch64&quot;</span>)]
+<span class="attr">#[cfg(target_arch = <span class="string">"aarch64"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub type </span>IMAGE_RUNTIME_FUNCTION_ENTRY = IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
 <span class="kw">pub type </span>PIMAGE_RUNTIME_FUNCTION_ENTRY = PIMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
 }
-<span class="attr">#[cfg(not(target_arch = <span class="string">&quot;aarch64&quot;</span>))]
+<span class="attr">#[cfg(not(target_arch = <span class="string">"aarch64"</span>))]
 </span><span class="macro">IFDEF!</span>{
 <span class="kw">pub type </span>IMAGE_RUNTIME_FUNCTION_ENTRY = _IMAGE_RUNTIME_FUNCTION_ENTRY;
 <span class="kw">pub type </span>PIMAGE_RUNTIME_FUNCTION_ENTRY = _PIMAGE_RUNTIME_FUNCTION_ENTRY;
@@ -15831,7 +15832,7 @@
     ManagedNativeHeader: IMAGE_DATA_DIRECTORY,
 }}
 <span class="kw">pub type </span>PIMAGE_COR20_HEADER = <span class="kw-2">*mut </span>IMAGE_COR20_HEADER;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>RtlCaptureStackBackTrace(
         FramesToSkip: DWORD,
         FramesToCapture: DWORD,
@@ -15848,8 +15849,8 @@
         ReturnValue: PVOID,
     );
 }
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
-</span><span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
+</span><span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>RtlAddFunctionTable(
         FunctionTable: PRUNTIME_FUNCTION,
         EntryCount: DWORD,
@@ -15887,15 +15888,15 @@
         HistoryTable: PUNWIND_HISTORY_TABLE,
     ) -&gt; PRUNTIME_FUNCTION;
 }
-<span class="attr">#[cfg(target_arch = <span class="string">&quot;x86_64&quot;</span>)]
+<span class="attr">#[cfg(target_arch = <span class="string">"x86_64"</span>)]
 </span><span class="macro">IFDEF!</span>{
-<span class="kw">extern </span><span class="string">&quot;C&quot; </span>{
+<span class="kw">extern </span><span class="string">"C" </span>{
     <span class="kw">pub fn </span>RtlRestoreContext(
         ContextRecord: PCONTEXT,
         ExceptionRecord: <span class="kw-2">*mut </span>EXCEPTION_RECORD,
     );
 }
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>RtlUnwindEx(
         TargetFrame: PVOID,
         TargetIp: PVOID,
@@ -15916,7 +15917,7 @@
     ) -&gt; PEXCEPTION_ROUTINE;
 }
 }
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>RtlPcToFileHeader(
         PcValue: PVOID,
         BaseOfImage: <span class="kw-2">*mut </span>PVOID,
@@ -15931,7 +15932,7 @@
     Next: <span class="kw-2">*mut </span>SLIST_ENTRY,
 }}
 <span class="kw">pub type </span>PSLIST_ENTRY = <span class="kw-2">*mut </span>SLIST_ENTRY;
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="macro">STRUCT!</span>{<span class="kw">struct </span>SLIST_HEADER_s {
     Alignment: ULONGLONG,
@@ -15956,7 +15957,7 @@
 }}
 <span class="kw">pub type </span>PSLIST_HEADER = <span class="kw-2">*mut </span>SLIST_HEADER;
 }
-<span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;32&quot;</span>)]
+<span class="attr">#[cfg(target_pointer_width = <span class="string">"32"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="macro">STRUCT!</span>{<span class="kw">struct </span>SLIST_HEADER_s {
     Next: SLIST_ENTRY,
@@ -15970,7 +15971,7 @@
 }}
 <span class="kw">pub type </span>PSLIST_HEADER = <span class="kw-2">*mut </span>SLIST_HEADER;
 }
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>RtlInitializeSListHead(
         ListHead: PSLIST_HEADER,
     );
@@ -16234,7 +16235,7 @@
 <span class="kw">pub const </span>VER_PLATFORM_WIN32s: DWORD = <span class="number">0</span>;
 <span class="kw">pub const </span>VER_PLATFORM_WIN32_WINDOWS: DWORD = <span class="number">1</span>;
 <span class="kw">pub const </span>VER_PLATFORM_WIN32_NT: DWORD = <span class="number">2</span>;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>VerSetConditionMask(
         ConditionMask: ULONGLONG,
         TypeMask: DWORD,
@@ -16280,7 +16281,7 @@
 <span class="kw">pub const </span>CTMF_INCLUDE_APPCONTAINER: ULONG = <span class="number">0x00000001</span>;
 <span class="kw">pub const </span>CTMF_INCLUDE_LPAC: ULONG = <span class="number">0x00000002</span>;
 <span class="kw">pub const </span>CTMF_VALID_FLAGS: ULONG = CTMF_INCLUDE_APPCONTAINER | CTMF_INCLUDE_LPAC;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>RtlCrc32(
         Buffer: <span class="kw-2">*const </span>c_void,
         Size: size_t,
@@ -16296,12 +16297,12 @@
     OS_DEPLOYMENT_STANDARD = <span class="number">1</span>,
     OS_DEPLOYMENT_COMPACT,
 }}
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>RtlOsDeploymentState(
         Flags: DWORD,
     ) -&gt; OS_DEPLOYEMENT_STATE_VALUES;
 }
-<span class="attr">#[cfg(target_arch = <span class="string">&quot;x86_64&quot;</span>)]
+<span class="attr">#[cfg(target_arch = <span class="string">"x86_64"</span>)]
 </span><span class="macro">IFDEF!</span>{
 <span class="macro">STRUCT!</span>{<span class="kw">struct </span>NV_MEMORY_RANGE {
     BaseAddress: <span class="kw-2">*mut </span>VOID,
@@ -16549,13 +16550,13 @@
 <span class="kw">pub type </span>PPERFORMANCE_DATA = <span class="kw-2">*mut </span>PERFORMANCE_DATA;
 <span class="kw">pub const </span>READ_THREAD_PROFILING_FLAG_DISPATCHING: DWORD = <span class="number">0x00000001</span>;
 <span class="kw">pub const </span>READ_THREAD_PROFILING_FLAG_HARDWARE_COUNTERS: DWORD = <span class="number">0x00000002</span>;
-<span class="kw">pub const </span>UNIFIEDBUILDREVISION_KEY: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str
-    = <span class="string">&quot;\\Registry\\Machine\\Software\\Microsoft\\Windows NT\\CurrentVersion&quot;</span>;
-<span class="kw">pub const </span>UNIFIEDBUILDREVISION_VALUE: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;UBR&quot;</span>;
+<span class="kw">pub const </span>UNIFIEDBUILDREVISION_KEY: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str
+    = <span class="string">"\\Registry\\Machine\\Software\\Microsoft\\Windows NT\\CurrentVersion"</span>;
+<span class="kw">pub const </span>UNIFIEDBUILDREVISION_VALUE: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"UBR"</span>;
 <span class="kw">pub const </span>UNIFIEDBUILDREVISION_MIN: DWORD = <span class="number">0x00000000</span>;
-<span class="kw">pub const </span>DEVICEFAMILYDEVICEFORM_KEY: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str
-    = <span class="string">&quot;\\Registry\\Machine\\Software\\Microsoft\\Windows NT\\CurrentVersion\\OEM&quot;</span>;
-<span class="kw">pub const </span>DEVICEFAMILYDEVICEFORM_VALUE: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;DeviceForm&quot;</span>;
+<span class="kw">pub const </span>DEVICEFAMILYDEVICEFORM_KEY: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str
+    = <span class="string">"\\Registry\\Machine\\Software\\Microsoft\\Windows NT\\CurrentVersion\\OEM"</span>;
+<span class="kw">pub const </span>DEVICEFAMILYDEVICEFORM_VALUE: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"DeviceForm"</span>;
 <span class="kw">pub const </span>DEVICEFAMILYINFOENUM_UAP: DWORD = <span class="number">0x00000000</span>;
 <span class="kw">pub const </span>DEVICEFAMILYINFOENUM_WINDOWS_8X: DWORD = <span class="number">0x00000001</span>;
 <span class="kw">pub const </span>DEVICEFAMILYINFOENUM_WINDOWS_PHONE_8X: DWORD = <span class="number">0x00000002</span>;
@@ -16602,7 +16603,7 @@
 <span class="kw">pub const </span>DEVICEFAMILYDEVICEFORM_VENDING: DWORD = <span class="number">0x0000001C</span>;
 <span class="kw">pub const </span>DEVICEFAMILYDEVICEFORM_INDUSTRY_OTHER: DWORD = <span class="number">0x0000001D</span>;
 <span class="kw">pub const </span>DEVICEFAMILYDEVICEFORM_MAX: DWORD = <span class="number">0x0000001D</span>;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>RtlGetDeviceFamilyInfoEnum(
         pullUAPInfo: <span class="kw-2">*mut </span>ULONGLONG,
         pulDeviceFamily: <span class="kw-2">*mut </span>DWORD,

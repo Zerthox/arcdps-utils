@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\schannel-0.1.22\src\tls_stream.rs`."><title>tls_stream.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="schannel" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../schannel/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\schannel-0.1.23\src\tls_stream.rs`."><title>tls_stream.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="schannel" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1118,7 +1119,7 @@
         <span class="self">self
     </span>}
 
-    <span class="doccomment">/// Determines if the server&#39;s hostname will be checked during certificate verification.
+    <span class="doccomment">/// Determines if the server's hostname will be checked during certificate verification.
     ///
     /// Defaults to `false`.
     </span><span class="kw">pub fn </span>accept_invalid_hostnames(<span class="kw-2">&amp;mut </span><span class="self">self</span>, accept_invalid_hostnames: bool) -&gt; <span class="kw-2">&amp;mut </span>Builder {
@@ -1134,17 +1135,17 @@
     /// The validated certificate, is accessible through the second argument of the closure.
     </span><span class="kw">pub fn </span>verify_callback&lt;F&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, callback: F) -&gt; <span class="kw-2">&amp;mut </span>Builder
     <span class="kw">where
-        </span>F: Fn(CertValidationResult) -&gt; io::Result&lt;()&gt; + <span class="lifetime">&#39;static </span>+ Sync + Send,
+        </span>F: Fn(CertValidationResult) -&gt; io::Result&lt;()&gt; + <span class="lifetime">'static </span>+ Sync + Send,
     {
         <span class="self">self</span>.verify_callback = <span class="prelude-val">Some</span>(Arc::new(callback));
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Specifies a custom certificate store which is later used when validating
-    /// a server&#39;s certificate.
+    /// a server's certificate.
     ///
     /// This option is only used for client connections and is used to construct
-    /// the certificate chain which the server&#39;s certificate is validated
+    /// the certificate chain which the server's certificate is validated
     /// against.
     ///
     /// Note that adding certificates here means that they are
@@ -1183,8 +1184,8 @@
     <span class="doccomment">/// Initialize a new TLS session where the stream provided will be
     /// accepting a connection.
     ///
-    /// This method will tweak the protocol for &quot;who talks first&quot; and also
-    /// currently disables validation of the client that&#39;s connecting to us.
+    /// This method will tweak the protocol for "who talks first" and also
+    /// currently disables validation of the client that's connecting to us.
     ///
     /// If the stream provided is a blocking stream then the entire handshake
     /// will be performed if possible, but if the stream is in nonblocking mode
@@ -1342,7 +1343,7 @@
 }
 
 <span class="kw">impl</span>&lt;S: fmt::Debug + Any&gt; Error <span class="kw">for </span>HandshakeError&lt;S&gt; {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>)&gt; {
         <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
             HandshakeError::Failure(<span class="kw-2">ref </span>e) =&gt; <span class="prelude-val">Some</span>(e),
             HandshakeError::Interrupted(<span class="kw">_</span>) =&gt; <span class="prelude-val">None</span>,
@@ -1353,12 +1354,12 @@
 <span class="kw">impl</span>&lt;S: fmt::Debug + Any&gt; fmt::Display <span class="kw">for </span>HandshakeError&lt;S&gt; {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
         <span class="kw">let </span>desc = <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
-            HandshakeError::Failure(<span class="kw">_</span>) =&gt; <span class="string">&quot;failed to perform handshake&quot;</span>,
-            HandshakeError::Interrupted(<span class="kw">_</span>) =&gt; <span class="string">&quot;interrupted performing handshake&quot;</span>,
+            HandshakeError::Failure(<span class="kw">_</span>) =&gt; <span class="string">"failed to perform handshake"</span>,
+            HandshakeError::Interrupted(<span class="kw">_</span>) =&gt; <span class="string">"interrupted performing handshake"</span>,
         };
-        <span class="macro">write!</span>(f, <span class="string">&quot;{}&quot;</span>, desc)<span class="question-mark">?</span>;
+        <span class="macro">write!</span>(f, <span class="string">"{}"</span>, desc)<span class="question-mark">?</span>;
         <span class="kw">if let </span><span class="prelude-val">Some</span>(e) = <span class="self">self</span>.source() {
-            <span class="macro">write!</span>(f, <span class="string">&quot;: {}&quot;</span>, e)<span class="question-mark">?</span>;
+            <span class="macro">write!</span>(f, <span class="string">": {}"</span>, e)<span class="question-mark">?</span>;
         }
         <span class="prelude-val">Ok</span>(())
     }
@@ -1375,8 +1376,8 @@
     </span>S: fmt::Debug,
 {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-        fmt.debug_struct(<span class="string">&quot;TlsStream&quot;</span>)
-            .field(<span class="string">&quot;stream&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.stream)
+        fmt.debug_struct(<span class="string">"TlsStream"</span>)
+            .field(<span class="string">"stream"</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.stream)
             .finish()
     }
 }
@@ -1410,7 +1411,7 @@
         <span class="self">self</span>.context.local_cert()
     }
 
-    <span class="doccomment">/// Returns the peer&#39;s certificate, if available.
+    <span class="doccomment">/// Returns the peer's certificate, if available.
     ///
     /// Its associated cert store contains any intermediate certificates sent
     /// by the server.
@@ -1588,7 +1589,7 @@
                     }
                 }
                 Foundation::SEC_I_CONTINUE_NEEDED =&gt; {
-                    <span class="comment">// Windows apparently doesn&#39;t like AcceptSecurityContext
+                    <span class="comment">// Windows apparently doesn't like AcceptSecurityContext
                     // being called as if it were the second time unless the
                     // first call to AcceptSecurityContext succeeded with
                     // CONTINUE_NEEDED.
@@ -1599,8 +1600,8 @@
                     // INCOMPLETE_MESSAGE, the next call would return an error.
                     //
                     // For that reason we only set `accept_first` to false here
-                    // once we&#39;ve actually successfully received the full
-                    // &quot;token&quot; from the client.
+                    // once we've actually successfully received the full
+                    // "token" from the client.
                     </span><span class="self">self</span>.accept_first = <span class="bool-val">false</span>;
                     <span class="kw">let </span>nread = <span class="kw">if </span>inbufs[<span class="number">1</span>].BufferType == Identity::SECBUFFER_EXTRA {
                         <span class="self">self</span>.enc_in.position() <span class="kw">as </span>usize - inbufs[<span class="number">1</span>].cbBuffer <span class="kw">as </span>usize
@@ -1683,7 +1684,7 @@
                     <span class="kw">if </span><span class="self">self</span>.needs_read &gt; <span class="number">0 </span>&amp;&amp; <span class="self">self</span>.read_in()<span class="question-mark">? </span>== <span class="number">0 </span>{
                         <span class="kw">return </span><span class="prelude-val">Err</span>(io::Error::new(
                             io::ErrorKind::UnexpectedEof,
-                            <span class="string">&quot;unexpected EOF during handshake&quot;</span>,
+                            <span class="string">"unexpected EOF during handshake"</span>,
                         ));
                     }
 
@@ -1696,11 +1697,11 @@
     }
 
     <span class="doccomment">/// Returns true when the certificate was succesfully verified
-    /// Returns false, when a verification isn&#39;t necessary (yet)
+    /// Returns false, when a verification isn't necessary (yet)
     /// Returns an error when the verification failed
     </span><span class="kw">fn </span>validate(<span class="kw-2">&amp;mut </span><span class="self">self</span>, require_cert: bool) -&gt; io::Result&lt;bool&gt; {
-        <span class="comment">// If we&#39;re accepting connections then we don&#39;t perform any validation
-        // for the remote certificate, that&#39;s what they&#39;re doing!
+        <span class="comment">// If we're accepting connections then we don't perform any validation
+        // for the remote certificate, that's what they're doing!
         </span><span class="kw">if </span><span class="self">self</span>.server {
             <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
         }
@@ -1809,7 +1810,7 @@
                 <span class="prelude-val">Ok</span>(())
             };
 
-            <span class="comment">// check if there&#39;s a user-specified verify callback
+            <span class="comment">// check if there's a user-specified verify callback
             </span><span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>callback) = <span class="self">self</span>.verify_callback {
                 verify_result = callback(CertValidationResult {
                     chain: cert_chain,

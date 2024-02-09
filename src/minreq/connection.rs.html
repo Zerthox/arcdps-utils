@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\minreq-2.11.0\src\connection.rs`."><title>connection.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="minreq" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../minreq/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\minreq-2.11.0\src\connection.rs`."><title>connection.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="minreq" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -451,38 +452,38 @@
 <a href="#451" id="451">451</a>
 <a href="#452" id="452">452</a>
 </pre></div><pre class="rust"><code><span class="attr">#[cfg(all(
-    not(feature = <span class="string">&quot;rustls&quot;</span>),
-    any(feature = <span class="string">&quot;openssl&quot;</span>, feature = <span class="string">&quot;native-tls&quot;</span>)
+    not(feature = <span class="string">"rustls"</span>),
+    any(feature = <span class="string">"openssl"</span>, feature = <span class="string">"native-tls"</span>)
 ))]
 </span><span class="kw">use </span><span class="kw">crate</span>::native_tls::{TlsConnector, TlsStream};
 <span class="kw">use </span><span class="kw">crate</span>::request::ParsedRequest;
 <span class="kw">use crate</span>::{Error, Method, ResponseLazy};
-<span class="attr">#[cfg(feature = <span class="string">&quot;https-rustls&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"https-rustls"</span>)]
 </span><span class="kw">use </span>once_cell::sync::Lazy;
-<span class="attr">#[cfg(feature = <span class="string">&quot;rustls&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"rustls"</span>)]
 </span><span class="kw">use </span>rustls::{
     <span class="self">self</span>, ClientConfig, ClientConnection, OwnedTrustAnchor, RootCertStore, ServerName, StreamOwned,
 };
-<span class="attr">#[cfg(feature = <span class="string">&quot;rustls&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"rustls"</span>)]
 </span><span class="kw">use </span>std::convert::TryFrom;
 <span class="kw">use </span>std::env;
 <span class="kw">use </span>std::io::{<span class="self">self</span>, BufReader, BufWriter, Read, Write};
 <span class="kw">use </span>std::net::{TcpStream, ToSocketAddrs};
-<span class="attr">#[cfg(feature = <span class="string">&quot;rustls&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"rustls"</span>)]
 </span><span class="kw">use </span>std::sync::Arc;
 <span class="kw">use </span>std::time::{Duration, Instant};
-<span class="attr">#[cfg(feature = <span class="string">&quot;rustls-webpki&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"rustls-webpki"</span>)]
 </span><span class="kw">use </span>webpki_roots::TLS_SERVER_ROOTS;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;rustls&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"rustls"</span>)]
 </span><span class="kw">static </span>CONFIG: Lazy&lt;Arc&lt;ClientConfig&gt;&gt; = Lazy::new(|| {
     <span class="kw">let </span><span class="kw-2">mut </span>root_certificates = RootCertStore::empty();
 
     <span class="comment">// Try to load native certs
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;https-rustls-probe&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"https-rustls-probe"</span>)]
     </span><span class="kw">if let </span><span class="prelude-val">Ok</span>(os_roots) = rustls_native_certs::load_native_certs() {
         <span class="kw">for </span>root_cert <span class="kw">in </span>os_roots {
-            <span class="comment">// Ignore erroneous OS certificates, there&#39;s nothing
+            <span class="comment">// Ignore erroneous OS certificates, there's nothing
             // to do differently in that situation anyways.
             </span><span class="kw">let _ </span>= root_certificates.add(<span class="kw-2">&amp;</span>rustls::Certificate(root_cert.<span class="number">0</span>));
         }
@@ -504,17 +505,17 @@
 });
 
 <span class="kw">type </span>UnsecuredStream = BufReader&lt;TcpStream&gt;;
-<span class="attr">#[cfg(feature = <span class="string">&quot;rustls&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"rustls"</span>)]
 </span><span class="kw">type </span>SecuredStream = StreamOwned&lt;ClientConnection, TcpStream&gt;;
 <span class="attr">#[cfg(all(
-    not(feature = <span class="string">&quot;rustls&quot;</span>),
-    any(feature = <span class="string">&quot;openssl&quot;</span>, feature = <span class="string">&quot;native-tls&quot;</span>)
+    not(feature = <span class="string">"rustls"</span>),
+    any(feature = <span class="string">"openssl"</span>, feature = <span class="string">"native-tls"</span>)
 ))]
 </span><span class="kw">type </span>SecuredStream = TlsStream&lt;TcpStream&gt;;
 
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum </span>HttpStream {
     Unsecured(UnsecuredStream, <span class="prelude-ty">Option</span>&lt;Instant&gt;),
-    <span class="attr">#[cfg(any(feature = <span class="string">&quot;rustls&quot;</span>, feature = <span class="string">&quot;openssl&quot;</span>, feature = <span class="string">&quot;native-tls&quot;</span>))]
+    <span class="attr">#[cfg(any(feature = <span class="string">"rustls"</span>, feature = <span class="string">"openssl"</span>, feature = <span class="string">"native-tls"</span>))]
     </span>Secured(Box&lt;SecuredStream&gt;, <span class="prelude-ty">Option</span>&lt;Instant&gt;),
 }
 
@@ -523,7 +524,7 @@
         HttpStream::Unsecured(reader, timeout_at)
     }
 
-    <span class="attr">#[cfg(any(feature = <span class="string">&quot;rustls&quot;</span>, feature = <span class="string">&quot;openssl&quot;</span>, feature = <span class="string">&quot;native-tls&quot;</span>))]
+    <span class="attr">#[cfg(any(feature = <span class="string">"rustls"</span>, feature = <span class="string">"openssl"</span>, feature = <span class="string">"native-tls"</span>))]
     </span><span class="kw">fn </span>create_secured(reader: SecuredStream, timeout_at: <span class="prelude-ty">Option</span>&lt;Instant&gt;) -&gt; HttpStream {
         HttpStream::Secured(Box::new(reader), timeout_at)
     }
@@ -532,7 +533,7 @@
 <span class="kw">fn </span>timeout_err() -&gt; io::Error {
     io::Error::new(
         io::ErrorKind::TimedOut,
-        <span class="string">&quot;the timeout of the request was reached&quot;</span>,
+        <span class="string">"the timeout of the request was reached"</span>,
     )
 }
 
@@ -560,7 +561,7 @@
                 timeout(inner.get_ref(), <span class="kw-2">*</span>timeout_at)<span class="question-mark">?</span>;
                 inner.read(buf)
             }
-            <span class="attr">#[cfg(any(feature = <span class="string">&quot;rustls&quot;</span>, feature = <span class="string">&quot;openssl&quot;</span>, feature = <span class="string">&quot;native-tls&quot;</span>))]
+            <span class="attr">#[cfg(any(feature = <span class="string">"rustls"</span>, feature = <span class="string">"openssl"</span>, feature = <span class="string">"native-tls"</span>))]
             </span>HttpStream::Secured(inner, timeout_at) =&gt; {
                 timeout(inner.get_ref(), <span class="kw-2">*</span>timeout_at)<span class="question-mark">?</span>;
                 inner.read(buf)
@@ -583,7 +584,7 @@
         <span class="kw">let </span>timeout = request
             .config
             .timeout
-            .or_else(|| <span class="kw">match </span>env::var(<span class="string">&quot;MINREQ_TIMEOUT&quot;</span>) {
+            .or_else(|| <span class="kw">match </span>env::var(<span class="string">"MINREQ_TIMEOUT"</span>) {
                 <span class="prelude-val">Ok</span>(t) =&gt; t.parse::&lt;u64&gt;().ok(),
                 <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">None</span>,
             });
@@ -595,25 +596,25 @@
     }
 
     <span class="doccomment">/// Returns the timeout duration for operations that should end at
-    /// timeout and are starting &quot;now&quot;.
+    /// timeout and are starting "now".
     ///
     /// The Result will be Err if the timeout has already passed.
     </span><span class="kw">fn </span>timeout(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Duration&gt;, io::Error&gt; {
         <span class="kw">let </span>timeout = timeout_at_to_duration(<span class="self">self</span>.timeout_at);
-        <span class="macro">log::trace!</span>(<span class="string">&quot;Timeout requested, it is currently: {:?}&quot;</span>, timeout);
+        <span class="macro">log::trace!</span>(<span class="string">"Timeout requested, it is currently: {:?}"</span>, timeout);
         timeout
     }
 
     <span class="doccomment">/// Sends the [`Request`](struct.Request.html), consumes this
     /// connection, and returns a [`Response`](struct.Response.html).
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;rustls&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"rustls"</span>)]
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>send_https(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;ResponseLazy, Error&gt; {
         enforce_timeout(<span class="self">self</span>.timeout_at, <span class="kw">move </span>|| {
             <span class="self">self</span>.request.url.host = ensure_ascii_host(<span class="self">self</span>.request.url.host)<span class="question-mark">?</span>;
             <span class="kw">let </span>bytes = <span class="self">self</span>.request.as_bytes();
 
             <span class="comment">// Rustls setup
-            </span><span class="macro">log::trace!</span>(<span class="string">&quot;Setting up TLS parameters for {}.&quot;</span>, <span class="self">self</span>.request.url.host);
+            </span><span class="macro">log::trace!</span>(<span class="string">"Setting up TLS parameters for {}."</span>, <span class="self">self</span>.request.url.host);
             <span class="kw">let </span>dns_name = <span class="kw">match </span>ServerName::try_from(<span class="kw-2">&amp;*</span><span class="self">self</span>.request.url.host) {
                 <span class="prelude-val">Ok</span>(result) =&gt; result,
                 <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(Error::IoError(io::Error::new(io::ErrorKind::Other, err))),
@@ -621,18 +622,18 @@
             <span class="kw">let </span>sess = ClientConnection::new(CONFIG.clone(), dns_name)
                 .map_err(Error::RustlsCreateConnection)<span class="question-mark">?</span>;
 
-            <span class="macro">log::trace!</span>(<span class="string">&quot;Establishing TCP connection to {}.&quot;</span>, <span class="self">self</span>.request.url.host);
+            <span class="macro">log::trace!</span>(<span class="string">"Establishing TCP connection to {}."</span>, <span class="self">self</span>.request.url.host);
             <span class="kw">let </span>tcp = <span class="self">self</span>.connect()<span class="question-mark">?</span>;
 
             <span class="comment">// Send request
-            </span><span class="macro">log::trace!</span>(<span class="string">&quot;Establishing TLS session to {}.&quot;</span>, <span class="self">self</span>.request.url.host);
-            <span class="kw">let </span><span class="kw-2">mut </span>tls = StreamOwned::new(sess, tcp); <span class="comment">// I don&#39;t think this actually does any communication.
-            </span><span class="macro">log::trace!</span>(<span class="string">&quot;Writing HTTPS request to {}.&quot;</span>, <span class="self">self</span>.request.url.host);
+            </span><span class="macro">log::trace!</span>(<span class="string">"Establishing TLS session to {}."</span>, <span class="self">self</span>.request.url.host);
+            <span class="kw">let </span><span class="kw-2">mut </span>tls = StreamOwned::new(sess, tcp); <span class="comment">// I don't think this actually does any communication.
+            </span><span class="macro">log::trace!</span>(<span class="string">"Writing HTTPS request to {}."</span>, <span class="self">self</span>.request.url.host);
             <span class="kw">let _ </span>= tls.get_ref().set_write_timeout(<span class="self">self</span>.timeout()<span class="question-mark">?</span>);
             tls.write_all(<span class="kw-2">&amp;</span>bytes)<span class="question-mark">?</span>;
 
             <span class="comment">// Receive request
-            </span><span class="macro">log::trace!</span>(<span class="string">&quot;Reading HTTPS response from {}.&quot;</span>, <span class="self">self</span>.request.url.host);
+            </span><span class="macro">log::trace!</span>(<span class="string">"Reading HTTPS response from {}."</span>, <span class="self">self</span>.request.url.host);
             <span class="kw">let </span>response = ResponseLazy::from_stream(
                 HttpStream::create_secured(tls, <span class="self">self</span>.timeout_at),
                 <span class="self">self</span>.request.config.max_headers_size,
@@ -645,15 +646,15 @@
     <span class="doccomment">/// Sends the [`Request`](struct.Request.html), consumes this
     /// connection, and returns a [`Response`](struct.Response.html).
     </span><span class="attr">#[cfg(all(
-        not(feature = <span class="string">&quot;rustls&quot;</span>),
-        any(feature = <span class="string">&quot;openssl&quot;</span>, feature = <span class="string">&quot;native-tls&quot;</span>)
+        not(feature = <span class="string">"rustls"</span>),
+        any(feature = <span class="string">"openssl"</span>, feature = <span class="string">"native-tls"</span>)
     ))]
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>send_https(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;ResponseLazy, Error&gt; {
         enforce_timeout(<span class="self">self</span>.timeout_at, <span class="kw">move </span>|| {
             <span class="self">self</span>.request.url.host = ensure_ascii_host(<span class="self">self</span>.request.url.host)<span class="question-mark">?</span>;
             <span class="kw">let </span>bytes = <span class="self">self</span>.request.as_bytes();
 
-            <span class="macro">log::trace!</span>(<span class="string">&quot;Setting up TLS parameters for {}.&quot;</span>, <span class="self">self</span>.request.url.host);
+            <span class="macro">log::trace!</span>(<span class="string">"Setting up TLS parameters for {}."</span>, <span class="self">self</span>.request.url.host);
             <span class="kw">let </span>dns_name = <span class="kw-2">&amp;</span><span class="self">self</span>.request.url.host;
             <span class="comment">/*
             let mut builder = TlsConnector::builder();
@@ -665,21 +666,21 @@
                 <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(Error::IoError(io::Error::new(io::ErrorKind::Other, err))),
             };
 
-            <span class="macro">log::trace!</span>(<span class="string">&quot;Establishing TCP connection to {}.&quot;</span>, <span class="self">self</span>.request.url.host);
+            <span class="macro">log::trace!</span>(<span class="string">"Establishing TCP connection to {}."</span>, <span class="self">self</span>.request.url.host);
             <span class="kw">let </span>tcp = <span class="self">self</span>.connect()<span class="question-mark">?</span>;
 
             <span class="comment">// Send request
-            </span><span class="macro">log::trace!</span>(<span class="string">&quot;Establishing TLS session to {}.&quot;</span>, <span class="self">self</span>.request.url.host);
+            </span><span class="macro">log::trace!</span>(<span class="string">"Establishing TLS session to {}."</span>, <span class="self">self</span>.request.url.host);
             <span class="kw">let </span><span class="kw-2">mut </span>tls = <span class="kw">match </span>sess.connect(dns_name, tcp) {
                 <span class="prelude-val">Ok</span>(tls) =&gt; tls,
                 <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(Error::IoError(io::Error::new(io::ErrorKind::Other, err))),
             };
-            <span class="macro">log::trace!</span>(<span class="string">&quot;Writing HTTPS request to {}.&quot;</span>, <span class="self">self</span>.request.url.host);
+            <span class="macro">log::trace!</span>(<span class="string">"Writing HTTPS request to {}."</span>, <span class="self">self</span>.request.url.host);
             <span class="kw">let _ </span>= tls.get_ref().set_write_timeout(<span class="self">self</span>.timeout()<span class="question-mark">?</span>);
             tls.write_all(<span class="kw-2">&amp;</span>bytes)<span class="question-mark">?</span>;
 
             <span class="comment">// Receive request
-            </span><span class="macro">log::trace!</span>(<span class="string">&quot;Reading HTTPS response from {}.&quot;</span>, <span class="self">self</span>.request.url.host);
+            </span><span class="macro">log::trace!</span>(<span class="string">"Reading HTTPS response from {}."</span>, <span class="self">self</span>.request.url.host);
             <span class="kw">let </span>response = ResponseLazy::from_stream(
                 HttpStream::create_secured(tls, <span class="self">self</span>.timeout_at),
                 <span class="self">self</span>.request.config.max_headers_size,
@@ -696,22 +697,22 @@
             <span class="self">self</span>.request.url.host = ensure_ascii_host(<span class="self">self</span>.request.url.host)<span class="question-mark">?</span>;
             <span class="kw">let </span>bytes = <span class="self">self</span>.request.as_bytes();
 
-            <span class="macro">log::trace!</span>(<span class="string">&quot;Establishing TCP connection to {}.&quot;</span>, <span class="self">self</span>.request.url.host);
+            <span class="macro">log::trace!</span>(<span class="string">"Establishing TCP connection to {}."</span>, <span class="self">self</span>.request.url.host);
             <span class="kw">let </span>tcp = <span class="self">self</span>.connect()<span class="question-mark">?</span>;
 
             <span class="comment">// Send request
-            </span><span class="macro">log::trace!</span>(<span class="string">&quot;Writing HTTP request.&quot;</span>);
+            </span><span class="macro">log::trace!</span>(<span class="string">"Writing HTTP request."</span>);
             <span class="kw">let </span><span class="kw-2">mut </span>stream = BufWriter::new(tcp);
             <span class="kw">let _ </span>= stream.get_ref().set_write_timeout(<span class="self">self</span>.timeout()<span class="question-mark">?</span>);
             stream.write_all(<span class="kw-2">&amp;</span>bytes)<span class="question-mark">?</span>;
 
             <span class="comment">// Receive response
-            </span><span class="macro">log::trace!</span>(<span class="string">&quot;Reading HTTP response.&quot;</span>);
+            </span><span class="macro">log::trace!</span>(<span class="string">"Reading HTTP response."</span>);
             <span class="kw">let </span>tcp = <span class="kw">match </span>stream.into_inner() {
                 <span class="prelude-val">Ok</span>(tcp) =&gt; tcp,
                 <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; {
                     <span class="kw">return </span><span class="prelude-val">Err</span>(Error::Other(
-                        <span class="string">&quot;IntoInnerError after writing the request into the TcpStream.&quot;</span>,
+                        <span class="string">"IntoInnerError after writing the request into the TcpStream."</span>,
                     ));
                 }
             };
@@ -727,7 +728,7 @@
 
     <span class="kw">fn </span>connect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;TcpStream, Error&gt; {
         <span class="kw">let </span>tcp_connect = |host: <span class="kw-2">&amp;</span>str, port: u32| -&gt; <span class="prelude-ty">Result</span>&lt;TcpStream, Error&gt; {
-            <span class="kw">let </span>host = <span class="macro">format!</span>(<span class="string">&quot;{}:{}&quot;</span>, host, port);
+            <span class="kw">let </span>host = <span class="macro">format!</span>(<span class="string">"{}:{}"</span>, host, port);
             <span class="kw">let </span><span class="kw-2">mut </span>addrs = host.to_socket_addrs().map_err(Error::IoError)<span class="question-mark">?</span>;
             <span class="kw">let </span>sock_address = addrs.next().ok_or(Error::AddressNotFound)<span class="question-mark">?</span>;
             <span class="kw">let </span>stream = <span class="kw">if let </span><span class="prelude-val">Some</span>(timeout) = <span class="self">self</span>.timeout()<span class="question-mark">? </span>{
@@ -738,13 +739,13 @@
             stream.map_err(Error::from)
         };
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;proxy&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"proxy"</span>)]
         </span><span class="kw">match </span><span class="self">self</span>.request.config.proxy {
             <span class="prelude-val">Some</span>(<span class="kw-2">ref </span>proxy) =&gt; {
                 <span class="comment">// do proxy things
                 </span><span class="kw">let </span><span class="kw-2">mut </span>tcp = tcp_connect(<span class="kw-2">&amp;</span>proxy.server, proxy.port)<span class="question-mark">?</span>;
 
-                <span class="macro">write!</span>(tcp, <span class="string">&quot;{}&quot;</span>, proxy.connect(<span class="kw-2">&amp;</span><span class="self">self</span>.request)).unwrap();
+                <span class="macro">write!</span>(tcp, <span class="string">"{}"</span>, proxy.connect(<span class="kw-2">&amp;</span><span class="self">self</span>.request)).unwrap();
                 tcp.flush()<span class="question-mark">?</span>;
 
                 <span class="kw">let </span><span class="kw-2">mut </span>proxy_response = Vec::new();
@@ -765,7 +766,7 @@
             <span class="prelude-val">None </span>=&gt; tcp_connect(<span class="kw-2">&amp;</span><span class="self">self</span>.request.url.host, <span class="self">self</span>.request.url.port.port()),
         }
 
-        <span class="attr">#[cfg(not(feature = <span class="string">&quot;proxy&quot;</span>))]
+        <span class="attr">#[cfg(not(feature = <span class="string">"proxy"</span>))]
         </span>tcp_connect(<span class="kw-2">&amp;</span><span class="self">self</span>.request.url.host, <span class="self">self</span>.request.url.port.port())
     }
 }
@@ -775,18 +776,18 @@
     <span class="kw-2">mut </span>response: ResponseLazy,
 ) -&gt; <span class="prelude-ty">Result</span>&lt;ResponseLazy, Error&gt; {
     <span class="kw">let </span>status_code = response.status_code;
-    <span class="kw">let </span>url = response.headers.get(<span class="string">&quot;location&quot;</span>);
+    <span class="kw">let </span>url = response.headers.get(<span class="string">"location"</span>);
     <span class="kw">match </span>get_redirect(connection, status_code, url) {
         NextHop::Redirect(connection) =&gt; {
             <span class="kw">let </span>connection = connection<span class="question-mark">?</span>;
             <span class="kw">if </span>connection.request.url.https {
                 <span class="attr">#[cfg(not(any(
-                    feature = <span class="string">&quot;rustls&quot;</span>,
-                    feature = <span class="string">&quot;openssl&quot;</span>,
-                    feature = <span class="string">&quot;native-tls&quot;
+                    feature = <span class="string">"rustls"</span>,
+                    feature = <span class="string">"openssl"</span>,
+                    feature = <span class="string">"native-tls"
                 </span>)))]
                 </span><span class="kw">return </span><span class="prelude-val">Err</span>(Error::HttpsFeatureNotEnabled);
-                <span class="attr">#[cfg(any(feature = <span class="string">&quot;rustls&quot;</span>, feature = <span class="string">&quot;openssl&quot;</span>, feature = <span class="string">&quot;native-tls&quot;</span>))]
+                <span class="attr">#[cfg(any(feature = <span class="string">"rustls"</span>, feature = <span class="string">"openssl"</span>, feature = <span class="string">"native-tls"</span>))]
                 </span><span class="kw">return </span>connection.send_https();
             } <span class="kw">else </span>{
                 connection.send()
@@ -813,7 +814,7 @@
                 <span class="prelude-val">Some</span>(url) =&gt; url,
                 <span class="prelude-val">None </span>=&gt; <span class="kw">return </span>NextHop::Redirect(<span class="prelude-val">Err</span>(Error::RedirectLocationMissing)),
             };
-            <span class="macro">log::debug!</span>(<span class="string">&quot;Redirecting ({}) to: {}&quot;</span>, status_code, url);
+            <span class="macro">log::debug!</span>(<span class="string">"Redirecting ({}) to: {}"</span>, status_code, url);
 
             <span class="kw">match </span>connection.request.redirect_to(url.as_str()) {
                 <span class="prelude-val">Ok</span>(()) =&gt; {
@@ -839,24 +840,24 @@
     <span class="kw">if </span>host.is_ascii() {
         <span class="prelude-val">Ok</span>(host)
     } <span class="kw">else </span>{
-        <span class="attr">#[cfg(not(feature = <span class="string">&quot;punycode&quot;</span>))]
+        <span class="attr">#[cfg(not(feature = <span class="string">"punycode"</span>))]
         </span>{
             <span class="prelude-val">Err</span>(Error::PunycodeFeatureNotEnabled)
         }
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;punycode&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"punycode"</span>)]
         </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>result = String::with_capacity(host.len() * <span class="number">2</span>);
-            <span class="kw">for </span>s <span class="kw">in </span>host.split(<span class="string">&#39;.&#39;</span>) {
+            <span class="kw">for </span>s <span class="kw">in </span>host.split(<span class="string">'.'</span>) {
                 <span class="kw">if </span>s.is_ascii() {
                     result += s;
                 } <span class="kw">else </span>{
                     <span class="kw">match </span>punycode::encode(s) {
-                        <span class="prelude-val">Ok</span>(s) =&gt; result = result + <span class="string">&quot;xn--&quot; </span>+ <span class="kw-2">&amp;</span>s,
+                        <span class="prelude-val">Ok</span>(s) =&gt; result = result + <span class="string">"xn--" </span>+ <span class="kw-2">&amp;</span>s,
                         <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(Error::PunycodeConversionFailed),
                     }
                 }
-                result += <span class="string">&quot;.&quot;</span>;
+                result += <span class="string">"."</span>;
             }
             result.truncate(result.len() - <span class="number">1</span>); <span class="comment">// Remove the trailing dot
             </span><span class="prelude-val">Ok</span>(result)
@@ -868,12 +869,12 @@
 /// parking the current one with a timeout.
 ///
 /// While minreq does use timeouts (somewhat) properly, some
-/// interfaces such as [ToSocketAddrs] don&#39;t allow for specifying the
+/// interfaces such as [ToSocketAddrs] don't allow for specifying the
 /// timeout. Hence this.
 </span><span class="kw">fn </span>enforce_timeout&lt;F, R&gt;(timeout_at: <span class="prelude-ty">Option</span>&lt;Instant&gt;, f: F) -&gt; <span class="prelude-ty">Result</span>&lt;R, Error&gt;
 <span class="kw">where
-    </span>F: <span class="lifetime">&#39;static </span>+ Send + FnOnce() -&gt; <span class="prelude-ty">Result</span>&lt;R, Error&gt;,
-    R: <span class="lifetime">&#39;static </span>+ Send,
+    </span>F: <span class="lifetime">'static </span>+ Send + FnOnce() -&gt; <span class="prelude-ty">Result</span>&lt;R, Error&gt;,
+    R: <span class="lifetime">'static </span>+ Send,
 {
     <span class="kw">use </span>std::sync::mpsc::{channel, RecvTimeoutError};
 
@@ -891,7 +892,7 @@
                     <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">match </span>err {
                         RecvTimeoutError::Timeout =&gt; <span class="prelude-val">Err</span>(Error::IoError(timeout_err())),
                         RecvTimeoutError::Disconnected =&gt; {
-                            <span class="prelude-val">Err</span>(Error::Other(<span class="string">&quot;request connection paniced&quot;</span>))
+                            <span class="prelude-val">Err</span>(Error::Other(<span class="string">"request connection paniced"</span>))
                         }
                     },
                 }

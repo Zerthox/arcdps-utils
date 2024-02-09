@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\winapi-0.3.9\src\um\winbase.rs`."><title>winbase.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="winapi" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../../winapi/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\winapi-0.3.9\src\um\winbase.rs`."><title>winbase.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="winapi" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -2896,7 +2897,7 @@
     THREAD_BASE_PRIORITY_MAX, THREAD_BASE_PRIORITY_MIN, ULARGE_INTEGER, VOID, WAITORTIMERCALLBACK,
     WCHAR, WOW64_CONTEXT,
 };
-<span class="attr">#[cfg(target_arch = <span class="string">&quot;x86&quot;</span>)]
+<span class="attr">#[cfg(target_arch = <span class="string">"x86"</span>)]
 </span><span class="kw">use </span>um::winnt::PLDT_ENTRY;
 <span class="kw">use </span>vc::vadefs::va_list;
 <span class="kw">pub const </span>FILE_BEGIN: DWORD = <span class="number">0</span>;
@@ -2970,9 +2971,9 @@
     lpParameter: LPVOID,
 ) -&gt; LPVOID}
 <span class="comment">// FAIL_FAST_*
-</span><span class="attr">#[cfg(target_arch = <span class="string">&quot;x86&quot;</span>)]
+</span><span class="attr">#[cfg(target_arch = <span class="string">"x86"</span>)]
 </span><span class="kw">pub type </span>LPLDT_ENTRY = PLDT_ENTRY;
-<span class="attr">#[cfg(not(target_arch = <span class="string">&quot;x86&quot;</span>))]
+<span class="attr">#[cfg(not(target_arch = <span class="string">"x86"</span>))]
 </span><span class="kw">pub type </span>LPLDT_ENTRY = LPVOID; <span class="comment">// TODO - fix this for 32-bit
 //SP_SERIALCOMM
 //PST_*
@@ -3230,7 +3231,7 @@
 }}
 <span class="kw">pub type </span>POFSTRUCT = <span class="kw-2">*mut </span>OFSTRUCT;
 <span class="kw">pub type </span>LPOFSTRUCT = <span class="kw-2">*mut </span>OFSTRUCT;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>GlobalAlloc(
         uFlags: UINT,
         dwBytes: SIZE_T,
@@ -3312,7 +3313,7 @@
     ) -&gt; SIZE_T;
 }
 <span class="comment">// SCS_*
-</span><span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+</span><span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>GetBinaryTypeA(
         lpApplicationName: LPCSTR,
         lpBinaryType: LPDWORD,
@@ -3415,41 +3416,41 @@
     IsUmsWorkerThread set_IsUmsWorkerThread[<span class="number">1</span>..<span class="number">2</span>],
 ]}
 <span class="kw">pub type </span>PUMS_SYSTEM_THREAD_INFORMATION = <span class="kw-2">*mut </span>UMS_SYSTEM_THREAD_INFORMATION;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+<span class="kw">extern </span><span class="string">"system" </span>{
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>CreateUmsCompletionList(
         UmsCompletionList: <span class="kw-2">*mut </span>PUMS_COMPLETION_LIST,
     ) -&gt; BOOL;
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>DequeueUmsCompletionListItems(
         UmsCompletionList: PUMS_COMPLETION_LIST,
         WaitTimeOut: DWORD,
         UmsThreadList: <span class="kw-2">*mut </span>PUMS_CONTEXT,
     ) -&gt; BOOL;
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>GetUmsCompletionListEvent(
         UmsCompletionList: PUMS_COMPLETION_LIST,
         UmsCompletionEvent: PHANDLE,
     ) -&gt; BOOL;
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>ExecuteUmsThread(
         UmsThread: PUMS_CONTEXT,
     ) -&gt; BOOL;
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>UmsThreadYield(
         SchedulerParam: PVOID,
     ) -&gt; BOOL;
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>DeleteUmsCompletionList(
         UmsCompletionList: PUMS_COMPLETION_LIST,
     ) -&gt; BOOL;
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>GetCurrentUmsThread() -&gt; PUMS_CONTEXT;
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>GetNextUmsListItem(
         UmsContext: PUMS_CONTEXT,
     ) -&gt; PUMS_CONTEXT;
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>QueryUmsThreadInformation(
         UmsThread: PUMS_CONTEXT,
         UmsThreadInfoClass: UMS_THREAD_INFO_CLASS,
@@ -3457,26 +3458,26 @@
         UmsThreadInformationLength: ULONG,
         ReturnLength: PULONG,
     ) -&gt; BOOL;
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>SetUmsThreadInformation(
         UmsThread: PUMS_CONTEXT,
         UmsThreadInfoClass: UMS_THREAD_INFO_CLASS,
         UmsThreadInformation: PVOID,
         UmsThreadInformationLength: ULONG,
     ) -&gt; BOOL;
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>DeleteUmsThreadContext(
         UmsThread: PUMS_CONTEXT,
     ) -&gt; BOOL;
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>CreateUmsThreadContext(
         lpUmsThread: <span class="kw-2">*mut </span>PUMS_CONTEXT,
     ) -&gt; BOOL;
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>EnterUmsSchedulingMode(
         SchedulerStartupInfo: PUMS_SCHEDULER_STARTUP_INFO,
     ) -&gt; BOOL;
-    <span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+    <span class="attr">#[cfg(target_pointer_width = <span class="string">"64"</span>)]
     </span><span class="kw">pub fn </span>GetUmsSystemThreadInformation(
         ThreadHandle: HANDLE,
         SystemThreadInfo: PUMS_SYSTEM_THREAD_INFORMATION,
@@ -3522,7 +3523,7 @@
 }
 <span class="kw">pub const </span>FILE_SKIP_COMPLETION_PORT_ON_SUCCESS: UCHAR = <span class="number">0x1</span>;
 <span class="kw">pub const </span>FILE_SKIP_SET_EVENT_ON_HANDLE: UCHAR = <span class="number">0x2</span>;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>SetFileCompletionNotificationModes(
         FileHandle: HANDLE,
         Flags: UCHAR,
@@ -3532,7 +3533,7 @@
 <span class="kw">pub const </span>SEM_NOGPFAULTERRORBOX: UINT = <span class="number">0x0002</span>;
 <span class="kw">pub const </span>SEM_NOALIGNMENTFAULTEXCEPT: UINT = <span class="number">0x0004</span>;
 <span class="kw">pub const </span>SEM_NOOPENFILEERRORBOX: UINT = <span class="number">0x8000</span>;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>Wow64GetThreadContext(
         hThread: HANDLE,
         lpContext: PWOW64_CONTEXT,
@@ -3595,7 +3596,7 @@
 }
 <span class="kw">pub const </span>HANDLE_FLAG_INHERIT: DWORD = <span class="number">0x00000001</span>;
 <span class="kw">pub const </span>HANDLE_FLAG_PROTECT_FROM_CLOSE: DWORD = <span class="number">0x00000002</span>;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>LoadModule(
         lpModuleName: LPCSTR,
         lpParameterBlock: LPVOID,
@@ -3686,7 +3687,7 @@
     DEPPolicyOptOut,
     DEPTotalPolicyCount,
 }}
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>GetSystemDEPPolicy() -&gt; DEP_SYSTEM_POLICY_TYPE;
     <span class="kw">pub fn </span>GetSystemRegistryQuota(
         pdwQuotaAllowed: PDWORD,
@@ -3728,7 +3729,7 @@
 <span class="kw">pub const </span>FORMAT_MESSAGE_ARGUMENT_ARRAY: DWORD = <span class="number">0x00002000</span>;
 <span class="kw">pub const </span>FORMAT_MESSAGE_MAX_WIDTH_MASK: DWORD = <span class="number">0x000000FF</span>;
 <span class="kw">pub const </span>FORMAT_MESSAGE_ALLOCATE_BUFFER: DWORD = <span class="number">0x00000100</span>;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>CreateMailslotA(
         lpName: LPCSTR,
         nMaxMessageSize: DWORD,
@@ -3906,7 +3907,7 @@
     lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST,
 }}
 <span class="kw">pub type </span>LPSTARTUPINFOEXW = <span class="kw-2">*mut </span>STARTUPINFOEXW;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>OpenMutexA(
         dwDesiredAccess: DWORD,
         bInheritHandle: BOOL,
@@ -3991,7 +3992,7 @@
     ) -&gt; BOOL;
 }
 <span class="comment">//3233
-</span><span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+</span><span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>GetStartupInfoA(
         lpStartupInfo: LPSTARTUPINFOA,
     );
@@ -4528,7 +4529,7 @@
     hDestinationFile: HANDLE,
     lpData: LPVOID,
 ) -&gt; DWORD}
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>CopyFileExA(
         lpExistingFileName: LPCSTR,
         lpNewFileName: LPCSTR,
@@ -4670,7 +4671,7 @@
     pProgressRoutine: PCOPYFILE2_PROGRESS_ROUTINE,
     pvCallbackContext: PVOID,
 }}
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>CopyFile2(
         pwszExistingFileName: PCWSTR,
         pwszNewFileName: PCWSTR,
@@ -4731,7 +4732,7 @@
 <span class="kw">pub const </span>MOVEFILE_WRITE_THROUGH: DWORD = <span class="number">0x00000008</span>;
 <span class="kw">pub const </span>MOVEFILE_CREATE_HARDLINK: DWORD = <span class="number">0x00000010</span>;
 <span class="kw">pub const </span>MOVEFILE_FAIL_IF_NOT_TRACKABLE: DWORD = <span class="number">0x00000020</span>;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>ReplaceFileA(
         lpReplacedFileName: LPCSTR,
         lpReplacementFileName: LPCSTR,
@@ -5120,7 +5121,7 @@
 <span class="kw">pub const </span>LOGON32_PROVIDER_WINNT40: DWORD = <span class="number">2</span>;
 <span class="kw">pub const </span>LOGON32_PROVIDER_WINNT50: DWORD = <span class="number">3</span>;
 <span class="kw">pub const </span>LOGON32_PROVIDER_VIRTUAL: DWORD = <span class="number">4</span>;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>LogonUserA(
         lpUsername: LPCSTR,
         lpDomain: LPCSTR,
@@ -5164,7 +5165,7 @@
 }
 <span class="kw">pub const </span>LOGON_WITH_PROFILE: DWORD = <span class="number">0x00000001</span>;
 <span class="kw">pub const </span>LOGON_NETCREDENTIALS_ONLY: DWORD = <span class="number">0x00000002</span>;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>CreateProcessWithLogonW(
         lpUsername: LPCWSTR,
         lpDomain: LPCWSTR,
@@ -5268,7 +5269,7 @@
     szHwProfileName: [WCHAR; MAX_PROFILE_LEN],
 }}
 <span class="kw">pub type </span>LPHW_PROFILE_INFOW = <span class="kw-2">*mut </span>HW_PROFILE_INFOW;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>GetCurrentHwProfileA(
         lpHwProfileInfo: LPHW_PROFILE_INFOA,
     ) -&gt; BOOL;
@@ -5295,7 +5296,7 @@
     BatteryFullLifeTime: DWORD,
 }}
 <span class="kw">pub type </span>LPSYSTEM_POWER_STATUS = <span class="kw-2">*mut </span>SYSTEM_POWER_STATUS;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>GetSystemPowerStatus(
         lpSystemPowerStatus: LPSYSTEM_POWER_STATUS,
     ) -&gt; BOOL;
@@ -5409,7 +5410,7 @@
 <span class="kw">pub type </span>PACTCTXW = <span class="kw-2">*mut </span>ACTCTXW;
 <span class="kw">pub type </span>PCACTCTXA = <span class="kw-2">*const </span>ACTCTXA;
 <span class="kw">pub type </span>PCACTCTXW = <span class="kw-2">*const </span>ACTCTXW;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>CreateActCtxA(
         pActCtx: PCACTCTXA,
     ) -&gt; HANDLE;
@@ -5464,7 +5465,7 @@
 }}
 <span class="kw">pub type </span>PACTCTX_SECTION_KEYED_DATA = <span class="kw-2">*mut </span>ACTCTX_SECTION_KEYED_DATA;
 <span class="kw">pub type </span>PCACTCTX_SECTION_KEYED_DATA = <span class="kw-2">*const </span>ACTCTX_SECTION_KEYED_DATA;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>FindActCtxSectionStringA(
         dwFlags: DWORD,
         lpExtensionGuid: <span class="kw-2">*const </span>GUID,
@@ -5540,7 +5541,7 @@
 ) -&gt; DWORD}
 <span class="comment">// RESTART_*
 // RECOVERY_*
-</span><span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+</span><span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>RegisterApplicationRecoveryCallback(
         pRecoveyCallback: APPLICATION_RECOVERY_CALLBACK,
         pvParameter: PVOID,
@@ -5574,7 +5575,7 @@
     );
 }
 <span class="comment">// FILE_BASIC_INFO, etc.
-</span><span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+</span><span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>GetFileInformationByHandleEx(
         hFile: HANDLE,
         FileInformationClass: FILE_INFO_BY_HANDLE_CLASS,
@@ -5600,7 +5601,7 @@
     u: FILE_ID_DESCRIPTOR_u,
 }}
 <span class="kw">pub type </span>LPFILE_ID_DESCRIPTOR = <span class="kw-2">*mut </span>FILE_ID_DESCRIPTOR;
-<span class="kw">extern </span><span class="string">&quot;system&quot; </span>{
+<span class="kw">extern </span><span class="string">"system" </span>{
     <span class="kw">pub fn </span>OpenFileById(
         hVolumeHint: HANDLE,
         lpFileId: LPFILE_ID_DESCRIPTOR,
@@ -5667,13 +5668,13 @@
         Context: PCONTEXT,
         FeatureMask: PDWORD64,
     ) -&gt; BOOL;
-    <span class="attr">#[cfg(any(target_arch = <span class="string">&quot;x86&quot;</span>, target_arch = <span class="string">&quot;x86_64&quot;</span>))]
+    <span class="attr">#[cfg(any(target_arch = <span class="string">"x86"</span>, target_arch = <span class="string">"x86_64"</span>))]
     </span><span class="kw">pub fn </span>LocateXStateFeature(
         Context: PCONTEXT,
         FeatureId: DWORD,
         Length: PDWORD,
     ) -&gt; PVOID;
-    <span class="attr">#[cfg(any(target_arch = <span class="string">&quot;x86&quot;</span>, target_arch = <span class="string">&quot;x86_64&quot;</span>))]
+    <span class="attr">#[cfg(any(target_arch = <span class="string">"x86"</span>, target_arch = <span class="string">"x86_64"</span>))]
     </span><span class="kw">pub fn </span>SetXStateFeaturesMask(
         Context: PCONTEXT,
         FeatureMask: DWORD64,

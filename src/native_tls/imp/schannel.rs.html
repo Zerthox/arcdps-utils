@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\native-tls-0.2.11\src\imp\schannel.rs`."><title>schannel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="native_tls" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../../native_tls/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\native-tls-0.2.11\src\imp\schannel.rs`."><title>schannel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="native_tls" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -576,14 +577,14 @@
 
 <span class="kw">const </span>SEC_E_NO_CREDENTIALS: u32 = <span class="number">0x8009030E</span>;
 
-<span class="kw">static </span>PROTOCOLS: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[Protocol] = <span class="kw-2">&amp;</span>[
+<span class="kw">static </span>PROTOCOLS: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>[Protocol] = <span class="kw-2">&amp;</span>[
     Protocol::Ssl3,
     Protocol::Tls10,
     Protocol::Tls11,
     Protocol::Tls12,
 ];
 
-<span class="kw">fn </span>convert_protocols(min: <span class="prelude-ty">Option</span>&lt;::Protocol&gt;, max: <span class="prelude-ty">Option</span>&lt;::Protocol&gt;) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[Protocol] {
+<span class="kw">fn </span>convert_protocols(min: <span class="prelude-ty">Option</span>&lt;::Protocol&gt;, max: <span class="prelude-ty">Option</span>&lt;::Protocol&gt;) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'static </span>[Protocol] {
     <span class="kw">let </span><span class="kw-2">mut </span>protocols = PROTOCOLS;
     <span class="kw">if let </span><span class="prelude-val">Some</span>(p) = max.and_then(|max| protocols.get(..=max <span class="kw">as </span>usize)) {
         protocols = p;
@@ -597,7 +598,7 @@
 <span class="kw">pub struct </span>Error(io::Error);
 
 <span class="kw">impl </span>error::Error <span class="kw">for </span>Error {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>error::Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>error::Error + <span class="lifetime">'static</span>)&gt; {
         error::Error::source(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>)
     }
 }
@@ -648,7 +649,7 @@
             <span class="prelude-val">None </span>=&gt; {
                 <span class="kw">return </span><span class="prelude-val">Err</span>(io::Error::new(
                     io::ErrorKind::InvalidInput,
-                    <span class="string">&quot;No identity found in PKCS #12 archive&quot;</span>,
+                    <span class="string">"No identity found in PKCS #12 archive"</span>,
                 )
                 .into());
             }
@@ -658,8 +659,8 @@
     }
 
     <span class="kw">pub fn </span>from_pkcs8(pem: <span class="kw-2">&amp;</span>[u8], key: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Identity, Error&gt; {
-        <span class="kw">if </span>!key.starts_with(<span class="string">b&quot;-----BEGIN PRIVATE KEY-----&quot;</span>) {
-            <span class="kw">return </span><span class="prelude-val">Err</span>(io::Error::new(io::ErrorKind::InvalidInput, <span class="string">&quot;not a PKCS#8 key&quot;</span>).into());
+        <span class="kw">if </span>!key.starts_with(<span class="string">b"-----BEGIN PRIVATE KEY-----"</span>) {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(io::Error::new(io::ErrorKind::InvalidInput, <span class="string">"not a PKCS#8 key"</span>).into());
         }
 
         <span class="kw">let </span><span class="kw-2">mut </span>store = Memory::new()<span class="question-mark">?</span>.into_store();
@@ -667,13 +668,13 @@
         <span class="kw">let </span>leaf = cert_iter.next().ok_or_else(|| {
             io::Error::new(
                 io::ErrorKind::InvalidInput,
-                <span class="string">&quot;at least one certificate must be provided to create an identity&quot;</span>,
+                <span class="string">"at least one certificate must be provided to create an identity"</span>,
             )
         })<span class="question-mark">?</span>;
         <span class="kw">let </span>cert = CertContext::from_pem(std::str::from_utf8(leaf).map_err(|<span class="kw">_</span>| {
             io::Error::new(
                 io::ErrorKind::InvalidInput,
-                <span class="string">&quot;leaf cert contains invalid utf8&quot;</span>,
+                <span class="string">"leaf cert contains invalid utf8"</span>,
             )
         })<span class="question-mark">?</span>)<span class="question-mark">?</span>;
 
@@ -708,7 +709,7 @@
 </span><span class="kw">fn </span>gen_container_name() -&gt; String {
     <span class="kw">use </span>std::sync::atomic::{AtomicUsize, Ordering};
     <span class="kw">static </span>COUNTER: AtomicUsize = AtomicUsize::new(<span class="number">0</span>);
-    <span class="macro">format!</span>(<span class="string">&quot;native-tls-{}&quot;</span>, COUNTER.fetch_add(<span class="number">1</span>, Ordering::Relaxed))
+    <span class="macro">format!</span>(<span class="string">"native-tls-{}"</span>, COUNTER.fetch_add(<span class="number">1</span>, Ordering::Relaxed))
 }
 
 <span class="attr">#[derive(Clone)]
@@ -728,7 +729,7 @@
             }
             <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">Err</span>(io::Error::new(
                 io::ErrorKind::InvalidInput,
-                <span class="string">&quot;PEM representation contains non-UTF-8 bytes&quot;</span>,
+                <span class="string">"PEM representation contains non-UTF-8 bytes"</span>,
             )
             .into()),
         }
@@ -804,7 +805,7 @@
     accept_invalid_hostnames: bool,
     accept_invalid_certs: bool,
     disable_built_in_roots: bool,
-    <span class="attr">#[cfg(feature = <span class="string">&quot;alpn&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"alpn"</span>)]
     </span>alpn: Vec&lt;String&gt;,
 }
 
@@ -825,7 +826,7 @@
             accept_invalid_hostnames: builder.accept_invalid_hostnames,
             accept_invalid_certs: builder.accept_invalid_certs,
             disable_built_in_roots: builder.disable_built_in_roots,
-            <span class="attr">#[cfg(feature = <span class="string">&quot;alpn&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"alpn"</span>)]
             </span>alpn: builder.alpn.clone(),
         })
     }
@@ -867,11 +868,11 @@
 
                 <span class="prelude-val">Err</span>(io::Error::new(
                     io::ErrorKind::Other,
-                    <span class="string">&quot;unable to find any user-specified roots in the final cert chain&quot;</span>,
+                    <span class="string">"unable to find any user-specified roots in the final cert chain"</span>,
                 ))
             });
         }
-        <span class="attr">#[cfg(feature = <span class="string">&quot;alpn&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"alpn"</span>)]
         </span>{
             <span class="kw">if </span>!<span class="self">self</span>.alpn.is_empty() {
                 builder.request_application_protocols(
@@ -909,7 +910,7 @@
         <span class="kw">let </span><span class="kw-2">mut </span>builder = SchannelCred::builder();
         builder.enabled_protocols(convert_protocols(<span class="self">self</span>.min_protocol, <span class="self">self</span>.max_protocol));
         builder.cert(<span class="self">self</span>.cert.clone());
-        <span class="comment">// FIXME we&#39;re probably missing the certificate chain?
+        <span class="comment">// FIXME we're probably missing the certificate chain?
         </span><span class="kw">let </span>cred = builder.acquire(Direction::Inbound)<span class="question-mark">?</span>;
         <span class="kw">match </span>tls_stream::Builder::new().accept(cred, stream) {
             <span class="prelude-val">Ok</span>(s) =&gt; <span class="prelude-val">Ok</span>(TlsStream(s)),
@@ -949,7 +950,7 @@
         }
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;alpn&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"alpn"</span>)]
     </span><span class="kw">pub fn </span>negotiated_alpn(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Vec&lt;u8&gt;&gt;, Error&gt; {
         <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="number">0</span>.negotiated_application_protocol()<span class="question-mark">?</span>)
     }
@@ -968,10 +969,10 @@
         };
 
         <span class="kw">let </span>signature_algorithms = cert.sign_hash_algorithms()<span class="question-mark">?</span>;
-        <span class="kw">let </span>hash = <span class="kw">match </span>signature_algorithms.rsplit(<span class="string">&#39;/&#39;</span>).next().unwrap() {
-            <span class="string">&quot;MD5&quot; </span>| <span class="string">&quot;SHA1&quot; </span>| <span class="string">&quot;SHA256&quot; </span>=&gt; HashAlgorithm::sha256(),
-            <span class="string">&quot;SHA384&quot; </span>=&gt; HashAlgorithm::sha384(),
-            <span class="string">&quot;SHA512&quot; </span>=&gt; HashAlgorithm::sha512(),
+        <span class="kw">let </span>hash = <span class="kw">match </span>signature_algorithms.rsplit(<span class="string">'/'</span>).next().unwrap() {
+            <span class="string">"MD5" </span>| <span class="string">"SHA1" </span>| <span class="string">"SHA256" </span>=&gt; HashAlgorithm::sha256(),
+            <span class="string">"SHA384" </span>=&gt; HashAlgorithm::sha384(),
+            <span class="string">"SHA512" </span>=&gt; HashAlgorithm::sha512(),
             <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
         };
 
@@ -1003,30 +1004,30 @@
 
 <span class="kw">mod </span>pem {
     <span class="doccomment">/// Split data by PEM guard lines
-    </span><span class="kw">pub struct </span>PemBlock&lt;<span class="lifetime">&#39;a</span>&gt; {
-        pem_block: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+    </span><span class="kw">pub struct </span>PemBlock&lt;<span class="lifetime">'a</span>&gt; {
+        pem_block: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         cur_end: usize,
     }
 
-    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; PemBlock&lt;<span class="lifetime">&#39;a</span>&gt; {
-        <span class="kw">pub fn </span>new(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; PemBlock&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; PemBlock&lt;<span class="lifetime">'a</span>&gt; {
+        <span class="kw">pub fn </span>new(data: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]) -&gt; PemBlock&lt;<span class="lifetime">'a</span>&gt; {
             <span class="kw">let </span>s = ::std::str::from_utf8(data).unwrap();
             PemBlock {
                 pem_block: s,
-                cur_end: s.find(<span class="string">&quot;-----BEGIN&quot;</span>).unwrap_or(s.len()),
+                cur_end: s.find(<span class="string">"-----BEGIN"</span>).unwrap_or(s.len()),
             }
         }
     }
 
-    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>PemBlock&lt;<span class="lifetime">&#39;a</span>&gt; {
-        <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8];
+    <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Iterator <span class="kw">for </span>PemBlock&lt;<span class="lifetime">'a</span>&gt; {
+        <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8];
         <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
             <span class="kw">let </span>last = <span class="self">self</span>.pem_block.len();
             <span class="kw">if </span><span class="self">self</span>.cur_end &gt;= last {
                 <span class="kw">return </span><span class="prelude-val">None</span>;
             }
             <span class="kw">let </span>begin = <span class="self">self</span>.cur_end;
-            <span class="kw">let </span>pos = <span class="self">self</span>.pem_block[begin + <span class="number">1</span>..].find(<span class="string">&quot;-----BEGIN&quot;</span>);
+            <span class="kw">let </span>pos = <span class="self">self</span>.pem_block[begin + <span class="number">1</span>..].find(<span class="string">"-----BEGIN"</span>);
             <span class="self">self</span>.cur_end = <span class="kw">match </span>pos {
                 <span class="prelude-val">Some</span>(end) =&gt; end + begin + <span class="number">1</span>,
                 <span class="prelude-val">None </span>=&gt; last,
@@ -1040,85 +1041,85 @@
         <span class="comment">// Split three certs, CRLF line terminators.
         </span><span class="macro">assert_eq!</span>(
             PemBlock::new(
-                <span class="string">b&quot;-----BEGIN FIRST-----\r\n-----END FIRST-----\r\n\
+                <span class="string">b"-----BEGIN FIRST-----\r\n-----END FIRST-----\r\n\
             -----BEGIN SECOND-----\r\n-----END SECOND\r\n\
-            -----BEGIN THIRD-----\r\n-----END THIRD\r\n&quot;
+            -----BEGIN THIRD-----\r\n-----END THIRD\r\n"
             </span>)
             .collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;&gt;(),
             <span class="macro">vec!</span>[
-                <span class="string">b&quot;-----BEGIN FIRST-----\r\n-----END FIRST-----\r\n&quot; </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8],
-                <span class="string">b&quot;-----BEGIN SECOND-----\r\n-----END SECOND\r\n&quot;</span>,
-                <span class="string">b&quot;-----BEGIN THIRD-----\r\n-----END THIRD\r\n&quot;
+                <span class="string">b"-----BEGIN FIRST-----\r\n-----END FIRST-----\r\n" </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8],
+                <span class="string">b"-----BEGIN SECOND-----\r\n-----END SECOND\r\n"</span>,
+                <span class="string">b"-----BEGIN THIRD-----\r\n-----END THIRD\r\n"
             </span>]
         );
         <span class="comment">// Split three certs, CRLF line terminators except at EOF.
         </span><span class="macro">assert_eq!</span>(
             PemBlock::new(
-                <span class="string">b&quot;-----BEGIN FIRST-----\r\n-----END FIRST-----\r\n\
+                <span class="string">b"-----BEGIN FIRST-----\r\n-----END FIRST-----\r\n\
             -----BEGIN SECOND-----\r\n-----END SECOND-----\r\n\
-            -----BEGIN THIRD-----\r\n-----END THIRD-----&quot;
+            -----BEGIN THIRD-----\r\n-----END THIRD-----"
             </span>)
             .collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;&gt;(),
             <span class="macro">vec!</span>[
-                <span class="string">b&quot;-----BEGIN FIRST-----\r\n-----END FIRST-----\r\n&quot; </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8],
-                <span class="string">b&quot;-----BEGIN SECOND-----\r\n-----END SECOND-----\r\n&quot;</span>,
-                <span class="string">b&quot;-----BEGIN THIRD-----\r\n-----END THIRD-----&quot;
+                <span class="string">b"-----BEGIN FIRST-----\r\n-----END FIRST-----\r\n" </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8],
+                <span class="string">b"-----BEGIN SECOND-----\r\n-----END SECOND-----\r\n"</span>,
+                <span class="string">b"-----BEGIN THIRD-----\r\n-----END THIRD-----"
             </span>]
         );
         <span class="comment">// Split two certs, LF line terminators.
         </span><span class="macro">assert_eq!</span>(
             PemBlock::new(
-                <span class="string">b&quot;-----BEGIN FIRST-----\n-----END FIRST-----\n\
-            -----BEGIN SECOND-----\n-----END SECOND\n&quot;
+                <span class="string">b"-----BEGIN FIRST-----\n-----END FIRST-----\n\
+            -----BEGIN SECOND-----\n-----END SECOND\n"
             </span>)
             .collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;&gt;(),
             <span class="macro">vec!</span>[
-                <span class="string">b&quot;-----BEGIN FIRST-----\n-----END FIRST-----\n&quot; </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8],
-                <span class="string">b&quot;-----BEGIN SECOND-----\n-----END SECOND\n&quot;
+                <span class="string">b"-----BEGIN FIRST-----\n-----END FIRST-----\n" </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8],
+                <span class="string">b"-----BEGIN SECOND-----\n-----END SECOND\n"
             </span>]
         );
         <span class="comment">// Split two certs, CR line terminators.
         </span><span class="macro">assert_eq!</span>(
             PemBlock::new(
-                <span class="string">b&quot;-----BEGIN FIRST-----\r-----END FIRST-----\r\
-            -----BEGIN SECOND-----\r-----END SECOND\r&quot;
+                <span class="string">b"-----BEGIN FIRST-----\r-----END FIRST-----\r\
+            -----BEGIN SECOND-----\r-----END SECOND\r"
             </span>)
             .collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;&gt;(),
             <span class="macro">vec!</span>[
-                <span class="string">b&quot;-----BEGIN FIRST-----\r-----END FIRST-----\r&quot; </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8],
-                <span class="string">b&quot;-----BEGIN SECOND-----\r-----END SECOND\r&quot;
+                <span class="string">b"-----BEGIN FIRST-----\r-----END FIRST-----\r" </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8],
+                <span class="string">b"-----BEGIN SECOND-----\r-----END SECOND\r"
             </span>]
         );
         <span class="comment">// Split two certs, LF line terminators except at EOF.
         </span><span class="macro">assert_eq!</span>(
             PemBlock::new(
-                <span class="string">b&quot;-----BEGIN FIRST-----\n-----END FIRST-----\n\
-            -----BEGIN SECOND-----\n-----END SECOND&quot;
+                <span class="string">b"-----BEGIN FIRST-----\n-----END FIRST-----\n\
+            -----BEGIN SECOND-----\n-----END SECOND"
             </span>)
             .collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;&gt;(),
             <span class="macro">vec!</span>[
-                <span class="string">b&quot;-----BEGIN FIRST-----\n-----END FIRST-----\n&quot; </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8],
-                <span class="string">b&quot;-----BEGIN SECOND-----\n-----END SECOND&quot;
+                <span class="string">b"-----BEGIN FIRST-----\n-----END FIRST-----\n" </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8],
+                <span class="string">b"-----BEGIN SECOND-----\n-----END SECOND"
             </span>]
         );
         <span class="comment">// Split a single cert, LF line terminators.
         </span><span class="macro">assert_eq!</span>(
-            PemBlock::new(<span class="string">b&quot;-----BEGIN FIRST-----\n-----END FIRST-----\n&quot;</span>).collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;&gt;(),
-            <span class="macro">vec!</span>[<span class="string">b&quot;-----BEGIN FIRST-----\n-----END FIRST-----\n&quot; </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8]]
+            PemBlock::new(<span class="string">b"-----BEGIN FIRST-----\n-----END FIRST-----\n"</span>).collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;&gt;(),
+            <span class="macro">vec!</span>[<span class="string">b"-----BEGIN FIRST-----\n-----END FIRST-----\n" </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8]]
         );
         <span class="comment">// Split a single cert, LF line terminators except at EOF.
         </span><span class="macro">assert_eq!</span>(
-            PemBlock::new(<span class="string">b&quot;-----BEGIN FIRST-----\n-----END FIRST-----&quot;</span>).collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;&gt;(),
-            <span class="macro">vec!</span>[<span class="string">b&quot;-----BEGIN FIRST-----\n-----END FIRST-----&quot; </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8]]
+            PemBlock::new(<span class="string">b"-----BEGIN FIRST-----\n-----END FIRST-----"</span>).collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;&gt;(),
+            <span class="macro">vec!</span>[<span class="string">b"-----BEGIN FIRST-----\n-----END FIRST-----" </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8]]
         );
-        <span class="comment">// (Don&#39;t) split garbage.
+        <span class="comment">// (Don't) split garbage.
         </span><span class="macro">assert_eq!</span>(
-            PemBlock::new(<span class="string">b&quot;junk&quot;</span>).collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;&gt;(),
+            PemBlock::new(<span class="string">b"junk"</span>).collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;&gt;(),
             Vec::&lt;<span class="kw-2">&amp;</span>[u8]&gt;::new()
         );
         <span class="macro">assert_eq!</span>(
-            PemBlock::new(<span class="string">b&quot;junk-----BEGIN garbage&quot;</span>).collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;&gt;(),
-            <span class="macro">vec!</span>[<span class="string">b&quot;-----BEGIN garbage&quot; </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8]]
+            PemBlock::new(<span class="string">b"junk-----BEGIN garbage"</span>).collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;&gt;(),
+            <span class="macro">vec!</span>[<span class="string">b"-----BEGIN garbage" </span><span class="kw">as </span><span class="kw-2">&amp;</span>[u8]]
         );
     }
 }

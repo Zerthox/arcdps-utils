@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src\ui\window\options.rs`."><title>options.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../..\../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../..\../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../..\../" data-static-root-path="../../..\../static.files/" data-current-crate="arc_util" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../..\../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../..\../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../..\../src-files.js"></script><script defer src="../../..\../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../..\../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../..\../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../..\../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../..\../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../..\../arc_util/index.html"><img class="rust-logo" src="../../..\../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../..\../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../..\../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../..\../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src\ui\window\options.rs`."><title>options.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../..\../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../..\../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../..\../" data-static-root-path="../../..\../static.files/" data-current-crate="arc_util" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../..\../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../..\../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../..\../src-files.js"></script><script defer src="../../..\../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../..\../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../..\../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../..\../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../..\../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../..\../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../..\../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../..\../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -132,27 +133,83 @@
 <a href="#132" id="132">132</a>
 <a href="#133" id="133">133</a>
 <a href="#134" id="134">134</a>
-</pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::ui::Hideable;
+<a href="#135" id="135">135</a>
+<a href="#136" id="136">136</a>
+<a href="#137" id="137">137</a>
+<a href="#138" id="138">138</a>
+<a href="#139" id="139">139</a>
+<a href="#140" id="140">140</a>
+<a href="#141" id="141">141</a>
+<a href="#142" id="142">142</a>
+<a href="#143" id="143">143</a>
+<a href="#144" id="144">144</a>
+<a href="#145" id="145">145</a>
+<a href="#146" id="146">146</a>
+<a href="#147" id="147">147</a>
+<a href="#148" id="148">148</a>
+<a href="#149" id="149">149</a>
+<a href="#150" id="150">150</a>
+<a href="#151" id="151">151</a>
+<a href="#152" id="152">152</a>
+<a href="#153" id="153">153</a>
+<a href="#154" id="154">154</a>
+<a href="#155" id="155">155</a>
+<a href="#156" id="156">156</a>
+<a href="#157" id="157">157</a>
+<a href="#158" id="158">158</a>
+<a href="#159" id="159">159</a>
+</pre></div><pre class="rust"><code><span class="kw">use super</span>::<span class="kw-2">*</span>;
+<span class="kw">use </span><span class="kw">crate</span>::ui::{
+    render::{ch_width, input_float_with_format},
+    Hideable,
+};
 <span class="kw">use </span>arcdps::imgui::Ui;
+<span class="kw">use </span>arcdps::{
+    exports::{<span class="self">self</span>, CoreColor},
+    imgui::{InputTextFlags, StyleVar},
+};
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;serde&quot;</span>)]
-</span><span class="kw">use </span>serde::{Deserialize, Serialize};
+<span class="doccomment">/// Hotkey to open window.
+</span><span class="kw">pub type </span>WindowHotkey = <span class="prelude-ty">Option</span>&lt;u32&gt;;
 
 <span class="doccomment">/// Window options.
 </span><span class="attr">#[derive(Debug, Clone)]
 </span><span class="kw">pub struct </span>WindowOptions {
-    <span class="kw">pub </span>visible: bool,
-    <span class="kw">pub </span>position: WindowPosition,
-    <span class="kw">pub </span>width: f32,
-    <span class="kw">pub </span>height: f32,
-    <span class="kw">pub </span>title_bar: bool,
-    <span class="kw">pub </span>background: bool,
-    <span class="kw">pub </span>title_bar_background: bool,
-    <span class="kw">pub </span>resize: bool,
-    <span class="kw">pub </span>auto_resize: bool,
-    <span class="kw">pub </span>scroll: bool,
-    <span class="kw">pub </span>scroll_bar: bool,
-    <span class="kw">pub </span>hotkey: WindowHotkey,
+    <span class="doccomment">/// Whether the window is (currently) visible.
+    </span><span class="kw">pub </span>visible: bool,
+
+    <span class="doccomment">/// Position of the window.
+    </span><span class="kw">pub </span>position: WindowPosition,
+
+    <span class="doccomment">/// Width of the window in pixels.
+    </span><span class="kw">pub </span>width: f32,
+
+    <span class="doccomment">/// Height of the window in pixels.
+    </span><span class="kw">pub </span>height: f32,
+
+    <span class="doccomment">/// Whether to show the window titlebar.
+    </span><span class="kw">pub </span>title_bar: bool,
+
+    <span class="doccomment">/// Whether to show the window body background.
+    </span><span class="kw">pub </span>background: bool,
+
+    <span class="doccomment">/// Whether to show the window titlebar background.
+    </span><span class="kw">pub </span>title_bar_background: bool,
+
+    <span class="doccomment">/// Whether to allow manually resizing the window.
+    </span><span class="kw">pub </span>resize: bool,
+
+    <span class="doccomment">/// Whether to automatically resize the window according to contents.
+    </span><span class="kw">pub </span>auto_resize: bool,
+
+    <span class="doccomment">/// Whether to allow scrolling.
+    </span><span class="kw">pub </span>scroll: bool,
+
+    <span class="doccomment">/// Whether to show the scrollbar.
+    </span><span class="kw">pub </span>scroll_bar: bool,
+
+    <span class="doccomment">/// Hotkey to open the window with.
+    </span><span class="kw">pub </span>hotkey: WindowHotkey,
 }
 
 <span class="kw">impl </span>WindowOptions {
@@ -194,6 +251,55 @@
         <span class="comment">// update window size values
         </span>[<span class="self">self</span>.width, <span class="self">self</span>.height] = ui.window_size();
     }
+
+    <span class="doccomment">/// Renders the options menus for window style &amp; position.
+    </span><span class="kw">pub fn </span>render_options_menus(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span>Ui, pos: [f32; <span class="number">2</span>]) {
+        <span class="kw">let </span>colors = exports::colors();
+        <span class="kw">let </span>grey = colors
+            .core(CoreColor::MediumGrey)
+            .unwrap_or([<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">1.0</span>]);
+
+        ui.menu(<span class="string">"Style"</span>, || {
+            ui.text_colored(grey, <span class="string">"Window style"</span>);
+            <span class="self">self</span>.render_style_options(ui);
+        });
+
+        ui.menu(<span class="string">"Position"</span>, || {
+            ui.text_colored(grey, <span class="string">"Window position"</span>);
+            <span class="self">self</span>.position.render_select(ui, pos);
+        });
+    }
+
+    <span class="doccomment">/// Renders the window style options.
+    </span><span class="kw">pub fn </span>render_style_options(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span>Ui) {
+        <span class="kw">let </span>input_width = ch_width(ui, <span class="number">12</span>);
+
+        ui.checkbox(<span class="string">"Titlebar"</span>, <span class="kw-2">&amp;mut </span><span class="self">self</span>.title_bar);
+        ui.checkbox(<span class="string">"Background"</span>, <span class="kw-2">&amp;mut </span><span class="self">self</span>.background);
+        ui.checkbox(<span class="string">"Titlebar background"</span>, <span class="kw-2">&amp;mut </span><span class="self">self</span>.title_bar_background);
+        ui.checkbox(<span class="string">"Scrollbar"</span>, <span class="kw-2">&amp;mut </span><span class="self">self</span>.scroll_bar);
+        ui.checkbox(<span class="string">"Auto resize"</span>, <span class="kw-2">&amp;mut </span><span class="self">self</span>.auto_resize);
+
+        ui.set_next_item_width(input_width);
+
+        <span class="kw">let </span>current = ui.clone_style().alpha;
+        <span class="kw">let </span>_style = ui.push_style_var(StyleVar::Alpha(<span class="kw">if </span><span class="self">self</span>.auto_resize {
+            <span class="number">0.3
+        </span>} <span class="kw">else </span>{
+            current
+        }));
+
+        <span class="kw">let </span>flags = <span class="kw">if </span><span class="self">self</span>.auto_resize {
+            InputTextFlags::READ_ONLY
+        } <span class="kw">else </span>{
+            InputTextFlags::empty()
+        };
+
+        input_float_with_format(<span class="string">"Width"</span>, <span class="kw-2">&amp;mut </span><span class="self">self</span>.width, STEP, STEP_FAST, FORMAT, flags);
+
+        ui.set_next_item_width(input_width);
+        input_float_with_format(<span class="string">"Height"</span>, <span class="kw-2">&amp;mut </span><span class="self">self</span>.height, STEP, STEP_FAST, FORMAT, flags);
+    }
 }
 
 <span class="kw">impl </span>Default <span class="kw">for </span>WindowOptions {
@@ -211,59 +317,4 @@
         <span class="kw-2">&amp;mut </span><span class="self">self</span>.visible
     }
 }
-
-<span class="doccomment">/// Window position onscreen.
-</span><span class="attr">#[derive(Debug, Clone)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
-</span><span class="kw">pub enum </span>WindowPosition {
-    Manual,
-    Anchored {
-        anchor: WindowAnchor,
-        x: f32,
-        y: f32,
-    },
-}
-
-<span class="kw">impl </span>Default <span class="kw">for </span>WindowPosition {
-    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
-        <span class="self">Self</span>::Manual
-    }
-}
-
-<span class="kw">impl </span>WindowPosition {
-    <span class="doccomment">/// Calculates the render position.
-    </span><span class="kw">pub fn </span>calc(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span>Ui, window_size: [f32; <span class="number">2</span>]) -&gt; <span class="prelude-ty">Option</span>&lt;[f32; <span class="number">2</span>]&gt; {
-        <span class="kw">match </span><span class="self">self </span>{
-            <span class="self">Self</span>::Manual =&gt; <span class="prelude-val">None</span>,
-            <span class="self">Self</span>::Anchored { anchor, x, y } =&gt; {
-                <span class="kw">let </span>[screen_x, screen_y] = ui.io().display_size;
-                <span class="kw">let </span>[window_x, window_y] = window_size;
-                <span class="kw">let </span>rel_x = <span class="kw-2">*</span>x;
-                <span class="kw">let </span>rel_y = <span class="kw-2">*</span>y;
-
-                <span class="prelude-val">Some</span>(<span class="kw">match </span>anchor {
-                    WindowAnchor::TopLeft =&gt; [rel_x, rel_y],
-                    WindowAnchor::TopRight =&gt; [screen_x - window_x - rel_x, rel_y],
-                    WindowAnchor::BottomLeft =&gt; [rel_x, screen_y - window_y - rel_y],
-                    WindowAnchor::BottomRight =&gt; {
-                        [screen_x - window_x - rel_x, screen_y - window_y - rel_y]
-                    }
-                })
-            }
-        }
-    }
-}
-
-<span class="doccomment">/// Screen anchor point for window.
-</span><span class="attr">#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
-</span><span class="kw">pub enum </span>WindowAnchor {
-    TopLeft,
-    TopRight,
-    BottomLeft,
-    BottomRight,
-}
-
-<span class="doccomment">/// Hotkey to open window.
-</span><span class="kw">pub type </span>WindowHotkey = <span class="prelude-ty">Option</span>&lt;u32&gt;;
 </code></pre></div></section></main></body></html>

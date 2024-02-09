@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\minreq-2.11.0\src\lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="minreq" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../minreq/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\minreq-2.11.0\src\lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="minreq" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -264,14 +265,14 @@
 </pre></div><pre class="rust"><code><span class="doccomment">//! # Minreq
 //!
 //! Simple, minimal-dependency HTTP client.  The library has a very
-//! minimal API, so you&#39;ll probably know everything you need to after
+//! minimal API, so you'll probably know everything you need to after
 //! reading a few examples.
 //!
 //! Note: as a minimal library, minreq has been written with the
 //! assumption that servers are well-behaved. This means that there is
 //! little error-correction for incoming data, which may cause some
-//! requests to fail unexpectedly. If you&#39;re writing an application or
-//! library that connects to servers you can&#39;t test beforehand,
+//! requests to fail unexpectedly. If you're writing an application or
+//! library that connects to servers you can't test beforehand,
 //! consider using a more robust library, such as
 //! [curl](https://crates.io/crates/curl).
 //!
@@ -284,7 +285,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! minreq = { version = &quot;2.11.0&quot;, features = [&quot;punycode&quot;] }
+//! minreq = { version = "2.11.0", features = ["punycode"] }
 //! ```
 //!
 //! Below is the list of all available features.
@@ -319,7 +320,7 @@
 //! Like `https`, but uses a statically linked copy of the OpenSSL
 //! library (provided by
 //! [`openssl-sys`](https://crates.io/crates/openssl-sys) with
-//! features = &quot;vendored&quot;). This feature on its own doesn&#39;t provide
+//! features = "vendored"). This feature on its own doesn't provide
 //! any detection of where your root certificates are installed. They
 //! can be specified via the environment variables `SSL_CERT_FILE` or
 //! `SSL_CERT_DIR`.
@@ -368,16 +369,16 @@
 //! ## Get
 //!
 //! This is a simple example of sending a GET request and printing out
-//! the response&#39;s body, status code, and reason phrase. The `?` are
+//! the response's body, status code, and reason phrase. The `?` are
 //! needed because the server could return invalid UTF-8 in the body,
 //! or something could go wrong during the download.
 //!
 //! ```
 //! # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-//! let response = minreq::get(&quot;http://example.com&quot;).send()?;
-//! assert!(response.as_str()?.contains(&quot;&lt;/html&gt;&quot;));
+//! let response = minreq::get("http://example.com").send()?;
+//! assert!(response.as_str()?.contains("&lt;/html&gt;"));
 //! assert_eq!(200, response.status_code);
-//! assert_eq!(&quot;OK&quot;, response.reason_phrase);
+//! assert_eq!("OK", response.reason_phrase);
 //! # Ok(()) }
 //! ```
 //!
@@ -387,26 +388,26 @@
 //!
 //! ## Body (sending)
 //!
-//! To include a body, add `with_body(&quot;&lt;body contents&gt;&quot;)` before
+//! To include a body, add `with_body("&lt;body contents&gt;")` before
 //! `send()`.
 //!
 //! ```
 //! # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-//! let response = minreq::post(&quot;http://example.com&quot;)
-//!     .with_body(&quot;Foobar&quot;)
+//! let response = minreq::post("http://example.com")
+//!     .with_body("Foobar")
 //!     .send()?;
 //! # Ok(()) }
 //! ```
 //!
 //! ## Headers (sending)
 //!
-//! To add a header, add `with_header(&quot;Key&quot;, &quot;Value&quot;)` before
+//! To add a header, add `with_header("Key", "Value")` before
 //! `send()`.
 //!
 //! ```
 //! # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-//! let response = minreq::get(&quot;http://example.com&quot;)
-//!     .with_header(&quot;Accept&quot;, &quot;text/html&quot;)
+//! let response = minreq::get("http://example.com")
+//!     .with_header("Accept", "text/html")
 //!     .send()?;
 //! # Ok(()) }
 //! ```
@@ -422,21 +423,21 @@
 //!
 //! ```
 //! # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-//! let response = minreq::get(&quot;http://example.com&quot;).send()?;
-//! assert!(response.headers.get(&quot;content-type&quot;).unwrap().starts_with(&quot;text/html&quot;));
+//! let response = minreq::get("http://example.com").send()?;
+//! assert!(response.headers.get("content-type").unwrap().starts_with("text/html"));
 //! # Ok(()) }
 //! ```
 //!
 //! ## Timeouts
 //!
-//! To avoid timing out, or limit the request&#39;s response time, use
+//! To avoid timing out, or limit the request's response time, use
 //! `with_timeout(n)` before `send()`. The given value is in seconds.
 //!
 //! NOTE: There is no timeout by default.
 //!
 //! ```no_run
 //! # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-//! let response = minreq::post(&quot;http://example.com&quot;)
+//! let response = minreq::post("http://example.com")
 //!     .with_timeout(10)
 //!     .send()?;
 //! # Ok(()) }
@@ -453,13 +454,13 @@
 //!
 //! ```no_run
 //! # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-//! #[cfg(feature = &quot;proxy&quot;)]
+//! #[cfg(feature = "proxy")]
 //! {
-//!     let proxy = minreq::Proxy::new(&quot;localhost:8080&quot;)?;
-//!     let response = minreq::post(&quot;http://example.com&quot;)
+//!     let proxy = minreq::Proxy::new("localhost:8080")?;
+//!     let response = minreq::post("http://example.com")
 //!         .with_proxy(proxy)
 //!         .send()?;
-//!     println!(&quot;{}&quot;, response.as_str()?);
+//!     println!("{}", response.as_str()?);
 //! }
 //! # Ok(()) }
 //! ```
@@ -472,7 +473,7 @@
 //! - Use [`with_timeout`](struct.Request.html#method.with_timeout) on
 //!   your request to set the timeout per-request like so:
 //!   ```
-//!   minreq::get(&quot;/&quot;).with_timeout(8).send();
+//!   minreq::get("/").with_timeout(8).send();
 //!   ```
 //! - Set the environment variable `MINREQ_TIMEOUT` to the desired
 //!   amount of seconds until timeout. Ie. if you have a program called
@@ -483,44 +484,44 @@
 //!   ```
 //!   Or add the following somewhere before the requests in the code.
 //!   ```
-//!   std::env::set_var(&quot;MINREQ_TIMEOUT&quot;, &quot;8&quot;);
+//!   std::env::set_var("MINREQ_TIMEOUT", "8");
 //!   ```
 //! If the timeout is set with `with_timeout`, the environment
 //! variable will be ignored.
 
 </span><span class="attr">#![deny(missing_docs)]
 
-#[cfg(feature = <span class="string">&quot;rustls&quot;</span>)]
+#[cfg(feature = <span class="string">"rustls"</span>)]
 </span><span class="kw">extern crate </span>rustls;
-<span class="attr">#[cfg(feature = <span class="string">&quot;openssl&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"openssl"</span>)]
 </span><span class="kw">mod </span>native_tls;
-<span class="attr">#[cfg(feature = <span class="string">&quot;openssl&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"openssl"</span>)]
 #[macro_use]
 </span><span class="kw">extern crate </span>log;
-<span class="attr">#[cfg(all(feature = <span class="string">&quot;native-tls&quot;</span>, not(feature = <span class="string">&quot;openssl&quot;</span>)))]
+<span class="attr">#[cfg(all(feature = <span class="string">"native-tls"</span>, not(feature = <span class="string">"openssl"</span>)))]
 </span><span class="kw">extern crate </span>native_tls;
-<span class="attr">#[cfg(feature = <span class="string">&quot;openssl-probe&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"openssl-probe"</span>)]
 </span><span class="kw">extern crate </span>openssl_probe;
-<span class="attr">#[cfg(feature = <span class="string">&quot;rustls&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"rustls"</span>)]
 </span><span class="kw">extern crate </span>webpki;
-<span class="attr">#[cfg(feature = <span class="string">&quot;rustls&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"rustls"</span>)]
 </span><span class="kw">extern crate </span>webpki_roots;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;json-using-serde&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"json-using-serde"</span>)]
 </span><span class="kw">extern crate </span>serde;
-<span class="attr">#[cfg(feature = <span class="string">&quot;json-using-serde&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"json-using-serde"</span>)]
 </span><span class="kw">extern crate </span>serde_json;
 
 <span class="kw">mod </span>connection;
 <span class="kw">mod </span>error;
 <span class="kw">mod </span>http_url;
-<span class="attr">#[cfg(feature = <span class="string">&quot;proxy&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"proxy"</span>)]
 </span><span class="kw">mod </span>proxy;
 <span class="kw">mod </span>request;
 <span class="kw">mod </span>response;
 
 <span class="kw">pub use </span>error::<span class="kw-2">*</span>;
-<span class="attr">#[cfg(feature = <span class="string">&quot;proxy&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"proxy"</span>)]
 </span><span class="kw">pub use </span>proxy::<span class="kw-2">*</span>;
 <span class="kw">pub use </span>request::<span class="kw-2">*</span>;
 <span class="kw">pub use </span>response::<span class="kw-2">*</span>;
