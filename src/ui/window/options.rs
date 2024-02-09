@@ -1,23 +1,54 @@
-use crate::ui::Hideable;
+use super::*;
+use crate::ui::{
+    render::{ch_width, input_float_with_format},
+    Hideable,
+};
 use arcdps::imgui::Ui;
+use arcdps::{
+    exports::{self, CoreColor},
+    imgui::{InputTextFlags, StyleVar},
+};
 
-#[cfg(feature = "serde")]
-use serde::{Deserialize, Serialize};
+/// Hotkey to open window.
+pub type WindowHotkey = Option<u32>;
 
 /// Window options.
 #[derive(Debug, Clone)]
 pub struct WindowOptions {
+    /// Whether the window is (currently) visible.
     pub visible: bool,
+
+    /// Position of the window.
     pub position: WindowPosition,
+
+    /// Width of the window in pixels.
     pub width: f32,
+
+    /// Height of the window in pixels.
     pub height: f32,
+
+    /// Whether to show the window titlebar.
     pub title_bar: bool,
+
+    /// Whether to show the window body background.
     pub background: bool,
+
+    /// Whether to show the window titlebar background.
     pub title_bar_background: bool,
+
+    /// Whether to allow manually resizing the window.
     pub resize: bool,
+
+    /// Whether to automatically resize the window according to contents.
     pub auto_resize: bool,
+
+    /// Whether to allow scrolling.
     pub scroll: bool,
+
+    /// Whether to show the scrollbar.
     pub scroll_bar: bool,
+
+    /// Hotkey to open the window with.
     pub hotkey: WindowHotkey,
 }
 
@@ -60,6 +91,55 @@ impl WindowOptions {
         // update window size values
         [self.width, self.height] = ui.window_size();
     }
+
+    /// Renders the options menus for window style & position.
+    pub fn render_options_menus(&mut self, ui: &Ui, pos: [f32; 2]) {
+        let colors = exports::colors();
+        let grey = colors
+            .core(CoreColor::MediumGrey)
+            .unwrap_or([0.5, 0.5, 0.5, 1.0]);
+
+        ui.menu("Style", || {
+            ui.text_colored(grey, "Window style");
+            self.render_style_options(ui);
+        });
+
+        ui.menu("Position", || {
+            ui.text_colored(grey, "Window position");
+            self.position.render_select(ui, pos);
+        });
+    }
+
+    /// Renders the window style options.
+    pub fn render_style_options(&mut self, ui: &Ui) {
+        let input_width = ch_width(ui, 12);
+
+        ui.checkbox("Titlebar", &mut self.title_bar);
+        ui.checkbox("Background", &mut self.background);
+        ui.checkbox("Titlebar background", &mut self.title_bar_background);
+        ui.checkbox("Scrollbar", &mut self.scroll_bar);
+        ui.checkbox("Auto resize", &mut self.auto_resize);
+
+        ui.set_next_item_width(input_width);
+
+        let current = ui.clone_style().alpha;
+        let _style = ui.push_style_var(StyleVar::Alpha(if self.auto_resize {
+            0.3
+        } else {
+            current
+        }));
+
+        let flags = if self.auto_resize {
+            InputTextFlags::READ_ONLY
+        } else {
+            InputTextFlags::empty()
+        };
+
+        input_float_with_format("Width", &mut self.width, STEP, STEP_FAST, FORMAT, flags);
+
+        ui.set_next_item_width(input_width);
+        input_float_with_format("Height", &mut self.height, STEP, STEP_FAST, FORMAT, flags);
+    }
 }
 
 impl Default for WindowOptions {
@@ -77,58 +157,3 @@ impl Hideable for WindowOptions {
         &mut self.visible
     }
 }
-
-/// Window position onscreen.
-#[derive(Debug, Clone)]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-pub enum WindowPosition {
-    Manual,
-    Anchored {
-        anchor: WindowAnchor,
-        x: f32,
-        y: f32,
-    },
-}
-
-impl Default for WindowPosition {
-    fn default() -> Self {
-        Self::Manual
-    }
-}
-
-impl WindowPosition {
-    /// Calculates the render position.
-    pub fn calc(&self, ui: &Ui, window_size: [f32; 2]) -> Option<[f32; 2]> {
-        match self {
-            Self::Manual => None,
-            Self::Anchored { anchor, x, y } => {
-                let [screen_x, screen_y] = ui.io().display_size;
-                let [window_x, window_y] = window_size;
-                let rel_x = *x;
-                let rel_y = *y;
-
-                Some(match anchor {
-                    WindowAnchor::TopLeft => [rel_x, rel_y],
-                    WindowAnchor::TopRight => [screen_x - window_x - rel_x, rel_y],
-                    WindowAnchor::BottomLeft => [rel_x, screen_y - window_y - rel_y],
-                    WindowAnchor::BottomRight => {
-                        [screen_x - window_x - rel_x, screen_y - window_y - rel_y]
-                    }
-                })
-            }
-        }
-    }
-}
-
-/// Screen anchor point for window.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-pub enum WindowAnchor {
-    TopLeft,
-    TopRight,
-    BottomLeft,
-    BottomRight,
-}
-
-/// Hotkey to open window.
-pub type WindowHotkey = Option<u32>;

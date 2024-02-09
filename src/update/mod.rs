@@ -4,7 +4,6 @@ mod repo;
 mod ui;
 
 pub use self::repo::*;
-pub use self::ui::*;
 
 use semver::Version;
 use std::{

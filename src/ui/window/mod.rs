@@ -1,7 +1,9 @@
 //! Window component.
 
+mod anchor;
 mod menu;
 mod options;
+mod position;
 mod render;
 
 #[cfg(feature = "settings")]
@@ -13,9 +15,10 @@ use crate::ui::{
 };
 use std::ops::{Deref, DerefMut};
 
+pub use anchor::*;
 pub use menu::*;
 pub use options::*;
-pub use render::*;
+pub use position::*;
 
 #[cfg(feature = "settings")]
 pub use settings::*;
