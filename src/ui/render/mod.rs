@@ -1,11 +1,13 @@
 //! Predefined primitive UI elements & render helpers.
 
 mod button;
+mod combo;
 mod context_menu;
 mod input;
 mod table;
 
 pub use self::button::*;
+pub use self::combo::*;
 pub use self::context_menu::*;
 pub use self::input::*;
 pub use self::table::*;
