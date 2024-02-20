@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\winnow-0.5.39\src\stream\mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="winnow" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\winnow-0.5.40\src\stream\mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="winnow" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -3746,6 +3746,34 @@
 <a href="#3745" id="3745">3745</a>
 <a href="#3746" id="3746">3746</a>
 <a href="#3747" id="3747">3747</a>
+<a href="#3748" id="3748">3748</a>
+<a href="#3749" id="3749">3749</a>
+<a href="#3750" id="3750">3750</a>
+<a href="#3751" id="3751">3751</a>
+<a href="#3752" id="3752">3752</a>
+<a href="#3753" id="3753">3753</a>
+<a href="#3754" id="3754">3754</a>
+<a href="#3755" id="3755">3755</a>
+<a href="#3756" id="3756">3756</a>
+<a href="#3757" id="3757">3757</a>
+<a href="#3758" id="3758">3758</a>
+<a href="#3759" id="3759">3759</a>
+<a href="#3760" id="3760">3760</a>
+<a href="#3761" id="3761">3761</a>
+<a href="#3762" id="3762">3762</a>
+<a href="#3763" id="3763">3763</a>
+<a href="#3764" id="3764">3764</a>
+<a href="#3765" id="3765">3765</a>
+<a href="#3766" id="3766">3766</a>
+<a href="#3767" id="3767">3767</a>
+<a href="#3768" id="3768">3768</a>
+<a href="#3769" id="3769">3769</a>
+<a href="#3770" id="3770">3770</a>
+<a href="#3771" id="3771">3771</a>
+<a href="#3772" id="3772">3772</a>
+<a href="#3773" id="3773">3773</a>
+<a href="#3774" id="3774">3774</a>
+<a href="#3775" id="3775">3775</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Stream capability for combinators to parse
 //!
 //! Stream types include:
@@ -6237,6 +6265,48 @@
     }
 }
 
+<span class="kw">impl</span>&lt;<span class="lifetime">'i</span>&gt; FindSlice&lt;char&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: char) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr = substr.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="self">self</span>.find_slice(<span class="kw-2">&amp;*</span>substr)
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">'i</span>&gt; FindSlice&lt;(char,)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (char,)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr0 = substr.<span class="number">0</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="self">self</span>.find_slice((<span class="kw-2">&amp;*</span>substr0,))
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">'i</span>&gt; FindSlice&lt;(char, char)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (char, char)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr0 = substr.<span class="number">0</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr1 = substr.<span class="number">1</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="self">self</span>.find_slice((<span class="kw-2">&amp;*</span>substr0, <span class="kw-2">&amp;*</span>substr1))
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">'i</span>&gt; FindSlice&lt;(char, char, char)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>[u8] {
+    <span class="attr">#[inline(always)]
+    </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (char, char, char)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr0 = substr.<span class="number">0</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr1 = substr.<span class="number">1</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
+        <span class="kw">let </span>substr2 = substr.<span class="number">2</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
+        <span class="self">self</span>.find_slice((<span class="kw-2">&amp;*</span>substr0, <span class="kw-2">&amp;*</span>substr1, <span class="kw-2">&amp;*</span>substr2))
+    }
+}
+
 <span class="kw">impl</span>&lt;<span class="lifetime">'i</span>&gt; FindSlice&lt;u8&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>[u8] {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: u8) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
@@ -6303,7 +6373,7 @@
 <span class="kw">impl</span>&lt;<span class="lifetime">'i</span>, <span class="lifetime">'s</span>&gt; FindSlice&lt;<span class="kw-2">&amp;</span><span class="lifetime">'s </span>str&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>str {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: <span class="kw-2">&amp;</span><span class="lifetime">'s </span>str) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
-        <span class="self">self</span>.as_bytes().find_slice(substr.as_bytes())
+        <span class="self">self</span>.as_bytes().find_slice(substr)
     }
 }
 
@@ -6331,70 +6401,56 @@
 <span class="kw">impl</span>&lt;<span class="lifetime">'i</span>&gt; FindSlice&lt;char&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>str {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: char) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
-        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
-        <span class="kw">let </span>substr = substr.encode_utf8(<span class="kw-2">&amp;mut </span>b);
-        <span class="self">self</span>.find_slice(<span class="kw-2">&amp;*</span>substr)
+        <span class="self">self</span>.as_bytes().find_slice(substr)
     }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'i</span>&gt; FindSlice&lt;(char,)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>str {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (char,)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
-        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
-        <span class="kw">let </span>substr0 = substr.<span class="number">0</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
-        <span class="self">self</span>.find_slice((<span class="kw-2">&amp;*</span>substr0,))
+        <span class="self">self</span>.as_bytes().find_slice(substr)
     }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'i</span>&gt; FindSlice&lt;(char, char)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>str {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (char, char)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
-        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
-        <span class="kw">let </span>substr0 = substr.<span class="number">0</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
-        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
-        <span class="kw">let </span>substr1 = substr.<span class="number">1</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
-        <span class="self">self</span>.find_slice((<span class="kw-2">&amp;*</span>substr0, <span class="kw-2">&amp;*</span>substr1))
+        <span class="self">self</span>.as_bytes().find_slice(substr)
     }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'i</span>&gt; FindSlice&lt;(char, char, char)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>str {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (char, char, char)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
-        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
-        <span class="kw">let </span>substr0 = substr.<span class="number">0</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
-        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
-        <span class="kw">let </span>substr1 = substr.<span class="number">1</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
-        <span class="kw">let </span><span class="kw-2">mut </span>b = [<span class="number">0</span>; <span class="number">4</span>];
-        <span class="kw">let </span>substr2 = substr.<span class="number">2</span>.encode_utf8(<span class="kw-2">&amp;mut </span>b);
-        <span class="self">self</span>.find_slice((<span class="kw-2">&amp;*</span>substr0, <span class="kw-2">&amp;*</span>substr1, <span class="kw-2">&amp;*</span>substr2))
+        <span class="self">self</span>.as_bytes().find_slice(substr)
     }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'i</span>&gt; FindSlice&lt;u8&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>str {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: u8) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
-        <span class="self">self</span>.find_slice(substr.as_char())
+        <span class="self">self</span>.as_bytes().find_slice(substr)
     }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'i</span>&gt; FindSlice&lt;(u8,)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>str {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (u8,)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
-        <span class="self">self</span>.find_slice((substr.<span class="number">0</span>.as_char(),))
+        <span class="self">self</span>.as_bytes().find_slice(substr)
     }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'i</span>&gt; FindSlice&lt;(u8, u8)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>str {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (u8, u8)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
-        <span class="self">self</span>.find_slice((substr.<span class="number">0</span>.as_char(), substr.<span class="number">1</span>.as_char()))
+        <span class="self">self</span>.as_bytes().find_slice(substr)
     }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'i</span>&gt; FindSlice&lt;(u8, u8, u8)&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'i </span>str {
     <span class="attr">#[inline(always)]
     </span><span class="kw">fn </span>find_slice(<span class="kw-2">&amp;</span><span class="self">self</span>, substr: (u8, u8, u8)) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
-        <span class="self">self</span>.find_slice((substr.<span class="number">0</span>.as_char(), substr.<span class="number">1</span>.as_char(), substr.<span class="number">2</span>.as_char()))
+        <span class="self">self</span>.as_bytes().find_slice(substr)
     }
 }
 

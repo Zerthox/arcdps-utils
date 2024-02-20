@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["ch_width","input_float_with_format","input_key","item_context_menu","reset_button","small_padding","table_header_icon","table_with_icons","table_with_icons_sizing","window_context_menu"],"struct":["TableIconColumn"],"type":["Icon"]};
+window.SIDEBAR_ITEMS = {"fn":["ch_width","combo","enum_combo","input_float_with_format","input_key","item_context_menu","reset_button","small_padding","table_header_icon","table_with_icons","table_with_icons_sizing","window_context_menu"],"struct":["TableIconColumn"],"type":["Icon"]};
