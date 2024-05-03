@@ -1,5 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\winapi-0.3.9\src\macros.rs`."><title>macros.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="winapi" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
-    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin/.cargo\registry\src\index.crates.io-6f17d22bba15001f\winapi-0.3.9\src\macros.rs`."><title>macros.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="winapi" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../winapi/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -445,34 +446,34 @@
 // All files in the project carrying such notice may not be copied, modified, or distributed
 // except according to those terms.
 </span><span class="doccomment">//! Macros to make things easier to define
-</span><span class="macro">macro_rules! </span>DECLARE_HANDLE {
+</span><span class="macro">macro_rules!</span> DECLARE_HANDLE {
     (<span class="macro-nonterminal">$name</span>:ident, <span class="macro-nonterminal">$inner</span>:ident) =&gt; {
         <span class="kw">pub enum </span><span class="macro-nonterminal">$inner </span>{}
         <span class="kw">pub type </span><span class="macro-nonterminal">$name </span>= <span class="kw-2">*mut </span><span class="macro-nonterminal">$inner</span>;
     };
 }
-<span class="macro">macro_rules! </span>MAKE_HRESULT {
+<span class="macro">macro_rules!</span> MAKE_HRESULT {
     (<span class="macro-nonterminal">$sev</span>:expr, <span class="macro-nonterminal">$fac</span>:expr, <span class="macro-nonterminal">$code</span>:expr) =&gt; {
         (<span class="macro-nonterminal">$sev </span>&lt;&lt; <span class="number">31</span>) | (<span class="macro-nonterminal">$fac </span>&lt;&lt; <span class="number">16</span>) | <span class="macro-nonterminal">$code
     </span>}
 }
-<span class="macro">macro_rules! </span>MAKE_SCODE {
+<span class="macro">macro_rules!</span> MAKE_SCODE {
     (<span class="macro-nonterminal">$sev</span>:expr, <span class="macro-nonterminal">$fac</span>:expr, <span class="macro-nonterminal">$code</span>:expr) =&gt; {
         (<span class="macro-nonterminal">$sev </span>&lt;&lt; <span class="number">31</span>) | (<span class="macro-nonterminal">$fac </span>&lt;&lt; <span class="number">16</span>) | <span class="macro-nonterminal">$code
     </span>}
 }
-<span class="macro">macro_rules! </span>HIDP_ERROR_CODES {
+<span class="macro">macro_rules!</span> HIDP_ERROR_CODES {
     (<span class="macro-nonterminal">$sev</span>:expr, <span class="macro-nonterminal">$code</span>:expr) =&gt; {
         (<span class="macro-nonterminal">$sev </span>&lt;&lt; <span class="number">28</span>) | (FACILITY_HID_ERROR_CODE &lt;&lt; <span class="number">16</span>) | <span class="macro-nonterminal">$code
     </span>}
 }
-<span class="macro">macro_rules! </span>MAKEFOURCC {
+<span class="macro">macro_rules!</span> MAKEFOURCC {
     (<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr, <span class="macro-nonterminal">$c</span>:expr, <span class="macro-nonterminal">$d</span>:expr) =&gt; {
         (<span class="macro-nonterminal">$a </span><span class="kw">as </span>u32) | ((<span class="macro-nonterminal">$b </span><span class="kw">as </span>u32) &lt;&lt; <span class="number">8</span>) | ((<span class="macro-nonterminal">$c </span><span class="kw">as </span>u32) &lt;&lt; <span class="number">16</span>) | ((<span class="macro-nonterminal">$d </span><span class="kw">as </span>u32) &lt;&lt; <span class="number">24</span>)
     }
 }
 <span class="attr">#[macro_export]
-</span><span class="macro">macro_rules! </span>DEFINE_GUID {
+</span><span class="macro">macro_rules!</span> DEFINE_GUID {
     (
         <span class="macro-nonterminal">$name</span>:ident, <span class="macro-nonterminal">$l</span>:expr, <span class="macro-nonterminal">$w1</span>:expr, <span class="macro-nonterminal">$w2</span>:expr,
         <span class="macro-nonterminal">$b1</span>:expr, <span class="macro-nonterminal">$b2</span>:expr, <span class="macro-nonterminal">$b3</span>:expr, <span class="macro-nonterminal">$b4</span>:expr, <span class="macro-nonterminal">$b5</span>:expr, <span class="macro-nonterminal">$b6</span>:expr, <span class="macro-nonterminal">$b7</span>:expr, <span class="macro-nonterminal">$b8</span>:expr
@@ -485,14 +486,14 @@
         };
     }
 }
-<span class="macro">macro_rules! </span>DEFINE_BLUETOOTH_UUID128 {
+<span class="macro">macro_rules!</span> DEFINE_BLUETOOTH_UUID128 {
     (<span class="macro-nonterminal">$name</span>:ident, <span class="macro-nonterminal">$shortId</span>:expr) =&gt; {
         <span class="macro">DEFINE_GUID!</span>{<span class="macro-nonterminal">$name</span>,
             <span class="macro-nonterminal">$shortId </span><span class="kw">as </span>u32, <span class="number">0x0000</span>, <span class="number">0x1000</span>, <span class="number">0x80</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x80</span>, <span class="number">0x5F</span>, <span class="number">0x9B</span>, <span class="number">0x34</span>, <span class="number">0xFB</span>}
     }
 }
 <span class="attr">#[macro_export]
-</span><span class="macro">macro_rules! </span>DEFINE_PROPERTYKEY {
+</span><span class="macro">macro_rules!</span> DEFINE_PROPERTYKEY {
     (
         <span class="macro-nonterminal">$name</span>:ident, <span class="macro-nonterminal">$l</span>:expr, <span class="macro-nonterminal">$w1</span>:expr, <span class="macro-nonterminal">$w2</span>:expr,
         <span class="macro-nonterminal">$b1</span>:expr, <span class="macro-nonterminal">$b2</span>:expr, <span class="macro-nonterminal">$b3</span>:expr, <span class="macro-nonterminal">$b4</span>:expr, <span class="macro-nonterminal">$b5</span>:expr, <span class="macro-nonterminal">$b6</span>:expr, <span class="macro-nonterminal">$b7</span>:expr, <span class="macro-nonterminal">$b8</span>:expr,
@@ -511,7 +512,7 @@
     }
 }
 <span class="attr">#[macro_export]
-</span><span class="macro">macro_rules! </span>DEFINE_DEVPROPKEY {
+</span><span class="macro">macro_rules!</span> DEFINE_DEVPROPKEY {
     (
         <span class="macro-nonterminal">$name</span>:ident, <span class="macro-nonterminal">$l</span>:expr, <span class="macro-nonterminal">$w1</span>:expr, <span class="macro-nonterminal">$w2</span>:expr,
         <span class="macro-nonterminal">$b1</span>:expr, <span class="macro-nonterminal">$b2</span>:expr, <span class="macro-nonterminal">$b3</span>:expr, <span class="macro-nonterminal">$b4</span>:expr, <span class="macro-nonterminal">$b5</span>:expr, <span class="macro-nonterminal">$b6</span>:expr, <span class="macro-nonterminal">$b7</span>:expr, <span class="macro-nonterminal">$b8</span>:expr,
@@ -528,63 +529,63 @@
         };
     }
 }
-<span class="macro">macro_rules! </span>CTL_CODE {
+<span class="macro">macro_rules!</span> CTL_CODE {
     (<span class="macro-nonterminal">$DeviceType</span>:expr, <span class="macro-nonterminal">$Function</span>:expr, <span class="macro-nonterminal">$Method</span>:expr, <span class="macro-nonterminal">$Access</span>:expr) =&gt; {
         (<span class="macro-nonterminal">$DeviceType </span>&lt;&lt; <span class="number">16</span>) | (<span class="macro-nonterminal">$Access </span>&lt;&lt; <span class="number">14</span>) | (<span class="macro-nonterminal">$Function </span>&lt;&lt; <span class="number">2</span>) | <span class="macro-nonterminal">$Method
     </span>}
 }
-<span class="macro">macro_rules! </span>BTH_CTL {
+<span class="macro">macro_rules!</span> BTH_CTL {
     (<span class="macro-nonterminal">$id</span>:expr) =&gt; {
         <span class="macro">CTL_CODE!</span>(FILE_DEVICE_BLUETOOTH, <span class="macro-nonterminal">$id</span>, METHOD_BUFFERED, FILE_ANY_ACCESS)
     };
 }
-<span class="macro">macro_rules! </span>BTH_KERNEL_CTL {
+<span class="macro">macro_rules!</span> BTH_KERNEL_CTL {
     (<span class="macro-nonterminal">$id</span>:expr) =&gt; {
         <span class="macro">CTL_CODE!</span>(FILE_DEVICE_BLUETOOTH, <span class="macro-nonterminal">$id</span>, METHOD_NEITHER, FILE_ANY_ACCESS)
     };
 }
-<span class="macro">macro_rules! </span>HID_CTL_CODE {
+<span class="macro">macro_rules!</span> HID_CTL_CODE {
     (<span class="macro-nonterminal">$id</span>:expr) =&gt; {
         <span class="macro">CTL_CODE!</span>(FILE_DEVICE_KEYBOARD, <span class="macro-nonterminal">$id</span>, METHOD_NEITHER, FILE_ANY_ACCESS)
     }
 }
-<span class="macro">macro_rules! </span>HID_BUFFER_CTL_CODE {
+<span class="macro">macro_rules!</span> HID_BUFFER_CTL_CODE {
     (<span class="macro-nonterminal">$id</span>:expr) =&gt; {
         <span class="macro">CTL_CODE!</span>(FILE_DEVICE_KEYBOARD, <span class="macro-nonterminal">$id</span>, METHOD_BUFFERED, FILE_ANY_ACCESS)
     }
 }
-<span class="macro">macro_rules! </span>HID_IN_CTL_CODE {
+<span class="macro">macro_rules!</span> HID_IN_CTL_CODE {
     (<span class="macro-nonterminal">$id</span>:expr) =&gt; {
         <span class="macro">CTL_CODE!</span>(FILE_DEVICE_KEYBOARD, <span class="macro-nonterminal">$id</span>, METHOD_IN_DIRECT, FILE_ANY_ACCESS)
     }
 }
-<span class="macro">macro_rules! </span>HID_OUT_CTL_CODE {
+<span class="macro">macro_rules!</span> HID_OUT_CTL_CODE {
     (<span class="macro-nonterminal">$id</span>:expr) =&gt; {
         <span class="macro">CTL_CODE!</span>(FILE_DEVICE_KEYBOARD, <span class="macro-nonterminal">$id</span>, METHOD_OUT_DIRECT, FILE_ANY_ACCESS)
     }
 }
-<span class="macro">macro_rules! </span>AUDCLNT_ERR {
+<span class="macro">macro_rules!</span> AUDCLNT_ERR {
     (<span class="macro-nonterminal">$n</span>:expr) =&gt; {
         <span class="macro">MAKE_HRESULT!</span>(SEVERITY_ERROR, FACILITY_AUDCLNT, <span class="macro-nonterminal">$n</span>)
     };
 }
-<span class="macro">macro_rules! </span>AUDCLNT_SUCCESS {
+<span class="macro">macro_rules!</span> AUDCLNT_SUCCESS {
     (<span class="macro-nonterminal">$n</span>:expr) =&gt; {
         <span class="macro">MAKE_SCODE!</span>(SEVERITY_SUCCESS, FACILITY_AUDCLNT, <span class="macro-nonterminal">$n</span>)
     };
 }
-<span class="macro">macro_rules! </span>BCRYPT_MAKE_INTERFACE_VERSION {
+<span class="macro">macro_rules!</span> BCRYPT_MAKE_INTERFACE_VERSION {
     (<span class="macro-nonterminal">$major</span>:expr, <span class="macro-nonterminal">$minor</span>:expr) =&gt; {
         <span class="macro-nonterminal">$crate::shared::bcrypt::BCRYPT_INTERFACE_VERSION </span>{
             MajorVersion: <span class="macro-nonterminal">$major</span>, MinorVersion: <span class="macro-nonterminal">$minor</span>,
         }
     }
 }
-<span class="macro">macro_rules! </span>MAKEINTRESOURCE {
+<span class="macro">macro_rules!</span> MAKEINTRESOURCE {
     (<span class="macro-nonterminal">$i</span>:expr) =&gt; { <span class="macro-nonterminal">$i </span><span class="kw">as </span>u16 <span class="kw">as </span>usize <span class="kw">as </span>LPWSTR }
 }
 <span class="attr">#[macro_export]
-</span><span class="macro">macro_rules! </span>RIDL {
+</span><span class="macro">macro_rules!</span> RIDL {
     (<span class="attr">#[uuid(<span class="macro-nonterminal">$l</span>:expr, <span class="macro-nonterminal">$w1</span>:expr, <span class="macro-nonterminal">$w2</span>:expr,
         <span class="macro-nonterminal">$b1</span>:expr, <span class="macro-nonterminal">$b2</span>:expr, <span class="macro-nonterminal">$b3</span>:expr, <span class="macro-nonterminal">$b4</span>:expr, <span class="macro-nonterminal">$b5</span>:expr, <span class="macro-nonterminal">$b6</span>:expr, <span class="macro-nonterminal">$b7</span>:expr, <span class="macro-nonterminal">$b8</span>:expr)]
     </span>class <span class="macro-nonterminal">$class</span>:ident;) =&gt; (
@@ -718,7 +719,7 @@
     );
     (@item <span class="macro-nonterminal">$thing</span>:item) =&gt; (<span class="macro-nonterminal">$thing</span>);
 }
-<span class="macro">macro_rules! </span>UNION {
+<span class="macro">macro_rules!</span> UNION {
     ($(<span class="attr">#[<span class="macro-nonterminal">$attrs</span>:meta]</span>)* union <span class="macro-nonterminal">$name</span>:ident {
         [<span class="macro-nonterminal">$stype</span>:ty; <span class="macro-nonterminal">$ssize</span>:expr],
         $(<span class="macro-nonterminal">$variant</span>:ident <span class="macro-nonterminal">$variant_mut</span>:ident: <span class="macro-nonterminal">$ftype</span>:ty,)+
@@ -776,7 +777,7 @@
         )+}
     );
 }
-<span class="macro">macro_rules! </span>BITFIELD {
+<span class="macro">macro_rules!</span> BITFIELD {
     (<span class="macro-nonterminal">$base</span>:ident <span class="macro-nonterminal">$field</span>:ident: <span class="macro-nonterminal">$fieldtype</span>:ty [
         $(<span class="macro-nonterminal">$thing</span>:ident <span class="macro-nonterminal">$set_thing</span>:ident[<span class="macro-nonterminal">$r</span>:expr],)+
     ]) =&gt; {
@@ -796,7 +797,7 @@
     }
 }
 <span class="attr">#[macro_export]
-</span><span class="macro">macro_rules! </span>ENUM {
+</span><span class="macro">macro_rules!</span> ENUM {
     {<span class="kw">enum </span><span class="macro-nonterminal">$name</span>:ident { $(<span class="macro-nonterminal">$variant</span>:ident = <span class="macro-nonterminal">$value</span>:expr,)+ }} =&gt; {
         <span class="kw">pub type </span><span class="macro-nonterminal">$name </span>= u32;
         $(<span class="kw">pub const </span><span class="macro-nonterminal">$variant</span>: <span class="macro-nonterminal">$name </span>= <span class="macro-nonterminal">$value</span>;)+
@@ -820,7 +821,7 @@
     };
 }
 <span class="attr">#[macro_export]
-</span><span class="macro">macro_rules! </span>STRUCT {
+</span><span class="macro">macro_rules!</span> STRUCT {
     (<span class="attr">#[debug] </span>$(<span class="macro-nonterminal">$rest</span>:tt)<span class="kw-2">*</span>) =&gt; (
         <span class="macro">STRUCT!</span>{<span class="attr">#[cfg_attr(feature = <span class="string">"impl-debug"</span>, derive(Debug))] </span>$(<span class="macro-nonterminal">$rest</span>)<span class="kw-2">*</span>}
     );
@@ -842,10 +843,10 @@
         }
     );
 }
-<span class="macro">macro_rules! </span>IFDEF {
+<span class="macro">macro_rules!</span> IFDEF {
     ($(<span class="macro-nonterminal">$thing</span>:item)<span class="kw-2">*</span>) =&gt; ($(<span class="macro-nonterminal">$thing</span>)<span class="kw-2">*</span>)
 }
-<span class="macro">macro_rules! </span>FN {
+<span class="macro">macro_rules!</span> FN {
     (stdcall <span class="macro-nonterminal">$func</span>:ident($(<span class="macro-nonterminal">$t</span>:ty,)<span class="kw-2">*</span>) -&gt; <span class="macro-nonterminal">$ret</span>:ty) =&gt; (
         <span class="kw">pub type </span><span class="macro-nonterminal">$func </span>= <span class="prelude-ty">Option</span>&lt;<span class="kw">unsafe extern </span><span class="string">"system" </span><span class="kw">fn</span>($(<span class="macro-nonterminal">$t</span>,)<span class="kw-2">*</span>) -&gt; <span class="macro-nonterminal">$ret</span>&gt;;
     );
@@ -859,22 +860,22 @@
         <span class="kw">pub type </span><span class="macro-nonterminal">$func </span>= <span class="prelude-ty">Option</span>&lt;<span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn</span>($(<span class="macro-nonterminal">$p</span>: <span class="macro-nonterminal">$t</span>,)<span class="kw-2">*</span>) -&gt; <span class="macro-nonterminal">$ret</span>&gt;;
     );
 }
-<span class="macro">macro_rules! </span>_WSAIO {
+<span class="macro">macro_rules!</span> _WSAIO {
     (<span class="macro-nonterminal">$x</span>:expr, <span class="macro-nonterminal">$y</span>:expr) =&gt; {
         <span class="macro-nonterminal">$crate::shared::ws2def::IOC_VOID </span>| <span class="macro-nonterminal">$x </span>| <span class="macro-nonterminal">$y
     </span>}
 }
-<span class="macro">macro_rules! </span>_WSAIOR {
+<span class="macro">macro_rules!</span> _WSAIOR {
     (<span class="macro-nonterminal">$x</span>:expr, <span class="macro-nonterminal">$y</span>:expr) =&gt; {
         <span class="macro-nonterminal">$crate::shared::ws2def::IOC_OUT </span>| <span class="macro-nonterminal">$x </span>| <span class="macro-nonterminal">$y
     </span>}
 }
-<span class="macro">macro_rules! </span>_WSAIOW {
+<span class="macro">macro_rules!</span> _WSAIOW {
     (<span class="macro-nonterminal">$x</span>:expr, <span class="macro-nonterminal">$y</span>:expr) =&gt; {
         <span class="macro-nonterminal">$crate::shared::ws2def::IOC_IN </span>| <span class="macro-nonterminal">$x </span>| <span class="macro-nonterminal">$y
     </span>}
 }
-<span class="macro">macro_rules! </span>_WSAIORW {
+<span class="macro">macro_rules!</span> _WSAIORW {
     (<span class="macro-nonterminal">$x</span>:expr, <span class="macro-nonterminal">$y</span>:expr) =&gt; {
         <span class="macro-nonterminal">$crate::shared::ws2def::IOC_INOUT </span>| <span class="macro-nonterminal">$x </span>| <span class="macro-nonterminal">$y
     </span>}

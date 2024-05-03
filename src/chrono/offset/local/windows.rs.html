@@ -1,5 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\chrono-0.4.34\src\offset\local\windows.rs`."><title>windows.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../..\../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../..\../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../..\../" data-static-root-path="../../..\../static.files/" data-current-crate="chrono" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../..\../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../..\../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../..\../src-files.js"></script><script defer src="../../..\../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../..\../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../..\../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../..\../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../..\../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
-    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../..\../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../..\../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../..\../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin/.cargo\registry\src\index.crates.io-6f17d22bba15001f\chrono-0.4.38\src\offset\local\windows.rs`."><title>windows.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../..\../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../..\../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../..\../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../..\../" data-static-root-path="../../..\../static.files/" data-current-crate="chrono" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../..\../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../..\../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../..\../src-files.js"></script><script defer src="../../..\../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../..\../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../..\../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../..\../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../..\../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../..\../chrono/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../..\../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../..\../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../..\../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -261,6 +262,37 @@
 <a href="#260" id="260">260</a>
 <a href="#261" id="261">261</a>
 <a href="#262" id="262">262</a>
+<a href="#263" id="263">263</a>
+<a href="#264" id="264">264</a>
+<a href="#265" id="265">265</a>
+<a href="#266" id="266">266</a>
+<a href="#267" id="267">267</a>
+<a href="#268" id="268">268</a>
+<a href="#269" id="269">269</a>
+<a href="#270" id="270">270</a>
+<a href="#271" id="271">271</a>
+<a href="#272" id="272">272</a>
+<a href="#273" id="273">273</a>
+<a href="#274" id="274">274</a>
+<a href="#275" id="275">275</a>
+<a href="#276" id="276">276</a>
+<a href="#277" id="277">277</a>
+<a href="#278" id="278">278</a>
+<a href="#279" id="279">279</a>
+<a href="#280" id="280">280</a>
+<a href="#281" id="281">281</a>
+<a href="#282" id="282">282</a>
+<a href="#283" id="283">283</a>
+<a href="#284" id="284">284</a>
+<a href="#285" id="285">285</a>
+<a href="#286" id="286">286</a>
+<a href="#287" id="287">287</a>
+<a href="#288" id="288">288</a>
+<a href="#289" id="289">289</a>
+<a href="#290" id="290">290</a>
+<a href="#291" id="291">291</a>
+<a href="#292" id="292">292</a>
+<a href="#293" id="293">293</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2012-2014 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
@@ -272,14 +304,13 @@
 // except according to those terms.
 
 </span><span class="kw">use </span>std::cmp::Ordering;
-<span class="kw">use </span>std::convert::TryFrom;
 <span class="kw">use </span>std::mem::MaybeUninit;
 <span class="kw">use </span>std::ptr;
 
 <span class="kw">use </span><span class="kw">super</span>::win_bindings::{GetTimeZoneInformationForYear, SYSTEMTIME, TIME_ZONE_INFORMATION};
 
 <span class="kw">use </span><span class="kw">crate</span>::offset::local::{lookup_with_dst_transitions, Transition};
-<span class="kw">use crate</span>::{Datelike, FixedOffset, LocalResult, NaiveDate, NaiveDateTime, NaiveTime, Weekday};
+<span class="kw">use crate</span>::{Datelike, FixedOffset, MappedLocalTime, NaiveDate, NaiveDateTime, NaiveTime, Weekday};
 
 <span class="comment">// We don't use `SystemTimeToTzSpecificLocalTime` because it doesn't support the same range of dates
 // as Chrono. Also it really isn't that difficult to work out the correct offset from the provided
@@ -288,13 +319,13 @@
 // This method uses `overflowing_sub_offset` because it is no problem if the transition time in UTC
 // falls a couple of hours inside the buffer space around the `NaiveDateTime` range (although it is
 // very theoretical to have a transition at midnight around `NaiveDate::(MIN|MAX)`.
-</span><span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>offset_from_utc_datetime(utc: <span class="kw-2">&amp;</span>NaiveDateTime) -&gt; LocalResult&lt;FixedOffset&gt; {
+</span><span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>offset_from_utc_datetime(utc: <span class="kw-2">&amp;</span>NaiveDateTime) -&gt; MappedLocalTime&lt;FixedOffset&gt; {
     <span class="comment">// Using a `TzInfo` based on the year of an UTC datetime is technically wrong, we should be
     // using the rules for the year of the corresponding local time. But this matches what
     // `SystemTimeToTzSpecificLocalTime` is documented to do.
     </span><span class="kw">let </span>tz_info = <span class="kw">match </span>TzInfo::for_year(utc.year()) {
         <span class="prelude-val">Some</span>(tz_info) =&gt; tz_info,
-        <span class="prelude-val">None </span>=&gt; <span class="kw">return </span>LocalResult::None,
+        <span class="prelude-val">None </span>=&gt; <span class="kw">return </span>MappedLocalTime::None,
     };
     <span class="kw">let </span>offset = <span class="kw">match </span>(tz_info.std_transition, tz_info.dst_transition) {
         (<span class="prelude-val">Some</span>(std_transition), <span class="prelude-val">Some</span>(dst_transition)) =&gt; {
@@ -328,16 +359,16 @@
         }
         (<span class="prelude-val">None</span>, <span class="prelude-val">None</span>) =&gt; tz_info.std_offset,
     };
-    LocalResult::Single(offset)
+    MappedLocalTime::Single(offset)
 }
 
 <span class="comment">// We don't use `TzSpecificLocalTimeToSystemTime` because it doesn't let us choose how to handle
 // ambiguous cases (during a DST transition). Instead we get the timezone information for the
 // current year and compute it ourselves, like we do on Unix.
-</span><span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>offset_from_local_datetime(local: <span class="kw-2">&amp;</span>NaiveDateTime) -&gt; LocalResult&lt;FixedOffset&gt; {
+</span><span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>offset_from_local_datetime(local: <span class="kw-2">&amp;</span>NaiveDateTime) -&gt; MappedLocalTime&lt;FixedOffset&gt; {
     <span class="kw">let </span>tz_info = <span class="kw">match </span>TzInfo::for_year(local.year()) {
         <span class="prelude-val">Some</span>(tz_info) =&gt; tz_info,
-        <span class="prelude-val">None </span>=&gt; <span class="kw">return </span>LocalResult::None,
+        <span class="prelude-val">None </span>=&gt; <span class="kw">return </span>MappedLocalTime::None,
     };
     <span class="comment">// Create a sorted slice of transitions and use `lookup_with_dst_transitions`.
     </span><span class="kw">match </span>(tz_info.std_transition, tz_info.dst_transition) {
@@ -351,7 +382,7 @@
                 Ordering::Greater =&gt; [dst_transition, std_transition],
                 Ordering::Equal =&gt; {
                     <span class="comment">// This doesn't make sense. Let's just return the standard offset.
-                    </span><span class="kw">return </span>LocalResult::Single(tz_info.std_offset);
+                    </span><span class="kw">return </span>MappedLocalTime::Single(tz_info.std_offset);
                 }
             };
             lookup_with_dst_transitions(<span class="kw-2">&amp;</span>transitions, <span class="kw-2">*</span>local)
@@ -366,7 +397,7 @@
                 [Transition::new(dst_transition, tz_info.std_offset, tz_info.dst_offset)];
             lookup_with_dst_transitions(<span class="kw-2">&amp;</span>transitions, <span class="kw-2">*</span>local)
         }
-        (<span class="prelude-val">None</span>, <span class="prelude-val">None</span>) =&gt; <span class="kw">return </span>LocalResult::Single(tz_info.std_offset),
+        (<span class="prelude-val">None</span>, <span class="prelude-val">None</span>) =&gt; MappedLocalTime::Single(tz_info.std_offset),
     }
 }
 
@@ -404,42 +435,74 @@
             }
             tz_info.assume_init()
         };
+        <span class="kw">let </span>std_offset = (tz_info.Bias)
+            .checked_add(tz_info.StandardBias)
+            .and_then(|o| o.checked_mul(<span class="number">60</span>))
+            .and_then(FixedOffset::west_opt)<span class="question-mark">?</span>;
+        <span class="kw">let </span>dst_offset = (tz_info.Bias)
+            .checked_add(tz_info.DaylightBias)
+            .and_then(|o| o.checked_mul(<span class="number">60</span>))
+            .and_then(FixedOffset::west_opt)<span class="question-mark">?</span>;
         <span class="prelude-val">Some</span>(TzInfo {
-            std_offset: FixedOffset::west_opt((tz_info.Bias + tz_info.StandardBias) * <span class="number">60</span>)<span class="question-mark">?</span>,
-            dst_offset: FixedOffset::west_opt((tz_info.Bias + tz_info.DaylightBias) * <span class="number">60</span>)<span class="question-mark">?</span>,
-            std_transition: system_time_from_naive_date_time(tz_info.StandardDate, year),
-            dst_transition: system_time_from_naive_date_time(tz_info.DaylightDate, year),
+            std_offset,
+            dst_offset,
+            std_transition: naive_date_time_from_system_time(tz_info.StandardDate, year).ok()<span class="question-mark">?</span>,
+            dst_transition: naive_date_time_from_system_time(tz_info.DaylightDate, year).ok()<span class="question-mark">?</span>,
         })
     }
 }
 
-<span class="kw">fn </span>system_time_from_naive_date_time(st: SYSTEMTIME, year: i32) -&gt; <span class="prelude-ty">Option</span>&lt;NaiveDateTime&gt; {
+<span class="doccomment">/// Resolve a `SYSTEMTIME` object to an `Option&lt;NaiveDateTime&gt;`.
+///
+/// A `SYSTEMTIME` within a `TIME_ZONE_INFORMATION` struct can be zero to indicate there is no
+/// transition.
+/// If it has year, month and day values it is a concrete date.
+/// If the year is missing the `SYSTEMTIME` is a rule, which this method resolves for the provided
+/// year. A rule has a month, weekday, and nth weekday of the month as components.
+///
+/// Returns `Err` if any of the values is invalid, which should never happen.
+</span><span class="kw">fn </span>naive_date_time_from_system_time(
+    st: SYSTEMTIME,
+    year: i32,
+) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;NaiveDateTime&gt;, ()&gt; {
     <span class="kw">if </span>st.wYear == <span class="number">0 </span>&amp;&amp; st.wMonth == <span class="number">0 </span>{
-        <span class="kw">return </span><span class="prelude-val">None</span>; <span class="comment">// No DST transitions for this year in this timezone.
-    </span>}
+        <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
+    }
     <span class="kw">let </span>time = NaiveTime::from_hms_milli_opt(
         st.wHour <span class="kw">as </span>u32,
         st.wMinute <span class="kw">as </span>u32,
         st.wSecond <span class="kw">as </span>u32,
         st.wMilliseconds <span class="kw">as </span>u32,
-    )<span class="question-mark">?</span>;
-    <span class="comment">// In Chrono's Weekday, Monday is 0 whereas in SYSTEMTIME Monday is 1 and Sunday is 0.
-    // Therefore we move back one day after converting the u16 value to a Weekday.
-    </span><span class="kw">let </span>day_of_week = Weekday::try_from(u8::try_from(st.wDayOfWeek).ok()<span class="question-mark">?</span>).ok()<span class="question-mark">?</span>.pred();
+    )
+    .ok_or(())<span class="question-mark">?</span>;
+
     <span class="kw">if </span>st.wYear != <span class="number">0 </span>{
-        <span class="kw">return </span>NaiveDate::from_ymd_opt(st.wYear <span class="kw">as </span>i32, st.wMonth <span class="kw">as </span>u32, st.wDay <span class="kw">as </span>u32)
-            .map(|d| d.and_time(time));
+        <span class="comment">// We have a concrete date.
+        </span><span class="kw">let </span>date =
+            NaiveDate::from_ymd_opt(st.wYear <span class="kw">as </span>i32, st.wMonth <span class="kw">as </span>u32, st.wDay <span class="kw">as </span>u32).ok_or(())<span class="question-mark">?</span>;
+        <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(date.and_time(time)));
     }
-    <span class="kw">let </span>date = <span class="kw">if let </span><span class="prelude-val">Some</span>(date) =
-        NaiveDate::from_weekday_of_month_opt(year, st.wMonth <span class="kw">as </span>u32, day_of_week, st.wDay <span class="kw">as </span>u8)
-    {
-        date
-    } <span class="kw">else if </span>st.wDay == <span class="number">5 </span>{
-        NaiveDate::from_weekday_of_month_opt(year, st.wMonth <span class="kw">as </span>u32, day_of_week, <span class="number">4</span>)<span class="question-mark">?
-    </span>} <span class="kw">else </span>{
-        <span class="kw">return </span><span class="prelude-val">None</span>;
+
+    <span class="comment">// Resolve a rule with month, weekday, and nth weekday of the month to a date in the current
+    // year.
+    </span><span class="kw">let </span>weekday = <span class="kw">match </span>st.wDayOfWeek {
+        <span class="number">0 </span>=&gt; Weekday::Sun,
+        <span class="number">1 </span>=&gt; Weekday::Mon,
+        <span class="number">2 </span>=&gt; Weekday::Tue,
+        <span class="number">3 </span>=&gt; Weekday::Wed,
+        <span class="number">4 </span>=&gt; Weekday::Thu,
+        <span class="number">5 </span>=&gt; Weekday::Fri,
+        <span class="number">6 </span>=&gt; Weekday::Sat,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(()),
     };
-    <span class="prelude-val">Some</span>(date.and_time(time))
+    <span class="kw">let </span>nth_day = <span class="kw">match </span>st.wDay {
+        <span class="number">1</span>..=<span class="number">5 </span>=&gt; st.wDay <span class="kw">as </span>u8,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(()),
+    };
+    <span class="kw">let </span>date = NaiveDate::from_weekday_of_month_opt(year, st.wMonth <span class="kw">as </span>u32, weekday, nth_day)
+        .or_else(|| NaiveDate::from_weekday_of_month_opt(year, st.wMonth <span class="kw">as </span>u32, weekday, <span class="number">4</span>))
+        .ok_or(())<span class="question-mark">?</span>; <span class="comment">// `st.wMonth` must be invalid
+    </span><span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(date.and_time(time)))
 }
 
 <span class="attr">#[cfg(test)]
@@ -447,7 +510,7 @@
     <span class="kw">use </span><span class="kw">crate</span>::offset::local::win_bindings::{
         SystemTimeToFileTime, TzSpecificLocalTimeToSystemTime, FILETIME, SYSTEMTIME,
     };
-    <span class="kw">use crate</span>::{DateTime, Duration, FixedOffset, Local, NaiveDate, NaiveDateTime};
+    <span class="kw">use crate</span>::{DateTime, FixedOffset, Local, NaiveDate, NaiveDateTime, TimeDelta};
     <span class="kw">use crate</span>::{Datelike, TimeZone, Timelike};
     <span class="kw">use </span>std::mem::MaybeUninit;
     <span class="kw">use </span>std::ptr;
@@ -505,7 +568,7 @@
                 SystemTimeToFileTime(st, init.as_mut_ptr());
             }
             <span class="comment">// SystemTimeToFileTime must have succeeded at this point, so we can assume the value is
-            // initalized.
+            // initialized.
             </span><span class="kw">let </span>filetime = <span class="kw">unsafe </span>{ init.assume_init() };
             <span class="kw">let </span>bit_shift =
                 ((filetime.dwHighDateTime <span class="kw">as </span>u64) &lt;&lt; <span class="number">32</span>) | (filetime.dwLowDateTime <span class="kw">as </span>u64);
@@ -519,7 +582,7 @@
             </span><span class="kw">if let </span><span class="prelude-val">Some</span>(our_result) = Local.from_local_datetime(<span class="kw-2">&amp;</span>date).earliest() {
                 <span class="macro">assert_eq!</span>(from_local_time(<span class="kw-2">&amp;</span>date), our_result);
             }
-            date += Duration::hours(<span class="number">1</span>);
+            date += TimeDelta::try_hours(<span class="number">1</span>).unwrap();
         }
     }
 }

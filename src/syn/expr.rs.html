@@ -1,5 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\syn-2.0.50\src\expr.rs`."><title>expr.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="syn" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
-    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin/.cargo\registry\src\index.crates.io-6f17d22bba15001f\syn-2.0.60\src\expr.rs`."><title>expr.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="syn" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../syn/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -3573,6 +3574,61 @@
 <a href="#3572" id="3572">3572</a>
 <a href="#3573" id="3573">3573</a>
 <a href="#3574" id="3574">3574</a>
+<a href="#3575" id="3575">3575</a>
+<a href="#3576" id="3576">3576</a>
+<a href="#3577" id="3577">3577</a>
+<a href="#3578" id="3578">3578</a>
+<a href="#3579" id="3579">3579</a>
+<a href="#3580" id="3580">3580</a>
+<a href="#3581" id="3581">3581</a>
+<a href="#3582" id="3582">3582</a>
+<a href="#3583" id="3583">3583</a>
+<a href="#3584" id="3584">3584</a>
+<a href="#3585" id="3585">3585</a>
+<a href="#3586" id="3586">3586</a>
+<a href="#3587" id="3587">3587</a>
+<a href="#3588" id="3588">3588</a>
+<a href="#3589" id="3589">3589</a>
+<a href="#3590" id="3590">3590</a>
+<a href="#3591" id="3591">3591</a>
+<a href="#3592" id="3592">3592</a>
+<a href="#3593" id="3593">3593</a>
+<a href="#3594" id="3594">3594</a>
+<a href="#3595" id="3595">3595</a>
+<a href="#3596" id="3596">3596</a>
+<a href="#3597" id="3597">3597</a>
+<a href="#3598" id="3598">3598</a>
+<a href="#3599" id="3599">3599</a>
+<a href="#3600" id="3600">3600</a>
+<a href="#3601" id="3601">3601</a>
+<a href="#3602" id="3602">3602</a>
+<a href="#3603" id="3603">3603</a>
+<a href="#3604" id="3604">3604</a>
+<a href="#3605" id="3605">3605</a>
+<a href="#3606" id="3606">3606</a>
+<a href="#3607" id="3607">3607</a>
+<a href="#3608" id="3608">3608</a>
+<a href="#3609" id="3609">3609</a>
+<a href="#3610" id="3610">3610</a>
+<a href="#3611" id="3611">3611</a>
+<a href="#3612" id="3612">3612</a>
+<a href="#3613" id="3613">3613</a>
+<a href="#3614" id="3614">3614</a>
+<a href="#3615" id="3615">3615</a>
+<a href="#3616" id="3616">3616</a>
+<a href="#3617" id="3617">3617</a>
+<a href="#3618" id="3618">3618</a>
+<a href="#3619" id="3619">3619</a>
+<a href="#3620" id="3620">3620</a>
+<a href="#3621" id="3621">3621</a>
+<a href="#3622" id="3622">3622</a>
+<a href="#3623" id="3623">3623</a>
+<a href="#3624" id="3624">3624</a>
+<a href="#3625" id="3625">3625</a>
+<a href="#3626" id="3626">3626</a>
+<a href="#3627" id="3627">3627</a>
+<a href="#3628" id="3628">3628</a>
+<a href="#3629" id="3629">3629</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::attr::Attribute;
 <span class="attr">#[cfg(feature = <span class="string">"full"</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::generics::BoundLifetimes;
@@ -3601,7 +3657,7 @@
 <span class="attr">#[cfg(all(feature = <span class="string">"parsing"</span>, feature = <span class="string">"full"</span>))]
 </span><span class="kw">use </span>std::mem;
 
-<span class="macro">ast_enum_of_structs! </span>{
+<span class="macro">ast_enum_of_structs!</span> {
     <span class="doccomment">/// A Rust expression.
     ///
     /// *This type is available only if Syn is built with the `"derive"` or `"full"`
@@ -3832,7 +3888,7 @@
     </span>}
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A slice literal expression: `[a, b, c, d]`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprArray #full {
@@ -3842,7 +3898,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// An assignment expression: `a = compute()`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprAssign #full {
@@ -3853,7 +3909,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// An async block: `async { ... }`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprAsync #full {
@@ -3864,7 +3920,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// An await expression: `fut.await`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprAwait #full {
@@ -3875,7 +3931,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A binary operation: `a + b`, `a += b`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
     </span><span class="kw">pub struct </span>ExprBinary {
@@ -3886,7 +3942,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A blocked scope: `{ ... }`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprBlock #full {
@@ -3896,7 +3952,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A `break`, with an optional label to break and an optional
     /// expression.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
@@ -3908,7 +3964,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A function call expression: `invoke(a, b)`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
     </span><span class="kw">pub struct </span>ExprCall {
@@ -3919,7 +3975,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A cast expression: `foo as f64`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
     </span><span class="kw">pub struct </span>ExprCast {
@@ -3930,7 +3986,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A closure expression: `|a, b| a + b`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprClosure #full {
@@ -3948,7 +4004,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A const block: `const { ... }`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprConst #full {
@@ -3958,7 +4014,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A `continue`, with an optional label.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprContinue #full {
@@ -3968,7 +4024,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// Access of a named struct field (`obj.k`) or unnamed tuple struct
     /// field (`obj.0`).
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
@@ -3980,7 +4036,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A for loop: `for pat in expr { ... }`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprForLoop #full {
@@ -3994,7 +4050,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// An expression contained within invisible delimiters.
     ///
     /// This variant is important for faithfully representing the precedence
@@ -4008,7 +4064,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// An `if` expression with an optional `else` block: `if expr { ... }
     /// else { ... }`.
     ///
@@ -4024,7 +4080,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A square bracketed indexing expression: `vector[2]`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
     </span><span class="kw">pub struct </span>ExprIndex {
@@ -4035,7 +4091,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// The inferred value of a const generic argument, denoted `_`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprInfer #full {
@@ -4044,7 +4100,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A `let` guard: `let Some(x) = opt`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprLet #full {
@@ -4056,7 +4112,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A literal in place of an expression: `1`, `"foo"`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
     </span><span class="kw">pub struct </span>ExprLit {
@@ -4065,7 +4121,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// Conditionless loop: `loop { ... }`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprLoop #full {
@@ -4076,7 +4132,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A macro invocation expression: `format!("{}", q)`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
     </span><span class="kw">pub struct </span>ExprMacro {
@@ -4085,7 +4141,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A `match` expression: `match n { Some(n) =&gt; {}, None =&gt; {} }`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprMatch #full {
@@ -4097,7 +4153,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A method call expression: `x.foo::&lt;T&gt;(a, b)`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
     </span><span class="kw">pub struct </span>ExprMethodCall {
@@ -4111,7 +4167,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A parenthesized expression: `(a + b)`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
     </span><span class="kw">pub struct </span>ExprParen {
@@ -4121,7 +4177,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A path like `std::mem::replace` possibly containing generic
     /// parameters and a qualified self-type.
     ///
@@ -4134,7 +4190,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprRange #full {
@@ -4145,7 +4201,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A referencing operation: `&amp;a` or `&amp;mut a`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
     </span><span class="kw">pub struct </span>ExprReference {
@@ -4156,7 +4212,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// An array literal constructed from one repeated element: `[0u8; N]`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprRepeat #full {
@@ -4168,7 +4224,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A `return`, with an optional value to be returned.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprReturn #full {
@@ -4178,7 +4234,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A struct literal expression: `Point { x: 1, y: 1 }`.
     ///
     /// The `rest` provides the value of the remaining fields as in `S { a:
@@ -4195,7 +4251,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A try-expression: `expr?`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprTry #full {
@@ -4205,7 +4261,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A try block: `try { ... }`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprTryBlock #full {
@@ -4215,7 +4271,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A tuple expression: `(a, b, c, d)`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprTuple #full {
@@ -4225,7 +4281,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A unary operation: `!x`, `*x`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
     </span><span class="kw">pub struct </span>ExprUnary {
@@ -4235,7 +4291,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// An unsafe block: `unsafe { ... }`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprUnsafe #full {
@@ -4245,7 +4301,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A while loop: `while expr { ... }`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprWhile #full {
@@ -4257,7 +4313,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A yield expression: `yield expr`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>ExprYield #full {
@@ -4324,7 +4380,7 @@
     }
 }
 
-<span class="macro">ast_enum! </span>{
+<span class="macro">ast_enum!</span> {
     <span class="doccomment">/// A struct or tuple struct field accessed in a struct literal or field
     /// expression.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
@@ -4392,7 +4448,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// The index of an unnamed tuple struct field.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
     </span><span class="kw">pub struct </span>Index {
@@ -4403,7 +4459,7 @@
 
 <span class="kw">impl </span>From&lt;usize&gt; <span class="kw">for </span>Index {
     <span class="kw">fn </span>from(index: usize) -&gt; Index {
-        <span class="macro">assert!</span>(index &lt; u32::max_value() <span class="kw">as </span>usize);
+        <span class="macro">assert!</span>(index &lt; u32::MAX <span class="kw">as </span>usize);
         Index {
             index: index <span class="kw">as </span>u32,
             span: Span::call_site(),
@@ -4436,7 +4492,7 @@
     }
 }
 
-<span class="macro">ast_struct! </span>{
+<span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A field-value pair in a struct literal.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">"full"</span>, feature = <span class="string">"derive"</span>))))]
     </span><span class="kw">pub struct </span>FieldValue {
@@ -4452,7 +4508,7 @@
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"full"</span>)]
-</span><span class="macro">ast_struct! </span>{
+</span><span class="macro">ast_struct!</span> {
     <span class="doccomment">/// A lifetime labeling a `for`, `while`, or `loop`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub struct </span>Label {
@@ -4462,7 +4518,7 @@
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"full"</span>)]
-</span><span class="macro">ast_struct! </span>{
+</span><span class="macro">ast_struct!</span> {
     <span class="doccomment">/// One arm of a `match` expression: `0..=10 =&gt; { return true; }`.
     ///
     /// As in:
@@ -4492,7 +4548,7 @@
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"full"</span>)]
-</span><span class="macro">ast_enum! </span>{
+</span><span class="macro">ast_enum!</span> {
     <span class="doccomment">/// Limit types of a range, inclusive or exclusive.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">"full"</span>)))]
     </span><span class="kw">pub enum </span>RangeLimits {
@@ -4759,6 +4815,122 @@
         #[cfg_attr(doc_cfg, doc(cfg(all(feature = <span class="string">"full"</span>, feature = <span class="string">"parsing"</span>))))]
         </span><span class="kw">pub fn </span>parse_without_eager_brace(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
             ambiguous_expr(input, AllowStruct(<span class="bool-val">false</span>))
+        }
+
+        <span class="doccomment">/// An alternative to the primary `Expr::parse` parser (from the
+        /// [`Parse`] trait) for syntactic positions in which expression
+        /// boundaries are placed more eagerly than done by the typical
+        /// expression grammar. This includes expressions at the head of a
+        /// statement or in the right-hand side of a `match` arm.
+        ///
+        /// Compare the following cases:
+        ///
+        /// 1.
+        ///   ```
+        ///   # let result = ();
+        ///   # let guard = false;
+        ///   # let cond = true;
+        ///   # let f = true;
+        ///   # let g = f;
+        ///   #
+        ///   let _ = match result {
+        ///       () if guard =&gt; if cond { f } else { g }
+        ///       () =&gt; false,
+        ///   };
+        ///   ```
+        ///
+        /// 2.
+        ///   ```
+        ///   # let cond = true;
+        ///   # let f = ();
+        ///   # let g = f;
+        ///   #
+        ///   let _ = || {
+        ///       if cond { f } else { g }
+        ///       ()
+        ///   };
+        ///   ```
+        ///
+        /// 3.
+        ///   ```
+        ///   # let cond = true;
+        ///   # let f = || ();
+        ///   # let g = f;
+        ///   #
+        ///   let _ = [if cond { f } else { g } ()];
+        ///   ```
+        ///
+        /// The same sequence of tokens `if cond { f } else { g } ()` appears in
+        /// expression position 3 times. The first two syntactic positions use
+        /// eager placement of expression boundaries, and parse as `Expr::If`,
+        /// with the adjacent `()` becoming `Pat::Tuple` or `Expr::Tuple`. In
+        /// contrast, the third case uses standard expression boundaries and
+        /// parses as `Expr::Call`.
+        ///
+        /// As with [`parse_without_eager_brace`], this ambiguity in the Rust
+        /// grammar is independent of precedence.
+        ///
+        /// [`parse_without_eager_brace`]: Self::parse_without_eager_brace
+        </span><span class="attr">#[cfg(feature = <span class="string">"full"</span>)]
+        #[cfg_attr(doc_cfg, doc(cfg(all(feature = <span class="string">"full"</span>, feature = <span class="string">"parsing"</span>))))]
+        </span><span class="kw">pub fn </span>parse_with_earlier_boundary_rule(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
+            <span class="kw">let </span><span class="kw-2">mut </span>attrs = input.call(expr_attrs)<span class="question-mark">?</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>expr = <span class="kw">if </span>input.peek(token::Group) {
+                <span class="kw">let </span>allow_struct = AllowStruct(<span class="bool-val">true</span>);
+                <span class="kw">let </span>atom = expr_group(input, allow_struct)<span class="question-mark">?</span>;
+                <span class="kw">if </span>continue_parsing_early(<span class="kw-2">&amp;</span>atom) {
+                    trailer_helper(input, atom)<span class="question-mark">?
+                </span>} <span class="kw">else </span>{
+                    atom
+                }
+            } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">if</span>]) {
+                Expr::If(input.parse()<span class="question-mark">?</span>)
+            } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">while</span>]) {
+                Expr::While(input.parse()<span class="question-mark">?</span>)
+            } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">for</span>])
+                &amp;&amp; !(input.peek2(<span class="macro">Token!</span>[&lt;]) &amp;&amp; (input.peek3(Lifetime) || input.peek3(<span class="macro">Token!</span>[&gt;])))
+            {
+                Expr::ForLoop(input.parse()<span class="question-mark">?</span>)
+            } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">loop</span>]) {
+                Expr::Loop(input.parse()<span class="question-mark">?</span>)
+            } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">match</span>]) {
+                Expr::Match(input.parse()<span class="question-mark">?</span>)
+            } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">try</span>]) &amp;&amp; input.peek2(token::Brace) {
+                Expr::TryBlock(input.parse()<span class="question-mark">?</span>)
+            } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">unsafe</span>]) {
+                Expr::Unsafe(input.parse()<span class="question-mark">?</span>)
+            } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">const</span>]) &amp;&amp; input.peek2(token::Brace) {
+                Expr::Const(input.parse()<span class="question-mark">?</span>)
+            } <span class="kw">else if </span>input.peek(token::Brace) {
+                Expr::Block(input.parse()<span class="question-mark">?</span>)
+            } <span class="kw">else if </span>input.peek(Lifetime) {
+                atom_labeled(input)<span class="question-mark">?
+            </span>} <span class="kw">else </span>{
+                <span class="kw">let </span>allow_struct = AllowStruct(<span class="bool-val">true</span>);
+                unary_expr(input, allow_struct)<span class="question-mark">?
+            </span>};
+
+            <span class="kw">if </span>continue_parsing_early(<span class="kw-2">&amp;</span>expr) {
+                attrs.extend(expr.replace_attrs(Vec::new()));
+                expr.replace_attrs(attrs);
+
+                <span class="kw">let </span>allow_struct = AllowStruct(<span class="bool-val">true</span>);
+                <span class="kw">return </span>parse_expr(input, expr, allow_struct, Precedence::Any);
+            }
+
+            <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[.]) &amp;&amp; !input.peek(<span class="macro">Token!</span>[..]) || input.peek(<span class="macro">Token!</span>[<span class="question-mark">?</span>]) {
+                expr = trailer_helper(input, expr)<span class="question-mark">?</span>;
+
+                attrs.extend(expr.replace_attrs(Vec::new()));
+                expr.replace_attrs(attrs);
+
+                <span class="kw">let </span>allow_struct = AllowStruct(<span class="bool-val">true</span>);
+                <span class="kw">return </span>parse_expr(input, expr, allow_struct, Precedence::Any);
+            }
+
+            attrs.extend(expr.replace_attrs(Vec::new()));
+            expr.replace_attrs(attrs);
+            <span class="prelude-val">Ok</span>(expr)
         }
     }
 
@@ -5586,67 +5758,6 @@
     }
 
     <span class="attr">#[cfg(feature = <span class="string">"full"</span>)]
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>expr_early(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
-        <span class="kw">let </span><span class="kw-2">mut </span>attrs = input.call(expr_attrs)<span class="question-mark">?</span>;
-        <span class="kw">let </span><span class="kw-2">mut </span>expr = <span class="kw">if </span>input.peek(token::Group) {
-            <span class="kw">let </span>allow_struct = AllowStruct(<span class="bool-val">true</span>);
-            <span class="kw">let </span>atom = expr_group(input, allow_struct)<span class="question-mark">?</span>;
-            <span class="kw">if </span>continue_parsing_early(<span class="kw-2">&amp;</span>atom) {
-                trailer_helper(input, atom)<span class="question-mark">?
-            </span>} <span class="kw">else </span>{
-                atom
-            }
-        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">if</span>]) {
-            Expr::If(input.parse()<span class="question-mark">?</span>)
-        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">while</span>]) {
-            Expr::While(input.parse()<span class="question-mark">?</span>)
-        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">for</span>])
-            &amp;&amp; !(input.peek2(<span class="macro">Token!</span>[&lt;]) &amp;&amp; (input.peek3(Lifetime) || input.peek3(<span class="macro">Token!</span>[&gt;])))
-        {
-            Expr::ForLoop(input.parse()<span class="question-mark">?</span>)
-        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">loop</span>]) {
-            Expr::Loop(input.parse()<span class="question-mark">?</span>)
-        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">match</span>]) {
-            Expr::Match(input.parse()<span class="question-mark">?</span>)
-        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">try</span>]) &amp;&amp; input.peek2(token::Brace) {
-            Expr::TryBlock(input.parse()<span class="question-mark">?</span>)
-        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">unsafe</span>]) {
-            Expr::Unsafe(input.parse()<span class="question-mark">?</span>)
-        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">const</span>]) &amp;&amp; input.peek2(token::Brace) {
-            Expr::Const(input.parse()<span class="question-mark">?</span>)
-        } <span class="kw">else if </span>input.peek(token::Brace) {
-            Expr::Block(input.parse()<span class="question-mark">?</span>)
-        } <span class="kw">else if </span>input.peek(Lifetime) {
-            atom_labeled(input)<span class="question-mark">?
-        </span>} <span class="kw">else </span>{
-            <span class="kw">let </span>allow_struct = AllowStruct(<span class="bool-val">true</span>);
-            unary_expr(input, allow_struct)<span class="question-mark">?
-        </span>};
-
-        <span class="kw">if </span>continue_parsing_early(<span class="kw-2">&amp;</span>expr) {
-            attrs.extend(expr.replace_attrs(Vec::new()));
-            expr.replace_attrs(attrs);
-
-            <span class="kw">let </span>allow_struct = AllowStruct(<span class="bool-val">true</span>);
-            <span class="kw">return </span>parse_expr(input, expr, allow_struct, Precedence::Any);
-        }
-
-        <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[.]) &amp;&amp; !input.peek(<span class="macro">Token!</span>[..]) || input.peek(<span class="macro">Token!</span>[<span class="question-mark">?</span>]) {
-            expr = trailer_helper(input, expr)<span class="question-mark">?</span>;
-
-            attrs.extend(expr.replace_attrs(Vec::new()));
-            expr.replace_attrs(attrs);
-
-            <span class="kw">let </span>allow_struct = AllowStruct(<span class="bool-val">true</span>);
-            <span class="kw">return </span>parse_expr(input, expr, allow_struct, Precedence::Any);
-        }
-
-        attrs.extend(expr.replace_attrs(Vec::new()));
-        expr.replace_attrs(attrs);
-        <span class="prelude-val">Ok</span>(expr)
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">"full"</span>)]
     </span><span class="kw">fn </span>continue_parsing_early(<span class="kw-2">mut </span>expr: <span class="kw-2">&amp;</span>Expr) -&gt; bool {
         <span class="kw">while let </span>Expr::Group(group) = expr {
             expr = <span class="kw-2">&amp;</span>group.expr;
@@ -5875,7 +5986,7 @@
         }
     }
 
-    <span class="macro">macro_rules! </span>impl_by_parsing_expr {
+    <span class="macro">macro_rules!</span> impl_by_parsing_expr {
         (
             $(
                 <span class="macro-nonterminal">$expr_type</span>:ty, <span class="macro-nonterminal">$variant</span>:ident, <span class="macro-nonterminal">$msg</span>:expr,
@@ -5900,7 +6011,7 @@
         };
     }
 
-    <span class="macro">impl_by_parsing_expr! </span>{
+    <span class="macro">impl_by_parsing_expr!</span> {
         ExprAssign, Assign, <span class="string">"expected assignment expression"</span>,
         ExprAwait, Await, <span class="string">"expected await expression"</span>,
         ExprBinary, Binary, <span class="string">"expected binary operation"</span>,
@@ -6475,7 +6586,7 @@
                 },
                 fat_arrow_token: input.parse()<span class="question-mark">?</span>,
                 body: {
-                    <span class="kw">let </span>body = input.call(expr_early)<span class="question-mark">?</span>;
+                    <span class="kw">let </span>body = Expr::parse_with_earlier_boundary_rule(input)<span class="question-mark">?</span>;
                     requires_comma = requires_terminator(<span class="kw-2">&amp;</span>body);
                     Box::new(body)
                 },

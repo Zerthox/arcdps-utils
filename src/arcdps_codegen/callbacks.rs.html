@@ -1,5 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\git\checkouts\arcdps-rs-c3748d55481363f5\eb5711e\arcdps_codegen\src\callbacks.rs`."><title>callbacks.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="arcdps_codegen" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
-    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\git\checkouts\arcdps-rs-c3748d55481363f5\9bb3064\arcdps_codegen\src\callbacks.rs`."><title>callbacks.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="arcdps_codegen" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../arcdps_codegen/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -216,42 +217,49 @@
 <a href="#215" id="215">215</a>
 <a href="#216" id="216">216</a>
 <a href="#217" id="217">217</a>
+<a href="#218" id="218">218</a>
+<a href="#219" id="219">219</a>
+<a href="#220" id="220">220</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     abi::{C_ABI, SYSTEM_ABI},
     ArcDpsGen, CallbackInfo,
 };
 <span class="kw">use </span>proc_macro2::{Span, TokenStream};
 <span class="kw">use </span>quote::{quote, quote_spanned};
-<span class="kw">use </span>syn::Expr;
+<span class="kw">use </span>syn::{Expr, Ident};
 
 <span class="kw">impl </span>ArcDpsGen {
-    <span class="doccomment">/// Generates the init function contents.
-    </span><span class="kw">pub fn </span>build_init(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; TokenStream {
+    <span class="doccomment">/// Generates the init function.
+    </span><span class="kw">pub fn </span>build_init(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; CallbackInfo {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(init) = <span class="kw-2">&amp;</span><span class="self">self</span>.init {
             <span class="kw">let </span>span = syn::Error::new_spanned(init, <span class="string">""</span>).span();
-            <span class="macro">quote_spanned! </span>{span=&gt;
-                {
-                    <span class="kw">const </span>SAFE: ::arcdps::callbacks::InitFunc = #init;
-                    SAFE()
-                }
-            }
+            CallbackInfo::new(
+                <span class="macro">quote_spanned!</span> {span=&gt;
+                    <span class="kw">const </span>__INIT: ::arcdps::callbacks::InitFunc = #init;
+                },
+                <span class="macro">quote_spanned!</span> {span=&gt;
+                    <span class="self">self</span>::__INIT()
+                },
+            )
         } <span class="kw">else </span>{
-            <span class="macro">quote! </span>{ ::std::result::Result::Ok(()) }
+            CallbackInfo::new(<span class="macro">quote!</span> {}, <span class="macro">quote!</span> { ::std::result::Result::Ok(()) })
         }
     }
 
-    <span class="doccomment">/// Generates the release function contents.
-    </span><span class="kw">pub fn </span>build_release(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; TokenStream {
+    <span class="doccomment">/// Generates the release function.
+    </span><span class="kw">pub fn </span>build_release(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; CallbackInfo {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(release) = <span class="kw-2">&amp;</span><span class="self">self</span>.release {
             <span class="kw">let </span>span = syn::Error::new_spanned(release, <span class="string">""</span>).span();
-            <span class="macro">quote_spanned! </span>{span=&gt;
-                {
-                    <span class="kw">const </span>SAFE: ::arcdps::callbacks::ReleaseFunc = #release;
-                    SAFE()
-                }
-            }
+            CallbackInfo::new(
+                <span class="macro">quote_spanned!</span> {span=&gt;
+                    <span class="kw">const </span>__RELEASE: ::arcdps::callbacks::ReleaseFunc = #release;
+                },
+                <span class="macro">quote_spanned!</span> {span=&gt;
+                    <span class="self">self</span>::__RELEASE()
+                },
+            )
         } <span class="kw">else </span>{
-            <span class="macro">quote! </span>{}
+            CallbackInfo::empty()
         }
     }
 
@@ -259,59 +267,58 @@
     </span><span class="kw">pub fn </span>build_update_url(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; TokenStream {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(update_url) = <span class="kw-2">&amp;</span><span class="self">self</span>.update_url {
             <span class="kw">let </span>span = syn::Error::new_spanned(update_url, <span class="string">""</span>).span();
-            <span class="macro">quote_spanned! </span>{span=&gt;
-                <span class="kw">static </span><span class="kw-2">mut </span>UPDATE_URL: ::std::vec::Vec&lt;u16&gt; = ::std::vec::Vec::new();
+            <span class="macro">quote_spanned!</span> {span=&gt;
+                <span class="kw">const </span>__UPDATE_URL: ::arcdps::callbacks::UpdateUrlFunc = #update_url;
 
                 <span class="attr">#[no_mangle]
                 </span><span class="kw">pub unsafe extern </span>#SYSTEM_ABI <span class="kw">fn </span>get_update_url() -&gt; <span class="kw-2">*const </span>::std::primitive::u16 {
-                    <span class="kw">const </span>SAFE: ::arcdps::callbacks::UpdateUrlFunc = #update_url;
+                    <span class="kw">static </span><span class="kw-2">mut </span>URL: ::std::vec::Vec&lt;u16&gt; = ::std::vec::Vec::new();
 
-                    <span class="kw">if let </span>::std::option::Option::Some(url) = SAFE() {
-                        UPDATE_URL = ::arcdps::__macro::str_to_wide(url);
-                        UPDATE_URL.as_ptr()
+                    <span class="kw">if let </span>::std::option::Option::Some(url) = <span class="self">self</span>::__UPDATE_URL() {
+                        URL = ::arcdps::__macro::str_to_wide(url);
+                        URL.as_ptr()
                     } <span class="kw">else </span>{
                         ::std::ptr::null()
                     }
                 }
             }
         } <span class="kw">else </span>{
-            <span class="macro">quote! </span>{}
+            <span class="macro">quote!</span> {}
         }
     }
 
     <span class="doccomment">/// Generates the wnd filter callback.
     </span><span class="kw">pub fn </span>build_wnd_filter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; CallbackInfo {
-        <span class="kw">let </span>name = <span class="macro">quote! </span>{ abstract_wnd_filter };
         CallbackInfo::build(
             <span class="self">self</span>.raw_wnd_filter.as_ref(),
             <span class="self">self</span>.wnd_filter.as_ref(),
-            name.clone(),
-            |safe, span| <span class="self">Self</span>::wnd_wrapper(name, safe, span),
+            <span class="string">"__wnd_filter"</span>,
+            |name, safe, span| <span class="self">Self</span>::wnd_wrapper(<span class="string">"__WND_FILTER"</span>, name, safe, span),
         )
     }
 
     <span class="doccomment">/// Generates the wnd nofilter callback.
     </span><span class="kw">pub fn </span>build_wnd_nofilter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; CallbackInfo {
-        <span class="kw">let </span>name = <span class="macro">quote! </span>{ abstract_wnd_nofilter };
         CallbackInfo::build(
             <span class="self">self</span>.raw_wnd_nofilter.as_ref(),
             <span class="self">self</span>.wnd_nofilter.as_ref(),
-            name.clone(),
-            |safe, span| <span class="self">Self</span>::wnd_wrapper(name, safe, span),
+            <span class="string">"__wnd_nofilter"</span>,
+            |name, safe, span| <span class="self">Self</span>::wnd_wrapper(<span class="string">"__WND_NOFILTER"</span>, name, safe, span),
         )
     }
 
     <span class="doccomment">/// Helper to generate a wnd callback wrapper.
-    </span><span class="kw">fn </span>wnd_wrapper(name: TokenStream, safe: <span class="kw-2">&amp;</span>Expr, span: Span) -&gt; TokenStream {
-        <span class="macro">quote_spanned! </span>{span=&gt;
-            <span class="kw">unsafe extern </span>#C_ABI <span class="kw">fn </span>#name(
+    </span><span class="kw">fn </span>wnd_wrapper(name: <span class="kw-2">&amp;</span>str, func_name: <span class="kw-2">&amp;</span>Ident, safe: <span class="kw-2">&amp;</span>Expr, span: Span) -&gt; TokenStream {
+        <span class="kw">let </span>name = Ident::new(name, Span::call_site());
+        <span class="macro">quote_spanned!</span> {span=&gt;
+            <span class="kw">const </span>#name: ::arcdps::callbacks::WndProcCallback = #safe;
+
+            <span class="kw">unsafe extern </span>#C_ABI <span class="kw">fn </span>#func_name(
                 _h_wnd: ::arcdps::__macro::HWND,
                 u_msg: ::std::primitive::u32,
                 w_param: ::arcdps::__macro::WPARAM,
                 l_param: ::arcdps::__macro::LPARAM,
             ) -&gt; ::std::primitive::u32 {
-                <span class="kw">const </span>SAFE: ::arcdps::callbacks::WndProcCallback = #safe;
-
                 <span class="kw">match </span>u_msg {
                     ::arcdps::__macro::WM_KEYDOWN
                     | ::arcdps::__macro::WM_KEYUP
@@ -320,7 +327,7 @@
                         <span class="kw">let </span>key_down = u_msg &amp; <span class="number">1 </span>== <span class="number">0</span>;
                         <span class="kw">let </span>prev_key_down = (l_param.<span class="number">0 </span>&gt;&gt; <span class="number">30</span>) &amp; <span class="number">1 </span>== <span class="number">1</span>;
 
-                        <span class="kw">if </span>SAFE(w_param.<span class="number">0</span>, key_down, prev_key_down) {
+                        <span class="kw">if </span><span class="self">self</span>::#name(w_param.<span class="number">0</span>, key_down, prev_key_down) {
                             u_msg
                         } <span class="kw">else </span>{
                             <span class="number">0
@@ -337,13 +344,13 @@
         CallbackInfo::build(
             <span class="self">self</span>.raw_options_windows.as_ref(),
             <span class="self">self</span>.options_windows.as_ref(),
-            <span class="macro">quote! </span>{ abstract_options_windows },
-            |safe, span| {
-                <span class="macro">quote_spanned! </span>{span=&gt;
-                    <span class="kw">unsafe extern </span>#C_ABI <span class="kw">fn </span>abstract_options_windows(window_name: <span class="kw-2">*const </span>::arcdps::__macro::c_char) -&gt; ::std::primitive::bool {
-                        <span class="kw">const </span>SAFE: ::arcdps::callbacks::OptionsWindowsCallback = #safe;
+            <span class="string">"__options_windows"</span>,
+            |name, safe, span| {
+                <span class="macro">quote_spanned!</span> {span=&gt;
+                    <span class="kw">const </span>__OPTIONS_WINDOWS: ::arcdps::callbacks::OptionsWindowsCallback = #safe;
 
-                        SAFE(::arcdps::__macro::ui(), ::arcdps::__macro::str_from_cstr(window_name))
+                    <span class="kw">unsafe extern </span>#C_ABI <span class="kw">fn </span>#name(window_name: <span class="kw-2">*const </span>::arcdps::__macro::c_char) -&gt; ::std::primitive::bool {
+                        <span class="self">self</span>::__OPTIONS_WINDOWS(::arcdps::__macro::ui(), ::arcdps::__macro::str_from_cstr(window_name))
                     }
                 }
             },
@@ -355,13 +362,13 @@
         CallbackInfo::build(
             <span class="self">self</span>.raw_options_end.as_ref(),
             <span class="self">self</span>.options_end.as_ref(),
-            <span class="macro">quote! </span>{ abstract_options_end },
-            |safe, span| {
-                <span class="macro">quote_spanned! </span>{span=&gt;
-                    <span class="kw">unsafe extern </span>#C_ABI <span class="kw">fn </span>abstract_options_end() {
-                        <span class="kw">const </span>SAFE: ::arcdps::callbacks::OptionsCallback = #safe;
+            <span class="string">"__options_end"</span>,
+            |name, safe, span| {
+                <span class="macro">quote_spanned!</span> {span=&gt;
+                    <span class="kw">const </span>__OPTIONS_END: ::arcdps::callbacks::OptionsCallback = #safe;
 
-                        SAFE(::arcdps::__macro::ui())
+                    <span class="kw">unsafe extern </span>#C_ABI <span class="kw">fn </span>#name() {
+                        <span class="self">self</span>::__OPTIONS_END(::arcdps::__macro::ui())
                     }
                 }
             },
@@ -373,13 +380,13 @@
         CallbackInfo::build(
             <span class="self">self</span>.raw_imgui.as_ref(),
             <span class="self">self</span>.imgui.as_ref(),
-            <span class="macro">quote! </span>{ abstract_imgui },
-            |safe, span| {
-                <span class="macro">quote_spanned! </span>{span=&gt;
-                    <span class="kw">unsafe extern </span>#C_ABI <span class="kw">fn </span>abstract_imgui(loading: ::std::primitive::u32) {
-                        <span class="kw">const </span>SAFE: ::arcdps::callbacks::ImguiCallback = #safe;
+            <span class="string">"__imgui"</span>,
+            |name, safe, span| {
+                <span class="macro">quote_spanned!</span> {span=&gt;
+                    <span class="kw">const </span>__IMGUI: ::arcdps::callbacks::ImguiCallback = #safe;
 
-                        SAFE(::arcdps::__macro::ui(), loading != <span class="number">0</span>)
+                    <span class="kw">unsafe extern </span>#C_ABI <span class="kw">fn </span>#name(loading: ::std::primitive::u32) {
+                        <span class="self">self</span>::__IMGUI(::arcdps::__macro::ui(), loading != <span class="number">0</span>)
                     }
                 }
             },
@@ -388,30 +395,31 @@
 
     <span class="doccomment">/// Generates the combat callback.
     </span><span class="kw">pub fn </span>build_combat(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; CallbackInfo {
-        <span class="kw">let </span>name = <span class="macro">quote! </span>{ abstract_combat };
         CallbackInfo::build(
             <span class="self">self</span>.raw_combat.as_ref(),
             <span class="self">self</span>.combat.as_ref(),
-            name.clone(),
-            |safe, span| <span class="self">Self</span>::combat_wrapper(name, safe, span),
+            <span class="string">"__combat"</span>,
+            |name, safe, span| <span class="self">Self</span>::combat_wrapper(<span class="string">"__COMBAT"</span>, name, safe, span),
         )
     }
 
     <span class="doccomment">/// Generates the combat local callback.
     </span><span class="kw">pub fn </span>build_combat_local(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; CallbackInfo {
-        <span class="kw">let </span>name = <span class="macro">quote! </span>{ abstract_combat_local };
         CallbackInfo::build(
             <span class="self">self</span>.raw_combat_local.as_ref(),
             <span class="self">self</span>.combat_local.as_ref(),
-            name.clone(),
-            |safe, span| <span class="self">Self</span>::combat_wrapper(name, safe, span),
+            <span class="string">"__combat_local"</span>,
+            |name, safe, span| <span class="self">Self</span>::combat_wrapper(<span class="string">"__COMBAT_LOCAL"</span>, name, safe, span),
         )
     }
 
     <span class="doccomment">/// Helper to generate a combat callback wrapper.
-    </span><span class="kw">fn </span>combat_wrapper(name: TokenStream, safe: <span class="kw-2">&amp;</span>Expr, span: Span) -&gt; TokenStream {
-        <span class="macro">quote_spanned! </span>{span=&gt;
-            <span class="kw">unsafe extern </span>#C_ABI <span class="kw">fn </span>#name(
+    </span><span class="kw">fn </span>combat_wrapper(name: <span class="kw-2">&amp;</span>str, func_name: <span class="kw-2">&amp;</span>Ident, safe: <span class="kw-2">&amp;</span>Expr, span: Span) -&gt; TokenStream {
+        <span class="kw">let </span>name = Ident::new(name, Span::call_site());
+        <span class="macro">quote_spanned!</span> {span=&gt;
+            <span class="kw">const </span>#name: ::arcdps::callbacks::CombatCallback = #safe;
+
+            <span class="kw">unsafe extern </span>#C_ABI <span class="kw">fn </span>#func_name(
                 event: <span class="kw-2">*const </span>::arcdps::evtc::Event,
                 src: <span class="kw-2">*const </span>::arcdps::evtc::Agent,
                 dst: <span class="kw-2">*const </span>::arcdps::evtc::Agent,
@@ -419,9 +427,8 @@
                 id: ::std::primitive::u64,
                 revision: ::std::primitive::u64,
             ) {
-                <span class="kw">const </span>SAFE: ::arcdps::callbacks::CombatCallback = #safe;
 
-                SAFE(
+                <span class="self">self</span>::#name(
                     event.as_ref(),
                     src.as_ref(),
                     dst.as_ref(),

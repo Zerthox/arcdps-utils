@@ -1,5 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\git\checkouts\arcdps-rs-c3748d55481363f5\eb5711e\arcdps_codegen\src\export.rs`."><title>export.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="arcdps_codegen" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
-    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin\.cargo\git\checkouts\arcdps-rs-c3748d55481363f5\9bb3064\arcdps_codegen\src\export.rs`."><title>export.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="arcdps_codegen" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../arcdps_codegen/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -138,7 +139,18 @@
 <a href="#137" id="137">137</a>
 <a href="#138" id="138">138</a>
 <a href="#139" id="139">139</a>
-</pre></div><pre class="rust"><code><span class="kw">use crate</span>::{abi::SYSTEM_ABI, ArcDpsGen};
+<a href="#140" id="140">140</a>
+<a href="#141" id="141">141</a>
+<a href="#142" id="142">142</a>
+<a href="#143" id="143">143</a>
+<a href="#144" id="144">144</a>
+<a href="#145" id="145">145</a>
+<a href="#146" id="146">146</a>
+<a href="#147" id="147">147</a>
+</pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
+    abi::{C_ABI, SYSTEM_ABI},
+    ArcDpsGen,
+};
 <span class="kw">use </span>proc_macro2::{Span, TokenStream};
 <span class="kw">use </span>quote::quote;
 <span class="kw">use </span>std::env;
@@ -177,8 +189,8 @@
         <span class="kw">let </span>build = <span class="self">self</span>.gen_build();
         <span class="kw">let </span>sig = <span class="kw-2">&amp;</span><span class="self">self</span>.sig;
 
-        <span class="kw">let </span>init = <span class="self">self</span>.build_init();
-        <span class="kw">let </span>release = <span class="self">self</span>.build_release();
+        <span class="kw">let </span>(init_func, init) = <span class="self">self</span>.build_init().into_tuple();
+        <span class="kw">let </span>(release_func, release) = <span class="self">self</span>.build_release().into_tuple();
         <span class="kw">let </span>update_url = <span class="self">self</span>.build_update_url();
 
         <span class="kw">let </span>(combat_func, combat_value) = <span class="self">self</span>.build_combat().into_tuple();
@@ -191,10 +203,11 @@
         <span class="kw">let </span>(wnd_nofilter_func, wnd_nofilter_value) = <span class="self">self</span>.build_wnd_nofilter().into_tuple();
 
         <span class="comment">// TODO: instantiate unused supported fields for intellisense &amp; type checking?
+        // TODO: const in own module without access to other mods
 
-        </span><span class="macro">quote! </span>{
+        </span><span class="macro">quote!</span> {
             <span class="doccomment">/// ArcDPS export struct with plugin information.
-            </span><span class="kw">static </span>EXPORT: ::arcdps::callbacks::ArcDpsExport = ::arcdps::callbacks::ArcDpsExport {
+            </span><span class="kw">static </span>__EXPORT: ::arcdps::callbacks::ArcDpsExport = ::arcdps::callbacks::ArcDpsExport {
                 size: ::std::mem::size_of::&lt;::arcdps::callbacks::ArcDpsExport&gt;(),
                 sig: #sig,
                 imgui_version: <span class="number">18000</span>,
@@ -209,24 +222,26 @@
                 wnd_nofilter: #wnd_nofilter_value,
             };
 
-            <span class="doccomment">/// ArcDPS export struct with error information.
-            </span><span class="kw">static </span><span class="kw-2">mut </span>EXPORT_ERROR: ::arcdps::callbacks::ArcDpsExport = ::arcdps::callbacks::ArcDpsExport {
-                size: <span class="number">0</span>,
-                sig: <span class="number">0</span>,
-                imgui_version: <span class="number">18000</span>,
-                out_build: #build.as_ptr() <span class="kw">as _</span>,
-                out_name: #name_c.as_ptr() <span class="kw">as _</span>,
-                combat: ::std::option::Option::None,
-                combat_local: ::std::option::Option::None,
-                imgui: ::std::option::Option::None,
-                options_end: ::std::option::Option::None,
-                options_windows: ::std::option::Option::None,
-                wnd_filter: ::std::option::Option::None,
-                wnd_nofilter: ::std::option::Option::None,
-            };
-            <span class="kw">static </span><span class="kw-2">mut </span>ERROR_STRING: ::std::string::String = ::std::string::String::new();
+            #init_func
 
-            <span class="kw">fn </span>load() -&gt; <span class="kw-2">*const </span>::arcdps::callbacks::ArcDpsExport {
+            <span class="kw">extern </span>#C_ABI <span class="kw">fn </span>__load() -&gt; <span class="kw-2">*const </span>::arcdps::callbacks::ArcDpsExport {
+                <span class="doccomment">/// ArcDPS export struct with error information.
+                </span><span class="kw">static </span><span class="kw-2">mut </span>EXPORT_ERROR: ::arcdps::callbacks::ArcDpsExport = ::arcdps::callbacks::ArcDpsExport {
+                    size: <span class="number">0</span>,
+                    sig: <span class="number">0</span>,
+                    imgui_version: <span class="number">18000</span>,
+                    out_build: #build.as_ptr() <span class="kw">as _</span>,
+                    out_name: #name_c.as_ptr() <span class="kw">as _</span>,
+                    combat: ::std::option::Option::None,
+                    combat_local: ::std::option::Option::None,
+                    imgui: ::std::option::Option::None,
+                    options_end: ::std::option::Option::None,
+                    options_windows: ::std::option::Option::None,
+                    wnd_filter: ::std::option::Option::None,
+                    wnd_nofilter: ::std::option::Option::None,
+                };
+                <span class="kw">static </span><span class="kw-2">mut </span>ERROR_STRING: ::std::string::String = ::std::string::String::new();
+
                 <span class="kw">let </span>result: ::std::result::Result&lt;(), ::std::string::String&gt; = #init;
                 <span class="kw">if let </span>::std::result::Result::Err(err) = result {
                     <span class="kw">unsafe </span>{
@@ -235,11 +250,13 @@
                         <span class="kw-2">&amp;</span>EXPORT_ERROR
                     }
                 } <span class="kw">else </span>{
-                    <span class="kw-2">&amp;</span>EXPORT
+                    <span class="kw-2">&amp;</span><span class="self">self</span>::__EXPORT
                 }
             }
 
-            <span class="kw">fn </span>unload() {
+            #release_func
+
+            <span class="kw">extern </span>#C_ABI <span class="kw">fn </span>__unload() {
                 #release
             }
 
@@ -254,15 +271,15 @@
                 malloc: ::std::option::Option&lt;::arcdps::__macro::MallocFn&gt;,
                 free: ::std::option::Option&lt;::arcdps::__macro::FreeFn&gt;,
                 d3d_version: ::std::primitive::u32,
-            ) -&gt; <span class="kw">fn</span>() -&gt; <span class="kw-2">*const </span>::arcdps::callbacks::ArcDpsExport {
+            ) -&gt; <span class="kw-2">*mut </span>::arcdps::__macro::c_void {
                 ::arcdps::__macro::init(arc_version, arc_dll, imgui_ctx, malloc, free, id3d, d3d_version, #name);
-                load
-            }
+                <span class="self">self</span>::__load <span class="kw">as _
+            </span>}
 
             <span class="doccomment">/// ArcDPS looks for this exported function and calls the address it returns on client exit.
             </span><span class="attr">#[no_mangle]
             </span><span class="kw">pub extern </span>#SYSTEM_ABI <span class="kw">fn </span>get_release_addr() -&gt; <span class="kw-2">*mut </span>::arcdps::__macro::c_void {
-                unload <span class="kw">as _
+                <span class="self">self</span>::__unload <span class="kw">as _
             </span>}
 
             #update_url
