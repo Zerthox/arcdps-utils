@@ -3,6 +3,31 @@ use crate::util::{keycode_to_name, name_to_keycode};
 use arcdps::imgui::{sys, InputTextFlags, Ui};
 use std::ffi::CString;
 
+/// Renders an input for a [`u32`].
+pub fn input_u32(
+    ui: &Ui,
+    label: impl AsRef<str>,
+    value: &mut u32,
+    step: u32,
+    step_fast: u32,
+    flags: InputTextFlags,
+) -> bool {
+    let mut int = *value as _;
+    if ui
+        .input_int(label, &mut int)
+        .step(step as _)
+        .step_fast(step_fast as _)
+        .flags(flags)
+        .build()
+    {
+        if let Ok(new) = u32::try_from(int) {
+            *value = new;
+            return true;
+        }
+    }
+    false
+}
+
 /// Renders a float input with a custom format.
 pub fn input_float_with_format(
     label: impl Into<String>,
