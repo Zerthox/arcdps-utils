@@ -5,7 +5,7 @@ use windows::Win32::UI::Input::KeyboardAndMouse::{
 
 /// Converts a key's name to its keycode.
 pub fn name_to_keycode(name: u8) -> u32 {
-    let result = unsafe { VkKeyScanA(name) } as u32;
+    let result = unsafe { VkKeyScanA(name as _) } as u32;
     result & 0xff
 }
 
