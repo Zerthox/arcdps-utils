@@ -33,6 +33,3 @@ serde = ["dep:serde", "arcdps/serde"]
 settings = ["serde", "serde_json"]
 update = ["minreq", "open", "semver", "dep:serde"]
 log = ["chrono"]
-
-# [patch."https://github.com/zerthox/arcdps-rs"]
-# arcdps = { path = "../arcdps-rs/arcdps" }

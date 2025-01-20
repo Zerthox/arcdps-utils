@@ -108,10 +108,9 @@ impl<T> CachedTracker<T> {
     where
         T: Clone,
     {
-        self.tracker.remove_player(id).map(|entry| {
-            self.maybe_cache(entry.clone());
-            entry
-        })
+        self.tracker
+            .remove_player(id)
+            .inspect(|entry| self.maybe_cache(entry.clone()))
     }
 
     /// Returns a reference to the local player (self).

@@ -1,6 +1,5 @@
 use arcdps::imgui::{Id, TableColumnFlags, TableColumnSetup, TableFlags, TableToken, Ui};
-use std::{ffi::c_void, mem};
-use windows::Win32::Graphics::Direct3D11::ID3D11ShaderResourceView;
+use windows::{core::Interface, Win32::Graphics::Direct3D11::ID3D11ShaderResourceView};
 
 /// Renders a table with (optional) icon headers.
 pub fn table_with_icons<'ui, N>(
@@ -127,8 +126,7 @@ pub fn table_header_icon(ui: &Ui, label: impl AsRef<str>, icon: Option<&Icon>) {
         ui.set_cursor_screen_pos([pos_x + size, pos_y]);
         ui.table_header(format!("##{label}"));
 
-        // avoid dropping by transmuting the reference
-        let ptr = *unsafe { mem::transmute::<_, &*const c_void>(icon) };
+        let ptr = icon.as_raw();
         ui.get_window_draw_list()
             .add_image(ptr.into(), [pos_x, top], [pos_x + size, top + size])
             .build();
