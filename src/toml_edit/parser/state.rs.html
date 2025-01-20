@@ -1,6 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin/.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml_edit-0.21.1\src\parser\state.rs`."><title>state.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="toml_edit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
-            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
-    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../toml_edit/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin/.cargo\registry\src\index.crates.io-6f17d22bba15001f\toml_edit-0.22.22\src\parser\state.rs`."><title>state.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="toml_edit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.0 (9fc6b4312 2025-01-07)" data-channel="1.84.0" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../../static.files/storage-59e33391.js"></script><script defer src="../../../static.files/src-script-56102188.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">toml_edit\parser/</div>state.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -315,22 +314,13 @@
 <a href="#313" id="313">313</a>
 <a href="#314" id="314">314</a>
 <a href="#315" id="315">315</a>
-<a href="#316" id="316">316</a>
-<a href="#317" id="317">317</a>
-<a href="#318" id="318">318</a>
-<a href="#319" id="319">319</a>
-<a href="#320" id="320">320</a>
-<a href="#321" id="321">321</a>
-<a href="#322" id="322">322</a>
-<a href="#323" id="323">323</a>
-</pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::key::Key;
+<a href="#316" id="316">316</a></pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::key::Key;
 <span class="kw">use </span><span class="kw">crate</span>::parser::error::CustomError;
 <span class="kw">use </span><span class="kw">crate</span>::repr::Decor;
-<span class="kw">use </span><span class="kw">crate</span>::table::TableKeyValue;
-<span class="kw">use crate</span>::{ArrayOfTables, Document, InternalString, Item, RawString, Table};
+<span class="kw">use crate</span>::{ArrayOfTables, ImDocument, Item, RawString, Table};
 
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>ParseState {
-    document: Document,
+    root: Table,
     trailing: <span class="prelude-ty">Option</span>&lt;std::ops::Range&lt;usize&gt;&gt;,
     current_table_position: usize,
     current_table: Table,
@@ -339,11 +329,27 @@
 }
 
 <span class="kw">impl </span>ParseState {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>into_document(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Document, CustomError&gt; {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new() -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>root = Table::new();
+        root.span = <span class="prelude-val">Some</span>(<span class="number">0</span>..<span class="number">0</span>);
+        <span class="self">Self </span>{
+            root: Table::new(),
+            trailing: <span class="prelude-val">None</span>,
+            current_table_position: <span class="number">0</span>,
+            current_table: root,
+            current_is_array: <span class="bool-val">false</span>,
+            current_table_path: Vec::new(),
+        }
+    }
+
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>into_document&lt;S&gt;(<span class="kw-2">mut </span><span class="self">self</span>, raw: S) -&gt; <span class="prelude-ty">Result</span>&lt;ImDocument&lt;S&gt;, CustomError&gt; {
         <span class="self">self</span>.finalize_table()<span class="question-mark">?</span>;
-        <span class="kw">let </span>trailing = <span class="self">self</span>.trailing.map(RawString::with_span);
-        <span class="self">self</span>.document.trailing = trailing.unwrap_or_default();
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>.document)
+        <span class="kw">let </span>trailing = <span class="self">self</span>.trailing.map(RawString::with_span).unwrap_or_default();
+        <span class="prelude-val">Ok</span>(ImDocument {
+            root: Item::Table(<span class="self">self</span>.root),
+            trailing,
+            raw,
+        })
     }
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>on_ws(<span class="kw-2">&amp;mut </span><span class="self">self</span>, span: std::ops::Range&lt;usize&gt;) {
@@ -364,30 +370,24 @@
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>on_keyval(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
-        <span class="kw-2">mut </span>path: Vec&lt;Key&gt;,
-        <span class="kw-2">mut </span>kv: TableKeyValue,
+        path: Vec&lt;Key&gt;,
+        (<span class="kw-2">mut </span>key, value): (Key, Item),
     ) -&gt; <span class="prelude-ty">Result</span>&lt;(), CustomError&gt; {
         {
             <span class="kw">let </span><span class="kw-2">mut </span>prefix = <span class="self">self</span>.trailing.take();
-            <span class="kw">let </span>first_key = <span class="kw">if </span>path.is_empty() {
-                <span class="kw-2">&amp;mut </span>kv.key
-            } <span class="kw">else </span>{
-                <span class="kw-2">&amp;mut </span>path[<span class="number">0</span>]
-            };
             <span class="kw">let </span>prefix = <span class="kw">match </span>(
                 prefix.take(),
-                first_key.decor.prefix().and_then(|d| d.span()),
+                key.leaf_decor.prefix().and_then(|d| d.span()),
             ) {
                 (<span class="prelude-val">Some</span>(p), <span class="prelude-val">Some</span>(k)) =&gt; <span class="prelude-val">Some</span>(p.start..k.end),
                 (<span class="prelude-val">Some</span>(p), <span class="prelude-val">None</span>) | (<span class="prelude-val">None</span>, <span class="prelude-val">Some</span>(p)) =&gt; <span class="prelude-val">Some</span>(p),
                 (<span class="prelude-val">None</span>, <span class="prelude-val">None</span>) =&gt; <span class="prelude-val">None</span>,
             };
-            first_key
-                .decor
+            key.leaf_decor
                 .set_prefix(prefix.map(RawString::with_span).unwrap_or_default());
         }
 
-        <span class="kw">if let </span>(<span class="prelude-val">Some</span>(existing), <span class="prelude-val">Some</span>(value)) = (<span class="self">self</span>.current_table.span(), kv.value.span()) {
+        <span class="kw">if let </span>(<span class="prelude-val">Some</span>(existing), <span class="prelude-val">Some</span>(value)) = (<span class="self">self</span>.current_table.span(), value.span()) {
             <span class="self">self</span>.current_table.span = <span class="prelude-val">Some</span>((existing.start)..(value.end));
         }
         <span class="kw">let </span>table = <span class="kw-2">&amp;mut </span><span class="self">self</span>.current_table;
@@ -397,20 +397,19 @@
         </span><span class="kw">let </span>mixed_table_types = table.is_dotted() == path.is_empty();
         <span class="kw">if </span>mixed_table_types {
             <span class="kw">return </span><span class="prelude-val">Err</span>(CustomError::DuplicateKey {
-                key: kv.key.get().into(),
+                key: key.get().into(),
                 table: <span class="prelude-val">None</span>,
             });
         }
 
-        <span class="kw">let </span>key: InternalString = kv.key.get_internal().into();
         <span class="kw">match </span>table.items.entry(key) {
             indexmap::map::Entry::Vacant(o) =&gt; {
-                o.insert(kv);
+                o.insert(value);
             }
             indexmap::map::Entry::Occupied(o) =&gt; {
                 <span class="comment">// "Since tables cannot be defined more than once, redefining such tables using a [table] header is not allowed"
                 </span><span class="kw">return </span><span class="prelude-val">Err</span>(CustomError::DuplicateKey {
-                    key: o.key().as_str().into(),
+                    key: o.key().get().into(),
                     table: <span class="prelude-val">Some</span>(<span class="self">self</span>.current_table_path.clone()),
                 });
             }
@@ -430,7 +429,7 @@
         <span class="macro">debug_assert!</span>(<span class="self">self</span>.current_table_path.is_empty());
 
         <span class="comment">// Look up the table on start to ensure the duplicate_key error points to the right line
-        </span><span class="kw">let </span>root = <span class="self">self</span>.document.as_table_mut();
+        </span><span class="kw">let </span>root = <span class="kw-2">&amp;mut </span><span class="self">self</span>.root;
         <span class="kw">let </span>parent_table = <span class="self">Self</span>::descend_path(root, <span class="kw-2">&amp;</span>path[..path.len() - <span class="number">1</span>], <span class="bool-val">false</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>key = <span class="kw-2">&amp;</span>path[path.len() - <span class="number">1</span>];
         <span class="kw">let </span>entry = parent_table
@@ -464,7 +463,7 @@
 
         <span class="comment">// 1. Look up the table on start to ensure the duplicate_key error points to the right line
         // 2. Ensure any child tables from an implicit table are preserved
-        </span><span class="kw">let </span>root = <span class="self">self</span>.document.as_table_mut();
+        </span><span class="kw">let </span>root = <span class="kw-2">&amp;mut </span><span class="self">self</span>.root;
         <span class="kw">let </span>parent_table = <span class="self">Self</span>::descend_path(root, <span class="kw-2">&amp;</span>path[..path.len() - <span class="number">1</span>], <span class="bool-val">false</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>key = <span class="kw-2">&amp;</span>path[path.len() - <span class="number">1</span>];
         <span class="kw">if let </span><span class="prelude-val">Some</span>(entry) = parent_table.remove(key.get()) {
@@ -493,7 +492,7 @@
         <span class="kw">let </span><span class="kw-2">mut </span>table = std::mem::take(<span class="kw-2">&amp;mut </span><span class="self">self</span>.current_table);
         <span class="kw">let </span>path = std::mem::take(<span class="kw-2">&amp;mut </span><span class="self">self</span>.current_table_path);
 
-        <span class="kw">let </span>root = <span class="self">self</span>.document.as_table_mut();
+        <span class="kw">let </span>root = <span class="kw-2">&amp;mut </span><span class="self">self</span>.root;
         <span class="kw">if </span>path.is_empty() {
             <span class="macro">assert!</span>(root.is_empty());
             std::mem::swap(<span class="kw-2">&amp;mut </span>table, root);
@@ -579,7 +578,7 @@
                     }
                     table = sweet_child_of_mine;
                 }
-                <span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(),
+                Item::None =&gt; <span class="macro">unreachable!</span>(),
             }
         }
         <span class="prelude-val">Ok</span>(table)
@@ -629,21 +628,6 @@
         )<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(())
-    }
-}
-
-<span class="kw">impl </span>Default <span class="kw">for </span>ParseState {
-    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
-        <span class="kw">let </span><span class="kw-2">mut </span>root = Table::new();
-        root.span = <span class="prelude-val">Some</span>(<span class="number">0</span>..<span class="number">0</span>);
-        <span class="self">Self </span>{
-            document: Document::new(),
-            trailing: <span class="prelude-val">None</span>,
-            current_table_position: <span class="number">0</span>,
-            current_table: root,
-            current_is_array: <span class="bool-val">false</span>,
-            current_table_path: Vec::new(),
-        }
     }
 }
 </code></pre></div></section></main></body></html>

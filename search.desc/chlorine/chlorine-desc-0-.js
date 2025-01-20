@@ -1,0 +1,1 @@
+searchState.loadedDescShard("chlorine", 0, "This just provides the numeric C types, for basic FFI …\nEquivalent to C’s <code>void</code> type when used as a pointer.\nReturns the argument unchanged.\nCalls <code>U::from(self)</code>.\nDoes all our conditional compilation selection.")

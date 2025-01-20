@@ -1,6 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin/.cargo\registry\src\index.crates.io-6f17d22bba15001f\schannel-0.1.23\src\schannel_cred.rs`."><title>schannel_cred.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="schannel" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
-            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
-    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../schannel/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin/.cargo\registry\src\index.crates.io-6f17d22bba15001f\schannel-0.1.27\src\schannel_cred.rs`."><title>schannel_cred.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="schannel" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.0 (9fc6b4312 2025-01-07)" data-channel="1.84.0" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../static.files/storage-59e33391.js"></script><script defer src="../../static.files/src-script-56102188.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">schannel/</div>schannel_cred.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -292,7 +291,55 @@
 <a href="#290" id="290">290</a>
 <a href="#291" id="291">291</a>
 <a href="#292" id="292">292</a>
-</pre></div><pre class="rust"><code><span class="doccomment">//! Schannel credentials.
+<a href="#293" id="293">293</a>
+<a href="#294" id="294">294</a>
+<a href="#295" id="295">295</a>
+<a href="#296" id="296">296</a>
+<a href="#297" id="297">297</a>
+<a href="#298" id="298">298</a>
+<a href="#299" id="299">299</a>
+<a href="#300" id="300">300</a>
+<a href="#301" id="301">301</a>
+<a href="#302" id="302">302</a>
+<a href="#303" id="303">303</a>
+<a href="#304" id="304">304</a>
+<a href="#305" id="305">305</a>
+<a href="#306" id="306">306</a>
+<a href="#307" id="307">307</a>
+<a href="#308" id="308">308</a>
+<a href="#309" id="309">309</a>
+<a href="#310" id="310">310</a>
+<a href="#311" id="311">311</a>
+<a href="#312" id="312">312</a>
+<a href="#313" id="313">313</a>
+<a href="#314" id="314">314</a>
+<a href="#315" id="315">315</a>
+<a href="#316" id="316">316</a>
+<a href="#317" id="317">317</a>
+<a href="#318" id="318">318</a>
+<a href="#319" id="319">319</a>
+<a href="#320" id="320">320</a>
+<a href="#321" id="321">321</a>
+<a href="#322" id="322">322</a>
+<a href="#323" id="323">323</a>
+<a href="#324" id="324">324</a>
+<a href="#325" id="325">325</a>
+<a href="#326" id="326">326</a>
+<a href="#327" id="327">327</a>
+<a href="#328" id="328">328</a>
+<a href="#329" id="329">329</a>
+<a href="#330" id="330">330</a>
+<a href="#331" id="331">331</a>
+<a href="#332" id="332">332</a>
+<a href="#333" id="333">333</a>
+<a href="#334" id="334">334</a>
+<a href="#335" id="335">335</a>
+<a href="#336" id="336">336</a>
+<a href="#337" id="337">337</a>
+<a href="#338" id="338">338</a>
+<a href="#339" id="339">339</a>
+<a href="#340" id="340">340</a>
+<a href="#341" id="341">341</a></pre></div><pre class="rust"><code><span class="doccomment">//! Schannel credentials.
 </span><span class="kw">use </span>std::ptr;
 <span class="kw">use </span>std::sync::Arc;
 <span class="kw">use </span>std::{io, mem};
@@ -471,6 +518,31 @@
     }
 }
 
+<span class="kw">fn </span>verify_min_os_build(major: u32, build: u32) -&gt; <span class="prelude-ty">Option</span>&lt;()&gt; {
+    <span class="kw">use </span>windows_sys::Win32::System::SystemInformation::OSVERSIONINFOW;
+
+    <span class="kw">let </span>handle = std::ptr::NonNull::new(<span class="kw">unsafe </span>{
+        windows_sys::Win32::System::LibraryLoader::GetModuleHandleW(<span class="macro">windows_sys::w!</span>(<span class="string">"ntdll.dll"</span>))
+    })<span class="question-mark">?</span>;
+    <span class="kw">let </span>rtl_get_ver = <span class="kw">unsafe </span>{
+        windows_sys::Win32::System::LibraryLoader::GetProcAddress(handle.as_ptr(), <span class="macro">windows_sys::s!</span>(<span class="string">"RtlGetVersion"</span>))
+    }<span class="question-mark">?</span>;
+
+    <span class="kw">type </span>RtlGetVersionFunc = <span class="kw">unsafe extern </span><span class="string">"system" </span><span class="kw">fn</span>(<span class="kw-2">*mut </span>OSVERSIONINFOW) -&gt; i32;
+    <span class="kw">let </span>proc: RtlGetVersionFunc = <span class="kw">unsafe </span>{ mem::transmute(rtl_get_ver) };
+
+    <span class="kw">let </span><span class="kw-2">mut </span>info: OSVERSIONINFOW = <span class="kw">unsafe </span>{ mem::zeroed() };
+    info.dwOSVersionInfoSize = mem::size_of::&lt;OSVERSIONINFOW&gt;() <span class="kw">as </span>u32;
+
+    <span class="kw">unsafe </span>{ proc(<span class="kw-2">&amp;mut </span>info) };
+
+    <span class="kw">if </span>info.dwMajorVersion &gt; major || (info.dwMajorVersion == major &amp;&amp; info.dwBuildNumber &gt;= build) {
+        <span class="prelude-val">Some</span>(())
+    } <span class="kw">else </span>{
+        <span class="prelude-val">None
+    </span>}
+}
+
 <span class="doccomment">/// A builder type for `SchannelCred`s.
 </span><span class="attr">#[derive(Default, Debug)]
 </span><span class="kw">pub struct </span>Builder {
@@ -513,37 +585,61 @@
 
     <span class="doccomment">/// Creates a new `SchannelCred`.
     </span><span class="kw">pub fn </span>acquire(<span class="kw-2">&amp;</span><span class="self">self</span>, direction: Direction) -&gt; io::Result&lt;SchannelCred&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>enabled_protocols: u32 = <span class="number">0</span>;
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>enable_list) = <span class="self">self</span>.enabled_protocols {
+            enabled_protocols = enable_list
+                .iter()
+                .map(|p| p.dword(direction))
+                .fold(<span class="number">0</span>, |acc, p| acc | p);
+        }
+
         <span class="kw">unsafe </span>{
-            <span class="kw">let </span><span class="kw-2">mut </span>handle: Credentials::SecHandle = mem::zeroed();
             <span class="kw">let </span><span class="kw-2">mut </span>cred_data: Identity::SCHANNEL_CRED = mem::zeroed();
             cred_data.dwVersion = Identity::SCHANNEL_CRED_VERSION;
-            cred_data.dwFlags =
-                Identity::SCH_USE_STRONG_CRYPTO | Identity::SCH_CRED_NO_DEFAULT_CREDS;
-            <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>supported_algorithms) = <span class="self">self</span>.supported_algorithms {
-                cred_data.cSupportedAlgs = supported_algorithms.len() <span class="kw">as </span>u32;
-                cred_data.palgSupportedAlgs = supported_algorithms.as_ptr() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>;
-            }
-            <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>enabled_protocols) = <span class="self">self</span>.enabled_protocols {
-                cred_data.grbitEnabledProtocols = enabled_protocols
-                    .iter()
-                    .map(|p| p.dword(direction))
-                    .fold(<span class="number">0</span>, |acc, p| acc | p);
-            }
+            cred_data.dwFlags = Identity::SCH_USE_STRONG_CRYPTO | Identity::SCH_CRED_NO_DEFAULT_CREDS;
+            cred_data.grbitEnabledProtocols = enabled_protocols;
             <span class="kw">let </span><span class="kw-2">mut </span>certs = <span class="self">self</span>.certs.iter().map(|c| c.as_inner()).collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
             cred_data.cCreds = certs.len() <span class="kw">as </span>u32;
             cred_data.paCred = certs.as_mut_ptr() <span class="kw">as _</span>;
+            
+            <span class="kw">let </span><span class="kw-2">mut </span>tls_param: Identity::TLS_PARAMETERS = mem::zeroed();
+            <span class="kw">let </span><span class="kw-2">mut </span>cred_data2: Identity::SCH_CREDENTIALS = mem::zeroed();
 
+            <span class="kw">let </span><span class="kw-2">mut </span>pauthdata: <span class="kw-2">*const </span>core::ffi::c_void = ptr::null();
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>supported_algorithms) = <span class="self">self</span>.supported_algorithms {
+                cred_data.cSupportedAlgs = supported_algorithms.len() <span class="kw">as </span>u32;
+                cred_data.palgSupportedAlgs = supported_algorithms.as_ptr() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>;
+            } <span class="kw">else if </span>verify_min_os_build(<span class="number">10</span>, <span class="number">17763</span>).is_some() {
+                <span class="comment">// If no algorithms specified and should be supported, use new SCH_CREDENTIALS interface which supports TLS1.3.
+                // Although we check for win10 build 17763 above, I have only seen this work on win 11.
+                </span><span class="kw">if </span>enabled_protocols != <span class="number">0 </span>{
+                    tls_param.grbitDisabledProtocols = !enabled_protocols;
+                }
+                <span class="comment">// TODO: support something to select tls13-ciphers
+                </span>cred_data2.dwVersion = Identity::SCH_CREDENTIALS_VERSION;
+                cred_data2.dwFlags = Identity::SCH_USE_STRONG_CRYPTO | Identity::SCH_CRED_NO_DEFAULT_CREDS;
+                cred_data2.cCreds = certs.len() <span class="kw">as </span>u32;
+                cred_data2.paCred = certs.as_mut_ptr() <span class="kw">as _</span>;
+                cred_data2.cTlsParameters = <span class="number">1</span>;
+                cred_data2.pTlsParameters = <span class="kw-2">&amp;mut </span>tls_param;
+                pauthdata = <span class="kw-2">&amp;mut </span>cred_data2 <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_ as </span><span class="kw-2">*const </span><span class="kw">_</span>;
+            }
+            
+            <span class="kw">if </span>pauthdata.is_null() {
+                pauthdata = <span class="kw-2">&amp;mut </span>cred_data <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_ as </span><span class="kw-2">*const </span><span class="kw">_</span>;
+            }
             <span class="kw">let </span>direction = <span class="kw">match </span>direction {
                 Direction::Inbound =&gt; Identity::SECPKG_CRED_INBOUND,
                 Direction::Outbound =&gt; Identity::SECPKG_CRED_OUTBOUND,
             };
+            <span class="kw">let </span><span class="kw-2">mut </span>handle: Credentials::SecHandle = mem::zeroed();
 
             <span class="kw">match </span>Identity::AcquireCredentialsHandleA(
                 ptr::null(),
                 Identity::UNISP_NAME_A,
                 direction,
                 ptr::null_mut(),
-                <span class="kw-2">&amp;mut </span>cred_data <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_ as </span><span class="kw-2">*const </span><span class="kw">_</span>,
+                pauthdata,
                 <span class="prelude-val">None</span>,
                 ptr::null_mut(),
                 <span class="kw-2">&amp;mut </span>handle,

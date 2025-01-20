@@ -1,6 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin/.cargo\registry\src\index.crates.io-6f17d22bba15001f\winnow-0.5.40\src\combinator\core.rs`."><title>core.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="winnow" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
-            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
-    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../winnow/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin/.cargo\registry\src\index.crates.io-6f17d22bba15001f\winnow-0.6.24\src\combinator\core.rs`."><title>core.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="winnow" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.0 (9fc6b4312 2025-01-07)" data-channel="1.84.0" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../../static.files/storage-59e33391.js"></script><script defer src="../../../static.files/src-script-56102188.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">winnow\combinator/</div>core.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -501,55 +500,57 @@
 <a href="#499" id="499">499</a>
 <a href="#500" id="500">500</a>
 <a href="#501" id="501">501</a>
-</pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::combinator::trace;
+<a href="#502" id="502">502</a>
+<a href="#503" id="503">503</a>
+<a href="#504" id="504">504</a>
+<a href="#505" id="505">505</a>
+<a href="#506" id="506">506</a>
+<a href="#507" id="507">507</a>
+<a href="#508" id="508">508</a>
+<a href="#509" id="509">509</a>
+<a href="#510" id="510">510</a>
+<a href="#511" id="511">511</a>
+<a href="#512" id="512">512</a>
+<a href="#513" id="513">513</a>
+<a href="#514" id="514">514</a>
+<a href="#515" id="515">515</a>
+<a href="#516" id="516">516</a>
+<a href="#517" id="517">517</a>
+<a href="#518" id="518">518</a>
+<a href="#519" id="519">519</a>
+<a href="#520" id="520">520</a>
+<a href="#521" id="521">521</a>
+<a href="#522" id="522">522</a>
+<a href="#523" id="523">523</a>
+<a href="#524" id="524">524</a>
+<a href="#525" id="525">525</a>
+<a href="#526" id="526">526</a>
+<a href="#527" id="527">527</a>
+<a href="#528" id="528">528</a></pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::combinator::trace;
 <span class="kw">use </span><span class="kw">crate</span>::error::{ErrMode, ErrorKind, Needed, ParserError};
 <span class="kw">use </span><span class="kw">crate</span>::stream::Stream;
 <span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// Return the remaining input.
-///
-/// # Example
-///
-/// ```rust
-/// # use winnow::prelude::*;
-/// # use winnow::error::ErrorKind;
-/// # use winnow::error::InputError;
-/// use winnow::combinator::rest;
-/// assert_eq!(rest::&lt;_,InputError&lt;_&gt;&gt;.parse_peek("abc"), Ok(("", "abc")));
-/// assert_eq!(rest::&lt;_,InputError&lt;_&gt;&gt;.parse_peek(""), Ok(("", "")));
-/// ```
-</span><span class="attr">#[inline]
-</span><span class="kw">pub fn </span>rest&lt;I, E: ParserError&lt;I&gt;&gt;(input: <span class="kw-2">&amp;mut </span>I) -&gt; PResult&lt;&lt;I <span class="kw">as </span>Stream&gt;::Slice, E&gt;
+<span class="doccomment">/// Deprecated, replaced with [`token::rest`]
+</span><span class="attr">#[deprecated(since = <span class="string">"0.6.23"</span>, note = <span class="string">"replaced with `token::rest`"</span>)]
+#[inline]
+</span><span class="kw">pub fn </span>rest&lt;Input, Error&gt;(input: <span class="kw-2">&amp;mut </span>Input) -&gt; PResult&lt;&lt;Input <span class="kw">as </span>Stream&gt;::Slice, Error&gt;
 <span class="kw">where
-    </span>I: Stream,
+    </span>Input: Stream,
+    Error: ParserError&lt;Input&gt;,
 {
-    trace(<span class="string">"rest"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>I| <span class="prelude-val">Ok</span>(input.finish())).parse_next(input)
+    <span class="kw">crate</span>::token::rest(input)
 }
 
-<span class="doccomment">/// Return the length of the remaining input.
-///
-/// Note: this does not advance the [`Stream`]
-///
-/// # Example
-///
-/// ```rust
-/// # use winnow::prelude::*;
-/// # use winnow::error::ErrorKind;
-/// # use winnow::error::InputError;
-/// use winnow::combinator::rest_len;
-/// assert_eq!(rest_len::&lt;_,InputError&lt;_&gt;&gt;.parse_peek("abc"), Ok(("abc", 3)));
-/// assert_eq!(rest_len::&lt;_,InputError&lt;_&gt;&gt;.parse_peek(""), Ok(("", 0)));
-/// ```
-</span><span class="attr">#[inline]
-</span><span class="kw">pub fn </span>rest_len&lt;I, E: ParserError&lt;I&gt;&gt;(input: <span class="kw-2">&amp;mut </span>I) -&gt; PResult&lt;usize, E&gt;
+<span class="doccomment">/// Deprecated, replaced with [`token::rest_len`]
+</span><span class="attr">#[deprecated(since = <span class="string">"0.6.23"</span>, note = <span class="string">"replaced with `token::rest_len`"</span>)]
+#[inline]
+</span><span class="kw">pub fn </span>rest_len&lt;Input, Error&gt;(input: <span class="kw-2">&amp;mut </span>Input) -&gt; PResult&lt;usize, Error&gt;
 <span class="kw">where
-    </span>I: Stream,
+    </span>Input: Stream,
+    Error: ParserError&lt;Input&gt;,
 {
-    trace(<span class="string">"rest_len"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>I| {
-        <span class="kw">let </span>len = input.eof_offset();
-        <span class="prelude-val">Ok</span>(len)
-    })
-    .parse_next(input)
+    <span class="kw">crate</span>::token::rest_len(input)
 }
 
 <span class="doccomment">/// Apply a [`Parser`], producing `None` on [`ErrMode::Backtrack`].
@@ -573,16 +574,19 @@
 /// assert_eq!(parser("123;"), Ok(("123;", None)));
 /// # }
 /// ```
-</span><span class="kw">pub fn </span>opt&lt;I: Stream, O, E: ParserError&lt;I&gt;, F&gt;(<span class="kw-2">mut </span>f: F) -&gt; <span class="kw">impl </span>Parser&lt;I, <span class="prelude-ty">Option</span>&lt;O&gt;, E&gt;
+</span><span class="kw">pub fn </span>opt&lt;Input: Stream, Output, Error, ParseNext&gt;(
+    <span class="kw-2">mut </span>parser: ParseNext,
+) -&gt; <span class="kw">impl </span>Parser&lt;Input, <span class="prelude-ty">Option</span>&lt;Output&gt;, Error&gt;
 <span class="kw">where
-    </span>F: Parser&lt;I, O, E&gt;,
+    </span>ParseNext: Parser&lt;Input, Output, Error&gt;,
+    Error: ParserError&lt;Input&gt;,
 {
-    trace(<span class="string">"opt"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>I| {
+    trace(<span class="string">"opt"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>Input| {
         <span class="kw">let </span>start = input.checkpoint();
-        <span class="kw">match </span>f.parse_next(input) {
+        <span class="kw">match </span>parser.parse_next(input) {
             <span class="prelude-val">Ok</span>(o) =&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(o)),
             <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-                input.reset(start);
+                input.reset(<span class="kw-2">&amp;</span>start);
                 <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
             }
             <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(e),
@@ -611,21 +615,27 @@
 /// assert_eq!(parser(false, "123;"), Ok(("123;", None)));
 /// # }
 /// ```
-</span><span class="kw">pub fn </span>cond&lt;I, O, E: ParserError&lt;I&gt;, F&gt;(b: bool, <span class="kw-2">mut </span>f: F) -&gt; <span class="kw">impl </span>Parser&lt;I, <span class="prelude-ty">Option</span>&lt;O&gt;, E&gt;
+</span><span class="kw">pub fn </span>cond&lt;Input, Output, Error, ParseNext&gt;(
+    cond: bool,
+    <span class="kw-2">mut </span>parser: ParseNext,
+) -&gt; <span class="kw">impl </span>Parser&lt;Input, <span class="prelude-ty">Option</span>&lt;Output&gt;, Error&gt;
 <span class="kw">where
-    </span>I: Stream,
-    F: Parser&lt;I, O, E&gt;,
+    </span>Input: Stream,
+    ParseNext: Parser&lt;Input, Output, Error&gt;,
+    Error: ParserError&lt;Input&gt;,
 {
-    trace(<span class="string">"cond"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>I| {
-        <span class="kw">if </span>b {
-            f.parse_next(input).map(<span class="prelude-val">Some</span>)
+    trace(<span class="string">"cond"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>Input| {
+        <span class="kw">if </span>cond {
+            parser.parse_next(input).map(<span class="prelude-val">Some</span>)
         } <span class="kw">else </span>{
             <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
         }
     })
 }
 
-<span class="doccomment">/// Tries to apply its parser without consuming the input.
+<span class="doccomment">/// Apply the parser without advancing the input.
+///
+/// To lookahead and only advance on success, see [`opt`].
 ///
 /// # Example
 ///
@@ -644,14 +654,18 @@
 /// ```
 </span><span class="attr">#[doc(alias = <span class="string">"look_ahead"</span>)]
 #[doc(alias = <span class="string">"rewind"</span>)]
-</span><span class="kw">pub fn </span>peek&lt;I: Stream, O, E: ParserError&lt;I&gt;, F&gt;(<span class="kw-2">mut </span>f: F) -&gt; <span class="kw">impl </span>Parser&lt;I, O, E&gt;
+</span><span class="kw">pub fn </span>peek&lt;Input, Output, Error, ParseNext&gt;(
+    <span class="kw-2">mut </span>parser: ParseNext,
+) -&gt; <span class="kw">impl </span>Parser&lt;Input, Output, Error&gt;
 <span class="kw">where
-    </span>F: Parser&lt;I, O, E&gt;,
+    </span>Input: Stream,
+    Error: ParserError&lt;Input&gt;,
+    ParseNext: Parser&lt;Input, Output, Error&gt;,
 {
-    trace(<span class="string">"peek"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>I| {
+    trace(<span class="string">"peek"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>Input| {
         <span class="kw">let </span>start = input.checkpoint();
-        <span class="kw">let </span>res = f.parse_next(input);
-        input.reset(start);
+        <span class="kw">let </span>res = parser.parse_next(input);
+        input.reset(<span class="kw-2">&amp;</span>start);
         res
     })
 }
@@ -659,6 +673,17 @@
 <span class="doccomment">/// Match the end of the [`Stream`]
 ///
 /// Otherwise, it will error.
+///
+/// # Effective Signature
+///
+/// Assuming you are parsing a `&amp;str` [Stream]:
+/// ```rust
+/// # use winnow::prelude::*;;
+/// pub fn eof&lt;'i&gt;(input: &amp;mut &amp;'i str) -&gt; PResult&lt;&amp;'i str&gt;
+/// # {
+/// #     winnow::combinator::eof.parse_next(input)
+/// # }
+/// ```
 ///
 /// # Example
 ///
@@ -674,11 +699,12 @@
 /// ```
 </span><span class="attr">#[doc(alias = <span class="string">"end"</span>)]
 #[doc(alias = <span class="string">"eoi"</span>)]
-</span><span class="kw">pub fn </span>eof&lt;I, E: ParserError&lt;I&gt;&gt;(input: <span class="kw-2">&amp;mut </span>I) -&gt; PResult&lt;&lt;I <span class="kw">as </span>Stream&gt;::Slice, E&gt;
+</span><span class="kw">pub fn </span>eof&lt;Input, Error&gt;(input: <span class="kw-2">&amp;mut </span>Input) -&gt; PResult&lt;&lt;Input <span class="kw">as </span>Stream&gt;::Slice, Error&gt;
 <span class="kw">where
-    </span>I: Stream,
+    </span>Input: Stream,
+    Error: ParserError&lt;Input&gt;,
 {
-    trace(<span class="string">"eof"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>I| {
+    trace(<span class="string">"eof"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>Input| {
         <span class="kw">if </span>input.eof_offset() == <span class="number">0 </span>{
             <span class="prelude-val">Ok</span>(input.next_slice(<span class="number">0</span>))
         } <span class="kw">else </span>{
@@ -690,7 +716,11 @@
 
 <span class="doccomment">/// Succeeds if the child parser returns an error.
 ///
+/// &lt;div class="warning"&gt;
+///
 /// **Note:** This does not advance the [`Stream`]
+///
+/// &lt;/div&gt;
 ///
 /// # Example
 ///
@@ -707,14 +737,16 @@
 /// assert_eq!(parser.parse_peek("abcd"), Err(ErrMode::Backtrack(InputError::new("abcd", ErrorKind::Not))));
 /// # }
 /// ```
-</span><span class="kw">pub fn </span>not&lt;I: Stream, O, E: ParserError&lt;I&gt;, F&gt;(<span class="kw-2">mut </span>parser: F) -&gt; <span class="kw">impl </span>Parser&lt;I, (), E&gt;
+</span><span class="kw">pub fn </span>not&lt;Input, Output, Error, ParseNext&gt;(<span class="kw-2">mut </span>parser: ParseNext) -&gt; <span class="kw">impl </span>Parser&lt;Input, (), Error&gt;
 <span class="kw">where
-    </span>F: Parser&lt;I, O, E&gt;,
+    </span>Input: Stream,
+    Error: ParserError&lt;Input&gt;,
+    ParseNext: Parser&lt;Input, Output, Error&gt;,
 {
-    trace(<span class="string">"not"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>I| {
+    trace(<span class="string">"not"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>Input| {
         <span class="kw">let </span>start = input.checkpoint();
         <span class="kw">let </span>res = parser.parse_next(input);
-        input.reset(start);
+        input.reset(<span class="kw-2">&amp;</span>start);
         <span class="kw">match </span>res {
             <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">Err</span>(ErrMode::from_error_kind(input, ErrorKind::Not)),
             <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; <span class="prelude-val">Ok</span>(()),
@@ -728,7 +760,7 @@
 /// This commits the parse result, preventing alternative branch paths like with
 /// [`winnow::combinator::alt`][crate::combinator::alt].
 ///
-/// See the [tutorial][crate::_tutorial::chapter_6] for more details.
+/// See the [tutorial][crate::_tutorial::chapter_7] for more details.
 ///
 /// # Example
 ///
@@ -736,8 +768,8 @@
 /// ```rust
 /// # use winnow::{error::ErrMode, error::ErrorKind, error::InputError};
 /// # use winnow::token::one_of;
+/// # use winnow::token::rest;
 /// # use winnow::ascii::digit1;
-/// # use winnow::combinator::rest;
 /// # use winnow::combinator::alt;
 /// # use winnow::combinator::preceded;
 /// # use winnow::prelude::*;
@@ -761,8 +793,8 @@
 /// # use winnow::{error::ErrMode, error::ErrorKind, error::InputError};
 /// # use winnow::prelude::*;
 /// # use winnow::token::one_of;
+/// # use winnow::token::rest;
 /// # use winnow::ascii::digit1;
-/// # use winnow::combinator::rest;
 /// # use winnow::combinator::alt;
 /// # use winnow::combinator::preceded;
 /// use winnow::combinator::cut_err;
@@ -780,12 +812,15 @@
 /// assert_eq!(parser("+"), Err(ErrMode::Cut(InputError::new("", ErrorKind::Slice ))));
 /// # }
 /// ```
-</span><span class="kw">pub fn </span>cut_err&lt;I, O, E: ParserError&lt;I&gt;, F&gt;(<span class="kw-2">mut </span>parser: F) -&gt; <span class="kw">impl </span>Parser&lt;I, O, E&gt;
+</span><span class="kw">pub fn </span>cut_err&lt;Input, Output, Error, ParseNext&gt;(
+    <span class="kw-2">mut </span>parser: ParseNext,
+) -&gt; <span class="kw">impl </span>Parser&lt;Input, Output, Error&gt;
 <span class="kw">where
-    </span>I: Stream,
-    F: Parser&lt;I, O, E&gt;,
+    </span>Input: Stream,
+    Error: ParserError&lt;Input&gt;,
+    ParseNext: Parser&lt;Input, Output, Error&gt;,
 {
-    trace(<span class="string">"cut_err"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>I| {
+    trace(<span class="string">"cut_err"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>Input| {
         parser.parse_next(input).map_err(|e| e.cut())
     })
 }
@@ -794,12 +829,15 @@
 ///
 /// This attempts the parse, allowing other parsers to be tried on failure, like with
 /// [`winnow::combinator::alt`][crate::combinator::alt].
-</span><span class="kw">pub fn </span>backtrack_err&lt;I, O, E: ParserError&lt;I&gt;, F&gt;(<span class="kw-2">mut </span>parser: F) -&gt; <span class="kw">impl </span>Parser&lt;I, O, E&gt;
+</span><span class="kw">pub fn </span>backtrack_err&lt;Input, Output, Error, ParseNext&gt;(
+    <span class="kw-2">mut </span>parser: ParseNext,
+) -&gt; <span class="kw">impl </span>Parser&lt;Input, Output, Error&gt;
 <span class="kw">where
-    </span>I: Stream,
-    F: Parser&lt;I, O, E&gt;,
+    </span>Input: Stream,
+    Error: ParserError&lt;Input&gt;,
+    ParseNext: Parser&lt;Input, Output, Error&gt;,
 {
-    trace(<span class="string">"backtrack_err"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>I| {
+    trace(<span class="string">"backtrack_err"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>Input| {
         parser.parse_next(input).map_err(|e| e.backtrack())
     })
 }
@@ -823,12 +861,15 @@
 /// }
 /// ```
 </span><span class="attr">#[track_caller]
-</span><span class="kw">pub fn </span>todo&lt;I, O, E&gt;(input: <span class="kw-2">&amp;mut </span>I) -&gt; PResult&lt;O, E&gt;
+</span><span class="kw">pub fn </span>todo&lt;Input, Output, Error&gt;(input: <span class="kw-2">&amp;mut </span>Input) -&gt; PResult&lt;Output, Error&gt;
 <span class="kw">where
-    </span>I: Stream,
+    </span>Input: Stream,
 {
     <span class="attr">#![allow(clippy::todo)]
-    </span>trace(<span class="string">"todo"</span>, <span class="kw">move </span>|_input: <span class="kw-2">&amp;mut </span>I| <span class="macro">todo!</span>(<span class="string">"unimplemented parse"</span>)).parse_next(input)
+    </span>trace(<span class="string">"todo"</span>, <span class="kw">move </span>|_input: <span class="kw-2">&amp;mut </span>Input| {
+        <span class="macro">todo!</span>(<span class="string">"unimplemented parse"</span>)
+    })
+    .parse_next(input)
 }
 
 <span class="doccomment">/// Repeats the embedded parser, lazily returning the results
@@ -841,7 +882,7 @@
 /// # Example
 ///
 /// ```rust
-/// use winnow::{combinator::iterator, IResult, token::tag, ascii::alpha1, combinator::terminated};
+/// use winnow::{combinator::iterator, IResult, ascii::alpha1, combinator::terminated};
 /// use std::collections::HashMap;
 ///
 /// let data = "abc|defg|hijkl|mnopqr|123";
@@ -853,11 +894,14 @@
 /// assert_eq!(parsed, [("abc", 3usize), ("defg", 4), ("hijkl", 5), ("mnopqr", 6)].iter().cloned().collect());
 /// assert_eq!(res, Ok(("123", ())));
 /// ```
-</span><span class="kw">pub fn </span>iterator&lt;I, O, E, F&gt;(input: I, parser: F) -&gt; ParserIterator&lt;F, I, O, E&gt;
+</span><span class="kw">pub fn </span>iterator&lt;Input, Output, Error, ParseNext&gt;(
+    input: Input,
+    parser: ParseNext,
+) -&gt; ParserIterator&lt;ParseNext, Input, Output, Error&gt;
 <span class="kw">where
-    </span>F: Parser&lt;I, O, E&gt;,
-    I: Stream,
-    E: ParserError&lt;I&gt;,
+    </span>ParseNext: Parser&lt;Input, Output, Error&gt;,
+    Input: Stream,
+    Error: ParserError&lt;Input&gt;,
 {
     ParserIterator {
         parser,
@@ -894,7 +938,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, F, I, O, E&gt; core::iter::Iterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>ParserIterator&lt;F, I, O, E&gt;
+<span class="kw">impl</span>&lt;F, I, O, E&gt; core::iter::Iterator <span class="kw">for </span><span class="kw-2">&amp;mut </span>ParserIterator&lt;F, I, O, E&gt;
 <span class="kw">where
     </span>F: Parser&lt;I, O, E&gt;,
     I: Stream,
@@ -911,7 +955,7 @@
                     <span class="prelude-val">Some</span>(o)
                 }
                 <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-                    <span class="self">self</span>.input.reset(start);
+                    <span class="self">self</span>.input.reset(<span class="kw-2">&amp;</span>start);
                     <span class="self">self</span>.state = <span class="prelude-val">Some</span>(State::Done);
                     <span class="prelude-val">None
                 </span>}
@@ -947,7 +991,11 @@
 /// - [`Parser::default_value`]
 /// - [`Parser::map`]
 ///
+/// &lt;div class="warning"&gt;
+///
 /// **Note:** This never advances the [`Stream`]
+///
+/// &lt;/div&gt;
 ///
 /// # Example
 ///
@@ -970,14 +1018,13 @@
 /// ```
 </span><span class="attr">#[doc(alias = <span class="string">"value"</span>)]
 #[doc(alias = <span class="string">"success"</span>)]
-</span><span class="kw">pub fn </span>empty&lt;I: Stream, E: ParserError&lt;I&gt;&gt;(_input: <span class="kw-2">&amp;mut </span>I) -&gt; PResult&lt;(), E&gt; {
+#[inline]
+</span><span class="kw">pub fn </span>empty&lt;Input, Error&gt;(_input: <span class="kw-2">&amp;mut </span>Input) -&gt; PResult&lt;(), Error&gt;
+<span class="kw">where
+    </span>Input: Stream,
+    Error: ParserError&lt;Input&gt;,
+{
     <span class="prelude-val">Ok</span>(())
-}
-
-<span class="doccomment">/// Deprecated, replaced with [`empty`] + [`Parser::value`]
-</span><span class="attr">#[deprecated(since = <span class="string">"0.5.35"</span>, note = <span class="string">"Replaced with empty.value(...)`"</span>)]
-</span><span class="kw">pub fn </span>success&lt;I: Stream, O: Clone, E: ParserError&lt;I&gt;&gt;(val: O) -&gt; <span class="kw">impl </span>Parser&lt;I, O, E&gt; {
-    trace(<span class="string">"success"</span>, <span class="kw">move </span>|_input: <span class="kw-2">&amp;mut </span>I| <span class="prelude-val">Ok</span>(val.clone()))
 }
 
 <span class="doccomment">/// A parser which always fails.
@@ -996,8 +1043,13 @@
 /// assert_eq!(fail::&lt;_, &amp;str, _&gt;.parse_peek(s), Err(ErrMode::Backtrack(InputError::new(s, ErrorKind::Fail))));
 /// ```
 </span><span class="attr">#[doc(alias = <span class="string">"unexpected"</span>)]
-</span><span class="kw">pub fn </span>fail&lt;I: Stream, O, E: ParserError&lt;I&gt;&gt;(i: <span class="kw-2">&amp;mut </span>I) -&gt; PResult&lt;O, E&gt; {
-    trace(<span class="string">"fail"</span>, |i: <span class="kw-2">&amp;mut </span>I| {
+#[inline]
+</span><span class="kw">pub fn </span>fail&lt;Input, Output, Error&gt;(i: <span class="kw-2">&amp;mut </span>Input) -&gt; PResult&lt;Output, Error&gt;
+<span class="kw">where
+    </span>Input: Stream,
+    Error: ParserError&lt;Input&gt;,
+{
+    trace(<span class="string">"fail"</span>, |i: <span class="kw-2">&amp;mut </span>Input| {
         <span class="prelude-val">Err</span>(ErrMode::from_error_kind(i, ErrorKind::Fail))
     })
     .parse_next(i)

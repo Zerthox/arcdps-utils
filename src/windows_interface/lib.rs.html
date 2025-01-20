@@ -1,6 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin/.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-interface-0.56.0\src\lib.rs`."><title>lib.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="windows_interface" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
-            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
-    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../windows_interface/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin/.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-interface-0.59.0\src\lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="windows_interface" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.0 (9fc6b4312 2025-01-07)" data-channel="1.84.0" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../static.files/storage-59e33391.js"></script><script defer src="../../static.files/src-script-56102188.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">windows_interface/</div>lib.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -556,9 +555,216 @@
 <a href="#554" id="554">554</a>
 <a href="#555" id="555">555</a>
 <a href="#556" id="556">556</a>
-</pre></div><pre class="rust"><code><span class="doccomment">/*!
-Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows-rs&gt;
-*/
+<a href="#557" id="557">557</a>
+<a href="#558" id="558">558</a>
+<a href="#559" id="559">559</a>
+<a href="#560" id="560">560</a>
+<a href="#561" id="561">561</a>
+<a href="#562" id="562">562</a>
+<a href="#563" id="563">563</a>
+<a href="#564" id="564">564</a>
+<a href="#565" id="565">565</a>
+<a href="#566" id="566">566</a>
+<a href="#567" id="567">567</a>
+<a href="#568" id="568">568</a>
+<a href="#569" id="569">569</a>
+<a href="#570" id="570">570</a>
+<a href="#571" id="571">571</a>
+<a href="#572" id="572">572</a>
+<a href="#573" id="573">573</a>
+<a href="#574" id="574">574</a>
+<a href="#575" id="575">575</a>
+<a href="#576" id="576">576</a>
+<a href="#577" id="577">577</a>
+<a href="#578" id="578">578</a>
+<a href="#579" id="579">579</a>
+<a href="#580" id="580">580</a>
+<a href="#581" id="581">581</a>
+<a href="#582" id="582">582</a>
+<a href="#583" id="583">583</a>
+<a href="#584" id="584">584</a>
+<a href="#585" id="585">585</a>
+<a href="#586" id="586">586</a>
+<a href="#587" id="587">587</a>
+<a href="#588" id="588">588</a>
+<a href="#589" id="589">589</a>
+<a href="#590" id="590">590</a>
+<a href="#591" id="591">591</a>
+<a href="#592" id="592">592</a>
+<a href="#593" id="593">593</a>
+<a href="#594" id="594">594</a>
+<a href="#595" id="595">595</a>
+<a href="#596" id="596">596</a>
+<a href="#597" id="597">597</a>
+<a href="#598" id="598">598</a>
+<a href="#599" id="599">599</a>
+<a href="#600" id="600">600</a>
+<a href="#601" id="601">601</a>
+<a href="#602" id="602">602</a>
+<a href="#603" id="603">603</a>
+<a href="#604" id="604">604</a>
+<a href="#605" id="605">605</a>
+<a href="#606" id="606">606</a>
+<a href="#607" id="607">607</a>
+<a href="#608" id="608">608</a>
+<a href="#609" id="609">609</a>
+<a href="#610" id="610">610</a>
+<a href="#611" id="611">611</a>
+<a href="#612" id="612">612</a>
+<a href="#613" id="613">613</a>
+<a href="#614" id="614">614</a>
+<a href="#615" id="615">615</a>
+<a href="#616" id="616">616</a>
+<a href="#617" id="617">617</a>
+<a href="#618" id="618">618</a>
+<a href="#619" id="619">619</a>
+<a href="#620" id="620">620</a>
+<a href="#621" id="621">621</a>
+<a href="#622" id="622">622</a>
+<a href="#623" id="623">623</a>
+<a href="#624" id="624">624</a>
+<a href="#625" id="625">625</a>
+<a href="#626" id="626">626</a>
+<a href="#627" id="627">627</a>
+<a href="#628" id="628">628</a>
+<a href="#629" id="629">629</a>
+<a href="#630" id="630">630</a>
+<a href="#631" id="631">631</a>
+<a href="#632" id="632">632</a>
+<a href="#633" id="633">633</a>
+<a href="#634" id="634">634</a>
+<a href="#635" id="635">635</a>
+<a href="#636" id="636">636</a>
+<a href="#637" id="637">637</a>
+<a href="#638" id="638">638</a>
+<a href="#639" id="639">639</a>
+<a href="#640" id="640">640</a>
+<a href="#641" id="641">641</a>
+<a href="#642" id="642">642</a>
+<a href="#643" id="643">643</a>
+<a href="#644" id="644">644</a>
+<a href="#645" id="645">645</a>
+<a href="#646" id="646">646</a>
+<a href="#647" id="647">647</a>
+<a href="#648" id="648">648</a>
+<a href="#649" id="649">649</a>
+<a href="#650" id="650">650</a>
+<a href="#651" id="651">651</a>
+<a href="#652" id="652">652</a>
+<a href="#653" id="653">653</a>
+<a href="#654" id="654">654</a>
+<a href="#655" id="655">655</a>
+<a href="#656" id="656">656</a>
+<a href="#657" id="657">657</a>
+<a href="#658" id="658">658</a>
+<a href="#659" id="659">659</a>
+<a href="#660" id="660">660</a>
+<a href="#661" id="661">661</a>
+<a href="#662" id="662">662</a>
+<a href="#663" id="663">663</a>
+<a href="#664" id="664">664</a>
+<a href="#665" id="665">665</a>
+<a href="#666" id="666">666</a>
+<a href="#667" id="667">667</a>
+<a href="#668" id="668">668</a>
+<a href="#669" id="669">669</a>
+<a href="#670" id="670">670</a>
+<a href="#671" id="671">671</a>
+<a href="#672" id="672">672</a>
+<a href="#673" id="673">673</a>
+<a href="#674" id="674">674</a>
+<a href="#675" id="675">675</a>
+<a href="#676" id="676">676</a>
+<a href="#677" id="677">677</a>
+<a href="#678" id="678">678</a>
+<a href="#679" id="679">679</a>
+<a href="#680" id="680">680</a>
+<a href="#681" id="681">681</a>
+<a href="#682" id="682">682</a>
+<a href="#683" id="683">683</a>
+<a href="#684" id="684">684</a>
+<a href="#685" id="685">685</a>
+<a href="#686" id="686">686</a>
+<a href="#687" id="687">687</a>
+<a href="#688" id="688">688</a>
+<a href="#689" id="689">689</a>
+<a href="#690" id="690">690</a>
+<a href="#691" id="691">691</a>
+<a href="#692" id="692">692</a>
+<a href="#693" id="693">693</a>
+<a href="#694" id="694">694</a>
+<a href="#695" id="695">695</a>
+<a href="#696" id="696">696</a>
+<a href="#697" id="697">697</a>
+<a href="#698" id="698">698</a>
+<a href="#699" id="699">699</a>
+<a href="#700" id="700">700</a>
+<a href="#701" id="701">701</a>
+<a href="#702" id="702">702</a>
+<a href="#703" id="703">703</a>
+<a href="#704" id="704">704</a>
+<a href="#705" id="705">705</a>
+<a href="#706" id="706">706</a>
+<a href="#707" id="707">707</a>
+<a href="#708" id="708">708</a>
+<a href="#709" id="709">709</a>
+<a href="#710" id="710">710</a>
+<a href="#711" id="711">711</a>
+<a href="#712" id="712">712</a>
+<a href="#713" id="713">713</a>
+<a href="#714" id="714">714</a>
+<a href="#715" id="715">715</a>
+<a href="#716" id="716">716</a>
+<a href="#717" id="717">717</a>
+<a href="#718" id="718">718</a>
+<a href="#719" id="719">719</a>
+<a href="#720" id="720">720</a>
+<a href="#721" id="721">721</a>
+<a href="#722" id="722">722</a>
+<a href="#723" id="723">723</a>
+<a href="#724" id="724">724</a>
+<a href="#725" id="725">725</a>
+<a href="#726" id="726">726</a>
+<a href="#727" id="727">727</a>
+<a href="#728" id="728">728</a>
+<a href="#729" id="729">729</a>
+<a href="#730" id="730">730</a>
+<a href="#731" id="731">731</a>
+<a href="#732" id="732">732</a>
+<a href="#733" id="733">733</a>
+<a href="#734" id="734">734</a>
+<a href="#735" id="735">735</a>
+<a href="#736" id="736">736</a>
+<a href="#737" id="737">737</a>
+<a href="#738" id="738">738</a>
+<a href="#739" id="739">739</a>
+<a href="#740" id="740">740</a>
+<a href="#741" id="741">741</a>
+<a href="#742" id="742">742</a>
+<a href="#743" id="743">743</a>
+<a href="#744" id="744">744</a>
+<a href="#745" id="745">745</a>
+<a href="#746" id="746">746</a>
+<a href="#747" id="747">747</a>
+<a href="#748" id="748">748</a>
+<a href="#749" id="749">749</a>
+<a href="#750" id="750">750</a>
+<a href="#751" id="751">751</a>
+<a href="#752" id="752">752</a>
+<a href="#753" id="753">753</a>
+<a href="#754" id="754">754</a>
+<a href="#755" id="755">755</a>
+<a href="#756" id="756">756</a>
+<a href="#757" id="757">757</a>
+<a href="#758" id="758">758</a>
+<a href="#759" id="759">759</a>
+<a href="#760" id="760">760</a>
+<a href="#761" id="761">761</a>
+<a href="#762" id="762">762</a></pre></div><pre class="rust"><code><span class="doccomment">//! Define COM interfaces to call or implement.
+//!
+//! Take a look at [macro@interface] for an example.
+//!
+//! Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows-rs&gt;
 
 </span><span class="kw">use </span>quote::quote;
 <span class="kw">use </span>syn::spanned::Spanned;
@@ -566,7 +772,9 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
 <span class="doccomment">/// Defines a COM interface to call or implement.
 ///
 /// # Example
-/// ```rust,ignore
+/// ```rust,no_run
+/// use windows_core::*;
+///
 /// #[interface("094d70d6-5202-44b8-abb8-43860da5aca2")]
 /// unsafe trait IValue: IUnknown {
 ///     fn GetValue(&amp;self, value: *mut i32) -&gt; HRESULT;
@@ -575,20 +783,21 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
 /// #[implement(IValue)]
 /// struct Value(i32);
 ///
-/// impl IValue_Impl for Value {
+/// impl IValue_Impl for Value_Impl {
 ///     unsafe fn GetValue(&amp;self, value: *mut i32) -&gt; HRESULT {
 ///         *value = self.0;
 ///         HRESULT(0)
 ///     }
 /// }
 ///
-/// fn main() {
-///     let object: IValue = Value(123).into();
-///     // Call interface methods...
-/// }
+/// let object: IValue = Value(123).into();
+/// // Call interface methods...
 /// ```
 </span><span class="attr">#[proc_macro_attribute]
-</span><span class="kw">pub fn </span>interface(attributes: proc_macro::TokenStream, original_type: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+</span><span class="kw">pub fn </span>interface(
+    attributes: proc_macro::TokenStream,
+    original_type: proc_macro::TokenStream,
+) -&gt; proc_macro::TokenStream {
     <span class="kw">let </span>guid = <span class="macro">syn::parse_macro_input!</span>(attributes <span class="kw">as </span>Guid);
     <span class="kw">let </span>interface = <span class="macro">syn::parse_macro_input!</span>(original_type <span class="kw">as </span>Interface);
     <span class="kw">let </span>tokens = <span class="kw">match </span>interface.gen_tokens(<span class="kw-2">&amp;</span>guid) {
@@ -625,7 +834,7 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
 /// ```rust,ignore
 /// #[windows_interface::interface("8CEEB155-2849-4ce5-9448-91FF70E1E4D9")]
 /// unsafe trait IUIAnimationVariable: IUnknown {
-/// //^ parses this   
+/// //^ parses this
 ///     fn GetValue(&amp;self, value: *mut f64) -&gt; HRESULT;
 /// }
 /// ```
@@ -661,10 +870,10 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
                 <span class="kw">const </span>IID: ::windows_core::GUID = #guid;
             }
             <span class="kw">impl </span>::windows_core::RuntimeName <span class="kw">for </span>#name {}
-            <span class="kw">impl </span>::std::ops::Deref <span class="kw">for </span>#name {
+            <span class="kw">impl </span>::core::ops::Deref <span class="kw">for </span>#name {
                 <span class="kw">type </span>Target = #parent;
                 <span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Target {
-                    <span class="kw">unsafe </span>{ ::std::mem::transmute(<span class="self">self</span>) }
+                    <span class="kw">unsafe </span>{ ::core::mem::transmute(<span class="self">self</span>) }
                 }
             }
             #com_trait
@@ -683,19 +892,24 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
                 <span class="kw">let </span>vis = <span class="kw-2">&amp;</span>m.visibility;
                 <span class="kw">let </span>name = <span class="kw-2">&amp;</span>m.name;
 
-                <span class="kw">let </span>args = m.gen_args();
-                <span class="kw">let </span>params = <span class="kw-2">&amp;</span>m
-                    .args
-                    .iter()
-                    .map(|a| {
-                        <span class="kw">let </span>pat = <span class="kw-2">&amp;</span>a.pat;
-                        <span class="macro">quote!</span> { #pat }
-                    })
-                    .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
+                <span class="kw">let </span>generics = m.gen_consume_generics();
+                <span class="kw">let </span>params = m.gen_consume_params();
+                <span class="kw">let </span>args = m.gen_consume_args();
                 <span class="kw">let </span>ret = <span class="kw-2">&amp;</span>m.ret;
-                <span class="macro">quote!</span> {
-                    #vis <span class="kw">unsafe fn </span>#name(<span class="kw-2">&amp;</span><span class="self">self</span>, #(#args),<span class="kw-2">*</span>) #ret {
-                        (::windows_core::Interface::vtable(<span class="self">self</span>).#name)(::windows_core::Interface::as_raw(<span class="self">self</span>), #(#params),<span class="kw-2">*</span>)
+
+                <span class="kw">if </span>m.is_result() {
+                    <span class="macro">quote!</span> {
+                    <span class="attr">#[inline(always)]
+                    </span>#vis <span class="kw">unsafe fn </span>#name&lt;#(#generics),<span class="kw-2">*</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, #(#params),<span class="kw-2">*</span>) #ret {
+                            (::windows_core::Interface::vtable(<span class="self">self</span>).#name)(::windows_core::Interface::as_raw(<span class="self">self</span>), #(#args),<span class="kw-2">*</span>).ok()
+                        }
+                    }
+                } <span class="kw">else </span>{
+                    <span class="macro">quote!</span> {
+                        <span class="attr">#[inline(always)]
+                        </span>#vis <span class="kw">unsafe fn </span>#name&lt;#(#generics),<span class="kw-2">*</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, #(#params),<span class="kw-2">*</span>) #ret {
+                            (::windows_core::Interface::vtable(<span class="self">self</span>).#name)(::windows_core::Interface::as_raw(<span class="self">self</span>), #(#args),<span class="kw-2">*</span>)
+                        }
                     }
                 }
             })
@@ -748,14 +962,32 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
                 <span class="kw">let </span>name = <span class="kw-2">&amp;</span>m.name;
                 <span class="kw">let </span>ret = <span class="kw-2">&amp;</span>m.ret;
                 <span class="kw">let </span>args = m.gen_args();
-                <span class="macro">quote!</span> {
-                    <span class="kw">pub </span>#name: <span class="kw">unsafe extern </span><span class="string">"system" </span><span class="kw">fn</span>(this: <span class="kw-2">*mut </span>::core::ffi::c_void, #(#args),<span class="kw-2">*</span>) #ret,
+
+                <span class="kw">if </span>m.is_result() {
+                    <span class="macro">quote!</span> {
+                        <span class="kw">pub </span>#name: <span class="kw">unsafe extern </span><span class="string">"system" </span><span class="kw">fn</span>(this: <span class="kw-2">*mut </span>::core::ffi::c_void, #(#args),<span class="kw-2">*</span>) -&gt; ::windows_core::HRESULT,
+                    }
+                } <span class="kw">else </span>{
+                    <span class="macro">quote!</span> {
+                        <span class="kw">pub </span>#name: <span class="kw">unsafe extern </span><span class="string">"system" </span><span class="kw">fn</span>(this: <span class="kw-2">*mut </span>::core::ffi::c_void, #(#args),<span class="kw-2">*</span>) #ret,
+                    }
                 }
             })
             .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
 
-        <span class="kw">let </span>parent_vtable_generics = <span class="kw">if </span><span class="self">self</span>.parent_is_iunknown() { <span class="macro">quote!</span>(Identity, OFFSET) } <span class="kw">else </span>{ <span class="macro">quote!</span>(Identity, Impl, OFFSET) };
+        <span class="kw">let </span>parent_vtable_generics = <span class="macro">quote!</span>(Identity, OFFSET);
         <span class="kw">let </span>parent_vtable = <span class="self">self</span>.parent_vtable();
+
+        <span class="comment">// or_parent_matches will be `|| parent::matches(iid)` if this interface inherits from another
+        // interface (except for IUnknown) or will be empty if this is not applicable. This is what allows
+        // QueryInterface to work correctly for all interfaces in an inheritance chain, e.g.
+        // IFoo3 derives from IFoo2 derives from IFoo.
+        //
+        // We avoid matching IUnknown because object identity depends on the uniqueness of the IUnknown pointer.
+        </span><span class="kw">let </span>or_parent_matches = <span class="kw">match </span>parent_vtable.as_ref() {
+            <span class="prelude-val">Some</span>(parent) <span class="kw">if </span>!<span class="self">self</span>.parent_is_iunknown() =&gt; <span class="macro">quote!</span> (|| &lt;#parent&gt;::matches(iid)),
+            <span class="kw">_ </span>=&gt; <span class="macro">quote!</span>(),
+        };
 
         <span class="kw">let </span>functions = <span class="self">self
             </span>.methods
@@ -772,12 +1004,37 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
                     })
                     .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
                 <span class="kw">let </span>ret = <span class="kw-2">&amp;</span>m.ret;
+
+                <span class="kw">let </span>ret = <span class="kw">if </span>m.is_result() {
+                    <span class="macro">quote!</span> { -&gt; ::windows_core::HRESULT }
+                } <span class="kw">else </span>{
+                    <span class="macro">quote!</span> { #ret }
+                };
+
                 <span class="kw">if </span>parent_vtable.is_some() {
                     <span class="macro">quote!</span> {
-                        <span class="kw">unsafe extern </span><span class="string">"system" </span><span class="kw">fn </span>#name&lt;Identity: ::windows_core::IUnknownImpl&lt;Impl = Impl&gt;, Impl: #trait_name, <span class="kw">const </span>OFFSET: isize&gt;(this: <span class="kw-2">*mut </span>::core::ffi::c_void, #(#args),<span class="kw-2">*</span>) #ret {
-                            <span class="kw">let </span>this = (this <span class="kw">as </span><span class="kw-2">*const *const </span>()).offset(OFFSET) <span class="kw">as </span><span class="kw-2">*const </span>Identity;
-                            <span class="kw">let </span>this = (<span class="kw-2">*</span>this).get_impl();
-                            this.#name(#(#params),<span class="kw-2">*</span>).into()
+                        <span class="kw">unsafe extern </span><span class="string">"system" </span><span class="kw">fn </span>#name&lt;
+                            Identity: ::windows_core::IUnknownImpl,
+                            <span class="kw">const </span>OFFSET: isize
+                        &gt;(
+                            this: <span class="kw-2">*mut </span>::core::ffi::c_void, <span class="comment">// &lt;-- This is the COM "this" pointer, which is not the same as &amp;T or &amp;T_Impl.
+                            </span>#(#args),*
+                        ) #ret
+                        <span class="kw">where
+                            </span>Identity : #trait_name
+                        {
+                            <span class="comment">// This step is essentially a virtual dispatch adjustor thunk. Its purpose is to adjust
+                            // the "this" pointer from the address used by the COM interface to the root of the
+                            // MyApp_Impl object.  Since a given MyApp_Impl may implement more than one COM interface
+                            // (and more than one COM interface chain), we need to know how to get from COM's "this"
+                            // back to &amp;MyApp_Impl. The OFFSET constant gives us the value (in pointer-sized units).
+                            </span><span class="kw">let </span>this_outer: <span class="kw-2">&amp;</span>Identity = <span class="kw-2">&amp;*</span>((this <span class="kw">as </span><span class="kw-2">*const *const </span>()).offset(OFFSET) <span class="kw">as </span><span class="kw-2">*const </span>Identity);
+
+                            <span class="comment">// Last, we invoke the implementation function.
+                            // We use explicit &lt;Impl as IFoo_Impl&gt; so that we can select the correct method
+                            // for situations where IFoo3 derives from IFoo2 and both declare a method with
+                            // the same name.
+                            </span>&lt;Identity <span class="kw">as </span>#trait_name&gt;::#name(this_outer, #(#params),<span class="kw-2">*</span>).into()
                         }
                     }
                 } <span class="kw">else </span>{
@@ -792,24 +1049,16 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
             })
             .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
 
-        <span class="kw">let </span>entries = <span class="self">self
-            </span>.methods
-            .iter()
-            .map(|m| {
-                <span class="kw">let </span>name = <span class="kw-2">&amp;</span>m.name;
-                <span class="kw">if </span>parent_vtable.is_some() {
-                    <span class="macro">quote!</span> {
-                            #name: #name::&lt;Identity, Impl, OFFSET&gt;
-                    }
-                } <span class="kw">else </span>{
-                    <span class="macro">quote!</span> {
-                            #name: #name::&lt;Impl&gt;
-                    }
-                }
-            })
-            .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
-
         <span class="kw">if let </span><span class="prelude-val">Some</span>(parent_vtable) = parent_vtable {
+            <span class="kw">let </span>entries = <span class="self">self
+                </span>.methods
+                .iter()
+                .map(|m| {
+                    <span class="kw">let </span>name = <span class="kw-2">&amp;</span>m.name;
+                    <span class="macro">quote!</span>(#name: #name::&lt;Identity, OFFSET&gt;)
+                })
+                .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
+
             <span class="macro">quote!</span> {
                 <span class="attr">#[repr(C)]
                 #[doc(hidden)]
@@ -818,17 +1067,34 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
                     #(#vtable_entries)*
                 }
                 <span class="kw">impl </span>#vtable_name {
-                    <span class="kw">pub const fn </span>new&lt;Identity: ::windows_core::IUnknownImpl&lt;Impl = Impl&gt;, Impl: #trait_name, <span class="kw">const </span>OFFSET: isize&gt;() -&gt; <span class="self">Self </span>{
+                    <span class="kw">pub const fn </span>new&lt;
+                        Identity: ::windows_core::IUnknownImpl,
+                        <span class="kw">const </span>OFFSET: isize,
+                    &gt;() -&gt; <span class="self">Self
+                    </span><span class="kw">where
+                        </span>Identity : #trait_name
+                    {
                         #(#functions)*
                         <span class="self">Self </span>{ base__: #parent_vtable::new::&lt;#parent_vtable_generics&gt;(), #(#entries),* }
                     }
 
-                    <span class="kw">pub fn </span>matches(iid: <span class="kw-2">&amp;</span>windows_core::GUID) -&gt; bool {
-                        iid == <span class="kw-2">&amp;</span>&lt;#name <span class="kw">as </span>::windows_core::Interface&gt;::IID
+                    <span class="attr">#[inline(always)]
+                    </span><span class="kw">pub fn </span>matches(iid: <span class="kw-2">&amp;</span>::windows_core::GUID) -&gt; bool {
+                        <span class="kw-2">*</span>iid == &lt;#name <span class="kw">as </span>::windows_core::Interface&gt;::IID
+                        #or_parent_matches
                     }
                 }
             }
         } <span class="kw">else </span>{
+            <span class="kw">let </span>entries = <span class="self">self
+                </span>.methods
+                .iter()
+                .map(|m| {
+                    <span class="kw">let </span>name = <span class="kw-2">&amp;</span>m.name;
+                    <span class="macro">quote!</span>(#name: #name::&lt;Impl&gt;)
+                })
+                .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
+
             <span class="macro">quote!</span> {
                 <span class="attr">#[repr(C)]
                 #[doc(hidden)]
@@ -841,15 +1107,15 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
                         <span class="self">Self </span>{ #(#entries),* }
                     }
                 }
-                <span class="kw">struct </span>#implvtbl_name&lt;T: #trait_name&gt; (::std::marker::PhantomData&lt;T&gt;);
+                <span class="kw">struct </span>#implvtbl_name&lt;T: #trait_name&gt; (::core::marker::PhantomData&lt;T&gt;);
                 <span class="kw">impl</span>&lt;T: #trait_name&gt; #implvtbl_name&lt;T&gt; {
                     <span class="kw">const </span>VTABLE: #vtable_name = #vtable_name::new::&lt;T&gt;();
                 }
                 <span class="kw">impl </span>#name {
                     <span class="kw">fn </span>new&lt;<span class="lifetime">'a</span>, T: #trait_name&gt;(this: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>T) -&gt; ::windows_core::ScopedInterface&lt;<span class="lifetime">'a</span>, #name&gt; {
                         <span class="kw">let </span>this = ::windows_core::ScopedHeap { vtable: <span class="kw-2">&amp;</span>#implvtbl_name::&lt;T&gt;::VTABLE <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_ as </span><span class="kw-2">*const </span><span class="kw">_</span>, this: this <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_ as </span><span class="kw-2">*const </span><span class="kw">_ </span>};
-                        <span class="kw">let </span>this = ::std::mem::ManuallyDrop::new(::std::boxed::Box::new(this));
-                        <span class="kw">unsafe </span>{ ::windows_core::ScopedInterface::new(::std::mem::transmute(<span class="kw-2">&amp;</span>this.vtable)) }
+                        <span class="kw">let </span>this = ::core::mem::ManuallyDrop::new(::windows_core::imp::Box::new(this));
+                        <span class="kw">unsafe </span>{ ::windows_core::ScopedInterface::new(::core::mem::transmute(<span class="kw-2">&amp;</span>this.vtable)) }
                     }
                 }
             }
@@ -884,7 +1150,7 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
             <span class="kw">impl </span>::core::cmp::Eq <span class="kw">for </span>#name {}
             <span class="kw">impl </span>::core::fmt::Debug <span class="kw">for </span>#name {
                 <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>::core::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; ::core::fmt::Result {
-                    f.debug_tuple(#name_string).field(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>).finish()
+                    f.debug_tuple(#name_string).field(<span class="kw-2">&amp;</span>::windows_core::Interface::as_raw(<span class="self">self</span>)).finish()
                 }
             }
         }
@@ -894,7 +1160,7 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
         <span class="kw">if let </span><span class="prelude-val">Some</span>(parent) = <span class="kw-2">&amp;</span><span class="self">self</span>.parent {
             <span class="macro">quote!</span>(#parent)
         } <span class="kw">else </span>{
-            <span class="macro">quote!</span>(::std::ptr::NonNull&lt;::std::ffi::c_void&gt;)
+            <span class="macro">quote!</span>(::core::ptr::NonNull&lt;::core::ffi::c_void&gt;)
         }
     }
 
@@ -917,7 +1183,11 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
 
     <span class="kw">fn </span>parent_path(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;syn::Ident&gt; {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(parent) = <span class="kw-2">&amp;</span><span class="self">self</span>.parent {
-            parent.segments.iter().map(|segment| segment.ident.clone()).collect()
+            parent
+                .segments
+                .iter()
+                .map(|segment| segment.ident.clone())
+                .collect()
         } <span class="kw">else </span>{
             <span class="macro">vec!</span>[]
         }
@@ -961,7 +1231,13 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
         <span class="kw">while </span>!content.is_empty() {
             methods.push(content.parse::&lt;InterfaceMethod&gt;()<span class="question-mark">?</span>);
         }
-        <span class="prelude-val">Ok</span>(<span class="self">Self </span>{ visibility, methods, name, parent, docs })
+        <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
+            visibility,
+            methods,
+            name,
+            parent,
+            docs,
+        })
     }
 }
 
@@ -969,7 +1245,7 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
 ///
 /// ```rust,ignore
 /// #[windows_interface::interface("8CEEB155-2849-4ce5-9448-91FF70E1E4D9")]
-///                              //^ parses this   
+///                              //^ parses this
 /// unsafe trait IUIAnimationVariable: IUnknown {
 ///     fn GetValue(&amp;self, value: *mut f64) -&gt; HRESULT;
 /// }
@@ -982,14 +1258,32 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
             syn::LitInt::new(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"0x{num}"</span>), proc_macro2::Span::call_site())
         }
 
-        <span class="kw">fn </span>ensure_length(part: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;, index: usize, length: usize, span: proc_macro2::Span) -&gt; syn::Result&lt;String&gt; {
+        <span class="kw">fn </span>ensure_length(
+            part: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;,
+            index: usize,
+            length: usize,
+            span: proc_macro2::Span,
+        ) -&gt; syn::Result&lt;String&gt; {
             <span class="kw">let </span>part = <span class="kw">match </span>part {
                 <span class="prelude-val">Some</span>(p) =&gt; p,
-                <span class="prelude-val">None </span>=&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(syn::Error::new(span, <span class="macro">format!</span>(<span class="string">"The IID missing part at index {index}"</span>))),
+                <span class="prelude-val">None </span>=&gt; {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(syn::Error::new(
+                        span,
+                        <span class="macro">format!</span>(<span class="string">"The IID missing part at index {index}"</span>),
+                    ))
+                }
             };
 
             <span class="kw">if </span>part.len() != length {
-                <span class="kw">return </span><span class="prelude-val">Err</span>(syn::Error::new(span, <span class="macro">format!</span>(<span class="string">"The IID part at index {} must be {} characters long but was {} characters"</span>, index, length, part.len())));
+                <span class="kw">return </span><span class="prelude-val">Err</span>(syn::Error::new(
+                    span,
+                    <span class="macro">format!</span>(
+                        <span class="string">"The IID part at index {} must be {} characters long but was {} characters"</span>,
+                        index,
+                        length,
+                        part.len()
+                    ),
+                ));
             }
 
             <span class="prelude-val">Ok</span>(part.to_owned())
@@ -998,7 +1292,13 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
         <span class="kw">if let </span><span class="prelude-val">Some</span>(value) = <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0 </span>{
             <span class="kw">let </span>guid_value = value.value();
             <span class="kw">let </span><span class="kw-2">mut </span>delimited = guid_value.split(<span class="string">'-'</span>).fuse();
-            <span class="kw">let </span>chunks = [ensure_length(delimited.next(), <span class="number">0</span>, <span class="number">8</span>, value.span())<span class="question-mark">?</span>, ensure_length(delimited.next(), <span class="number">1</span>, <span class="number">4</span>, value.span())<span class="question-mark">?</span>, ensure_length(delimited.next(), <span class="number">2</span>, <span class="number">4</span>, value.span())<span class="question-mark">?</span>, ensure_length(delimited.next(), <span class="number">3</span>, <span class="number">4</span>, value.span())<span class="question-mark">?</span>, ensure_length(delimited.next(), <span class="number">4</span>, <span class="number">12</span>, value.span())<span class="question-mark">?</span>];
+            <span class="kw">let </span>chunks = [
+                ensure_length(delimited.next(), <span class="number">0</span>, <span class="number">8</span>, value.span())<span class="question-mark">?</span>,
+                ensure_length(delimited.next(), <span class="number">1</span>, <span class="number">4</span>, value.span())<span class="question-mark">?</span>,
+                ensure_length(delimited.next(), <span class="number">2</span>, <span class="number">4</span>, value.span())<span class="question-mark">?</span>,
+                ensure_length(delimited.next(), <span class="number">3</span>, <span class="number">4</span>, value.span())<span class="question-mark">?</span>,
+                ensure_length(delimited.next(), <span class="number">4</span>, <span class="number">12</span>, value.span())<span class="question-mark">?</span>,
+            ];
 
             <span class="kw">let </span>data1 = hex_lit(<span class="kw-2">&amp;</span>chunks[<span class="number">0</span>]);
             <span class="kw">let </span>data2 = hex_lit(<span class="kw-2">&amp;</span>chunks[<span class="number">1</span>]);
@@ -1051,7 +1351,7 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
 /// #[windows_interface::interface("8CEEB155-2849-4ce5-9448-91FF70E1E4D9")]
 /// unsafe trait IUIAnimationVariable: IUnknown {
 ///     fn GetValue(&amp;self, value: *mut f64) -&gt; HRESULT;
-///   //^ parses this   
+///   //^ parses this
 /// }
 /// ```
 </span><span class="kw">struct </span>InterfaceMethod {
@@ -1063,6 +1363,25 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
 }
 
 <span class="kw">impl </span>InterfaceMethod {
+    <span class="kw">fn </span>is_result(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">if let </span>syn::ReturnType::Type(<span class="kw">_</span>, ty) = <span class="kw-2">&amp;</span><span class="self">self</span>.ret {
+            <span class="kw">if let </span>syn::Type::Path(path) = <span class="kw-2">&amp;**</span>ty {
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(segment) = path.path.segments.last() {
+                    <span class="kw">let </span>ident = segment.ident.to_string();
+                    <span class="kw">if </span>ident == <span class="string">"Result" </span>{
+                        <span class="kw">if let </span>syn::PathArguments::AngleBracketed(args) = <span class="kw-2">&amp;</span>segment.arguments {
+                            <span class="kw">if </span>args.args.len() == <span class="number">1 </span>{
+                                <span class="kw">return </span><span class="bool-val">true</span>;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        <span class="bool-val">false
+    </span>}
+
     <span class="doccomment">/// Generates arguments (of the form `$pat: $type`)
     </span><span class="kw">fn </span>gen_args(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;proc_macro2::TokenStream&gt; {
         <span class="self">self</span>.args
@@ -1071,6 +1390,62 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
                 <span class="kw">let </span>pat = <span class="kw-2">&amp;</span>a.pat;
                 <span class="kw">let </span>ty = <span class="kw-2">&amp;</span>a.ty;
                 <span class="macro">quote!</span> { #pat: #ty }
+            })
+            .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;()
+    }
+
+    <span class="kw">fn </span>gen_consume_generics(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;proc_macro2::TokenStream&gt; {
+        <span class="self">self</span>.args
+            .iter()
+            .enumerate()
+            .filter_map(|(generic_index, a)| {
+                <span class="kw">if let </span><span class="prelude-val">Some</span>((ty, ident)) = a.borrow_type() {
+                    <span class="kw">let </span>generic_ident = <span class="macro">quote::format_ident!</span>(<span class="string">"P{generic_index}"</span>);
+                    <span class="kw">if </span>ident == <span class="string">"Ref" </span>{
+                        <span class="prelude-val">Some</span>(<span class="macro">quote!</span> { #generic_ident: ::windows_core::Param&lt;#ty&gt; })
+                    } <span class="kw">else </span>{
+                        <span class="prelude-val">Some</span>(<span class="macro">quote!</span> { #generic_ident: ::windows_core::OutParam&lt;#ty&gt; })
+                    }
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">None
+                </span>}
+            })
+            .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;()
+    }
+
+    <span class="kw">fn </span>gen_consume_params(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;proc_macro2::TokenStream&gt; {
+        <span class="self">self</span>.args
+            .iter()
+            .enumerate()
+            .map(|(generic_index, a)| {
+                <span class="kw">let </span>pat = <span class="kw-2">&amp;</span>a.pat;
+
+                <span class="kw">if </span>a.borrow_type().is_some() {
+                    <span class="kw">let </span>generic_ident = <span class="macro">quote::format_ident!</span>(<span class="string">"P{generic_index}"</span>);
+                    <span class="macro">quote!</span> { #pat: #generic_ident }
+                } <span class="kw">else </span>{
+                    <span class="kw">let </span>ty = <span class="kw-2">&amp;</span>a.ty;
+                    <span class="macro">quote!</span> { #pat: #ty }
+                }
+            })
+            .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;()
+    }
+
+    <span class="kw">fn </span>gen_consume_args(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;proc_macro2::TokenStream&gt; {
+        <span class="self">self</span>.args
+            .iter()
+            .map(|a| {
+                <span class="kw">let </span>pat = <span class="kw-2">&amp;</span>a.pat;
+
+                <span class="kw">if let </span><span class="prelude-val">Some</span>((<span class="kw">_</span>, ident)) = a.borrow_type() {
+                    <span class="kw">if </span>ident == <span class="string">"Ref" </span>{
+                        <span class="macro">quote!</span> { #pat.param().borrow() }
+                    } <span class="kw">else </span>{
+                        <span class="macro">quote!</span> { #pat.borrow_mut() }
+                    }
+                } <span class="kw">else </span>{
+                    <span class="macro">quote!</span> { #pat }
+                }
             })
             .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;()
     }
@@ -1088,7 +1463,10 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
         <span class="macro">unexpected_token!</span>(sig.asyncness, <span class="string">"async declaration"</span>);
         <span class="macro">unexpected_token!</span>(sig.generics.params.iter().next(), <span class="string">"generics declaration"</span>);
         <span class="macro">unexpected_token!</span>(sig.constness, <span class="string">"const declaration"</span>);
-        <span class="macro">expected_token!</span>(sig.receiver(), <span class="string">"the method to have &amp;self as its first argument"</span>);
+        <span class="macro">expected_token!</span>(
+            sig.receiver(),
+            <span class="string">"the method to have &amp;self as its first argument"
+        </span>);
         <span class="macro">unexpected_token!</span>(sig.variadic, <span class="string">"variadic args"</span>);
         <span class="kw">let </span>args = sig
             .inputs
@@ -1097,11 +1475,22 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
                 syn::FnArg::Receiver(<span class="kw">_</span>) =&gt; <span class="prelude-val">None</span>,
                 syn::FnArg::Typed(p) =&gt; <span class="prelude-val">Some</span>(p),
             })
-            .map(|p| <span class="prelude-val">Ok</span>(InterfaceMethodArg { ty: p.ty, pat: p.pat }))
+            .map(|p| {
+                <span class="prelude-val">Ok</span>(InterfaceMethodArg {
+                    ty: p.ty,
+                    pat: p.pat,
+                })
+            })
             .collect::&lt;<span class="prelude-ty">Result</span>&lt;Vec&lt;InterfaceMethodArg&gt;, syn::Error&gt;&gt;()<span class="question-mark">?</span>;
 
         <span class="kw">let </span>ret = sig.output;
-        <span class="prelude-val">Ok</span>(InterfaceMethod { name: sig.ident, visibility, args, ret, docs })
+        <span class="prelude-val">Ok</span>(InterfaceMethod {
+            name: sig.ident,
+            visibility,
+            args,
+            ret,
+            docs,
+        })
     }
 }
 
@@ -1111,5 +1500,26 @@ Learn more about Rust for Windows here: &lt;https://github.com/microsoft/windows
     </span><span class="kw">pub </span>ty: Box&lt;syn::Type&gt;,
     <span class="doccomment">/// The name of the argument
     </span><span class="kw">pub </span>pat: Box&lt;syn::Pat&gt;,
+}
+
+<span class="kw">impl </span>InterfaceMethodArg {
+    <span class="kw">fn </span>borrow_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(syn::Type, String)&gt; {
+        <span class="kw">if let </span>syn::Type::Path(path) = <span class="kw-2">&amp;*</span><span class="self">self</span>.ty {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(segment) = path.path.segments.last() {
+                <span class="kw">let </span>ident = segment.ident.to_string();
+                <span class="kw">if </span><span class="macro">matches!</span>(ident.as_str(), <span class="string">"Ref" </span>| <span class="string">"OutRef"</span>) {
+                    <span class="kw">if let </span>syn::PathArguments::AngleBracketed(args) = <span class="kw-2">&amp;</span>segment.arguments {
+                        <span class="kw">if </span>args.args.len() == <span class="number">1 </span>{
+                            <span class="kw">if let </span><span class="prelude-val">Some</span>(syn::GenericArgument::Type(ty)) = args.args.first() {
+                                <span class="kw">return </span><span class="prelude-val">Some</span>((ty.clone(), ident));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        <span class="prelude-val">None
+    </span>}
 }
 </code></pre></div></section></main></body></html>

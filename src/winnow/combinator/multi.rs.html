@@ -1,6 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin/.cargo\registry\src\index.crates.io-6f17d22bba15001f\winnow-0.5.40\src\combinator\multi.rs`."><title>multi.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="winnow" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
-            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
-    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../winnow/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\runneradmin/.cargo\registry\src\index.crates.io-6f17d22bba15001f\winnow-0.6.24\src\combinator\multi.rs`."><title>multi.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="winnow" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.0 (9fc6b4312 2025-01-07)" data-channel="1.84.0" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../../static.files/storage-59e33391.js"></script><script defer src="../../../static.files/src-script-56102188.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">winnow\combinator/</div>multi.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1408,11 +1407,215 @@
 <a href="#1406" id="1406">1406</a>
 <a href="#1407" id="1407">1407</a>
 <a href="#1408" id="1408">1408</a>
-</pre></div><pre class="rust"><code><span class="doccomment">//! Combinators applying their child parser multiple times
+<a href="#1409" id="1409">1409</a>
+<a href="#1410" id="1410">1410</a>
+<a href="#1411" id="1411">1411</a>
+<a href="#1412" id="1412">1412</a>
+<a href="#1413" id="1413">1413</a>
+<a href="#1414" id="1414">1414</a>
+<a href="#1415" id="1415">1415</a>
+<a href="#1416" id="1416">1416</a>
+<a href="#1417" id="1417">1417</a>
+<a href="#1418" id="1418">1418</a>
+<a href="#1419" id="1419">1419</a>
+<a href="#1420" id="1420">1420</a>
+<a href="#1421" id="1421">1421</a>
+<a href="#1422" id="1422">1422</a>
+<a href="#1423" id="1423">1423</a>
+<a href="#1424" id="1424">1424</a>
+<a href="#1425" id="1425">1425</a>
+<a href="#1426" id="1426">1426</a>
+<a href="#1427" id="1427">1427</a>
+<a href="#1428" id="1428">1428</a>
+<a href="#1429" id="1429">1429</a>
+<a href="#1430" id="1430">1430</a>
+<a href="#1431" id="1431">1431</a>
+<a href="#1432" id="1432">1432</a>
+<a href="#1433" id="1433">1433</a>
+<a href="#1434" id="1434">1434</a>
+<a href="#1435" id="1435">1435</a>
+<a href="#1436" id="1436">1436</a>
+<a href="#1437" id="1437">1437</a>
+<a href="#1438" id="1438">1438</a>
+<a href="#1439" id="1439">1439</a>
+<a href="#1440" id="1440">1440</a>
+<a href="#1441" id="1441">1441</a>
+<a href="#1442" id="1442">1442</a>
+<a href="#1443" id="1443">1443</a>
+<a href="#1444" id="1444">1444</a>
+<a href="#1445" id="1445">1445</a>
+<a href="#1446" id="1446">1446</a>
+<a href="#1447" id="1447">1447</a>
+<a href="#1448" id="1448">1448</a>
+<a href="#1449" id="1449">1449</a>
+<a href="#1450" id="1450">1450</a>
+<a href="#1451" id="1451">1451</a>
+<a href="#1452" id="1452">1452</a>
+<a href="#1453" id="1453">1453</a>
+<a href="#1454" id="1454">1454</a>
+<a href="#1455" id="1455">1455</a>
+<a href="#1456" id="1456">1456</a>
+<a href="#1457" id="1457">1457</a>
+<a href="#1458" id="1458">1458</a>
+<a href="#1459" id="1459">1459</a>
+<a href="#1460" id="1460">1460</a>
+<a href="#1461" id="1461">1461</a>
+<a href="#1462" id="1462">1462</a>
+<a href="#1463" id="1463">1463</a>
+<a href="#1464" id="1464">1464</a>
+<a href="#1465" id="1465">1465</a>
+<a href="#1466" id="1466">1466</a>
+<a href="#1467" id="1467">1467</a>
+<a href="#1468" id="1468">1468</a>
+<a href="#1469" id="1469">1469</a>
+<a href="#1470" id="1470">1470</a>
+<a href="#1471" id="1471">1471</a>
+<a href="#1472" id="1472">1472</a>
+<a href="#1473" id="1473">1473</a>
+<a href="#1474" id="1474">1474</a>
+<a href="#1475" id="1475">1475</a>
+<a href="#1476" id="1476">1476</a>
+<a href="#1477" id="1477">1477</a>
+<a href="#1478" id="1478">1478</a>
+<a href="#1479" id="1479">1479</a>
+<a href="#1480" id="1480">1480</a>
+<a href="#1481" id="1481">1481</a>
+<a href="#1482" id="1482">1482</a>
+<a href="#1483" id="1483">1483</a>
+<a href="#1484" id="1484">1484</a>
+<a href="#1485" id="1485">1485</a>
+<a href="#1486" id="1486">1486</a>
+<a href="#1487" id="1487">1487</a>
+<a href="#1488" id="1488">1488</a>
+<a href="#1489" id="1489">1489</a>
+<a href="#1490" id="1490">1490</a>
+<a href="#1491" id="1491">1491</a>
+<a href="#1492" id="1492">1492</a>
+<a href="#1493" id="1493">1493</a>
+<a href="#1494" id="1494">1494</a>
+<a href="#1495" id="1495">1495</a>
+<a href="#1496" id="1496">1496</a>
+<a href="#1497" id="1497">1497</a>
+<a href="#1498" id="1498">1498</a>
+<a href="#1499" id="1499">1499</a>
+<a href="#1500" id="1500">1500</a>
+<a href="#1501" id="1501">1501</a>
+<a href="#1502" id="1502">1502</a>
+<a href="#1503" id="1503">1503</a>
+<a href="#1504" id="1504">1504</a>
+<a href="#1505" id="1505">1505</a>
+<a href="#1506" id="1506">1506</a>
+<a href="#1507" id="1507">1507</a>
+<a href="#1508" id="1508">1508</a>
+<a href="#1509" id="1509">1509</a>
+<a href="#1510" id="1510">1510</a>
+<a href="#1511" id="1511">1511</a>
+<a href="#1512" id="1512">1512</a>
+<a href="#1513" id="1513">1513</a>
+<a href="#1514" id="1514">1514</a>
+<a href="#1515" id="1515">1515</a>
+<a href="#1516" id="1516">1516</a>
+<a href="#1517" id="1517">1517</a>
+<a href="#1518" id="1518">1518</a>
+<a href="#1519" id="1519">1519</a>
+<a href="#1520" id="1520">1520</a>
+<a href="#1521" id="1521">1521</a>
+<a href="#1522" id="1522">1522</a>
+<a href="#1523" id="1523">1523</a>
+<a href="#1524" id="1524">1524</a>
+<a href="#1525" id="1525">1525</a>
+<a href="#1526" id="1526">1526</a>
+<a href="#1527" id="1527">1527</a>
+<a href="#1528" id="1528">1528</a>
+<a href="#1529" id="1529">1529</a>
+<a href="#1530" id="1530">1530</a>
+<a href="#1531" id="1531">1531</a>
+<a href="#1532" id="1532">1532</a>
+<a href="#1533" id="1533">1533</a>
+<a href="#1534" id="1534">1534</a>
+<a href="#1535" id="1535">1535</a>
+<a href="#1536" id="1536">1536</a>
+<a href="#1537" id="1537">1537</a>
+<a href="#1538" id="1538">1538</a>
+<a href="#1539" id="1539">1539</a>
+<a href="#1540" id="1540">1540</a>
+<a href="#1541" id="1541">1541</a>
+<a href="#1542" id="1542">1542</a>
+<a href="#1543" id="1543">1543</a>
+<a href="#1544" id="1544">1544</a>
+<a href="#1545" id="1545">1545</a>
+<a href="#1546" id="1546">1546</a>
+<a href="#1547" id="1547">1547</a>
+<a href="#1548" id="1548">1548</a>
+<a href="#1549" id="1549">1549</a>
+<a href="#1550" id="1550">1550</a>
+<a href="#1551" id="1551">1551</a>
+<a href="#1552" id="1552">1552</a>
+<a href="#1553" id="1553">1553</a>
+<a href="#1554" id="1554">1554</a>
+<a href="#1555" id="1555">1555</a>
+<a href="#1556" id="1556">1556</a>
+<a href="#1557" id="1557">1557</a>
+<a href="#1558" id="1558">1558</a>
+<a href="#1559" id="1559">1559</a>
+<a href="#1560" id="1560">1560</a>
+<a href="#1561" id="1561">1561</a>
+<a href="#1562" id="1562">1562</a>
+<a href="#1563" id="1563">1563</a>
+<a href="#1564" id="1564">1564</a>
+<a href="#1565" id="1565">1565</a>
+<a href="#1566" id="1566">1566</a>
+<a href="#1567" id="1567">1567</a>
+<a href="#1568" id="1568">1568</a>
+<a href="#1569" id="1569">1569</a>
+<a href="#1570" id="1570">1570</a>
+<a href="#1571" id="1571">1571</a>
+<a href="#1572" id="1572">1572</a>
+<a href="#1573" id="1573">1573</a>
+<a href="#1574" id="1574">1574</a>
+<a href="#1575" id="1575">1575</a>
+<a href="#1576" id="1576">1576</a>
+<a href="#1577" id="1577">1577</a>
+<a href="#1578" id="1578">1578</a>
+<a href="#1579" id="1579">1579</a>
+<a href="#1580" id="1580">1580</a>
+<a href="#1581" id="1581">1581</a>
+<a href="#1582" id="1582">1582</a>
+<a href="#1583" id="1583">1583</a>
+<a href="#1584" id="1584">1584</a>
+<a href="#1585" id="1585">1585</a>
+<a href="#1586" id="1586">1586</a>
+<a href="#1587" id="1587">1587</a>
+<a href="#1588" id="1588">1588</a>
+<a href="#1589" id="1589">1589</a>
+<a href="#1590" id="1590">1590</a>
+<a href="#1591" id="1591">1591</a>
+<a href="#1592" id="1592">1592</a>
+<a href="#1593" id="1593">1593</a>
+<a href="#1594" id="1594">1594</a>
+<a href="#1595" id="1595">1595</a>
+<a href="#1596" id="1596">1596</a>
+<a href="#1597" id="1597">1597</a>
+<a href="#1598" id="1598">1598</a>
+<a href="#1599" id="1599">1599</a>
+<a href="#1600" id="1600">1600</a>
+<a href="#1601" id="1601">1601</a>
+<a href="#1602" id="1602">1602</a>
+<a href="#1603" id="1603">1603</a>
+<a href="#1604" id="1604">1604</a>
+<a href="#1605" id="1605">1605</a>
+<a href="#1606" id="1606">1606</a>
+<a href="#1607" id="1607">1607</a>
+<a href="#1608" id="1608">1608</a>
+<a href="#1609" id="1609">1609</a>
+<a href="#1610" id="1610">1610</a>
+<a href="#1611" id="1611">1611</a>
+<a href="#1612" id="1612">1612</a></pre></div><pre class="rust"><code><span class="doccomment">//! Combinators applying their child parser multiple times
 
 </span><span class="kw">use </span><span class="kw">crate</span>::combinator::trace;
 <span class="kw">use </span><span class="kw">crate</span>::error::ErrMode;
 <span class="kw">use </span><span class="kw">crate</span>::error::ErrorKind;
+<span class="kw">use </span><span class="kw">crate</span>::error::FromExternalError;
 <span class="kw">use </span><span class="kw">crate</span>::error::ParserError;
 <span class="kw">use </span><span class="kw">crate</span>::stream::Accumulate;
 <span class="kw">use </span><span class="kw">crate</span>::stream::Range;
@@ -1425,16 +1628,17 @@
 /// This stops before `n` when the parser returns [`ErrMode::Backtrack`]. To instead chain an error up, see
 /// [`cut_err`][crate::combinator::cut_err].
 ///
-/// # Arguments
-/// * `m` The minimum number of iterations.
-/// * `n` The maximum number of iterations.
-/// * `f` The parser to apply.
+/// To take a series of tokens, [`Accumulate`] into a `()`
+/// (e.g. with [`.map(|()| ())`][Parser::map])
+/// and then [`Parser::take`].
 ///
-/// To recognize a series of tokens, [`Accumulate`] into a `()` and then [`Parser::recognize`].
+/// &lt;div class="warning"&gt;
 ///
 /// **Warning:** If the parser passed to `repeat` accepts empty inputs
 /// (like `alpha0` or `digit0`), `repeat` will return an error,
 /// to prevent going into an infinite loop.
+///
+/// &lt;/div&gt;
 ///
 /// # Example
 ///
@@ -1444,7 +1648,6 @@
 /// # use winnow::{error::ErrMode, error::ErrorKind, error::Needed};
 /// # use winnow::prelude::*;
 /// use winnow::combinator::repeat;
-/// use winnow::token::tag;
 ///
 /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;&amp;str&gt;&gt; {
 ///   repeat(0.., "abc").parse_peek(s)
@@ -1463,7 +1666,6 @@
 /// # use winnow::{error::ErrMode, error::{InputError, ErrorKind}, error::Needed};
 /// # use winnow::prelude::*;
 /// use winnow::combinator::repeat;
-/// use winnow::token::tag;
 ///
 /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;&amp;str&gt;&gt; {
 ///   repeat(1.., "abc").parse_peek(s)
@@ -1482,7 +1684,6 @@
 /// # use winnow::{error::ErrMode, error::{InputError, ErrorKind}, error::Needed};
 /// # use winnow::prelude::*;
 /// use winnow::combinator::repeat;
-/// use winnow::token::tag;
 ///
 /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;&amp;str&gt;&gt; {
 ///   repeat(2, "abc").parse_peek(s)
@@ -1502,7 +1703,6 @@
 /// # use winnow::{error::ErrMode, error::ErrorKind, error::Needed};
 /// # use winnow::prelude::*;
 /// use winnow::combinator::repeat;
-/// use winnow::token::tag;
 ///
 /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;&amp;str&gt;&gt; {
 ///   repeat(0..=2, "abc").parse_peek(s)
@@ -1525,15 +1725,18 @@
 #[doc(alias = <span class="string">"skip_many"</span>)]
 #[doc(alias = <span class="string">"skip_many1"</span>)]
 #[inline(always)]
-</span><span class="kw">pub fn </span>repeat&lt;I, O, C, E, P&gt;(range: <span class="kw">impl </span>Into&lt;Range&gt;, parser: P) -&gt; Repeat&lt;P, I, O, C, E&gt;
+</span><span class="kw">pub fn </span>repeat&lt;Input, Output, Accumulator, Error, ParseNext&gt;(
+    occurrences: <span class="kw">impl </span>Into&lt;Range&gt;,
+    parser: ParseNext,
+) -&gt; Repeat&lt;ParseNext, Input, Output, Accumulator, Error&gt;
 <span class="kw">where
-    </span>I: Stream,
-    C: Accumulate&lt;O&gt;,
-    P: Parser&lt;I, O, E&gt;,
-    E: ParserError&lt;I&gt;,
+    </span>Input: Stream,
+    Accumulator: Accumulate&lt;Output&gt;,
+    ParseNext: Parser&lt;Input, Output, Error&gt;,
+    Error: ParserError&lt;Input&gt;,
 {
     Repeat {
-        range: range.into(),
+        occurrences: occurrences.into(),
         parser,
         i: Default::default(),
         o: Default::default(),
@@ -1542,8 +1745,7 @@
     }
 }
 
-<span class="doccomment">/// Implementation of [`repeat`]
-</span><span class="attr">#[cfg_attr(nightly, warn(rustdoc::missing_doc_code_examples))]
+<span class="doccomment">/// Customizable [`Parser`] implementation for [`repeat`]
 </span><span class="kw">pub struct </span>Repeat&lt;P, I, O, C, E&gt;
 <span class="kw">where
     </span>P: Parser&lt;I, O, E&gt;,
@@ -1551,7 +1753,7 @@
     C: Accumulate&lt;O&gt;,
     E: ParserError&lt;I&gt;,
 {
-    range: Range,
+    occurrences: Range,
     parser: P,
     i: core::marker::PhantomData&lt;I&gt;,
     o: core::marker::PhantomData&lt;O&gt;,
@@ -1559,25 +1761,29 @@
     e: core::marker::PhantomData&lt;E&gt;,
 }
 
-<span class="kw">impl</span>&lt;P, I, O, E&gt; Repeat&lt;P, I, O, (), E&gt;
+<span class="kw">impl</span>&lt;ParseNext, Input, Output, Error&gt; Repeat&lt;ParseNext, Input, Output, (), Error&gt;
 <span class="kw">where
-    </span>P: Parser&lt;I, O, E&gt;,
-    I: Stream,
-    E: ParserError&lt;I&gt;,
+    </span>ParseNext: Parser&lt;Input, Output, Error&gt;,
+    Input: Stream,
+    Error: ParserError&lt;Input&gt;,
 {
-    <span class="doccomment">/// Repeats the embedded parser, calling `g` to gather the results
+    <span class="doccomment">/// Repeats the embedded parser, calling `op` to gather the results
     ///
     /// This stops before `n` when the parser returns [`ErrMode::Backtrack`]. To instead chain an error up, see
     /// [`cut_err`][crate::combinator::cut_err].
     ///
     /// # Arguments
     /// * `init` A function returning the initial value.
-    /// * `g` The function that combines a result of `f` with
+    /// * `op` The function that combines a result of `f` with
     ///       the current accumulator.
+    ///
+    /// &lt;div class="warning"&gt;
     ///
     /// **Warning:** If the parser passed to `fold` accepts empty inputs
     /// (like `alpha0` or `digit0`), `fold_repeat` will return an error,
     /// to prevent going into an infinite loop.
+    ///
+    /// &lt;/div&gt;
     ///
     /// # Example
     ///
@@ -1586,7 +1792,6 @@
     /// # use winnow::{error::ErrMode, error::ErrorKind, error::Needed};
     /// # use winnow::prelude::*;
     /// use winnow::combinator::repeat;
-    /// use winnow::token::tag;
     ///
     /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;&amp;str&gt;&gt; {
     ///   repeat(
@@ -1612,7 +1817,6 @@
     /// # use winnow::{error::ErrMode, error::{InputError, ErrorKind}, error::Needed};
     /// # use winnow::prelude::*;
     /// use winnow::combinator::repeat;
-    /// use winnow::token::tag;
     ///
     /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;&amp;str&gt;&gt; {
     ///   repeat(
@@ -1638,7 +1842,6 @@
     /// # use winnow::{error::ErrMode, error::ErrorKind, error::Needed};
     /// # use winnow::prelude::*;
     /// use winnow::combinator::repeat;
-    /// use winnow::token::tag;
     ///
     /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;&amp;str&gt;&gt; {
     ///   repeat(
@@ -1664,28 +1867,183 @@
     #[doc(alias = <span class="string">"fold_many_m_n"</span>)]
     #[doc(alias = <span class="string">"fold_repeat"</span>)]
     #[inline(always)]
-    </span><span class="kw">pub fn </span>fold&lt;H, G, R&gt;(<span class="kw-2">mut </span><span class="self">self</span>, <span class="kw-2">mut </span>init: H, <span class="kw-2">mut </span>g: G) -&gt; <span class="kw">impl </span>Parser&lt;I, R, E&gt;
+    </span><span class="kw">pub fn </span>fold&lt;Init, Op, <span class="prelude-ty">Result</span>&gt;(
+        <span class="kw-2">mut </span><span class="self">self</span>,
+        <span class="kw-2">mut </span>init: Init,
+        <span class="kw-2">mut </span>op: Op,
+    ) -&gt; <span class="kw">impl </span>Parser&lt;Input, <span class="prelude-ty">Result</span>, Error&gt;
     <span class="kw">where
-        </span>G: FnMut(R, O) -&gt; R,
-        H: FnMut() -&gt; R,
+        </span>Init: FnMut() -&gt; <span class="prelude-ty">Result</span>,
+        Op: FnMut(<span class="prelude-ty">Result</span>, Output) -&gt; <span class="prelude-ty">Result</span>,
     {
         <span class="kw">let </span>Range {
             start_inclusive,
             end_inclusive,
-        } = <span class="self">self</span>.range;
-        trace(<span class="string">"repeat_fold"</span>, <span class="kw">move </span>|i: <span class="kw-2">&amp;mut </span>I| {
+        } = <span class="self">self</span>.occurrences;
+        trace(<span class="string">"repeat_fold"</span>, <span class="kw">move </span>|i: <span class="kw-2">&amp;mut </span>Input| {
             <span class="kw">match </span>(start_inclusive, end_inclusive) {
-                (<span class="number">0</span>, <span class="prelude-val">None</span>) =&gt; fold_repeat0_(<span class="kw-2">&amp;mut </span><span class="self">self</span>.parser, <span class="kw-2">&amp;mut </span>init, <span class="kw-2">&amp;mut </span>g, i),
-                (<span class="number">1</span>, <span class="prelude-val">None</span>) =&gt; fold_repeat1_(<span class="kw-2">&amp;mut </span><span class="self">self</span>.parser, <span class="kw-2">&amp;mut </span>init, <span class="kw-2">&amp;mut </span>g, i),
+                (<span class="number">0</span>, <span class="prelude-val">None</span>) =&gt; fold_repeat0_(<span class="kw-2">&amp;mut </span><span class="self">self</span>.parser, <span class="kw-2">&amp;mut </span>init, <span class="kw-2">&amp;mut </span>op, i),
+                (<span class="number">1</span>, <span class="prelude-val">None</span>) =&gt; fold_repeat1_(<span class="kw-2">&amp;mut </span><span class="self">self</span>.parser, <span class="kw-2">&amp;mut </span>init, <span class="kw-2">&amp;mut </span>op, i),
                 (start, end) =&gt; fold_repeat_m_n_(
                     start,
                     end.unwrap_or(usize::MAX),
                     <span class="kw-2">&amp;mut </span><span class="self">self</span>.parser,
                     <span class="kw-2">&amp;mut </span>init,
-                    <span class="kw-2">&amp;mut </span>g,
+                    <span class="kw-2">&amp;mut </span>op,
                     i,
                 ),
             }
+        })
+    }
+
+    <span class="doccomment">/// Akin to [`Repeat::fold`], but for containers that can reject an element.
+    ///
+    /// This stops before `n` when the parser returns [`ErrMode::Backtrack`]. To instead chain an error up, see
+    /// [`cut_err`][crate::combinator::cut_err]. Additionally, if the fold function returns `None`, the parser will
+    /// stop and return an error.
+    ///
+    /// # Arguments
+    /// * `init` A function returning the initial value.
+    /// * `op` The function that combines a result of `f` with
+    ///       the current accumulator.
+    ///
+    /// &lt;div class="warning"&gt;
+    ///
+    /// **Warning:** If the parser passed to `repeat` accepts empty inputs
+    /// (like `alpha0` or `digit0`), `verify_fold` will return an error,
+    /// to prevent going into an infinite loop.
+    ///
+    /// &lt;/div&gt;
+    ///
+    /// # Example
+    ///
+    /// Guaranteeing that the input had unique elements:
+    /// ```rust
+    /// # use winnow::error::IResult;
+    /// # use winnow::{error::ErrMode, error::{InputError, ErrorKind}, error::Needed};
+    /// # use winnow::prelude::*;
+    /// use winnow::combinator::repeat;
+    /// use std::collections::HashSet;
+    ///
+    /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, HashSet&lt;&amp;str&gt;&gt; {
+    ///   repeat(
+    ///     0..,
+    ///     "abc"
+    ///   ).verify_fold(
+    ///     HashSet::new,
+    ///     |mut acc: HashSet&lt;_&gt;, item| {
+    ///       if acc.insert(item) {
+    ///          Some(acc)
+    ///       } else {
+    ///          None
+    ///       }
+    ///     }
+    ///   ).parse_peek(s)
+    /// }
+    ///
+    /// assert_eq!(parser("abc"), Ok(("", HashSet::from(["abc"]))));
+    /// assert_eq!(parser("abcabc"), Err(ErrMode::Backtrack(InputError::new("abc", ErrorKind::Verify))));
+    /// assert_eq!(parser("abc123"), Ok(("123", HashSet::from(["abc"]))));
+    /// assert_eq!(parser("123123"), Ok(("123123", HashSet::from([]))));
+    /// assert_eq!(parser(""), Ok(("", HashSet::from([]))));
+    /// ```
+    </span><span class="attr">#[inline(always)]
+    </span><span class="kw">pub fn </span>verify_fold&lt;Init, Op, <span class="prelude-ty">Result</span>&gt;(
+        <span class="kw-2">mut </span><span class="self">self</span>,
+        <span class="kw-2">mut </span>init: Init,
+        <span class="kw-2">mut </span>op: Op,
+    ) -&gt; <span class="kw">impl </span>Parser&lt;Input, <span class="prelude-ty">Result</span>, Error&gt;
+    <span class="kw">where
+        </span>Init: FnMut() -&gt; <span class="prelude-ty">Result</span>,
+        Op: FnMut(<span class="prelude-ty">Result</span>, Output) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="prelude-ty">Result</span>&gt;,
+    {
+        <span class="kw">let </span>Range {
+            start_inclusive,
+            end_inclusive,
+        } = <span class="self">self</span>.occurrences;
+        trace(<span class="string">"repeat_verify_fold"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>Input| {
+            verify_fold_m_n(
+                start_inclusive,
+                end_inclusive.unwrap_or(usize::MAX),
+                <span class="kw-2">&amp;mut </span><span class="self">self</span>.parser,
+                <span class="kw-2">&amp;mut </span>init,
+                <span class="kw-2">&amp;mut </span>op,
+                input,
+            )
+        })
+    }
+
+    <span class="doccomment">/// Akin to [`Repeat::fold`], but for containers that can error when an element is accumulated.
+    ///
+    /// This stops before `n` when the parser returns [`ErrMode::Backtrack`]. To instead chain an error up, see
+    /// [`cut_err`][crate::combinator::cut_err]. Additionally, if the fold function returns an error, the parser will
+    /// stop and return it.
+    ///
+    /// # Arguments
+    /// * `init` A function returning the initial value.
+    /// * `op` The function that combines a result of `f` with
+    ///       the current accumulator.
+    ///
+    /// &lt;div class="warning"&gt;
+    ///
+    /// **Warning:** If the parser passed to `repeat` accepts empty inputs
+    /// (like `alpha0` or `digit0`), `try_fold` will return an error,
+    /// to prevent going into an infinite loop.
+    ///
+    /// &lt;/div&gt;
+    ///
+    /// # Example
+    ///
+    /// Writing the output to a vector of bytes:
+    /// ```rust
+    /// # use winnow::error::IResult;
+    /// # use winnow::{error::ErrMode, error::{InputError, ErrorKind}, error::Needed};
+    /// # use winnow::prelude::*;
+    /// use winnow::combinator::repeat;
+    /// use std::io::Write;
+    /// use std::io::Error;
+    ///
+    /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;u8&gt;&gt; {
+    ///   repeat(
+    ///     0..,
+    ///     "abc"
+    ///   ).try_fold(
+    ///     Vec::new,
+    ///     |mut acc, item: &amp;str| -&gt; Result&lt;_, Error&gt; {
+    ///       acc.write(item.as_bytes())?;
+    ///       Ok(acc)
+    ///     }
+    ///   ).parse_peek(s)
+    /// }
+    ///
+    /// assert_eq!(parser("abc"), Ok(("", b"abc".to_vec())));
+    /// assert_eq!(parser("abc123"), Ok(("123", b"abc".to_vec())));
+    /// assert_eq!(parser("123123"), Ok(("123123", vec![])));
+    /// assert_eq!(parser(""), Ok(("", vec![])));
+    </span><span class="attr">#[inline(always)]
+    </span><span class="kw">pub fn </span>try_fold&lt;Init, Op, OpError, <span class="prelude-ty">Result</span>&gt;(
+        <span class="kw-2">mut </span><span class="self">self</span>,
+        <span class="kw-2">mut </span>init: Init,
+        <span class="kw-2">mut </span>op: Op,
+    ) -&gt; <span class="kw">impl </span>Parser&lt;Input, <span class="prelude-ty">Result</span>, Error&gt;
+    <span class="kw">where
+        </span>Init: FnMut() -&gt; <span class="prelude-ty">Result</span>,
+        Op: FnMut(<span class="prelude-ty">Result</span>, Output) -&gt; core::result::Result&lt;<span class="prelude-ty">Result</span>, OpError&gt;,
+        Error: FromExternalError&lt;Input, OpError&gt;,
+    {
+        <span class="kw">let </span>Range {
+            start_inclusive,
+            end_inclusive,
+        } = <span class="self">self</span>.occurrences;
+        trace(<span class="string">"repeat_try_fold"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>Input| {
+            try_fold_m_n(
+                start_inclusive,
+                end_inclusive.unwrap_or(usize::MAX),
+                <span class="kw-2">&amp;mut </span><span class="self">self</span>.parser,
+                <span class="kw-2">&amp;mut </span>init,
+                <span class="kw-2">&amp;mut </span>op,
+                input,
+            )
         })
     }
 }
@@ -1702,7 +2060,7 @@
         <span class="kw">let </span>Range {
             start_inclusive,
             end_inclusive,
-        } = <span class="self">self</span>.range;
+        } = <span class="self">self</span>.occurrences;
         trace(<span class="string">"repeat"</span>, <span class="kw">move </span>|i: <span class="kw-2">&amp;mut </span>I| {
             <span class="kw">match </span>(start_inclusive, end_inclusive) {
                 (<span class="number">0</span>, <span class="prelude-val">None</span>) =&gt; repeat0_(<span class="kw-2">&amp;mut </span><span class="self">self</span>.parser, i),
@@ -1728,7 +2086,7 @@
         <span class="kw">let </span>len = i.eof_offset();
         <span class="kw">match </span>f.parse_next(i) {
             <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-                i.reset(start);
+                i.reset(<span class="kw-2">&amp;</span>start);
                 <span class="kw">return </span><span class="prelude-val">Ok</span>(acc);
             }
             <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
@@ -1751,8 +2109,9 @@
     F: Parser&lt;I, O, E&gt;,
     E: ParserError&lt;I&gt;,
 {
+    <span class="kw">let </span>start = i.checkpoint();
     <span class="kw">match </span>f.parse_next(i) {
-        <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(e.append(i, ErrorKind::Many)),
+        <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(e.append(i, <span class="kw-2">&amp;</span>start, ErrorKind::Many)),
         <span class="prelude-val">Ok</span>(o) =&gt; {
             <span class="kw">let </span><span class="kw-2">mut </span>acc = C::initial(<span class="prelude-val">None</span>);
             acc.accumulate(o);
@@ -1762,7 +2121,7 @@
                 <span class="kw">let </span>len = i.eof_offset();
                 <span class="kw">match </span>f.parse_next(i) {
                     <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-                        i.reset(start);
+                        i.reset(<span class="kw-2">&amp;</span>start);
                         <span class="kw">return </span><span class="prelude-val">Ok</span>(acc);
                     }
                     <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
@@ -1790,12 +2149,19 @@
     <span class="kw">let </span><span class="kw-2">mut </span>res = C::initial(<span class="prelude-val">Some</span>(count));
 
     <span class="kw">for _ in </span><span class="number">0</span>..count {
+        <span class="kw">let </span>start = i.checkpoint();
+        <span class="kw">let </span>len = i.eof_offset();
         <span class="kw">match </span>f.parse_next(i) {
             <span class="prelude-val">Ok</span>(o) =&gt; {
+                <span class="comment">// infinite loop check: the parser must always consume
+                </span><span class="kw">if </span>i.eof_offset() == len {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::assert(i, <span class="string">"`repeat` parsers must always consume"</span>));
+                }
+
                 res.accumulate(o);
             }
             <span class="prelude-val">Err</span>(e) =&gt; {
-                <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(i, ErrorKind::Many));
+                <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(i, <span class="kw-2">&amp;</span>start, ErrorKind::Many));
             }
         }
     }
@@ -1811,7 +2177,10 @@
     E: ParserError&lt;I&gt;,
 {
     <span class="kw">if </span>min &gt; max {
-        <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Cut(E::from_error_kind(input, ErrorKind::Many)));
+        <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::assert(
+            input,
+            <span class="string">"range should be ascending, rather than descending"</span>,
+        ));
     }
 
     <span class="kw">let </span><span class="kw-2">mut </span>res = C::initial(<span class="prelude-val">Some</span>(min));
@@ -1832,9 +2201,9 @@
             }
             <span class="prelude-val">Err</span>(ErrMode::Backtrack(e)) =&gt; {
                 <span class="kw">if </span>count &lt; min {
-                    <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(e.append(input, ErrorKind::Many)));
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(e.append(input, <span class="kw-2">&amp;</span>start, ErrorKind::Many)));
                 } <span class="kw">else </span>{
-                    input.reset(start);
+                    input.reset(<span class="kw-2">&amp;</span>start);
                     <span class="kw">return </span><span class="prelude-val">Ok</span>(res);
                 }
             }
@@ -1854,7 +2223,13 @@
 ///
 /// `f` keeps going so long as `g` produces [`ErrMode::Backtrack`]. To instead chain an error up, see [`cut_err`][crate::combinator::cut_err].
 ///
-/// To recognize a series of tokens, [`Accumulate`] into a `()` and then [`Parser::recognize`].
+/// To take a series of tokens, [`Accumulate`] into a `()`
+/// (e.g. with [`.map(|((), _)| ())`][Parser::map])
+/// and then [`Parser::take`].
+///
+/// See also
+/// - [`take_till`][crate::token::take_till] for recognizing up-to a member of a [set of tokens][crate::stream::ContainsToken]
+/// - [`take_until`][crate::token::take_until] for recognizing up-to a [`literal`][crate::token::literal] (w/ optional simd optimizations)
 ///
 /// # Example
 ///
@@ -1863,7 +2238,6 @@
 /// # use winnow::{error::ErrMode, error::{InputError, ErrorKind}, error::Needed};
 /// # use winnow::prelude::*;
 /// use winnow::combinator::repeat_till;
-/// use winnow::token::tag;
 ///
 /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, (Vec&lt;&amp;str&gt;, &amp;str)&gt; {
 ///   repeat_till(0.., "abc", "end").parse_peek(s)
@@ -1877,42 +2251,34 @@
 /// # }
 /// ```
 </span><span class="attr">#[doc(alias = <span class="string">"many_till0"</span>)]
-</span><span class="kw">pub fn </span>repeat_till&lt;I, O, C, P, E, F, G&gt;(
-    range: <span class="kw">impl </span>Into&lt;Range&gt;,
-    <span class="kw-2">mut </span>f: F,
-    <span class="kw-2">mut </span>g: G,
-) -&gt; <span class="kw">impl </span>Parser&lt;I, (C, P), E&gt;
+</span><span class="kw">pub fn </span>repeat_till&lt;Input, Output, Accumulator, Terminator, Error, ParseNext, TerminatorParser&gt;(
+    occurrences: <span class="kw">impl </span>Into&lt;Range&gt;,
+    <span class="kw-2">mut </span>parse: ParseNext,
+    <span class="kw-2">mut </span>terminator: TerminatorParser,
+) -&gt; <span class="kw">impl </span>Parser&lt;Input, (Accumulator, Terminator), Error&gt;
 <span class="kw">where
-    </span>I: Stream,
-    C: Accumulate&lt;O&gt;,
-    F: Parser&lt;I, O, E&gt;,
-    G: Parser&lt;I, P, E&gt;,
-    E: ParserError&lt;I&gt;,
+    </span>Input: Stream,
+    Accumulator: Accumulate&lt;Output&gt;,
+    ParseNext: Parser&lt;Input, Output, Error&gt;,
+    TerminatorParser: Parser&lt;Input, Terminator, Error&gt;,
+    Error: ParserError&lt;Input&gt;,
 {
     <span class="kw">let </span>Range {
         start_inclusive,
         end_inclusive,
-    } = range.into();
-    trace(<span class="string">"repeat_till"</span>, <span class="kw">move </span>|i: <span class="kw-2">&amp;mut </span>I| {
+    } = occurrences.into();
+    trace(<span class="string">"repeat_till"</span>, <span class="kw">move </span>|i: <span class="kw-2">&amp;mut </span>Input| {
         <span class="kw">match </span>(start_inclusive, end_inclusive) {
-            (<span class="number">0</span>, <span class="prelude-val">None</span>) =&gt; repeat_till0_(<span class="kw-2">&amp;mut </span>f, <span class="kw-2">&amp;mut </span>g, i),
-            (start, end) =&gt; repeat_till_m_n_(start, end.unwrap_or(usize::MAX), <span class="kw-2">&amp;mut </span>f, <span class="kw-2">&amp;mut </span>g, i),
+            (<span class="number">0</span>, <span class="prelude-val">None</span>) =&gt; repeat_till0_(<span class="kw-2">&amp;mut </span>parse, <span class="kw-2">&amp;mut </span>terminator, i),
+            (start, end) =&gt; repeat_till_m_n_(
+                start,
+                end.unwrap_or(usize::MAX),
+                <span class="kw-2">&amp;mut </span>parse,
+                <span class="kw-2">&amp;mut </span>terminator,
+                i,
+            ),
         }
     })
-}
-
-<span class="doccomment">/// Deprecated, replaced with [`repeat_till`]
-</span><span class="attr">#[deprecated(since = <span class="string">"0.5.35"</span>, note = <span class="string">"Replaced with `repeat_till`"</span>)]
-#[inline(always)]
-</span><span class="kw">pub fn </span>repeat_till0&lt;I, O, C, P, E, F, G&gt;(f: F, g: G) -&gt; <span class="kw">impl </span>Parser&lt;I, (C, P), E&gt;
-<span class="kw">where
-    </span>I: Stream,
-    C: Accumulate&lt;O&gt;,
-    F: Parser&lt;I, O, E&gt;,
-    G: Parser&lt;I, P, E&gt;,
-    E: ParserError&lt;I&gt;,
-{
-    repeat_till(<span class="number">0</span>.., f, g)
 }
 
 <span class="kw">fn </span>repeat_till0_&lt;I, O, C, P, E, F, G&gt;(f: <span class="kw-2">&amp;mut </span>F, g: <span class="kw-2">&amp;mut </span>G, i: <span class="kw-2">&amp;mut </span>I) -&gt; PResult&lt;(C, P), E&gt;
@@ -1930,9 +2296,9 @@
         <span class="kw">match </span>g.parse_next(i) {
             <span class="prelude-val">Ok</span>(o) =&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>((res, o)),
             <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-                i.reset(start);
+                i.reset(<span class="kw-2">&amp;</span>start);
                 <span class="kw">match </span>f.parse_next(i) {
-                    <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(i, ErrorKind::Many)),
+                    <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(i, <span class="kw-2">&amp;</span>start, ErrorKind::Many)),
                     <span class="prelude-val">Ok</span>(o) =&gt; {
                         <span class="comment">// infinite loop check: the parser must always consume
                         </span><span class="kw">if </span>i.eof_offset() == len {
@@ -1963,17 +2329,22 @@
     E: ParserError&lt;I&gt;,
 {
     <span class="kw">if </span>min &gt; max {
-        <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Cut(E::from_error_kind(i, ErrorKind::Many)));
+        <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::assert(
+            i,
+            <span class="string">"range should be ascending, rather than descending"</span>,
+        ));
     }
 
     <span class="kw">let </span><span class="kw-2">mut </span>res = C::initial(<span class="prelude-val">Some</span>(min));
+
+    <span class="kw">let </span>start = i.checkpoint();
     <span class="kw">for _ in </span><span class="number">0</span>..min {
         <span class="kw">match </span>f.parse_next(i) {
             <span class="prelude-val">Ok</span>(o) =&gt; {
                 res.accumulate(o);
             }
             <span class="prelude-val">Err</span>(e) =&gt; {
-                <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(i, ErrorKind::Many));
+                <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(i, <span class="kw-2">&amp;</span>start, ErrorKind::Many));
             }
         }
     }
@@ -1986,10 +2357,10 @@
                 <span class="kw">if </span>count == max {
                     <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(err));
                 }
-                i.reset(start);
+                i.reset(<span class="kw-2">&amp;</span>start);
                 <span class="kw">match </span>f.parse_next(i) {
                     <span class="prelude-val">Err</span>(e) =&gt; {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(i, ErrorKind::Many));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(i, <span class="kw-2">&amp;</span>start, ErrorKind::Many));
                     }
                     <span class="prelude-val">Ok</span>(o) =&gt; {
                         <span class="comment">// infinite loop check: the parser must always consume
@@ -2012,14 +2383,17 @@
 /// This stops when either parser returns [`ErrMode::Backtrack`]. To instead chain an error up, see
 /// [`cut_err`][crate::combinator::cut_err].
 ///
-/// # Arguments
-/// * `range` The minimum and maximum number of iterations.
-/// * `parser` The parser that parses the elements of the list.
-/// * `sep` The parser that parses the separator between list elements.
+/// To take a series of tokens, [`Accumulate`] into a `()`
+/// (e.g. with [`.map(|()| ())`][Parser::map])
+/// and then [`Parser::take`].
+///
+/// &lt;div class="warning"&gt;
 ///
 /// **Warning:** If the separator parser accepts empty inputs
 /// (like `alpha0` or `digit0`), `separated` will return an error,
 /// to prevent going into an infinite loop.
+///
+/// &lt;/div&gt;
 ///
 /// # Example
 ///
@@ -2029,7 +2403,6 @@
 /// # use winnow::{error::ErrMode, error::ErrorKind, error::Needed};
 /// # use winnow::prelude::*;
 /// use winnow::combinator::separated;
-/// use winnow::token::tag;
 ///
 /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;&amp;str&gt;&gt; {
 ///   separated(0.., "abc", "|").parse_peek(s)
@@ -2049,7 +2422,6 @@
 /// # use winnow::{error::ErrMode, error::{InputError, ErrorKind}, error::Needed};
 /// # use winnow::prelude::*;
 /// use winnow::combinator::separated;
-/// use winnow::token::tag;
 ///
 /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;&amp;str&gt;&gt; {
 ///   separated(1.., "abc", "|").parse_peek(s)
@@ -2069,7 +2441,6 @@
 /// # use winnow::{error::ErrMode, error::{InputError, ErrorKind}, error::Needed};
 /// # use winnow::prelude::*;
 /// use winnow::combinator::separated;
-/// use winnow::token::tag;
 ///
 /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;&amp;str&gt;&gt; {
 ///   separated(2, "abc", "|").parse_peek(s)
@@ -2089,7 +2460,6 @@
 /// # use winnow::{error::ErrMode, error::{InputError, ErrorKind}, error::Needed};
 /// # use winnow::prelude::*;
 /// use winnow::combinator::separated;
-/// use winnow::token::tag;
 ///
 /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;&amp;str&gt;&gt; {
 ///   separated(0..=2, "abc", "|").parse_peek(s)
@@ -2108,23 +2478,23 @@
 #[doc(alias = <span class="string">"separated_list1"</span>)]
 #[doc(alias = <span class="string">"separated_m_n"</span>)]
 #[inline(always)]
-</span><span class="kw">pub fn </span>separated&lt;I, O, C, O2, E, P, S&gt;(
-    range: <span class="kw">impl </span>Into&lt;Range&gt;,
-    <span class="kw-2">mut </span>parser: P,
-    <span class="kw-2">mut </span>separator: S,
-) -&gt; <span class="kw">impl </span>Parser&lt;I, C, E&gt;
+</span><span class="kw">pub fn </span>separated&lt;Input, Output, Accumulator, Sep, Error, ParseNext, SepParser&gt;(
+    occurrences: <span class="kw">impl </span>Into&lt;Range&gt;,
+    <span class="kw-2">mut </span>parser: ParseNext,
+    <span class="kw-2">mut </span>separator: SepParser,
+) -&gt; <span class="kw">impl </span>Parser&lt;Input, Accumulator, Error&gt;
 <span class="kw">where
-    </span>I: Stream,
-    C: Accumulate&lt;O&gt;,
-    P: Parser&lt;I, O, E&gt;,
-    S: Parser&lt;I, O2, E&gt;,
-    E: ParserError&lt;I&gt;,
+    </span>Input: Stream,
+    Accumulator: Accumulate&lt;Output&gt;,
+    ParseNext: Parser&lt;Input, Output, Error&gt;,
+    SepParser: Parser&lt;Input, Sep, Error&gt;,
+    Error: ParserError&lt;Input&gt;,
 {
     <span class="kw">let </span>Range {
         start_inclusive,
         end_inclusive,
-    } = range.into();
-    trace(<span class="string">"separated"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>I| {
+    } = occurrences.into();
+    trace(<span class="string">"separated"</span>, <span class="kw">move </span>|input: <span class="kw-2">&amp;mut </span>Input| {
         <span class="kw">match </span>(start_inclusive, end_inclusive) {
             (<span class="number">0</span>, <span class="prelude-val">None</span>) =&gt; separated0_(<span class="kw-2">&amp;mut </span>parser, <span class="kw-2">&amp;mut </span>separator, input),
             (<span class="number">1</span>, <span class="prelude-val">None</span>) =&gt; separated1_(<span class="kw-2">&amp;mut </span>parser, <span class="kw-2">&amp;mut </span>separator, input),
@@ -2139,51 +2509,6 @@
                 input,
             ),
         }
-    })
-}
-
-<span class="doccomment">/// [`Accumulate`] the output of a parser, interleaved with `sep`
-///
-/// This stops when either parser returns [`ErrMode::Backtrack`]. To instead chain an error up, see
-/// [`cut_err`][crate::combinator::cut_err].
-///
-/// # Arguments
-/// * `parser` Parses the elements of the list.
-/// * `sep` Parses the separator between list elements.
-///
-/// # Example
-///
-/// ```rust
-/// # #[cfg(feature = "std")] {
-/// # use winnow::{error::ErrMode, error::ErrorKind, error::Needed};
-/// # use winnow::prelude::*;
-/// use winnow::combinator::separated0;
-/// use winnow::token::tag;
-///
-/// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;&amp;str&gt;&gt; {
-///   separated0("abc", "|").parse_peek(s)
-/// }
-///
-/// assert_eq!(parser("abc|abc|abc"), Ok(("", vec!["abc", "abc", "abc"])));
-/// assert_eq!(parser("abc123abc"), Ok(("123abc", vec!["abc"])));
-/// assert_eq!(parser("abc|def"), Ok(("|def", vec!["abc"])));
-/// assert_eq!(parser(""), Ok(("", vec![])));
-/// assert_eq!(parser("def|abc"), Ok(("def|abc", vec![])));
-/// # }
-/// ```
-</span><span class="attr">#[doc(alias = <span class="string">"sep_by"</span>)]
-#[doc(alias = <span class="string">"separated_list0"</span>)]
-#[deprecated(since = <span class="string">"0.5.19"</span>, note = <span class="string">"Replaced with `combinator::separated`"</span>)]
-</span><span class="kw">pub fn </span>separated0&lt;I, O, C, O2, E, P, S&gt;(<span class="kw-2">mut </span>parser: P, <span class="kw-2">mut </span>sep: S) -&gt; <span class="kw">impl </span>Parser&lt;I, C, E&gt;
-<span class="kw">where
-    </span>I: Stream,
-    C: Accumulate&lt;O&gt;,
-    P: Parser&lt;I, O, E&gt;,
-    S: Parser&lt;I, O2, E&gt;,
-    E: ParserError&lt;I&gt;,
-{
-    trace(<span class="string">"separated0"</span>, <span class="kw">move </span>|i: <span class="kw-2">&amp;mut </span>I| {
-        separated0_(<span class="kw-2">&amp;mut </span>parser, <span class="kw-2">&amp;mut </span>sep, i)
     })
 }
 
@@ -2204,7 +2529,7 @@
     <span class="kw">let </span>start = input.checkpoint();
     <span class="kw">match </span>parser.parse_next(input) {
         <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-            input.reset(start);
+            input.reset(<span class="kw-2">&amp;</span>start);
             <span class="kw">return </span><span class="prelude-val">Ok</span>(acc);
         }
         <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
@@ -2218,7 +2543,7 @@
         <span class="kw">let </span>len = input.eof_offset();
         <span class="kw">match </span>separator.parse_next(input) {
             <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-                input.reset(start);
+                input.reset(<span class="kw-2">&amp;</span>start);
                 <span class="kw">return </span><span class="prelude-val">Ok</span>(acc);
             }
             <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
@@ -2233,7 +2558,7 @@
 
                 <span class="kw">match </span>parser.parse_next(input) {
                     <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-                        input.reset(start);
+                        input.reset(<span class="kw-2">&amp;</span>start);
                         <span class="kw">return </span><span class="prelude-val">Ok</span>(acc);
                     }
                     <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
@@ -2244,53 +2569,6 @@
             }
         }
     }
-}
-
-<span class="doccomment">/// [`Accumulate`] the output of a parser, interleaved with `sep`
-///
-/// Fails if the element parser does not produce at least one element.$
-///
-/// This stops when either parser returns [`ErrMode::Backtrack`]. To instead chain an error up, see
-/// [`cut_err`][crate::combinator::cut_err].
-///
-/// # Arguments
-/// * `sep` Parses the separator between list elements.
-/// * `f` Parses the elements of the list.
-///
-/// # Example
-///
-/// ```rust
-/// # #[cfg(feature = "std")] {
-/// # use winnow::{error::ErrMode, error::{InputError, ErrorKind}, error::Needed};
-/// # use winnow::prelude::*;
-/// use winnow::combinator::separated1;
-/// use winnow::token::tag;
-///
-/// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, Vec&lt;&amp;str&gt;&gt; {
-///   separated1("abc", "|").parse_peek(s)
-/// }
-///
-/// assert_eq!(parser("abc|abc|abc"), Ok(("", vec!["abc", "abc", "abc"])));
-/// assert_eq!(parser("abc123abc"), Ok(("123abc", vec!["abc"])));
-/// assert_eq!(parser("abc|def"), Ok(("|def", vec!["abc"])));
-/// assert_eq!(parser(""), Err(ErrMode::Backtrack(InputError::new("", ErrorKind::Tag))));
-/// assert_eq!(parser("def|abc"), Err(ErrMode::Backtrack(InputError::new("def|abc", ErrorKind::Tag))));
-/// # }
-/// ```
-</span><span class="attr">#[doc(alias = <span class="string">"sep_by1"</span>)]
-#[doc(alias = <span class="string">"separated_list1"</span>)]
-#[deprecated(since = <span class="string">"0.5.19"</span>, note = <span class="string">"Replaced with `combinator::separated`"</span>)]
-</span><span class="kw">pub fn </span>separated1&lt;I, O, C, O2, E, P, S&gt;(<span class="kw-2">mut </span>parser: P, <span class="kw-2">mut </span>sep: S) -&gt; <span class="kw">impl </span>Parser&lt;I, C, E&gt;
-<span class="kw">where
-    </span>I: Stream,
-    C: Accumulate&lt;O&gt;,
-    P: Parser&lt;I, O, E&gt;,
-    S: Parser&lt;I, O2, E&gt;,
-    E: ParserError&lt;I&gt;,
-{
-    trace(<span class="string">"separated1"</span>, <span class="kw">move </span>|i: <span class="kw-2">&amp;mut </span>I| {
-        separated1_(<span class="kw-2">&amp;mut </span>parser, <span class="kw-2">&amp;mut </span>sep, i)
-    })
 }
 
 <span class="kw">fn </span>separated1_&lt;I, O, C, O2, E, P, S&gt;(
@@ -2320,7 +2598,7 @@
         <span class="kw">let </span>len = input.eof_offset();
         <span class="kw">match </span>separator.parse_next(input) {
             <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-                input.reset(start);
+                input.reset(<span class="kw-2">&amp;</span>start);
                 <span class="kw">return </span><span class="prelude-val">Ok</span>(acc);
             }
             <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
@@ -2335,7 +2613,7 @@
 
                 <span class="kw">match </span>parser.parse_next(input) {
                     <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-                        input.reset(start);
+                        input.reset(<span class="kw-2">&amp;</span>start);
                         <span class="kw">return </span><span class="prelude-val">Ok</span>(acc);
                     }
                     <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
@@ -2367,9 +2645,10 @@
         <span class="kw">return </span><span class="prelude-val">Ok</span>(acc);
     }
 
+    <span class="kw">let </span>start = input.checkpoint();
     <span class="kw">match </span>parser.parse_next(input) {
         <span class="prelude-val">Err</span>(e) =&gt; {
-            <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(input, ErrorKind::Many));
+            <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(input, <span class="kw-2">&amp;</span>start, ErrorKind::Many));
         }
         <span class="prelude-val">Ok</span>(o) =&gt; {
             acc.accumulate(o);
@@ -2377,10 +2656,11 @@
     }
 
     <span class="kw">for _ in </span><span class="number">1</span>..count {
+        <span class="kw">let </span>start = input.checkpoint();
         <span class="kw">let </span>len = input.eof_offset();
         <span class="kw">match </span>separator.parse_next(input) {
             <span class="prelude-val">Err</span>(e) =&gt; {
-                <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(input, ErrorKind::Many));
+                <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(input, <span class="kw-2">&amp;</span>start, ErrorKind::Many));
             }
             <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {
                 <span class="comment">// infinite loop check
@@ -2393,7 +2673,7 @@
 
                 <span class="kw">match </span>parser.parse_next(input) {
                     <span class="prelude-val">Err</span>(e) =&gt; {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(input, ErrorKind::Many));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(input, <span class="kw-2">&amp;</span>start, ErrorKind::Many));
                     }
                     <span class="prelude-val">Ok</span>(o) =&gt; {
                         acc.accumulate(o);
@@ -2421,7 +2701,10 @@
     E: ParserError&lt;I&gt;,
 {
     <span class="kw">if </span>min &gt; max {
-        <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Cut(E::from_error_kind(input, ErrorKind::Many)));
+        <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::assert(
+            input,
+            <span class="string">"range should be ascending, rather than descending"</span>,
+        ));
     }
 
     <span class="kw">let </span><span class="kw-2">mut </span>acc = C::initial(<span class="prelude-val">Some</span>(min));
@@ -2430,10 +2713,10 @@
     <span class="kw">match </span>parser.parse_next(input) {
         <span class="prelude-val">Err</span>(ErrMode::Backtrack(e)) =&gt; {
             <span class="kw">if </span>min == <span class="number">0 </span>{
-                input.reset(start);
+                input.reset(<span class="kw-2">&amp;</span>start);
                 <span class="kw">return </span><span class="prelude-val">Ok</span>(acc);
             } <span class="kw">else </span>{
-                <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(e.append(input, ErrorKind::Many)));
+                <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(e.append(input, <span class="kw-2">&amp;</span>start, ErrorKind::Many)));
             }
         }
         <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
@@ -2448,9 +2731,9 @@
         <span class="kw">match </span>separator.parse_next(input) {
             <span class="prelude-val">Err</span>(ErrMode::Backtrack(e)) =&gt; {
                 <span class="kw">if </span>index &lt; min {
-                    <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(e.append(input, ErrorKind::Many)));
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(e.append(input, <span class="kw-2">&amp;</span>start, ErrorKind::Many)));
                 } <span class="kw">else </span>{
-                    input.reset(start);
+                    input.reset(<span class="kw-2">&amp;</span>start);
                     <span class="kw">return </span><span class="prelude-val">Ok</span>(acc);
                 }
             }
@@ -2469,9 +2752,13 @@
                 <span class="kw">match </span>parser.parse_next(input) {
                     <span class="prelude-val">Err</span>(ErrMode::Backtrack(e)) =&gt; {
                         <span class="kw">if </span>index &lt; min {
-                            <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(e.append(input, ErrorKind::Many)));
+                            <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(e.append(
+                                input,
+                                <span class="kw-2">&amp;</span>start,
+                                ErrorKind::Many,
+                            )));
                         } <span class="kw">else </span>{
-                            input.reset(start);
+                            input.reset(<span class="kw-2">&amp;</span>start);
                             <span class="kw">return </span><span class="prelude-val">Ok</span>(acc);
                         }
                     }
@@ -2507,22 +2794,22 @@
 /// }
 ///
 /// assert_eq!(parser("9-3-5"), Ok(("", 1)));
-/// assert_eq!(parser(""), Err(ErrMode::Backtrack(InputError::new("", ErrorKind::Slice))));
-/// assert_eq!(parser("def|abc"), Err(ErrMode::Backtrack(InputError::new("def|abc", ErrorKind::Slice))));
+/// assert_eq!(parser(""), Err(ErrMode::Backtrack(InputError::new("", ErrorKind::Token))));
+/// assert_eq!(parser("def|abc"), Err(ErrMode::Backtrack(InputError::new("def|abc", ErrorKind::Verify))));
 /// ```
-</span><span class="kw">pub fn </span>separated_foldl1&lt;I, O, O2, E, P, S, Op&gt;(
-    <span class="kw-2">mut </span>parser: P,
-    <span class="kw-2">mut </span>sep: S,
+</span><span class="kw">pub fn </span>separated_foldl1&lt;Input, Output, Sep, Error, ParseNext, SepParser, Op&gt;(
+    <span class="kw-2">mut </span>parser: ParseNext,
+    <span class="kw-2">mut </span>sep: SepParser,
     <span class="kw-2">mut </span>op: Op,
-) -&gt; <span class="kw">impl </span>Parser&lt;I, O, E&gt;
+) -&gt; <span class="kw">impl </span>Parser&lt;Input, Output, Error&gt;
 <span class="kw">where
-    </span>I: Stream,
-    P: Parser&lt;I, O, E&gt;,
-    S: Parser&lt;I, O2, E&gt;,
-    E: ParserError&lt;I&gt;,
-    Op: FnMut(O, O2, O) -&gt; O,
+    </span>Input: Stream,
+    ParseNext: Parser&lt;Input, Output, Error&gt;,
+    SepParser: Parser&lt;Input, Sep, Error&gt;,
+    Error: ParserError&lt;Input&gt;,
+    Op: FnMut(Output, Sep, Output) -&gt; Output,
 {
-    trace(<span class="string">"separated_foldl1"</span>, <span class="kw">move </span>|i: <span class="kw-2">&amp;mut </span>I| {
+    trace(<span class="string">"separated_foldl1"</span>, <span class="kw">move </span>|i: <span class="kw-2">&amp;mut </span>Input| {
         <span class="kw">let </span><span class="kw-2">mut </span>ol = parser.parse_next(i)<span class="question-mark">?</span>;
 
         <span class="kw">loop </span>{
@@ -2530,7 +2817,7 @@
             <span class="kw">let </span>len = i.eof_offset();
             <span class="kw">match </span>sep.parse_next(i) {
                 <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-                    i.reset(start);
+                    i.reset(<span class="kw-2">&amp;</span>start);
                     <span class="kw">return </span><span class="prelude-val">Ok</span>(ol);
                 }
                 <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
@@ -2542,7 +2829,7 @@
 
                     <span class="kw">match </span>parser.parse_next(i) {
                         <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-                            i.reset(start);
+                            i.reset(<span class="kw-2">&amp;</span>start);
                             <span class="kw">return </span><span class="prelude-val">Ok</span>(ol);
                         }
                         <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
@@ -2575,25 +2862,25 @@
 ///
 /// assert_eq!(parser("2^3^2"), Ok(("", 512)));
 /// assert_eq!(parser("2"), Ok(("", 2)));
-/// assert_eq!(parser(""), Err(ErrMode::Backtrack(InputError::new("", ErrorKind::Slice))));
-/// assert_eq!(parser("def|abc"), Err(ErrMode::Backtrack(InputError::new("def|abc", ErrorKind::Slice))));
+/// assert_eq!(parser(""), Err(ErrMode::Backtrack(InputError::new("", ErrorKind::Token))));
+/// assert_eq!(parser("def|abc"), Err(ErrMode::Backtrack(InputError::new("def|abc", ErrorKind::Verify))));
 /// ```
 </span><span class="attr">#[cfg(feature = <span class="string">"alloc"</span>)]
-</span><span class="kw">pub fn </span>separated_foldr1&lt;I, O, O2, E, P, S, Op&gt;(
-    <span class="kw-2">mut </span>parser: P,
-    <span class="kw-2">mut </span>sep: S,
+</span><span class="kw">pub fn </span>separated_foldr1&lt;Input, Output, Sep, Error, ParseNext, SepParser, Op&gt;(
+    <span class="kw-2">mut </span>parser: ParseNext,
+    <span class="kw-2">mut </span>sep: SepParser,
     <span class="kw-2">mut </span>op: Op,
-) -&gt; <span class="kw">impl </span>Parser&lt;I, O, E&gt;
+) -&gt; <span class="kw">impl </span>Parser&lt;Input, Output, Error&gt;
 <span class="kw">where
-    </span>I: Stream,
-    P: Parser&lt;I, O, E&gt;,
-    S: Parser&lt;I, O2, E&gt;,
-    E: ParserError&lt;I&gt;,
-    Op: FnMut(O, O2, O) -&gt; O,
+    </span>Input: Stream,
+    ParseNext: Parser&lt;Input, Output, Error&gt;,
+    SepParser: Parser&lt;Input, Sep, Error&gt;,
+    Error: ParserError&lt;Input&gt;,
+    Op: FnMut(Output, Sep, Output) -&gt; Output,
 {
-    trace(<span class="string">"separated_foldr1"</span>, <span class="kw">move </span>|i: <span class="kw-2">&amp;mut </span>I| {
+    trace(<span class="string">"separated_foldr1"</span>, <span class="kw">move </span>|i: <span class="kw-2">&amp;mut </span>Input| {
         <span class="kw">let </span>ol = parser.parse_next(i)<span class="question-mark">?</span>;
-        <span class="kw">let </span>all: <span class="kw">crate</span>::lib::std::vec::Vec&lt;(O2, O)&gt; =
+        <span class="kw">let </span>all: <span class="kw">crate</span>::lib::std::vec::Vec&lt;(Sep, Output)&gt; =
             repeat(<span class="number">0</span>.., (sep.by_ref(), parser.by_ref())).parse_next(i)<span class="question-mark">?</span>;
         <span class="kw">if let </span><span class="prelude-val">Some</span>((s, or)) = all
             .into_iter()
@@ -2612,17 +2899,12 @@
 ///
 /// This parser fails if the input runs out before the given slice is full.
 ///
-/// # Arguments
-/// * `f` The parser to apply.
-/// * `buf` The slice to fill
-///
 /// # Example
 ///
 /// ```rust
 /// # use winnow::{error::ErrMode, error::{InputError, ErrorKind}, error::Needed};
 /// # use winnow::prelude::*;
 /// use winnow::combinator::fill;
-/// use winnow::token::tag;
 ///
 /// fn parser(s: &amp;str) -&gt; IResult&lt;&amp;str, [&amp;str; 2]&gt; {
 ///   let mut buf = ["", ""];
@@ -2636,45 +2918,30 @@
 /// assert_eq!(parser(""), Err(ErrMode::Backtrack(InputError::new("", ErrorKind::Tag))));
 /// assert_eq!(parser("abcabcabc"), Ok(("abc", ["abc", "abc"])));
 /// ```
-</span><span class="kw">pub fn </span>fill&lt;<span class="lifetime">'a</span>, I, O, E, F&gt;(<span class="kw-2">mut </span>f: F, buf: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>[O]) -&gt; <span class="kw">impl </span>Parser&lt;I, (), E&gt; + <span class="lifetime">'a
+</span><span class="kw">pub fn </span>fill&lt;<span class="lifetime">'i</span>, Input, Output, Error, ParseNext&gt;(
+    <span class="kw-2">mut </span>parser: ParseNext,
+    buf: <span class="kw-2">&amp;</span><span class="lifetime">'i </span><span class="kw-2">mut </span>[Output],
+) -&gt; <span class="kw">impl </span>Parser&lt;Input, (), Error&gt; + <span class="lifetime">'i
 </span><span class="kw">where
-    </span>I: Stream + <span class="lifetime">'a</span>,
-    F: Parser&lt;I, O, E&gt; + <span class="lifetime">'a</span>,
-    E: ParserError&lt;I&gt; + <span class="lifetime">'a</span>,
+    </span>Input: Stream + <span class="lifetime">'i</span>,
+    ParseNext: Parser&lt;Input, Output, Error&gt; + <span class="lifetime">'i</span>,
+    Error: ParserError&lt;Input&gt; + <span class="lifetime">'i</span>,
 {
-    trace(<span class="string">"fill"</span>, <span class="kw">move </span>|i: <span class="kw-2">&amp;mut </span>I| {
+    trace(<span class="string">"fill"</span>, <span class="kw">move </span>|i: <span class="kw-2">&amp;mut </span>Input| {
         <span class="kw">for </span>elem <span class="kw">in </span>buf.iter_mut() {
-            <span class="kw">match </span>f.parse_next(i) {
+            <span class="kw">let </span>start = i.checkpoint();
+            <span class="kw">match </span>parser.parse_next(i) {
                 <span class="prelude-val">Ok</span>(o) =&gt; {
                     <span class="kw-2">*</span>elem = o;
                 }
                 <span class="prelude-val">Err</span>(e) =&gt; {
-                    <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(i, ErrorKind::Many));
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(e.append(i, <span class="kw-2">&amp;</span>start, ErrorKind::Many));
                 }
             }
         }
 
         <span class="prelude-val">Ok</span>(())
     })
-}
-
-<span class="doccomment">/// Deprecated, replaced with [`Repeat::fold`]
-</span><span class="attr">#[deprecated(since = <span class="string">"0.5.36"</span>, note = <span class="string">"Replaced with `repeat(...).fold(...)`"</span>)]
-#[inline(always)]
-</span><span class="kw">pub fn </span>fold_repeat&lt;I, O, E, F, G, H, R&gt;(
-    range: <span class="kw">impl </span>Into&lt;Range&gt;,
-    f: F,
-    init: H,
-    g: G,
-) -&gt; <span class="kw">impl </span>Parser&lt;I, R, E&gt;
-<span class="kw">where
-    </span>I: Stream,
-    F: Parser&lt;I, O, E&gt;,
-    G: FnMut(R, O) -&gt; R,
-    H: FnMut() -&gt; R,
-    E: ParserError&lt;I&gt;,
-{
-    repeat(range, f).fold(init, g)
 }
 
 <span class="kw">fn </span>fold_repeat0_&lt;I, O, E, F, G, H, R&gt;(
@@ -2708,7 +2975,7 @@
                 res = g(res, o);
             }
             <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-                input.reset(start);
+                input.reset(<span class="kw-2">&amp;</span>start);
                 <span class="kw">return </span><span class="prelude-val">Ok</span>(res);
             }
             <span class="prelude-val">Err</span>(e) =&gt; {
@@ -2743,7 +3010,7 @@
                 <span class="kw">let </span>len = input.eof_offset();
                 <span class="kw">match </span>f.parse_next(input) {
                     <span class="prelude-val">Err</span>(ErrMode::Backtrack(<span class="kw">_</span>)) =&gt; {
-                        input.reset(start);
+                        input.reset(<span class="kw-2">&amp;</span>start);
                         <span class="kw">break</span>;
                     }
                     <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
@@ -2782,7 +3049,10 @@
     E: ParserError&lt;I&gt;,
 {
     <span class="kw">if </span>min &gt; max {
-        <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Cut(E::from_error_kind(input, ErrorKind::Many)));
+        <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::assert(
+            input,
+            <span class="string">"range should be ascending, rather than descending"</span>,
+        ));
     }
 
     <span class="kw">let </span><span class="kw-2">mut </span>acc = init();
@@ -2804,9 +3074,145 @@
             <span class="comment">//FInputXMError: handle failure properly
             </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(err)) =&gt; {
                 <span class="kw">if </span>count &lt; min {
-                    <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(err.append(input, ErrorKind::Many)));
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(err.append(
+                        input,
+                        <span class="kw-2">&amp;</span>start,
+                        ErrorKind::Many,
+                    )));
                 } <span class="kw">else </span>{
-                    input.reset(start);
+                    input.reset(<span class="kw-2">&amp;</span>start);
+                    <span class="kw">break</span>;
+                }
+            }
+            <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
+        }
+    }
+
+    <span class="prelude-val">Ok</span>(acc)
+}
+
+<span class="attr">#[inline(always)]
+</span><span class="kw">fn </span>verify_fold_m_n&lt;I, O, E, F, G, H, R&gt;(
+    min: usize,
+    max: usize,
+    parse: <span class="kw-2">&amp;mut </span>F,
+    init: <span class="kw-2">&amp;mut </span>H,
+    fold: <span class="kw-2">&amp;mut </span>G,
+    input: <span class="kw-2">&amp;mut </span>I,
+) -&gt; PResult&lt;R, E&gt;
+<span class="kw">where
+    </span>I: Stream,
+    F: Parser&lt;I, O, E&gt;,
+    G: FnMut(R, O) -&gt; <span class="prelude-ty">Option</span>&lt;R&gt;,
+    H: FnMut() -&gt; R,
+    E: ParserError&lt;I&gt;,
+{
+    <span class="kw">if </span>min &gt; max {
+        <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::assert(
+            input,
+            <span class="string">"range should be ascending, rather than descending"</span>,
+        ));
+    }
+
+    <span class="kw">let </span><span class="kw-2">mut </span>acc = init();
+    <span class="kw">for </span>count <span class="kw">in </span><span class="number">0</span>..max {
+        <span class="kw">let </span>start = input.checkpoint();
+        <span class="kw">let </span>len = input.eof_offset();
+        <span class="kw">match </span>parse.parse_next(input) {
+            <span class="prelude-val">Ok</span>(value) =&gt; {
+                <span class="comment">// infinite loop check: the parser must always consume
+                </span><span class="kw">if </span>input.eof_offset() == len {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::assert(
+                        input,
+                        <span class="string">"`repeat` parsers must always consume"</span>,
+                    ));
+                }
+
+                <span class="kw">let </span><span class="prelude-val">Some</span>(tmp) = fold(acc, value) <span class="kw">else </span>{
+                    input.reset(<span class="kw-2">&amp;</span>start);
+                    <span class="kw">let </span>res = <span class="prelude-val">Err</span>(ErrMode::from_error_kind(input, ErrorKind::Verify));
+                    <span class="kw">super</span>::debug::trace_result(<span class="string">"verify_fold"</span>, <span class="kw-2">&amp;</span>res);
+                    <span class="kw">return </span>res;
+                };
+                acc = tmp;
+            }
+            <span class="comment">//FInputXMError: handle failure properly
+            </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(err)) =&gt; {
+                <span class="kw">if </span>count &lt; min {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(err.append(
+                        input,
+                        <span class="kw-2">&amp;</span>start,
+                        ErrorKind::Many,
+                    )));
+                } <span class="kw">else </span>{
+                    input.reset(<span class="kw-2">&amp;</span>start);
+                    <span class="kw">break</span>;
+                }
+            }
+            <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
+        }
+    }
+
+    <span class="prelude-val">Ok</span>(acc)
+}
+
+<span class="attr">#[inline(always)]
+</span><span class="kw">fn </span>try_fold_m_n&lt;I, O, E, F, G, H, R, GE&gt;(
+    min: usize,
+    max: usize,
+    parse: <span class="kw-2">&amp;mut </span>F,
+    init: <span class="kw-2">&amp;mut </span>H,
+    fold: <span class="kw-2">&amp;mut </span>G,
+    input: <span class="kw-2">&amp;mut </span>I,
+) -&gt; PResult&lt;R, E&gt;
+<span class="kw">where
+    </span>I: Stream,
+    F: Parser&lt;I, O, E&gt;,
+    G: FnMut(R, O) -&gt; <span class="prelude-ty">Result</span>&lt;R, GE&gt;,
+    H: FnMut() -&gt; R,
+    E: ParserError&lt;I&gt; + FromExternalError&lt;I, GE&gt;,
+{
+    <span class="kw">if </span>min &gt; max {
+        <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::assert(
+            input,
+            <span class="string">"range should be ascending, rather than descending"</span>,
+        ));
+    }
+
+    <span class="kw">let </span><span class="kw-2">mut </span>acc = init();
+    <span class="kw">for </span>count <span class="kw">in </span><span class="number">0</span>..max {
+        <span class="kw">let </span>start = input.checkpoint();
+        <span class="kw">let </span>len = input.eof_offset();
+        <span class="kw">match </span>parse.parse_next(input) {
+            <span class="prelude-val">Ok</span>(value) =&gt; {
+                <span class="comment">// infinite loop check: the parser must always consume
+                </span><span class="kw">if </span>input.eof_offset() == len {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::assert(
+                        input,
+                        <span class="string">"`repeat` parsers must always consume"</span>,
+                    ));
+                }
+
+                <span class="kw">match </span>fold(acc, value) {
+                    <span class="prelude-val">Ok</span>(tmp) =&gt; acc = tmp,
+                    <span class="prelude-val">Err</span>(e) =&gt; {
+                        input.reset(<span class="kw-2">&amp;</span>start);
+                        <span class="kw">let </span>res = <span class="prelude-val">Err</span>(ErrMode::from_external_error(input, ErrorKind::Verify, e));
+                        <span class="kw">super</span>::debug::trace_result(<span class="string">"try_fold"</span>, <span class="kw-2">&amp;</span>res);
+                        <span class="kw">return </span>res;
+                    }
+                }
+            }
+            <span class="comment">//FInputXMError: handle failure properly
+            </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(err)) =&gt; {
+                <span class="kw">if </span>count &lt; min {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(ErrMode::Backtrack(err.append(
+                        input,
+                        <span class="kw-2">&amp;</span>start,
+                        ErrorKind::Many,
+                    )));
+                } <span class="kw">else </span>{
+                    input.reset(<span class="kw-2">&amp;</span>start);
                     <span class="kw">break</span>;
                 }
             }

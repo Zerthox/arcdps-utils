@@ -1,0 +1,1 @@
+searchState.loadedDescShard("arcdps_codegen", 0, "Code generation for ArcDPS plugins.\nCreates plugin exports for ArcDPS.")
