@@ -382,8 +382,7 @@
 <a href="#381" id="381">381</a>
 <a href="#382" id="382">382</a>
 <a href="#383" id="383">383</a>
-<a href="#384" id="384">384</a>
-<a href="#385" id="385">385</a></pre></div><pre class="rust"><code><span class="kw">use super</span>::{Entry, Player, Tracker};
+<a href="#384" id="384">384</a></pre></div><pre class="rust"><code><span class="kw">use super</span>::{Entry, Player, Tracker};
 <span class="kw">use </span>arcdps::{Profession, Specialization};
 <span class="kw">use </span>std::ops;
 
@@ -493,10 +492,9 @@
     <span class="kw">where
         </span>T: Clone,
     {
-        <span class="self">self</span>.tracker.remove_player(id).map(|entry| {
-            <span class="self">self</span>.maybe_cache(entry.clone());
-            entry
-        })
+        <span class="self">self</span>.tracker
+            .remove_player(id)
+            .inspect(|entry| <span class="self">self</span>.maybe_cache(entry.clone()))
     }
 
     <span class="doccomment">/// Returns a reference to the local player (self).

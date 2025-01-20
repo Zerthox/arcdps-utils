@@ -134,11 +134,8 @@
 <a href="#133" id="133">133</a>
 <a href="#134" id="134">134</a>
 <a href="#135" id="135">135</a>
-<a href="#136" id="136">136</a>
-<a href="#137" id="137">137</a>
-<a href="#138" id="138">138</a></pre></div><pre class="rust"><code><span class="kw">use </span>arcdps::imgui::{Id, TableColumnFlags, TableColumnSetup, TableFlags, TableToken, Ui};
-<span class="kw">use </span>std::{ffi::c_void, mem};
-<span class="kw">use </span>windows::Win32::Graphics::Direct3D11::ID3D11ShaderResourceView;
+<a href="#136" id="136">136</a></pre></div><pre class="rust"><code><span class="kw">use </span>arcdps::imgui::{Id, TableColumnFlags, TableColumnSetup, TableFlags, TableToken, Ui};
+<span class="kw">use </span>windows::{core::Interface, Win32::Graphics::Direct3D11::ID3D11ShaderResourceView};
 
 <span class="doccomment">/// Renders a table with (optional) icon headers.
 </span><span class="kw">pub fn </span>table_with_icons&lt;<span class="lifetime">'ui</span>, N&gt;(
@@ -265,8 +262,7 @@
         ui.set_cursor_screen_pos([pos_x + size, pos_y]);
         ui.table_header(<span class="macro">format!</span>(<span class="string">"##{label}"</span>));
 
-        <span class="comment">// avoid dropping by transmuting the reference
-        </span><span class="kw">let </span>ptr = <span class="kw-2">*</span><span class="kw">unsafe </span>{ mem::transmute::&lt;<span class="kw">_</span>, <span class="kw-2">&amp;*const </span>c_void&gt;(icon) };
+        <span class="kw">let </span>ptr = icon.as_raw();
         ui.get_window_draw_list()
             .add_image(ptr.into(), [pos_x, top], [pos_x + size, top + size])
             .build();
